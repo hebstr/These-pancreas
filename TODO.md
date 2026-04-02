@@ -1,5 +1,5 @@
 # recode
 
 - valeurs abb
-- clarifer "pas de données"
-- flat prog_site
+- clarifier prog_type et prog_site (local meta)
+- clarifier ca_ NA : 0 ou ,

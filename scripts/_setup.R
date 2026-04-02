@@ -6,12 +6,21 @@ library(hebstr)
 
 lang_fr()
 
+if (exists("docx") && isTRUE(docx)) {
+  theme_gtsummary_printer("flextable")
+}
+
 set_opts()
 
 url <- "https://docs.google.com/spreadsheets/d/1iL6LS6ZXJpctP8I0Rj0HLSVGK3KoClZcX1EcIOkduUI/edit?pli=1&gid=2126636750#gid=2126636750"
 
 dict <- read_sheet(url, sheet = 1)
 data <- read_sheet(url, sheet = 2, col_types = "c")
+
+# openxlsx2::write_xlsx(dict, "data/dictionnaire.xlsx")
+# openxlsx2::write_xlsx(data, "data/recueil.xlsx")
+
+.num <- dict |> filter(type == "num") |> pull(var_name)
 
 .labels <- dict |>
   select(var_name, label) |>
@@ -37,17 +46,14 @@ data <- read_sheet(url, sheet = 2, col_types = "c")
 df <- data |>
   drop_na(centre) |>
   mutate(
-    across(everything(), ~ replace_values(., "," ~ NA)),
+    across(everything(), ~ replace_values(., c(",", "-") ~ NA)),
     across(matches("date"), dmy),
+    across(all_of(.num), as.numeric),
     age_diag = (interval(date_birth, date_diag) / years(1)) %/% 0.1 * 0.1,
   ) |>
   set_variable_labels(!!!.labels, .strict = FALSE) |>
   set_value_labels(!!!.levels, .strict = FALSE) |>
   keep(~ !is.null(var_label(.))) |>
-  modify_if(is.labelled, as_factor) |>
-  mutate(across(
-    where(is.factor),
-    ~ fct_na_level_to_value(., extra_levels = "Pas de donnée")
-  ))
+  modify_if(is.labelled, as_factor)
 
 df |> hebstr::easy_view()

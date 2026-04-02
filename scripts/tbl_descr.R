@@ -1,9 +1,10 @@
 tbl_baseline <- df |>
-  select(-matches("date"), -surv_pfs) |>
+  discard(is.Date) |>
   use_vars() |>
   tbl_summary(
     # by = centre,
     statistic = opts$vars$stat,
+    type = list(where(is.numeric) ~ "continuous"),
     digits = opts$digits,
     missing = "ifany",
     missing_text = opts$labs$missing

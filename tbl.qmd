@@ -1,0 +1,16 @@
+---
+format: docx
+---
+
+```{r, include=FALSE}
+docx <- TRUE
+source("scripts/_setup.R")
+auto_exec()
+```
+
+```{r}
+#| echo: false
+tbl_baseline
+```
+
+\pagebreak
