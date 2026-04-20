@@ -1,0 +1,15 @@
+[project]
+name = "These-pancreas"
+r_version = "4.5"
+
+repositories = [
+    {alias = "CRAN", url = "https://packagemanager.posit.co/cran/latest"},
+]
+
+dependencies = [
+    { name = "hebstr", git = "https://github.com/hebstr/hebstr.git", branch = "main" },
+    "tidyverse",
+    "googlesheets4",
+    "labelled",
+    "gtsummary",
+]
