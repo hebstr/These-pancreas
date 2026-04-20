@@ -9,12 +9,12 @@ options(
   digits = 3
 )
 
-conflicted::conflicts_prefer(dplyr::filter(), .quiet = TRUE)
-
 library(tidyverse)
 library(googlesheets4)
 library(labelled)
 library(gtsummary)
 library(hebstr)
+
+conflicted::conflicts_prefer(dplyr::filter(), .quiet = TRUE)
 
 lang_fr()
