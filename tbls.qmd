@@ -2,7 +2,9 @@
 format: docx
 ---
 
-```{r, include=FALSE}
+```{r}
+#| include: false
+conflicted::conflicts_prefer(dplyr::filter(), .quiet = TRUE)
 docx <- TRUE
 source("scripts/_setup.R")
 auto_exec()

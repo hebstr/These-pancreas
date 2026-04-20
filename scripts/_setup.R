@@ -1,21 +1,13 @@
-set_opts()
+### VARS -----------------------------------------------------------------------
 
-url <- "https://docs.google.com/spreadsheets/d/1iL6LS6ZXJpctP8I0Rj0HLSVGK3KoClZcX1EcIOkduUI/edit?pli=1&gid=2126636750#gid=2126636750"
+.var_num <- variables |> filter(type == "num") |> pull(var_name)
 
-dict <- read_sheet(url, sheet = 1)
-data <- read_sheet(url, sheet = 2, col_types = "c")
-
-# openxlsx2::write_xlsx(dict, "data/dictionnaire.xlsx")
-# openxlsx2::write_xlsx(data, "data/recueil.xlsx")
-
-.num <- dict |> filter(type == "num") |> pull(var_name)
-
-.labels <- dict |>
+.var_labels <- variables |>
   select(var_name, label) |>
   deframe() |>
   as.list()
 
-.levels <- dict |>
+.val_labels <- variables |>
   separate_longer_delim(
     cols = valeurs,
     delim = regex("\\s*[,;]\\s*")
@@ -31,15 +23,17 @@ data <- read_sheet(url, sheet = 2, col_types = "c")
   ) |>
   deframe()
 
-df <- data |>
+### DF -------------------------------------------------------------------------
+
+df <- recueil_ano |>
   drop_na(centre) |>
   mutate(
     across(matches("date"), dmy),
-    across(all_of(.num), as.numeric),
+    across(all_of(.var_num), as.numeric),
     age_diag = (interval(date_birth, date_diag) / years(1)) %/% 0.1 * 0.1,
   ) |>
-  set_variable_labels(!!!.labels) |>
-  set_value_labels(!!!.levels) |>
+  set_variable_labels(!!!.var_labels) |>
+  set_value_labels(!!!.val_labels) |>
   modify_if(is.labelled, as_factor) |>
   keep(~ !is.null(var_label(.)))
 

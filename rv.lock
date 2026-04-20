@@ -728,7 +728,7 @@ dependencies = [
 [[packages]]
 name = "hebstr"
 version = "0.0.0.9000"
-source = { git = "https://github.com/hebstr/hebstr.git", sha = "16c7613c5f377c8edeea9f98ffa50270771664e4", branch = "main" }
+source = { git = "https://github.com/hebstr/hebstr.git", sha = "039c84dde561510d71db9f8e99f067815363a21b", branch = "main" }
 force_source = true
 dependencies = [
     "broom",
@@ -821,6 +821,18 @@ dependencies = [
     { name = "knitr", requirement = "(>= 1.8)" },
     "rmarkdown",
     "yaml",
+]
+
+[[packages]]
+name = "httpuv"
+version = "1.6.17"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "later", requirement = "(>= 0.8.0)" },
+    "promises",
+    "R6",
+    { name = "Rcpp", requirement = "(>= 1.0.7)" },
 ]
 
 [[packages]]

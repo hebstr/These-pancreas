@@ -12,4 +12,6 @@ dependencies = [
     "googlesheets4",
     "labelled",
     "gtsummary",
+    "httpuv",
+    "fs",
 ]
