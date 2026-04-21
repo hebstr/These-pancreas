@@ -13,5 +13,7 @@ dependencies = [
     "labelled",
     "gtsummary",
     "httpuv",
+    "conflicted",
     "fs",
+    "here",
 ]

@@ -4,9 +4,9 @@ format: docx
 
 ```{r}
 #| include: false
-conflicted::conflicts_prefer(dplyr::filter(), .quiet = TRUE)
 docx <- TRUE
-source("scripts/_setup.R")
+no_conflict()
+source(here_src("_setup.R"))
 auto_exec()
 ```
 

@@ -38,3 +38,7 @@ df <- recueil_ano |>
   keep(~ !is.null(var_label(.)))
 
 # easy_view(df, assign = TRUE)
+
+### AUTO EXEC ------------------------------------------------------------------
+
+# auto_exec()

@@ -18,7 +18,8 @@ library(labelled)
 library(gtsummary)
 library(hebstr)
 
-conflicted::conflicts_prefer(dplyr::filter(), .quiet = TRUE)
+no_conflict <- \() conflicted::conflicts_prefer(dplyr::filter(), .quiet = TRUE)
+here_src <- \(file = "") here::here("scripts", file)
 
 lang_fr()
 set_opts()
