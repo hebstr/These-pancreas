@@ -30,12 +30,12 @@ url <- "https://docs.google.com/spreadsheets/d/1iL6LS6ZXJpctP8I0Rj0HLSVGK3KoClZc
 
 variables <- read_sheet(
   ss = url,
-  sheet = "Variables"
+  sheet = 1
 )
 
 recueil_ano <- read_sheet(
   ss = url,
-  sheet = "Recueil anonymisé Nantes + LRSY",
+  sheet = 2,
   col_types = "c"
 )
 

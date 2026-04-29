@@ -32,8 +32,8 @@ df <- recueil_ano |>
     across(all_of(.var_num), as.numeric),
     age_diag = (interval(date_birth, date_diag) / years(1)) %/% 0.1 * 0.1,
   ) |>
-  set_variable_labels(!!!.var_labels) |>
-  set_value_labels(!!!.val_labels) |>
+  set_variable_labels(!!!.var_labels, .strict = FALSE) |>
+  set_value_labels(!!!.val_labels, .strict = FALSE) |>
   modify_if(is.labelled, as_factor) |>
   keep(~ !is.null(var_label(.)))
 
