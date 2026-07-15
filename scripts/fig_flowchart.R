@@ -150,6 +150,17 @@ fig_flowchart <- grobTree(
 
 ### OUTPUT ---------------------------------------------------------------------
 
-# easy_out(fig_flowchart, width = 9, height = 8)
+easy_out(fig_flowchart, width = 9, height = 8)
 
-export_office(fig_flowchart, width = 9, height = 8)
+svg_flowchart <- here::here("output/fig_flowchart.svg")
+
+svg_flowchart |>
+  read_file() |>
+  str_replace(fixed("<svg "), "<svg xml:space='preserve' ") |>
+  write_file(svg_flowchart)
+
+svg_flowchart |>
+  magick::image_read_svg(height = 1200) |>
+  magick::image_write(here::here("output/fig_flowchart.png"), format = "png")
+
+# export_office(fig_flowchart, width = 9, height = 8)

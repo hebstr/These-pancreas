@@ -1,27 +1,23 @@
 ### DATA ------------------------------------------------------------------------
 
-.model <- lst(
-  data = df,
+.model_plr <- lst(
+  data = df |>
+    mutate(ps_diag = ps_diag |> fct_collapse("1-2" = c(1, 2))),
   y = "n_cures_outcome",
   x = lst(
     uv = c(
       "groupe",
       "centre",
-      "chir_hosp",
       "age_incr",
       "ps_diag",
-      "ca_diag",
       "chir_resec"
     ),
-    mv = uv
+    mv = setdiff(uv, "chir_resec")
   ),
   args = lst(
     pvalue_fun = opts$pvalue$format,
-    exponentiate = TRUE
-  ),
-  descr = check_model_vars(
-    data = data[, c(y, x$uv)],
-    by = y
+    exponentiate = TRUE,
+    tidy_fun = broom.helpers::tidy_parameters
   ),
   sep = glm(
     formula = reformulate(x$mv, y),
@@ -29,12 +25,9 @@
     data = data,
     method = detectseparation::detect_separation
   ),
-  fit = glm(
+  fit = logistf::logistf(
     formula = reformulate(x$mv, y),
-    family = binomial,
-    data = data,
-    method = brglm2::brglmFit,
-    type = "AS_mean"
+    data = data
   )
 )
 
@@ -42,20 +35,15 @@
 
 .plr_models <- lst(
   uv = tbl_uvregression(
-    data = .model$data[c(.model$y, .model$x$uv)],
-    y = .model$y,
-    method = glm,
-    method.args = list(
-      family = binomial,
-      method = brglm2::brglmFit,
-      type = "AS_mean"
-    ),
-    !!!.model$args,
+    data = .model_plr$data[c(.model_plr$y, .model_plr$x$uv)],
+    y = .model_plr$y,
+    method = logistf::logistf,
+    !!!.model_plr$args,
     hide_n = TRUE
   ),
   mv = tbl_regression(
-    x = .model$fit,
-    !!!.model$args
+    x = .model_plr$fit,
+    !!!.model_plr$args
   )
 )
 
@@ -64,22 +52,31 @@ tbl_model_plr <- .plr_models |>
     ~ . |>
       gtsum_format(
         ci = opts$ci,
-        model_mv = .model$fit,
+        model_mv = .model_plr$fit,
         label_header = opts$labs$header,
         estim_sep = opts$sep$int
       ) |>
-      add_global_p(anova_fun = anova_wald)
+      add_global_p(anova_fun = anova_logistf)
   ) |>
   tbl_merge(tab_spanner = str_glue("**{opts$labs$spanner}**")) |>
   gt_format(
+    note_global = str_glue(
+      "Le critère de jugement est la réalisation d'un schéma incomplet de
+      chimiothérapie, défini par un nombre total de cures reçues
+      strictement inférieur à 12."
+    ),
     note_pvalue = str_glue(
-      "Multivariable Firth-penalized logistic regression (brglm2, bias-reduced
-      score, equivalent to Jeffreys-prior penalization) included
-      {sum(.model$fit$y)} events for {nobs(.model$fit)}
-      complete observations ({nrow(.model$data) - nobs(.model$fit)}
-      observations deleted due to missing values). Global p-values are Wald
-      tests; confidence intervals are profile-likelihood."
+      "Modèle de régression logistique multivariable pénalisé par la méthode
+      de Firth, incluant {sum(.model_plr$fit$y)} évènements pour
+      {nobs(.model_plr$fit)} observations complètes
+      ({nrow(.model_plr$data) - nobs(.model_plr$fit)} observations supprimées
+      pour cause de données manquantes). Les intervalles de confiance à 95%
+      et les p-values sont issus de la vraisemblance profilée pénalisée."
     )
+  ) |>
+  add_note(
+    vars = "age_incr",
+    note = "Incrémentation par tranches de 5 ans."
   )
 
 easy_out(tbl_model_plr, width = 680)

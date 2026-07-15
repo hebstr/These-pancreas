@@ -29,4 +29,6 @@ dependencies = [
     "logistf",
     "brglm2",
     "detectseparation",
+    "magick",
+    "sessioninfo",
 ]

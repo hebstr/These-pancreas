@@ -14,6 +14,14 @@ conflicts_prefer(dplyr::filter, Gmisc::coords, .quiet = TRUE)
 
 source(here::here("scripts", "_setup.R"))
 auto_exec()
+
+title_suffix <- \(title, strata = "selon le protocole de chimiothérapie") {
+  lst(
+    strata = strata,
+    overall = str_glue("globalement et {strata}")
+  ) |>
+    map(~ str_glue("{title}, {.x}."))
+}
 ```
 
 # Analyse descriptive
@@ -22,7 +30,7 @@ auto_exec()
 
 ```{r}
 #| label: tbl-baseline
-#| tbl-cap: "Caractéristiques des patients at baseline"
+#| tbl-cap: !expr title_suffix("Caractéristiques des patients at baseline")$overall
 #| echo: false
 
 tbl_baseline
@@ -34,7 +42,7 @@ tbl_baseline
 
 ```{r}
 #| label: tbl-tumor
-#| tbl-cap: "Caractéristiques tumorales et prise en charge chirurgicale"
+#| tbl-cap: !expr title_suffix("Caractéristiques tumorales et prise en charge chirurgicale")$overall
 #| echo: false
 
 tbl_tumor
@@ -42,13 +50,11 @@ tbl_tumor
 
 {{< pagebreak >}}
 
-## Caractéristiques du traitement
-
-### Critère de jugement principal
+## Critère de jugement principal
 
 ```{r}
 #| label: tbl-cjp
-#| tbl-cap: "Critère de jugement principal : atteinte du nombre de cures cible selon le groupe"
+#| tbl-cap: !expr title_suffix("Nombre de cures reçues")$overall
 #| echo: false
 
 tbl_outcome
@@ -56,13 +62,13 @@ tbl_outcome
 
 {{< pagebreak >}}
 
-### Doses reçues et adaptations
+## Caractéristiques du traitement
 
-#### Phase d'induction
+### Phase d'induction
 
 ```{r}
 #| label: tbl-ttt-induc
-#| tbl-cap: "Doses reçues et adaptations à la phase d'induction"
+#| tbl-cap: !expr title_suffix("Doses reçues et adaptations de doses à la phase d'induction")$strata
 #| echo: false
 
 tbl_ttt_induc
@@ -70,11 +76,11 @@ tbl_ttt_induc
 
 {{< pagebreak >}}
 
-#### Phase adjuvante
+### Phase adjuvante
 
 ```{r}
 #| label: tbl-ttt-adj
-#| tbl-cap: "Doses reçues et adaptations à la phase adjuvante"
+#| tbl-cap: !expr title_suffix("Doses reçues et adaptations de doses à la phase adjuvante")$overall
 #| echo: false
 
 tbl_ttt_adj
@@ -82,13 +88,13 @@ tbl_ttt_adj
 
 {{< pagebreak >}}
 
-## Toxicité
+## Toxicité chimio-induite
 
 ### Phase d'induction
 
 ```{r}
 #| label: tbl-tox-induc
-#| tbl-cap: "Toxicités grade III-IV à la phase d'induction"
+#| tbl-cap: !expr title_suffix("Toxicité chimio-induite de grade III-IV à la phase d'induction")$strata
 #| echo: false
 
 tbl_tox_induc
@@ -100,7 +106,7 @@ tbl_tox_induc
 
 ```{r}
 #| label: tbl-tox-adj
-#| tbl-cap: "Toxicités grade III-IV à la phase adjuvante"
+#| tbl-cap: !expr title_suffix("Toxicité chimio-induite de grade III-IV à la phase adjuvante")$overall
 #| echo: false
 
 tbl_tox_adj
@@ -108,11 +114,13 @@ tbl_tox_adj
 
 {{< pagebreak >}}
 
-## Décès et récidive
+# Analyse de survie
+
+## Évènements
 
 ```{r}
 #| label: tbl-event
-#| tbl-cap: "Décès et récidive"
+#| tbl-cap: Évènements.
 #| echo: false
 
 tbl_event
@@ -120,13 +128,11 @@ tbl_event
 
 {{< pagebreak >}}
 
-# Analyse de survie
-
 ## Survie globale
 
 ```{r}
 #| label: tbl-surv
-#| tbl-cap: "Survie globale : estimations Kaplan-Meier en population totale et selon le protocole de chimio"
+#| tbl-cap: !expr title_suffix("Estimations Kaplan-Meier de la survie globale")$overall
 #| echo: false
 
 tbl_surv
@@ -140,10 +146,34 @@ tbl_surv
 
 ```{r}
 #| label: tbl-glm
-#| tbl-cap: "Régression logistique : facteurs associés à la réception d'au moins 12 cures au total"
+#| tbl-cap: Facteurs associés à la réalisation d'un schéma incomplet de chimiothérapie.
 #| echo: false
 
 tbl_model_glm
+```
+
+{{< pagebreak >}}
+
+## Régression logistique pénalisée
+
+```{r}
+#| label: tbl-plr
+#| tbl-cap: Facteurs associés à la réalisation d'un schéma incomplet de chimiothérapie (avec pénalisation de Firth).
+#| echo: false
+
+tbl_model_plr
+```
+
+{{< pagebreak >}}
+
+## Régression de quasi-Poisson
+
+```{r}
+#| label: tbl-pois
+#| tbl-cap: Facteurs associés à une augmentation du nombre total de cures reçues.
+#| echo: false
+
+tbl_model_pois
 ```
 
 {{< pagebreak >}}
@@ -152,7 +182,7 @@ tbl_model_glm
 
 ```{r}
 #| label: tbl-coxph
-#| tbl-cap: "Modèle de Cox (naïf) : survie globale"
+#| tbl-cap: !expr title_suffix("Estimation de la survie globale")$strata
 #| echo: false
 
 tbl_coxph

@@ -1,9 +1,10 @@
 get_fig_surv <- \(data, outcome) {
   .surv_data <- data[["data"]]
-  .labs <- .surv_labs[[outcome]] %||%
-    cli::cli_abort("No axis labels defined for outcome {.val {outcome}}.")
-  .surv_brks <- auto_ceiling(time = max(.surv_data$tte$obs$time), by = 6)
-  .surv_xlim <- c(0, max(.surv_data$tte$obs$time) * 1.05)
+  .labs <- .surv_labs[[outcome]]
+  .surv_time <- .surv_data$tte$obs$time
+  .surv_brks <- auto_ceiling(time = max(.surv_time), by = 6)
+  .surv_nudge <- 2.5
+  .surv_xlim <- range(.surv_brks, .surv_time + .surv_nudge)
 
   .surv_plot <- .surv_data$tte$model |>
     ggsurvfit() +
@@ -17,7 +18,7 @@ get_fig_surv <- \(data, outcome) {
           "{str} {opts$ci$label}{opts$sep$int}{estimate_ci}
           Log rank {logrank}"
         ),
-        x = max(.surv_data$tte$obs$time),
+        x = max(.surv_time),
         y = 1
       ),
       size = 2.5,
@@ -33,7 +34,8 @@ get_fig_surv <- \(data, outcome) {
         label = strata,
         color = strata
       ),
-      direction = "y",
+      nudge_x = .surv_nudge,
+      min.segment.length = Inf,
       size = 2.5,
       family = opts$font$alpha,
       seed = 1
@@ -42,7 +44,8 @@ get_fig_surv <- \(data, outcome) {
       x_scales = list(
         name = .labs$x,
         breaks = .surv_brks,
-        limits = .surv_xlim
+        limits = .surv_xlim,
+        expand = expansion(mult = 0.05)
       ),
       y_scales = list(
         name = .labs$y,

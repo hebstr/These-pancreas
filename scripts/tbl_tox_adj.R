@@ -1,5 +1,16 @@
-tbl_tox_adj <- df |>
-  filter(adj_nb > 0) |>
+.tox_adj <- lst(
+  data = df |> filter(adj_nb > 0),
+  level = binary_value(data)$adj_ei,
+  n = nrow(data),
+  n_ei = sum(data$adj_ei == level, na.rm = TRUE),
+  pct = style_percent(
+    n_ei / sum(!is.na(data$adj_ei)),
+    symbol = TRUE,
+    digits = 1
+  )
+)
+
+tbl_tox_adj <- .tox_adj$data |>
   select(
     groupe,
     adj_ei,

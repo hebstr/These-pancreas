@@ -22,13 +22,27 @@ conflicts_prefer(dplyr::filter, Gmisc::coords, .quiet = TRUE)
 
 source("scripts/_setup.R")
 auto_exec()
+
+title_suffix <- \(title, strata = "selon le protocole de chimiothérapie") {
+  lst(
+    strata = strata,
+    overall = str_glue("globalement et {strata}")
+  ) |>
+    map(~ str_glue("{title}, {.x}."))
+}
 ```
+
+::: callout-warning
+# Rapport statistique en cours de rédaction
+:::
+
+# Résultats
 
 {{< script .Rprofile >}}
 
 {{< script scripts/_setup.R >}}
 
-# Variables
+## Variables
 
 ::: panel-tabset
 # Variables
@@ -53,7 +67,7 @@ Effectifs bruts avant recodage
 
 # Effectifs (recode)
 
-Effectifs après recodage
+Effectifs après éventuel recodage
 
 ```{r}
 #| label: df-distrib-recode
@@ -62,72 +76,67 @@ Effectifs après recodage
 ```
 :::
 
-# Flowchart
+## Flowchart
 
 {{< script scripts/fig_flowchart.R >}}
 
+::: callout-important
+# exclus : nettoyage/clarification des motifs (ambiguité autre chimio/autre anapat/autre)
+:::
+
+Dans un premier temps, `r n$eligible` patients ont été retenus pour éligibilité.
+Parmi ces patients, `r n$exclus` ont été exclus.
+
+Au total, ont été inclus `r n$inclus` patients adultes atteints d'un cancer du pancréas opéré entre janvier 2022 et décembre 2025, au CHU de Nantes ou dans un autre centre (4 centres au total).
+
 ```{r}
 #| label: fig-flowchart
-#| fig-cap: "Flowchart"
+#| fig-cap: Flowchart.
 #| fig-cap-location: top
 
 knitr::include_graphics("output/fig_flowchart.png")
 ```
 
-# Suivi
+## Analyse descriptive
 
-{{< script scripts/fig_follow.R >}}
-
-Recul de suivi estimé par la méthode de Kaplan-Meier inversée (censure et décès permutés)
-
-```{r}
-#| label: fig-follow
-#| fig-cap: "Recul de suivi estimé par la méthode de Kaplan-Meier inversé"
-#| fig-height: 3.75
-#| fig-width: 7
-#| out-width: 100%
-
-fig_follow
-```
-
-# Analyse descriptive
-
-## Caractéristiques des patients at baseline
+### Caractéristiques des patients at baseline
 
 {{< script scripts/tbl_baseline.R >}}
 
 ```{r}
 #| label: tbl-baseline
-#| tbl-cap: "Caractéristiques des patients at baseline"
+#| tbl-cap: !expr title_suffix("Caractéristiques des patients at baseline")$overall
 
 tbl_baseline
 ```
 
-## Caractéristiques tumorales et prise en charge chirurgicale
+### Caractéristiques tumorales et prise en charge chirurgicale
 
 {{< script scripts/tbl_tumor.R >}}
 
 ```{r}
 #| label: tbl-tumor
-#| tbl-cap: "Caractéristiques tumorales et prise en charge chirurgicale"
+#| tbl-cap: !expr title_suffix("Caractéristiques tumorales et prise en charge chirurgicale")$overall
 
 tbl_tumor
 ```
-
-## Caractéristiques du traitement
 
 ### Critère de jugement principal
 
 {{< script scripts/tbl_outcome.R >}}
 
+Outcome : schéma incomplet (nombre total de cures reçues < 12)
+
 ```{r}
 #| label: tbl-cjp
-#| tbl-cap: "Critère de jugement principal : atteinte du nombre de cures cible selon le groupe"
+#| tbl-cap: !expr title_suffix("Nombre de cures reçues")$overall
 
 tbl_outcome
 ```
 
-### Doses reçues et adaptations
+### Caractéristiques du traitement
+
+Doses reçues et adaptations de doses, par phase de chimiothérapie.
 
 #### Phase d'induction
 
@@ -135,7 +144,7 @@ tbl_outcome
 
 ```{r}
 #| label: tbl-ttt-induc
-#| tbl-cap: "Doses reçues et adaptations à la phase d'induction"
+#| tbl-cap: !expr title_suffix("Doses reçues et adaptations de doses à la phase d'induction")$strata
 
 tbl_ttt_induc
 ```
@@ -146,53 +155,81 @@ tbl_ttt_induc
 
 ```{r}
 #| label: tbl-ttt-adj
-#| tbl-cap: "Doses reçues et adaptations à la phase adjuvante"
+#| tbl-cap: !expr title_suffix("Doses reçues et adaptations de doses à la phase adjuvante")$overall
 
 tbl_ttt_adj
 ```
 
-## Toxicité
+### Toxicité chimio-induite
 
-Toxicités grade III-IV par phase de chimiothérapie
+Toxicité chimio-induite de grade III-IV, par phase de chimiothérapie.
 
-### Phase d'induction
+#### Phase d'induction
 
 {{< script scripts/tbl_tox_induc.R >}}
 
+Au total, sur l'ensemble des `r .tox_induc$n` patients ayant reçu une chimiothérapie d'induction, `r .tox_induc$n_ei` (`r .tox_induc$pct`) ont présenté au moins un effet indésirable de grade III-IV.
+
 ```{r}
 #| label: tbl-tox-induc
-#| tbl-cap: "Toxicités grade III-IV à la phase d'induction"
+#| tbl-cap: !expr title_suffix("Toxicité chimio-induite de grade III-IV à la phase d'induction")$strata
 
 tbl_tox_induc
 ```
 
-### Phase adjuvante
+#### Phase adjuvante
 
 {{< script scripts/tbl_tox_adj.R >}}
 
+Au total, sur l'ensemble des `r .tox_adj$n` patients ayant reçu une chimiothérapie adjuvante, `r .tox_adj$n_ei` (`r .tox_adj$pct`) ont présenté au moins un effet indésirable de grade III-IV.
+
 ```{r}
 #| label: tbl-tox-adj
-#| tbl-cap: "Toxicités grade III-IV à la phase adjuvante"
+#| tbl-cap: !expr title_suffix("Toxicité chimio-induite de grade III-IV à la phase adjuvante")$overall
 
 tbl_tox_adj
 ```
 
-## Décès et récidive
+## Analyse de survie
+
+Analyse comparative de la survie globale (OS) et de la survie sans récidive (PFS) selon le protocole de chimiothérapie.
+
+### Suivi des patients
+
+{{< script scripts/fig_follow.R >}}
+
+```{r}
+#| label: fig-follow
+#| fig-cap: !expr .title_fig_follow
+#| fig-height: 3.75
+#| fig-width: 7
+#| out-width: 100%
+
+.title_fig_follow <- str_fig(
+  title = title_suffix("Recul de suivi")$strata,
+  note = str_glue(
+    "Recul de suivi estimé par la méthode de Kaplan-Meier inversée : l'évènement est la fin du suivi, la censure est le décès."
+  )
+)
+
+fig_follow
+```
+
+Au moment de l'analyse, `r sum(df$os_event == 0)` patients étaient vivants.
+Le suivi médian estimé par la méthode de Kaplan-Meier inversé était de `r .followup_median` mois.
+
+### Évènements
 
 {{< script scripts/tbl_event.R >}}
 
 ```{r}
 #| label: tbl-event
-#| tbl-cap: "Décès et récidive"
+#| tbl-cap: Évènements.
 
 tbl_event
 ```
 
-# Analyse de survie
-
-Stratification selon le protocole de chimio (adjuvant seul ou péri-opératoire)
-
-## Survie globale
+### Survie globale
 
 {{< script scripts/tbl_fit.R >}}
 
@@ -200,166 +237,280 @@ Stratification selon le protocole de chimio (adjuvant seul ou péri-opératoire)
 
 {{< script scripts/fig_surv_strata.R >}}
 
-Délai depuis le diagnostic jusqu'au décès toutes causes
-
-### Population totale
-
 ```{r}
-#| label: fig-os-total
-#| fig-cap: "Survie globale dans la population totale"
-#| fig-height: 3.75
-#| fig-width: 7
-#| out-width: 100%
+#| label: fig-surv-title
 
-fig_surv_total$os
+.title_surv <- \(title) {
+  str_fig(
+    title = title,
+    note = str_glue(
+      "Les évènements et censures sont présentés en effectifs cumulés au cours du temps."
+    )
+  )
+}
 ```
 
-### Selon le protocole de chimiothérapie
-
-```{r}
-#| label: fig-os-strata
-#| fig-cap: "Survie globale selon le protocole de chimio"
-#| fig-height: 3.75
-#| fig-width: 7
-#| out-width: 100%
-
-fig_surv_strata$os
-```
+::: callout-note
+### Survie globale : délai entre le diagnostic et le décès toutes causes
+:::
 
 ```{r}
 #| label: tbl-surv
-#| tbl-cap: "Survie globale : estimations Kaplan-Meier en population totale et selon le protocole de chimio"
+#| tbl-cap: !expr title_suffix("Estimations Kaplan-Meier de la survie globale")$overall
 
 tbl_surv
 ```
 
-## Survie sans récidive
-
-Délai depuis la chirurgie jusqu'à la récidive ou le décès toutes causes
-
-### Population totale
+#### Population totale
 
 ```{r}
-#| label: fig-pfs-total
-#| fig-cap: "Survie sans récidive dans la population totale"
+#| label: fig-surv-total-os
+#| fig-cap: !expr .title_fig_surv_total_os
 #| fig-height: 3.75
 #| fig-width: 7
 #| out-width: 100%
+
+.title_fig_surv_total_os <- .title_surv(
+  title = "Survie globale dans la population totale."
+)
+
+fig_surv_total$os
+```
+
+#### Selon le protocole de chimiothérapie
+
+```{r}
+#| label: fig-surv-strata-os
+#| fig-cap: !expr .title_fig_surv_strata_os
+#| fig-height: 3.75
+#| fig-width: 7
+#| out-width: 100%
+
+.title_fig_surv_strata_os <- .title_surv(
+  title = title_suffix("Survie globale")$strata
+)
+
+fig_surv_strata$os
+```
+
+### Survie sans récidive
+
+::: callout-note
+### Survie sans récidive : délai entre la chirurgie et la récidive ou le décès toutes causes
+:::
+
+#### Population totale
+
+```{r}
+#| label: fig-surv-total-pfs
+#| fig-cap: !expr .title_fig_surv_total_pfs
+#| fig-height: 3.75
+#| fig-width: 7
+#| out-width: 100%
+
+.title_fig_surv_total_pfs <- .title_surv(
+  title = "Survie sans récidive dans la population totale."
+)
 
 fig_surv_total$pfs
 ```
 
-### Selon le protocole de chimio
+#### Par sous-groupes
 
 ```{r}
-#| label: fig-pfs-strata
-#| fig-cap: "Survie sans récidive selon le protocole de chimio"
+#| label: fig-surv-strata-pfs
+#| fig-cap: !expr .title_fig_surv_strata_pfs
 #| fig-height: 3.75
 #| fig-width: 7
 #| out-width: 100%
+
+.title_fig_surv_strata_pfs <- .title_surv(
+  title = title_suffix("Survie globale")$strata
+)
 
 fig_surv_strata$pfs
 ```
 
-## Incidence cumulée de récidive
+### Incidence cumulée de récidive
 
-Risques compétitifs (récidive vs décès sans récidive), depuis la chirurgie : **pas nécessaire (trop peu de décès)**
-
-<!--
-{{< script scripts/fig_cuminc_total.R >}}
-
-{{< script scripts/fig_cuminc_strata.R >}}
-
-```{r}
-#| label: tbl-cuminc
-#| tbl-cap: "Incidence cumulée de récidive : estimations (risques compétitifs)"
-#| eval: false
-
-tbl_cuminc
-```
-
-### Population totale
-
-```{r}
-#| label: fig-cuminc-total
-#| fig-cap: "Incidence cumulée de récidive dans la population totale"
-#| fig-height: 3.75
-#| fig-width: 7
-#| out-width: 100%
-#| eval: false
-
-fig_cuminc_total
-```
-
-### Selon le nombre de cures
-
-```{r}
-#| label: fig-cuminc-strata
-#| fig-cap: "Incidence cumulée de récidive selon le nombre total de cures (≥ 12 vs < 12)"
-#| fig-height: 3.75
-#| fig-width: 7
-#| out-width: 100%
-#| eval: false
-
-fig_cuminc_strata
-```
--->
+Récidive vs décès sans récidive traité comme risque compétitif, depuis la chirurgie : **skip car trop peu de décès**
 
 # Analyse multivariable
+
+::: callout-important
+# Ne devrait pas être inclus en facteur d'ajustement
+
+Durée d'hospitalisation :
+- inversion temporelle : une partie de l'outcome (avoir < 12 cures) est antérieure à la chirurgie (groupe péri-opératoire)
+- possiblement sur le chemin causal : complications > hospit prolongée > moins de cures reçues
+
+CA19-9 : trop de données manquantes
+:::
+
+::: callout-important
+# Important
+
+Principe de parcimonie à appliquer sur le choix et le nombre de variables à inclure dans l'analyse multivariée.
+Avec le CJP binaire sur 100 patients, le modèle de régression est déjà sous-dimentionné : pas assez d'observations, donc pas assez d'évenement par variable, donc le modèle s'ajuste trop aux données et est moins généralisable.
+Coefficients poussés vers les extrêmes et IC trop larges.
+
+Une analyse multivariée ne peut porter que sur les observations complètes (= aucune donnée manquante sur aucune des variables incluses dans le modèle).
+L'ajout d'une nouvelle variable expose à un risque de perte de puissance.
+:::
 
 ## Régression logistique
 
 {{< script scripts/tbl_model_glm.R >}}
 
-Facteurs associés à la réception d'au moins 12 cures au total
+CJP initial binaire "nombre de cures total >= 12" oui/non (atteinte du schéma complet)
+
+::: callout-important
+# Proposition : inverser l'évènement en "nombre de cures total < 12" oui/non
+
+Plus de sens au niveau épidémiologique : aucun effet sur les conclusions mais permet une lecture plus naturelle et conventionnelle des estimations, qui vont dans le sens d'un effet protecteur si < 0 (= moins de risque d'avoir un schéma incomplet) et d'un excès de risque si > 1 (risque augmenté d'avoir un schéma incomplet)
+:::
+
+::: panel-tabset
+# Modèle
 
 ```{r}
-#| label: tbl-glm
-#| tbl-cap: "Régression logistique : facteurs associés à la réception d'au moins 12 cures au total"
+#| label: tbl-glm-model
+#| tbl-cap: Facteurs associés à la réalisation d'un schéma incomplet de chimiothérapie.
 
 tbl_model_glm
 ```
+
+# Variables
+
+Détail des variables incluses (au moins dans l'analyse univariable)
+
+```{r}
+#| label: glm-vars
+
+.model_glm$descr
+```
+:::
+
+Manque de puissance : les coefficients sont poussés vers les extrêmes et les IC sont larges.
+Du fait des petits effectifs mais aussi par la binarisation du CJP qui crée une perte d'information (réduction d'un nombre de cures à oui/non)
+
+::: callout-important
+# Proposition : garder le CJP binaire en corrigeant l'estimation (pénalisation de Firth)
+:::
+
+## Régression logistique pénalisée
+
+{{< script scripts/tbl_model_plr.R >}}
+
+```{r}
+#| label: tbl-plr-model
+#| tbl-cap: Facteurs associés à la réalisation d'un schéma incomplet de chimiothérapie (avec pénalisation de Firth).
+
+tbl_model_plr
+```
+
+Mêmes observations et mêmes variables que le modèle naïf.
+Permet ici de corriger le manque de puissance.
+
+**Autre méthode possible : alternative à la binarisation du CJP qui induite une perte d'information**
+
+## Régression de quasi-Poisson
+
+{{< script scripts/tbl_model_pois.R >}}
+
+::: callout-important
+# Proposition : au lieu d'un seuil arbitraire de 12 cures qui met au même niveau un patient ayant eu 1 cure qu'un autre en ayant eu 11, modélisation en comptage du nombre total de cures
+
+CJP = nombre total de cures reçues
+
+Analyse réalisable avec un modèle de régression de Poisson (ou plus exactement quasi-Poisson du fait de la distribution hétérogène du nombre de cures, un détail)
+
+La modélisation en CJP binaire répondait à la question : **quels sont les facteurs associés à la réalisation d'un schéma complet de chimio (nombre total >= 12) ?**
+
+La modélisation en comptage du nombre total de cures répond à la question : **quels sont les facteurs associés à un nombre total de cures plus élevé ?**
+
+Légèrement différent mais peut-être plus interprétable et robuste
+:::
+
+::: panel-tabset
+# Modèle
+
+```{r}
+#| label: tbl-pois-model
+#| tbl-cap: "Facteurs associés à une augmentation du nombre total de cures reçues."
+
+tbl_model_pois
+```
+
+# Variables
+
+Détail des variables incluses (au moins dans l'analyse univariable)
+
+```{r}
+#| label: pois-vars
+
+.model_pois$descr
+```
+:::
+
+Nombre total de cures en moyenne 20% plus élevé dans le groupe péri-opératoire en comparaison au groupe adjuvant seul.
+Persiste après ajustement dans l'analyse multivariée.
+
+::: callout-note
+# Suggestion de présentation
+
+Présenter les deux analyses (logistique et quasi-Poisson), dans l'ordre suivant :
+
+1. d'abord régression de quasi-Poisson (CJP comptage du nombre total de cures, brut)
+2. puis régression logistique (CJP binarisé) :
+- modèle "naïf" : @tbl-glm-model
+- modèle corrigé du manque de puissance (pénalisation de Firth) : @tbl-plr-model
+:::
 
 ## Estimation de la survie globale
 
 {{< script scripts/tbl_model_coxph.R >}}
 
-Potentiel biais de temps immortel : tester modèle naïf + analyse de sensibilité landmark
+::: callout-important
+# Proposition
+
+Si biais de temps immortel entre groupe 1 et 2, tester modèle naïf + modèle avec landmark en analyse de sensibilité (seuil clinique)
+:::
+
+::: panel-tabset
+# Modèle
 
 ```{r}
-#| label: tbl-coxph
-#| tbl-cap: "Modèle de Cox (naïf) : survie globale"
+#| label: tbl-coxph-model
+#| tbl-cap: !expr title_suffix("Estimation de la survie globale")$strata
 
 tbl_coxph
 ```
 
-## Récidive
+# Variables
 
-Modèle de fine gray : régression sur le sous-risque de récidive avec le décès sans récidive traité comme évènement compétitif : **pas pertinent (trop peu de décès)**
-
-<!--
-{{< script scripts/tbl_model_crr.R >}}
+Détail des variables incluses (au moins dans l'analyse univariable)
 
 ```{r}
-#| label: tbl-crr
-#| eval: false
+#| label: coxph-vars
 
-tbl_model_crr
+.model_coxph$descr
 ```
--->
+:::
+
+## Incidence cumulée de récidive
+
+Régression sur le risque de récidive avec décès sans récidive traité comme évènement compétitif (modèle de Fine Gray) : **skip car trop peu de décès et manque de puissance**
 
 # Annexe {.unnumbered}
 
-<!--
-
---------------------------------------------------------------------------------
+<!-- --------------------------------------------------------------------------------
 
 # Session {.unnumbered .unlisted}
 
 ```{r}
+#| label: session
 #| echo: true
-#| eval: false
 
 sessioninfo::session_info(pkgs = "attached")
-```
--->
+``` -->

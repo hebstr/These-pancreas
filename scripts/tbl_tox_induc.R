@@ -1,5 +1,16 @@
-tbl_tox_induc <- .induc$df |>
-  filter(induc_nb > 0) |>
+.tox_induc <- lst(
+  data = .induc$df |> filter(induc_nb > 0),
+  level = binary_value(data)$induc_ei,
+  n = nrow(data),
+  n_ei = sum(data$induc_ei == level, na.rm = TRUE),
+  pct = style_percent(
+    n_ei / sum(!is.na(data$induc_ei)),
+    symbol = TRUE,
+    digits = 1
+  )
+)
+
+tbl_tox_induc <- .tox_induc$data |>
   select(
     groupe,
     induc_ei,

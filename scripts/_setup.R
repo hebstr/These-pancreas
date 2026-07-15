@@ -1,7 +1,5 @@
 ### DF -------------------------------------------------------------------------
 
-# .outcome_levels <- c("< 12 cures" = 0, "≥ 12 cures" = 1)
-
 df_recode <- df_init |>
   mutate(
     age = trunc(as.numeric(date_diag - date_birth) / 365.25 * 10) / 10,
@@ -13,10 +11,10 @@ df_recode <- df_init |>
     induc_nb = coalesce(induc_nb, 0),
     adj_nb = coalesce(adj_nb, 0),
     n_cures = induc_nb + adj_nb,
-    n_cures_outcome = n_cures >= 12,
-    n_cures_outcome_sub = n_cures_outcome &
-      (induc_adapt_pct != 2 | is.na(induc_adapt_pct)) &
-      (adj_adapt_pct != 2 | is.na(adj_adapt_pct)),
+    n_cures_outcome = n_cures < 12,
+    n_cures_outcome_sub = n_cures_outcome |
+      induc_adapt_pct %in% 2 |
+      adj_adapt_pct %in% 2,
     total_ei = coalesce(induc_ei, adj_ei),
     n_recidive_site_meta = rowSums(across(starts_with("recidive_site_meta"))) |> na_if(0),
     n_recidive_site_meta = if_else(n_recidive_site_meta == 1, 1, 2),
@@ -57,9 +55,9 @@ df_recode <- df_init |>
       age_incr = "Âge au diagnostic, années",
       time_diag_chir = "Délai entre diagnostic et chirurgie, mois",
       n_cures = "Nombre total de cures",
-      n_cures_outcome = "Nombre total de cures >= 12",
-      n_cures_outcome_sub = "Nombre total de cures >= 12 : avec dose relative moyenne >= 80%",
-      total_ei = dict$var$induc_ei,
+      n_cures_outcome = "Nombre total de cures < 12",
+      n_cures_outcome_sub = "Nombre total de cures < 12 : ou dose relative moyenne < 80%",
+      total_ei = "Toxicité de grade III-IV",
       n_recidive_site_meta = "Nombre de sites métastatiques",
       os_event = "Décès toutes causes",
       os_tte = "Délai entre le diagnostic et le décès toutes causes, mois",
@@ -68,23 +66,15 @@ df_recode <- df_init |>
       pfs_cause = "Premier évènement"
     ),
     value = list(
-      # n_cures_outcome = c("< 12 cures" = 0, "≥ 12 cures" = 1),
       n_recidive_site_meta = c("1" = 1, ">=2" = 2),
       pfs_cause = c("Censure" = 0, "Récidive" = 1, "Décès sans récidive" = 2)
     )
   ) |>
   discard(~ is.null(var_label(.x)))
 
-### TEMP : RETRAIT PAT SANS CURE/GROUPE ----------------------------------------
-# .pat_sans_cure <- checklist$ttt |>
-#   filter(check == "pat_sans_cure") |>
-#   pull(rowname)
-
 df <- df_recode |>
   rownames_to_column() |>
   mutate(rowname = as.numeric(rowname) + 1)
-# filter_out(rowname %in% .pat_sans_cure) # |>
-# select(-rowname)
 
 .induc <- lst(
   label = var_label(df$groupe),
@@ -104,14 +94,6 @@ df <- df_recode |>
     sort(decreasing = TRUE) |>
     names()
 )
-
-### ----------------------------------------------------------------------------
-
-# trop peu de cjp 2
-# df |>
-#   count(groupe, n_cures_outcome, pick(matches("adapt_pct"))) |>
-#   arrange(groupe, n_cures_outcome) |>
-#   filter(n_cures_outcome & if_all(matches("adapt_pct"), ~ . != ">20%" | is.na(.)))
 
 .check_df <- lst(
   data_recode = df |> select(-rowname),
@@ -140,8 +122,8 @@ df <- df_recode |>
     tte = os_tte,
     event = os_event,
     strata = groupe,
-    estimate_label = "death",
-    tbl_label = "Overall survival probability",
+    estimate_label = "le décès toutes causes",
+    tbl_label = "Probabilité de survie globale",
     type = "surv"
   ),
   pfs = build_model(
@@ -149,8 +131,8 @@ df <- df_recode |>
     tte = pfs_tte,
     event = pfs_event,
     strata = groupe,
-    estimate_label = "recurrence or death",
-    tbl_label = "Progression-free survival probability",
+    estimate_label = "la récidive ou le décès toutes causes",
+    tbl_label = "Probabilité de survie sans récidive",
     type = "surv"
   )
 ) |>
@@ -163,7 +145,7 @@ df <- df_recode |>
   ),
   pfs = list(
     x = "Durée depuis la chirurgie (mois)",
-    y = "Probabilité de survie sans progression (%)"
+    y = "Probabilité de survie sans récidive (%)"
   )
 )
 
@@ -172,8 +154,8 @@ df <- df_recode |>
   tte = pfs_tte,
   event = pfs_cause,
   strata = groupe,
-  estimate_label = "recurrence",
-  tbl_label = "Progression-free survival probability",
+  estimate_label = "la récidive",
+  tbl_label = "Probabilité de survie sans récidive (%)",
   type = "cmp"
 )
 

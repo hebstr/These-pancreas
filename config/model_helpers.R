@@ -1,11 +1,8 @@
 anova_logistf <- \(model, ...) {
-  mf <- model.frame(model)
-  plr <- \(v) {
-    reduced <- logistf::logistf(update(formula(model), str_glue(". ~ . - {v}")), data = mf)
-    anova(model, reduced, method = "PLR")$pval
-  }
+  # method = "nested" (default) shares the Jeffreys penalty across both models;
+  # method = "PLR" relates each to its own null and yields a negative statistic here
   attr(terms(model), "term.labels") |>
-    map(\(v) tibble(term = v, p.value = as.numeric(plr(v)))) |>
+    map(\(v) tibble(term = v, p.value = as.numeric(anova(model, formula = reformulate(v))$pval))) |>
     list_rbind()
 }
 
@@ -23,12 +20,16 @@ anova_wald <- \(model, ...) {
 
 check_model_vars <- \(data, by = character(0)) {
   data |>
+    use_vars() |>
     tbl_summary(
       by = all_of(by),
       missing = "ifany",
       missing_text = opts$labs$missing
     ) |>
-    gtsum_format()
+    add_stat_label(label = opts$vars$label) |>
+    gtsum_format() |>
+    col_missing() |>
+    gt_format()
 }
 
 get_surv_model <- \(
@@ -53,7 +54,7 @@ get_surv_model <- \(
       tidy(exp = TRUE, conf.int = TRUE) |>
       merge_estim_ci(ci_data = opts$ci$data) |>
       mutate(
-        str = str_glue("Hazard ratio for {estimate_label}"),
+        str = str_glue("Hazard ratio pour {estimate_label}"),
         p.value = style_pvalue(p.value, digits = 2, pre = TRUE)
       )
   }
@@ -82,7 +83,7 @@ get_surv_model <- \(
       ) |>
       transmute(
         outcome,
-        str = str_glue("Gray's test for {tolower(outcome)}"),
+        str = str_glue("Test de Gray pour {tolower(outcome)}"),
         p.value = style_pvalue(p.value, digits = 2, pre = TRUE)
       )
   }
@@ -97,7 +98,7 @@ get_surv_model <- \(
       list_rbind() |>
       merge_estim_ci(ci_data = opts$ci$data) |>
       mutate(
-        str = str_glue("sHR for {tolower(outcome)}"),
+        str = str_glue("sHR pour {tolower(outcome)}"),
         p.value = style_pvalue(p.value, digits = 2, pre = TRUE)
       )
   }

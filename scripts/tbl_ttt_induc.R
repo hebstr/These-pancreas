@@ -1,5 +1,3 @@
-# PHASE INDUCTION
-
 tbl_ttt_induc <- .induc$df |>
   filter(induc_nb > 0) |>
   select(

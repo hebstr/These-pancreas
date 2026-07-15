@@ -38,4 +38,4 @@ tbl_outcome <- df |>
     note = "Nombre de patients ayant reçu au moins une cure.",
   )
 
-easy_out(tbl_outcome, width = 700)
+easy_out(tbl_outcome, width = 750)

@@ -49,4 +49,4 @@ tbl_tumor <- df |>
     locations = cells_body(columns = dm)
   )
 
-easy_out(tbl_tumor, width = 775)
+easy_out(tbl_tumor, width = 800)

@@ -1,5 +1,3 @@
-# PHASE ADJUVANTE
-
 tbl_ttt_adj <- df |>
   filter(adj_nb > 0) |>
   select(
