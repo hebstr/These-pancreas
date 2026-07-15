@@ -1,10 +1,21 @@
 tbl_baseline <- df |>
-  discard(is.Date) |>
+  select(
+    groupe,
+    centre,
+    sexe,
+    age,
+    age_cat,
+    ps_diag,
+    dl_diag,
+    ca_diag,
+    tm_loc,
+    starts_with("tm_stade")
+  ) |>
   use_vars() |>
   tbl_summary(
-    by = induc_chimio,
+    by = groupe,
     statistic = opts$vars$stat,
-    type = where(is.numeric) ~ "continuous",
+    value = binary_value(df),
     digits = opts$digits,
     missing = "ifany",
     missing_text = opts$labs$missing
@@ -13,4 +24,4 @@ tbl_baseline <- df |>
   gtsum_format() |>
   gt_format()
 
-easy_out(tbl_baseline, width = 800)
+easy_out(tbl_baseline, width = 750)

@@ -1,0 +1,159 @@
+---
+format: docx
+---
+
+```{r}
+#| include: false
+
+options(
+  easy_out.quiet = TRUE,
+  theme_gt.docx = TRUE
+)
+
+conflicts_prefer(dplyr::filter, Gmisc::coords, .quiet = TRUE)
+
+source(here::here("scripts", "_setup.R"))
+auto_exec()
+```
+
+# Analyse descriptive
+
+## Caractéristiques des patients at baseline
+
+```{r}
+#| label: tbl-baseline
+#| tbl-cap: "Caractéristiques des patients at baseline"
+#| echo: false
+
+tbl_baseline
+```
+
+{{< pagebreak >}}
+
+## Caractéristiques tumorales et prise en charge chirurgicale
+
+```{r}
+#| label: tbl-tumor
+#| tbl-cap: "Caractéristiques tumorales et prise en charge chirurgicale"
+#| echo: false
+
+tbl_tumor
+```
+
+{{< pagebreak >}}
+
+## Caractéristiques du traitement
+
+### Critère de jugement principal
+
+```{r}
+#| label: tbl-cjp
+#| tbl-cap: "Critère de jugement principal : atteinte du nombre de cures cible selon le groupe"
+#| echo: false
+
+tbl_outcome
+```
+
+{{< pagebreak >}}
+
+### Doses reçues et adaptations
+
+#### Phase d'induction
+
+```{r}
+#| label: tbl-ttt-induc
+#| tbl-cap: "Doses reçues et adaptations à la phase d'induction"
+#| echo: false
+
+tbl_ttt_induc
+```
+
+{{< pagebreak >}}
+
+#### Phase adjuvante
+
+```{r}
+#| label: tbl-ttt-adj
+#| tbl-cap: "Doses reçues et adaptations à la phase adjuvante"
+#| echo: false
+
+tbl_ttt_adj
+```
+
+{{< pagebreak >}}
+
+## Toxicité
+
+### Phase d'induction
+
+```{r}
+#| label: tbl-tox-induc
+#| tbl-cap: "Toxicités grade III-IV à la phase d'induction"
+#| echo: false
+
+tbl_tox_induc
+```
+
+{{< pagebreak >}}
+
+### Phase adjuvante
+
+```{r}
+#| label: tbl-tox-adj
+#| tbl-cap: "Toxicités grade III-IV à la phase adjuvante"
+#| echo: false
+
+tbl_tox_adj
+```
+
+{{< pagebreak >}}
+
+## Décès et récidive
+
+```{r}
+#| label: tbl-event
+#| tbl-cap: "Décès et récidive"
+#| echo: false
+
+tbl_event
+```
+
+{{< pagebreak >}}
+
+# Analyse de survie
+
+## Survie globale
+
+```{r}
+#| label: tbl-surv
+#| tbl-cap: "Survie globale : estimations Kaplan-Meier en population totale et selon le protocole de chimio"
+#| echo: false
+
+tbl_surv
+```
+
+{{< pagebreak >}}
+
+# Analyse multivariable
+
+## Régression logistique
+
+```{r}
+#| label: tbl-glm
+#| tbl-cap: "Régression logistique : facteurs associés à la réception d'au moins 12 cures au total"
+#| echo: false
+
+tbl_model_glm
+```
+
+{{< pagebreak >}}
+
+## Estimation de la survie globale
+
+```{r}
+#| label: tbl-coxph
+#| tbl-cap: "Modèle de Cox (naïf) : survie globale"
+#| echo: false
+
+tbl_coxph
+```

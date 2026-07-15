@@ -8,6 +8,7 @@ repositories = [
 
 dependencies = [
     { name = "hebstr", git = "https://github.com/hebstr/hebstr.git", branch = "main" },
+    { name = "ggswim", git = "https://github.com/CHOP-CGTInformatics/ggswim", branch = "main" },
     "tidyverse",
     "googlesheets4",
     "labelled",
@@ -16,4 +17,16 @@ dependencies = [
     "conflicted",
     "fs",
     "here",
+    "ggsurvfit",
+    "ggrepel",
+    "Gmisc",
+    "grid",
+    "gridtext",
+    "rvg",
+    "officer",
+    "tidycmprsk",
+    "performance",
+    "logistf",
+    "brglm2",
+    "detectseparation",
 ]
