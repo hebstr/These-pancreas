@@ -61,12 +61,13 @@ tbl_model_glm_bin <- .model$glm$bin$tbls |>
       {sum(.model$glm$bin$fit$y)} évènements pour {nobs(.model$glm$bin$fit)}
       observations complètes ({nrow(.model$glm$bin$data) - nobs(.model$glm$bin$fit)}
       observations supprimées pour cause de données manquantes)."
-    )
+    ),
+    width = 680
   )
 
-performance::check_collinearity(.model$glm$bin$fit)
-performance::binned_residuals(.model$glm$bin$fit)
-performance::check_outliers(.model$glm$bin$fit)
-performance::model_performance(.model$glm$bin$fit)
+# performance::check_collinearity(.model$glm$bin$fit)
+# performance::binned_residuals(.model$glm$bin$fit)
+# performance::check_outliers(.model$glm$bin$fit)
+# performance::model_performance(.model$glm$bin$fit)
 
-easy_out(tbl_model_glm_bin, width = 680)
+easy_out(tbl_model_glm_bin)

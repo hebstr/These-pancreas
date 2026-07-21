@@ -16,7 +16,7 @@ tbl_ttt_induc <- .induc$df |>
     value = binary_value(df),
     digits = opts$digits,
     missing = "ifany",
-    missing_text = opts$labs$missing
+    missing_text = opts$labs$row_missing
   ) |>
   add_stat_label(label = opts$vars$label) |>
   gtsum_format() |>
@@ -26,6 +26,6 @@ tbl_ttt_induc <- .induc$df |>
   ) |>
   modify_column_hide(columns = stat_0) |>
   modify_header(all_stat_cols(stat_0 = FALSE) ~ "**{level}<br>(n={n})**") |>
-  tbl_format()
+  tbl_format(width = 500)
 
-easy_out(tbl_ttt_induc, width = 500)
+easy_out(tbl_ttt_induc)

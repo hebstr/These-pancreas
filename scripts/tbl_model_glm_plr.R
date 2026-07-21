@@ -75,7 +75,8 @@ tbl_model_glm_plr <- .model$glm$plr$tbls |>
       ({nrow(.model$glm$plr$data) - nobs(.model$glm$plr$fit)} observations supprimées
       pour cause de données manquantes). Les intervalles de confiance à 95%
       et les p-values sont issus de la vraisemblance profilée pénalisée."
-    )
+    ),
+    width = 680
   )
 
-easy_out(tbl_model_glm_plr, width = 680)
+easy_out(tbl_model_glm_plr)

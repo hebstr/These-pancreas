@@ -24,7 +24,7 @@ tbl_tox_adj <- .tox_adj$data |>
     value = binary_value(df),
     digits = opts$digits,
     missing = "ifany",
-    missing_text = opts$labs$missing
+    missing_text = opts$labs$row_missing
   ) |>
   add_stat_label(label = opts$vars$label) |>
   gtsum_format() |>
@@ -34,8 +34,8 @@ tbl_tox_adj <- .tox_adj$data |>
   ) |>
   add_note(
     vars = "adj_ei",
-    note = "Selon la classification CTCAE.",
+    note = "Selon la Common Terminology Criteria for Adverse Events (CTCAE).",
   ) |>
-  tbl_format()
+  tbl_format(width = 600)
 
-easy_out(tbl_tox_adj, width = 750)
+easy_out(tbl_tox_adj)

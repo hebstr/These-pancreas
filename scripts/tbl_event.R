@@ -14,7 +14,7 @@ tbl_event <- df |>
     statistic = opts$vars$stat,
     digits = opts$digits,
     missing = "ifany",
-    missing_text = opts$labs$missing
+    missing_text = opts$labs$row_missing
   ) |>
   add_stat_label(label = opts$vars$label) |>
   gtsum_format(

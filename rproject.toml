@@ -31,5 +31,5 @@ dependencies = [
     "brglm2",
     "detectseparation",
     "magick",
-    "sessioninfo",
+    "sessioninfo"
 ]

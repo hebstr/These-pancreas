@@ -24,7 +24,7 @@ tbl_tox_induc <- .tox_induc$data |>
     value = binary_value(df),
     digits = opts$digits,
     missing = "ifany",
-    missing_text = opts$labs$missing
+    missing_text = opts$labs$row_missing
   ) |>
   add_stat_label(label = opts$vars$label) |>
   gtsum_format() |>
@@ -38,6 +38,6 @@ tbl_tox_induc <- .tox_induc$data |>
     vars = "induc_ei",
     note = "Selon la Common Terminology Criteria for Adverse Events (CTCAE).",
   ) |>
-  tbl_format()
+  tbl_format(width = 450)
 
-easy_out(tbl_tox_induc, width = 450)
+easy_out(tbl_tox_induc)

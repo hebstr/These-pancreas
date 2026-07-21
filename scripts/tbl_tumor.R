@@ -43,6 +43,6 @@ tbl_tumor <- df |>
   ) |>
   add_note(vars = "n_recidive_site_meta", note = .site_meta_note) |>
   add_note(levels = "Site métastatique", note = .site_meta_note) |>
-  tbl_format()
+  tbl_format(width = 750)
 
-easy_out(tbl_tumor, width = 800)
+easy_out(tbl_tumor)

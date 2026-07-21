@@ -25,6 +25,6 @@ tbl_ttt_adj <- df |>
   ) |>
   tbl_format()
 
-easy_out(tbl_ttt_adj, width = 700)
+easy_out(tbl_ttt_adj)
 
 # pct : adaptation max parmi les 3 mol (dernière cure)

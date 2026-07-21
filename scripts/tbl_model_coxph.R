@@ -57,10 +57,11 @@ tbl_coxph <- .model$coxph$tbls |>
       {.model$coxph$fit$nevent} évènements pour {.model$coxph$fit$n}
       observations complètes ({nrow(.model$coxph$data) - .model$coxph$fit$n}
       observations supprimées pour cause de données manquantes)."
-    )
+    ),
+    width = 680
   )
 
 # coxph_ph <- cox.zph(.model$coxph$fit)
 # coxph_ph_plot <- ggcoxzph(coxph_ph)
 
-easy_out(tbl_coxph, width = 680)
+easy_out(tbl_coxph)

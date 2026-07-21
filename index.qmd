@@ -30,7 +30,7 @@ auto_exec()
 
 # Structure du projet
 
-{{< filetree mode=dynamic >}}
+{{< filetree >}}
 
 # Résultats
 
@@ -500,13 +500,11 @@ Régression sur le risque de récidive avec décès sans récidive traité comme
 
 # Annexe {.unnumbered}
 
-<!-- --------------------------------------------------------------------------------
-
-# Session {.unnumbered .unlisted}
+# Session {.unnumbered}
 
 ```{r}
 #| label: session
 #| echo: true
 
 sessioninfo::session_info(pkgs = "attached")
-``` -->
+```

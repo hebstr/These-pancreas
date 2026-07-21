@@ -64,7 +64,8 @@ tbl_model_glm_pois <- .model$glm$pois$tbls |>
       portant sur {nobs(.model$glm$pois$fit)} observations complètes
       ({nrow(.model$glm$pois$data) - nobs(.model$glm$pois$fit)} observations
       supprimées pour cause de données manquantes)."
-    )
+    ),
+    width = 680
   )
 
 # .pois_check <- glm(
@@ -77,4 +78,4 @@ tbl_model_glm_pois <- .model$glm$pois$tbls |>
 # performance::check_outliers(.pois_check)
 # performance::model_performance(.pois_check)
 
-easy_out(tbl_model_glm_pois, width = 680)
+easy_out(tbl_model_glm_pois)

@@ -5,12 +5,12 @@ tbl_surv <- list(
   strata = .surv$strata$os$tbl |> add_p()
 ) |>
   tbl_stack() |>
-  tbl_format(row_strip = FALSE) |>
+  tbl_format(row_strip = FALSE, width = 750) |>
   style_strata(
     set_names(.fig_palette, levels(.surv$strata$os$data$tte$obs$strata))
   )
 
-easy_out(tbl_surv, width = 750)
+easy_out(tbl_surv)
 
 ### TBL FIT CUMINC -------------------------------------------------------------
 

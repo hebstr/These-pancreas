@@ -45,7 +45,7 @@ check_model_vars <- \(data, by = character(0)) {
     tbl_summary(
       by = all_of(by),
       missing = "ifany",
-      missing_text = opts$labs$missing
+      missing_text = opts$labs$row_missing
     ) |>
     add_stat_label(label = opts$vars$label) |>
     gtsum_format() |>
