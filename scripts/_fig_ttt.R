@@ -12,7 +12,8 @@
 
 .lanes <- bind_rows(
   .base |> transmute(pt, groupe, phase = "Induction", x = 0, xend = induc),
-  .base |> transmute(pt, groupe, phase = "Adjuvant", x = induc, xend = induc + adj)
+  .base |>
+    transmute(pt, groupe, phase = "Adjuvant", x = induc, xend = induc + adj)
 ) |>
   filter(xend > x) |>
   mutate(phase = factor(phase, c("Induction", "Adjuvant")))

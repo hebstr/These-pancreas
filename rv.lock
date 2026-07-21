@@ -740,6 +740,24 @@ force_source = false
 dependencies = []
 
 [[packages]]
+name = "flextable"
+version = "0.10.0"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "data.table", requirement = "(>= 1.13.0)" },
+    { name = "gdtools", requirement = "(>= 0.5.0)" },
+    "htmltools",
+    "knitr",
+    { name = "officer", requirement = "(>= 0.7.5)" },
+    "ragg",
+    "rlang",
+    { name = "rmarkdown", requirement = "(>= 2.0)" },
+    { name = "uuid", requirement = "(>= 0.1-4)" },
+    "xml2",
+]
+
+[[packages]]
 name = "fontBitstreamVera"
 version = "0.1.1"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -1202,7 +1220,7 @@ dependencies = [
 [[packages]]
 name = "hebstr"
 version = "0.0.0.9000"
-source = { git = "https://github.com/hebstr/hebstr.git", sha = "7cad2df528b26d059d23ffaaeae17d2161b5f3c1", branch = "main" }
+source = { path = "/home/julien/Documents/packages/R-hebstr" }
 force_source = true
 dependencies = [
     "aod",
@@ -1212,6 +1230,7 @@ dependencies = [
     "cli",
     "colorspace",
     "dplyr",
+    "flextable",
     "forcats",
     "fs",
     "ggplot2",
@@ -1226,6 +1245,7 @@ dependencies = [
     "lubridate",
     "magick",
     "magrittr",
+    "officer",
     "openxlsx2",
     "parameters",
     "parsnip",

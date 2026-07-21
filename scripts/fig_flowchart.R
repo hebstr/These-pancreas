@@ -14,7 +14,7 @@ label_centre <- get_label(df_recode, centre)
 
 label_exclus <- df_flow |>
   filter(motif_exclusion != 0) |>
-  get_label(centre, motif_exclusion)
+  get_label(motif_exclusion)
 
 n_groupe <- fct_count(df_recode$groupe)
 
@@ -82,8 +82,8 @@ eligible_box <- flow_box(
 
 exclus_box <- flow_box(
   str_glue("Exclus (n = {n$exclus})\n{label_exclus}"),
-  x = 0.825,
-  y = 0.6,
+  x = 0.75,
+  y = 0.775,
   just = "left",
   col = col_grey,
   fill = col_grey,
@@ -95,7 +95,7 @@ coords_exclus_box <- coords(exclus_box)
 anchor_exclus_box <- boxGrob(
   label = "",
   x = coords_exclus_box$left,
-  y = coords_exclus_box$y * 1.3,
+  y = coords_exclus_box$y * 1,
   width = unit(0, "mm"),
   height = unit(0, "mm"),
   box_gp = gpar(col = NA, fill = NA)
@@ -110,7 +110,7 @@ anchor_exclus_connect <- connectGrob(
 inclus_box <- flow_box(
   str_glue("Inclus (n = {n$inclus})\n{label_centre}"),
   x = 0.4,
-  y = 0.50,
+  y = 0.6,
   just = "left"
 )
 inclus_connect <- connectGrob(
@@ -122,19 +122,19 @@ inclus_connect <- connectGrob(
 
 adjuvant_box <- flow_box(
   label = str_glue("Chimiothérapie adjuvante seule\n(n = {n$chimio_adj})"),
-  x = 0.60,
-  y = 0.15
+  x = 0.225,
+  y = 0.35
 )
 adjuvant_connect <- connectGrob(inclus_box, adjuvant_box, type = "N")
 
 periop_box <- flow_box(
   label = str_glue("Chimiothérapie péri-opératoire\n(n = {n$chimio_periop})"),
-  x = 0.20,
-  y = 0.15
+  x = 0.575,
+  y = 0.35
 )
 periop_connect <- connectGrob(inclus_box, periop_box, type = "N")
 
-### FLOWCHART ------------------------------------------------------------------
+### FIG ------------------------------------------------------------------------
 
 fig_flowchart <- grobTree(
   eligible_box,
@@ -148,19 +148,6 @@ fig_flowchart <- grobTree(
   periop_connect
 )
 
-### OUTPUT ---------------------------------------------------------------------
-
 easy_out(fig_flowchart, width = 9, height = 8)
-
-svg_flowchart <- here::here("output/fig_flowchart.svg")
-
-svg_flowchart |>
-  read_file() |>
-  str_replace(fixed("<svg "), "<svg xml:space='preserve' ") |>
-  write_file(svg_flowchart)
-
-svg_flowchart |>
-  magick::image_read_svg(height = 1200) |>
-  magick::image_write(here::here("output/fig_flowchart.png"), format = "png")
 
 # export_office(fig_flowchart, width = 9, height = 8)

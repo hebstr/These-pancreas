@@ -5,7 +5,12 @@ checklist$ttt <- df_init |>
     induc_nb = coalesce(induc_nb, 0),
     adj_nb = coalesce(adj_nb, 0),
     n_cures = induc_nb + adj_nb,
-    induc_detail = pmax(induc_adapt_c4, induc_adapt_c8, induc_adapt_c12, na.rm = TRUE),
+    induc_detail = pmax(
+      induc_adapt_c4,
+      induc_adapt_c8,
+      induc_adapt_c12,
+      na.rm = TRUE
+    ),
     adj_detail = pmax(adj_adapt_c4, adj_adapt_c8, adj_adapt_c12, na.rm = TRUE),
     check_birth_missing = is.na(date_birth),
     check_diag_missing = is.na(date_diag),
@@ -25,7 +30,8 @@ checklist$ttt <- df_init |>
     check_date_sans_recidive = !is.na(date_recidive) & recidive_type == 0,
     check_pat_sans_chimio = induc_chimio == 0 & adj_chimio == 0,
     check_pat_sans_cure = n_cures == 0,
-    check_groupe_adj_avec_induc = groupe == 1 & (induc_chimio == 1 | induc_nb > 0),
+    check_groupe_adj_avec_induc = groupe == 1 &
+      (induc_chimio == 1 | induc_nb > 0),
     check_groupe_periop_sans_induc = groupe == 2 &
       (induc_chimio == 0 | induc_nb == 0),
     check_induc_chimio_sans_cure = induc_chimio == 1 & induc_nb == 0,
@@ -34,8 +40,10 @@ checklist$ttt <- df_init |>
     check_adj_cure_sans_chimio = adj_nb > 0 & adj_chimio == 0,
     check_induc_adapt_sans_detail = induc_adapt == 1 &
       (is.na(induc_detail) | induc_detail == 0),
-    check_induc_detail_sans_adapt = induc_adapt == 0 & induc_detail %in% c(1, 2),
-    check_adj_adapt_sans_detail = adj_adapt == 1 & (is.na(adj_detail) | adj_detail == 0),
+    check_induc_detail_sans_adapt = induc_adapt == 0 &
+      induc_detail %in% c(1, 2),
+    check_adj_adapt_sans_detail = adj_adapt == 1 &
+      (is.na(adj_detail) | adj_detail == 0),
     check_adj_detail_sans_adapt = adj_adapt == 0 & adj_detail %in% c(1, 2),
     .vars = c("centre", "groupe")
   ) |>
@@ -48,7 +56,16 @@ checklist$adapt_apres_derniere_cure <- df_init |>
     adj_nb = coalesce(adj_nb, 0),
     total_nb = induc_nb + adj_nb
   ) |>
-  select(rowname, Nom, centre, groupe, induc_nb, adj_nb, total_nb, matches("adapt")) |>
+  select(
+    rowname,
+    Nom,
+    centre,
+    groupe,
+    induc_nb,
+    adj_nb,
+    total_nb,
+    matches("adapt")
+  ) |>
   pivot_longer(
     cols = matches("adapt"),
     names_to = c("phase", "checkpoint"),

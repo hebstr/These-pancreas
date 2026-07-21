@@ -5,7 +5,7 @@ tbl_surv <- list(
   strata = .surv$strata$os$tbl |> add_p()
 ) |>
   tbl_stack() |>
-  gt_format(row_strip = FALSE) |>
+  tbl_format(row_strip = FALSE) |>
   style_strata(
     set_names(.fig_palette, levels(.surv$strata$os$data$tte$obs$strata))
   )
@@ -20,7 +20,7 @@ easy_out(tbl_surv, width = 750)
 # ) |>
 #   tbl_stack() |>
 #   modify_indent(columns = label, rows = !row_type %in% 'label') |>
-#   gt_format(row_strip = FALSE) |>
+#   tbl_format(row_strip = FALSE) |>
 #   style_strata(
 #     set_names(.fig_palette, levels(.surv$strata$os$data$tte$obs$strata))
 #   )

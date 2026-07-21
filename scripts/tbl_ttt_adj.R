@@ -23,12 +23,7 @@ tbl_ttt_adj <- df |>
     name = "Dernière dose reçue",
     levels = c("adj_dose_5fu", "adj_dose_irino", "adj_dose_oxali")
   ) |>
-  col_missing() |>
-  gt_format() |>
-  tab_style(
-    style = cell_text(size = px(11)),
-    locations = cells_body(columns = dm)
-  )
+  tbl_format()
 
 easy_out(tbl_ttt_adj, width = 700)
 

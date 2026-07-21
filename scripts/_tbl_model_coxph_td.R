@@ -73,20 +73,18 @@ tbl_coxph_td <- .tbl_coxph_models |>
         label_header = opts$labs$header,
         estim_sep = opts$sep$int
       ) |>
-      add_global_p() |>
-      modify_table_body(
-        ~ mutate(., across(c(estimate, ci), ~ if_else(n_event == 0, NA, .)))
-      )
+      add_global_p()
   ) |>
   tbl_merge(tab_spanner = str_glue("**{opts$labs$spanner}**")) |>
-  gt_format(
+  tbl_format(
     note_pvalue = str_glue(
-      "Time-dependent Cox regression: reached12 is a time-varying covariate,
-        0 before the patient's 12th cure and 1 from date_cure12 onward, which
-        removes immortal time bias by attributing person-time to the correct
-        exposure state. Model included {.model$coxph$fit$nevent} events for
-        {length(unique(.model$data$rowname))} patients over
-        {nrow(.model$data)} risk intervals."
+      "Régression de Cox à covariable dépendante du temps : reached12 est une
+        covariable variant dans le temps, 0 avant la 12e cure du patient et 1 à
+        partir de date_cure12, ce qui supprime le biais de temps immortel en
+        attribuant le person-time au bon état d'exposition. Le modèle incluait
+        {.model$coxph$fit$nevent} évènements pour
+        {length(unique(.model$data$rowname))} patients sur
+        {nrow(.model$data)} intervalles à risque."
     )
   )
 

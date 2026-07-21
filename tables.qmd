@@ -7,21 +7,13 @@ format: docx
 
 options(
   easy_out.quiet = TRUE,
-  theme_gt.docx = TRUE
+  hebstr.docx = TRUE
 )
 
 conflicts_prefer(dplyr::filter, Gmisc::coords, .quiet = TRUE)
 
 source(here::here("scripts", "_setup.R"))
 auto_exec()
-
-title_suffix <- \(title, strata = "selon le protocole de chimiothérapie") {
-  lst(
-    strata = strata,
-    overall = str_glue("globalement et {strata}")
-  ) |>
-    map(~ str_glue("{title}, {.x}."))
-}
 ```
 
 # Analyse descriptive
@@ -149,7 +141,7 @@ tbl_surv
 #| tbl-cap: Facteurs associés à la réalisation d'un schéma incomplet de chimiothérapie.
 #| echo: false
 
-tbl_model_glm
+tbl_model_glm_bin
 ```
 
 {{< pagebreak >}}
@@ -161,7 +153,7 @@ tbl_model_glm
 #| tbl-cap: Facteurs associés à la réalisation d'un schéma incomplet de chimiothérapie (avec pénalisation de Firth).
 #| echo: false
 
-tbl_model_plr
+tbl_model_glm_plr
 ```
 
 {{< pagebreak >}}
@@ -173,7 +165,7 @@ tbl_model_plr
 #| tbl-cap: Facteurs associés à une augmentation du nombre total de cures reçues.
 #| echo: false
 
-tbl_model_pois
+tbl_model_glm_pois
 ```
 
 {{< pagebreak >}}

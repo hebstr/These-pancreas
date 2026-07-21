@@ -34,11 +34,10 @@ tbl_tox_induc <- .tox_induc$data |>
   ) |>
   modify_column_hide(columns = stat_0) |>
   modify_header(all_stat_cols(stat_0 = FALSE) ~ "**{level}<br>(n={n})**") |>
-  # col_missing() |>
-  gt_format() |>
   add_note(
     vars = "induc_ei",
-    note = "Selon la classification CTCAE.",
-  )
+    note = "Selon la Common Terminology Criteria for Adverse Events (CTCAE).",
+  ) |>
+  tbl_format()
 
 easy_out(tbl_tox_induc, width = 450)

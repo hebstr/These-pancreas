@@ -21,6 +21,6 @@ tbl_event <- df |>
     label_header = opts$labs$header,
     label_overall = opts$labs$overall
   ) |>
-  gt_format()
+  tbl_format()
 
 easy_out(tbl_event)

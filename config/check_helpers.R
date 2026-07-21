@@ -28,5 +28,5 @@ check_distrib <- \(data) {
       missing_text = opts$labs$missing
     ) |>
     add_stat_label(label = opts$vars$label) |>
-    gt_format()
+    tbl_format()
 }

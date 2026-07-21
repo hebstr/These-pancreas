@@ -30,3 +30,11 @@ extract_from_dict <- \(data, var_name, var_label, type, level) {
     type = .type
   )
 }
+
+title_suffix <- \(title, strata = "selon le protocole de chimiothérapie") {
+  lst(
+    strata = strata,
+    overall = str_glue("globalement et {strata}")
+  ) |>
+    map(~ str_glue("{title}, {.x}."))
+}

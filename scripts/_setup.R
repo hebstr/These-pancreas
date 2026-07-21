@@ -8,6 +8,8 @@ df_recode <- df_init |>
     tm_stade_t = fct_collapse(tm_stade_t, "T1-T2" = 1:2, "T3-T4" = 3:4),
     tm_stade_n = tm_stade_n |> fct_relabel(~ str_glue("N{.x}")),
     tm_stade_m = tm_stade_m |> fct_relabel(~ str_glue("M{.x}")),
+    chir_complic_class_maj = chir_complic_class >= 3,
+    # chir_complic_class = fct_collapse(factor(chir_complic_class), "III-IV-V" = 3:5),
     induc_nb = coalesce(induc_nb, 0),
     adj_nb = coalesce(adj_nb, 0),
     n_cures = induc_nb + adj_nb,
@@ -16,7 +18,8 @@ df_recode <- df_init |>
       induc_adapt_pct %in% 2 |
       adj_adapt_pct %in% 2,
     total_ei = coalesce(induc_ei, adj_ei),
-    n_recidive_site_meta = rowSums(across(starts_with("recidive_site_meta"))) |> na_if(0),
+    n_recidive_site_meta = rowSums(across(starts_with("recidive_site_meta"))) |>
+      na_if(0),
     n_recidive_site_meta = if_else(n_recidive_site_meta == 1, 1, 2),
     os_date = date_death,
     os_event = complete.cases(os_date),
@@ -31,7 +34,8 @@ df_recode <- df_init |>
       unit = "months"
     ),
     pfs_cause = case_when(
-      !is.na(date_recidive) & (is.na(date_death) | date_recidive <= date_death) ~ 1,
+      !is.na(date_recidive) &
+        (is.na(date_death) | date_recidive <= date_death) ~ 1,
       !is.na(date_death) ~ 2,
       .default = 0
     )
@@ -54,6 +58,7 @@ df_recode <- df_init |>
       age_cat = "Âge au diagnostic, années",
       age_incr = "Âge au diagnostic, années",
       time_diag_chir = "Délai entre diagnostic et chirurgie, mois",
+      chir_complic_class_maj = "Complication post-opératoire majeure",
       n_cures = "Nombre total de cures",
       n_cures_outcome = "Nombre total de cures < 12",
       n_cures_outcome_sub = "Nombre total de cures < 12 : ou dose relative moyenne < 80%",
@@ -160,6 +165,29 @@ df <- df_recode |>
 )
 
 .fig_palette <- c(opts$color$base, opts$color$cold[2])
+
+### MODEL ----------------------------------------------------------------------
+
+.model <- lst()
+
+.model$default <- lst(
+  data = df |> mutate(ps_diag = ps_diag |> fct_collapse("1-2" = c(1, 2))),
+  vars = set_model_vars(
+    y = "n_cures_outcome",
+    x_uv = c(
+      "groupe",
+      "centre",
+      "age_incr",
+      "ps_diag",
+      "chir_resec"
+    ),
+    x_mv_exclude = "chir_resec"
+  ),
+  args = lst(
+    pvalue_fun = opts$pvalue$format,
+    exponentiate = TRUE
+  )
+)
 
 ### AUTO EXEC ------------------------------------------------------------------
 

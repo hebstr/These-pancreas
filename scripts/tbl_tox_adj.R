@@ -28,19 +28,14 @@ tbl_tox_adj <- .tox_adj$data |>
   ) |>
   add_stat_label(label = opts$vars$label) |>
   gtsum_format() |>
-  col_missing() |>
   modify_indent(
     columns = label,
     rows = variable %in% .tox_vars$adj & row_type %in% "label"
   ) |>
-  gt_format() |>
   add_note(
     vars = "adj_ei",
     note = "Selon la classification CTCAE.",
   ) |>
-  tab_style(
-    style = cell_text(size = px(11)),
-    locations = cells_body(columns = dm)
-  )
+  tbl_format()
 
 easy_out(tbl_tox_adj, width = 750)

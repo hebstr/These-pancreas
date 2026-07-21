@@ -60,24 +60,21 @@ tbl_coxph_lm <- .tbl_coxph_models |>
         label_header = opts$labs$header,
         estim_sep = opts$sep$int
       ) |>
-      add_global_p() |>
-      modify_table_body(
-        ~ mutate(., across(c(estimate, ci), ~ if_else(n_event == 0, NA, .)))
-      )
+      add_global_p()
   ) |>
   tbl_merge(tab_spanner = str_glue("**{opts$labs$spanner}**")) |>
-  gt_format(
+  tbl_format(
     note_pvalue = str_glue(
-      "Landmark analysis at {.landmark} months from diagnosis: only patients
-      at risk at the landmark are included and the follow-up clock is reset to
-      the landmark, conditioning on survival to that point to remove immortal
-      time. Multivariable Cox regression model included
-      {.model$coxph$fit$nevent} events for {.model$coxph$fit$n} complete
-      observations ({nrow(.model$data) - .model$coxph$fit$n} observations
-      deleted due to missing values). n_cures_outcome is classified on the final
-      cure total, so this landmark removes early deaths but not person-time
-      misclassification: it under-corrects the bias (see the time-dependent
-      model)."
+      "Analyse landmark à {.landmark} mois du diagnostic : seuls les patients à
+      risque au landmark sont inclus et l'horloge de suivi est remise à zéro au
+      landmark, en conditionnant sur la survie jusqu'à ce point pour supprimer
+      le temps immortel. Le modèle de régression de Cox multivariable incluait
+      {.model$coxph$fit$nevent} évènements pour {.model$coxph$fit$n} observations
+      complètes ({nrow(.model$data) - .model$coxph$fit$n} observations
+      supprimées pour cause de données manquantes). n_cures_outcome est classée
+      sur le total final de cures : ce landmark retire les décès précoces mais
+      pas la mauvaise attribution du person-time, il sous-corrige le biais (voir
+      le modèle à covariable dépendante du temps)."
     )
   )
 

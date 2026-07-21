@@ -2,7 +2,12 @@ anova_logistf <- \(model, ...) {
   # method = "nested" (default) shares the Jeffreys penalty across both models;
   # method = "PLR" relates each to its own null and yields a negative statistic here
   attr(terms(model), "term.labels") |>
-    map(\(v) tibble(term = v, p.value = as.numeric(anova(model, formula = reformulate(v))$pval))) |>
+    map(\(v) {
+      tibble(
+        term = v,
+        p.value = as.numeric(anova(model, formula = reformulate(v))$pval)
+      )
+    }) |>
     list_rbind()
 }
 
@@ -18,6 +23,22 @@ anova_wald <- \(model, ...) {
   }
 }
 
+set_model_vars <- \(y, x_uv, x_mv_exclude = character(0)) {
+  unknown <- setdiff(x_mv_exclude, x_uv)
+  if (length(unknown)) {
+    cli::cli_abort(
+      "{.arg x_mv_exclude} : variables absentes de {.arg x_uv} : {.val {unknown}}."
+    )
+  }
+  lst(
+    y = y,
+    x = lst(
+      uv = x_uv,
+      mv = setdiff(x_uv, x_mv_exclude)
+    )
+  )
+}
+
 check_model_vars <- \(data, by = character(0)) {
   data |>
     use_vars() |>
@@ -28,8 +49,7 @@ check_model_vars <- \(data, by = character(0)) {
     ) |>
     add_stat_label(label = opts$vars$label) |>
     gtsum_format() |>
-    col_missing() |>
-    gt_format()
+    tbl_format()
 }
 
 get_surv_model <- \(

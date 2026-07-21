@@ -59,7 +59,7 @@ tbl_model_crr <- .crr_models |>
       add_global_p()
   ) |>
   tbl_merge(tab_spanner = str_glue("**{opts$labs$spanner}**")) |>
-  gt_format(
+  tbl_format(
     note_pvalue = str_glue(
       "Fine-Gray subdistribution hazard model for recurrence,
       treating death without recurrence as a competing risk

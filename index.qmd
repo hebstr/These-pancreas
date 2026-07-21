@@ -22,19 +22,15 @@ conflicts_prefer(dplyr::filter, Gmisc::coords, .quiet = TRUE)
 
 source("scripts/_setup.R")
 auto_exec()
-
-title_suffix <- \(title, strata = "selon le protocole de chimiothérapie") {
-  lst(
-    strata = strata,
-    overall = str_glue("globalement et {strata}")
-  ) |>
-    map(~ str_glue("{title}, {.x}."))
-}
 ```
 
 ::: callout-warning
 # Rapport statistique en cours de rédaction
 :::
+
+# Structure du projet
+
+{{< filetree mode=dynamic >}}
 
 # Résultats
 
@@ -360,7 +356,7 @@ L'ajout d'une nouvelle variable expose à un risque de perte de puissance.
 
 ## Régression logistique
 
-{{< script scripts/tbl_model_glm.R >}}
+{{< script scripts/tbl_model_glm_bin.R >}}
 
 CJP initial binaire "nombre de cures total >= 12" oui/non (atteinte du schéma complet)
 
@@ -377,7 +373,7 @@ Plus de sens au niveau épidémiologique : aucun effet sur les conclusions mais 
 #| label: tbl-glm-model
 #| tbl-cap: Facteurs associés à la réalisation d'un schéma incomplet de chimiothérapie.
 
-tbl_model_glm
+tbl_model_glm_bin
 ```
 
 # Variables
@@ -387,7 +383,7 @@ Détail des variables incluses (au moins dans l'analyse univariable)
 ```{r}
 #| label: glm-vars
 
-.model_glm$descr
+.model$glm$bin$descr()
 ```
 :::
 
@@ -400,13 +396,13 @@ Du fait des petits effectifs mais aussi par la binarisation du CJP qui crée une
 
 ## Régression logistique pénalisée
 
-{{< script scripts/tbl_model_plr.R >}}
+{{< script scripts/tbl_model_glm_plr.R >}}
 
 ```{r}
 #| label: tbl-plr-model
 #| tbl-cap: Facteurs associés à la réalisation d'un schéma incomplet de chimiothérapie (avec pénalisation de Firth).
 
-tbl_model_plr
+tbl_model_glm_plr
 ```
 
 Mêmes observations et mêmes variables que le modèle naïf.
@@ -416,7 +412,7 @@ Permet ici de corriger le manque de puissance.
 
 ## Régression de quasi-Poisson
 
-{{< script scripts/tbl_model_pois.R >}}
+{{< script scripts/tbl_model_glm_pois.R >}}
 
 ::: callout-important
 # Proposition : au lieu d'un seuil arbitraire de 12 cures qui met au même niveau un patient ayant eu 1 cure qu'un autre en ayant eu 11, modélisation en comptage du nombre total de cures
@@ -439,7 +435,7 @@ Légèrement différent mais peut-être plus interprétable et robuste
 #| label: tbl-pois-model
 #| tbl-cap: "Facteurs associés à une augmentation du nombre total de cures reçues."
 
-tbl_model_pois
+tbl_model_glm_pois
 ```
 
 # Variables
@@ -449,7 +445,7 @@ Détail des variables incluses (au moins dans l'analyse univariable)
 ```{r}
 #| label: pois-vars
 
-.model_pois$descr
+.model$glm$pois$descr()
 ```
 :::
 
@@ -494,7 +490,7 @@ Détail des variables incluses (au moins dans l'analyse univariable)
 ```{r}
 #| label: coxph-vars
 
-.model_coxph$descr
+.model$coxph$descr()
 ```
 :::
 

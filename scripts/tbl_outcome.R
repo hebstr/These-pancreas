@@ -9,7 +9,10 @@ tbl_outcome <- df |>
     n_cures_outcome_sub,
   ) |>
   strip_label(str_glue("^(Induction|Adjuvant)\\s*:\\s*")) |>
-  strip_label(str_glue("^{var_label(df$n_cures_outcome)}\\s*:\\s*"), to_upper = FALSE) |>
+  strip_label(
+    str_glue("^{var_label(df$n_cures_outcome)}\\s*:\\s*"),
+    to_upper = FALSE
+  ) |>
   use_vars() |>
   tbl_summary(
     by = groupe,
@@ -23,7 +26,9 @@ tbl_outcome <- df |>
   gtsum_format() |>
   modify_indent(
     columns = label,
-    rows = variable %in% c("induc_nb", "adj_nb", "n_cures_outcome_sub") & row_type %in% 'label'
+    rows = variable %in%
+      c("induc_nb", "adj_nb", "n_cures_outcome_sub") &
+      row_type %in% 'label'
   ) |>
   modify_table_body(
     ~ .x |>
@@ -32,10 +37,10 @@ tbl_outcome <- df |>
         \(x) if_else(variable %in% c("induc_chimio", "induc_nb"), "–", x)
       ))
   ) |>
-  gt_format() |>
   add_note(
     vars = c("induc_chimio", "adj_chimio"),
     note = "Nombre de patients ayant reçu au moins une cure.",
-  )
+  ) |>
+  tbl_format()
 
 easy_out(tbl_outcome, width = 750)

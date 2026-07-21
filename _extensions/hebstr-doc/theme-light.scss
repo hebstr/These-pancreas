@@ -2,7 +2,7 @@
 
 $primary: #0099FF !default;
 $primary-back: color-mix(in srgb, #{$primary}, white 95%) !default;
-$primary-surface: color-mix(in srgb, #{$primary}, white 100%) !default;
+$primary-surface: color-mix(in srgb, #{$primary}, white 98%) !default;
 $primary-dark: color-mix(in srgb, #{$primary}, black 50%) !default;
 $secondary: #FF0000 !default;
 
@@ -17,7 +17,6 @@ $figure-shadow: #f5f5f5 !default;
 
 $str-color: #20794D !default;
 $dig-color: #AD0000 !default;
-$tab-background: #ffffff !default;
 
 $callout-note-color: #0099FF !default;
 $callout-tip-color: #3fb618 !default;

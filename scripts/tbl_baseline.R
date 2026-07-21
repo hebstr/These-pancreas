@@ -22,11 +22,6 @@ tbl_baseline <- df |>
   ) |>
   add_stat_label(label = opts$vars$label) |>
   gtsum_format() |>
-  col_missing() |>
-  gt_format() |>
-  tab_style(
-    style = cell_text(size = px(11)),
-    locations = cells_body(columns = dm)
-  )
+  tbl_format()
 
 easy_out(tbl_baseline, width = 800)
