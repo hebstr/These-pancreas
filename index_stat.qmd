@@ -7,9 +7,6 @@ format:
   hebstr-doc-html:
     code-tools:
       source: https://github.com/hebstr/These-pancreas
-knitr:
-  opts_chunk:
-    dev: svglite
 ---
 
 ```{r}
@@ -17,9 +14,8 @@ knitr:
 #| include: false
 
 options(easy_out.quiet = TRUE)
-
 conflicts_prefer(dplyr::filter, Gmisc::coords, .quiet = TRUE)
-
+source("_extensions/hebstr-doc/fonts/register.R")
 source("scripts/_setup.R")
 auto_exec()
 ```
@@ -28,9 +24,9 @@ auto_exec()
 # Rapport statistique en cours de rédaction
 :::
 
-# Structure du projet
+<!-- # Structure du projet
 
-{{< filetree >}}
+{{< filetree >}} -->
 
 # Résultats
 
@@ -87,10 +83,10 @@ Au total, ont été inclus `r n$inclus` patients adultes atteints d'un cancer du
 
 ```{r}
 #| label: fig-flowchart
-#| fig-cap: Flowchart.
+#| fig-cap: Flowchart
 #| fig-cap-location: top
 
-knitr::include_graphics("output/fig_flowchart.png")
+knitr::include_graphics("output/fig_flowchart.svg")
 ```
 
 ## Analyse descriptive
@@ -360,12 +356,6 @@ L'ajout d'une nouvelle variable expose à un risque de perte de puissance.
 
 CJP initial binaire "nombre de cures total >= 12" oui/non (atteinte du schéma complet)
 
-::: callout-important
-# Proposition : inverser l'évènement en "nombre de cures total < 12" oui/non
-
-Plus de sens au niveau épidémiologique : aucun effet sur les conclusions mais permet une lecture plus naturelle et conventionnelle des estimations, qui vont dans le sens d'un effet protecteur si < 0 (= moins de risque d'avoir un schéma incomplet) et d'un excès de risque si > 1 (risque augmenté d'avoir un schéma incomplet)
-:::
-
 ::: panel-tabset
 # Modèle
 
@@ -408,25 +398,9 @@ tbl_model_glm_plr
 Mêmes observations et mêmes variables que le modèle naïf.
 Permet ici de corriger le manque de puissance.
 
-**Autre méthode possible : alternative à la binarisation du CJP qui induite une perte d'information**
-
 ## Régression de quasi-Poisson
 
 {{< script scripts/tbl_model_glm_pois.R >}}
-
-::: callout-important
-# Proposition : au lieu d'un seuil arbitraire de 12 cures qui met au même niveau un patient ayant eu 1 cure qu'un autre en ayant eu 11, modélisation en comptage du nombre total de cures
-
-CJP = nombre total de cures reçues
-
-Analyse réalisable avec un modèle de régression de Poisson (ou plus exactement quasi-Poisson du fait de la distribution hétérogène du nombre de cures, un détail)
-
-La modélisation en CJP binaire répondait à la question : **quels sont les facteurs associés à la réalisation d'un schéma complet de chimio (nombre total >= 12) ?**
-
-La modélisation en comptage du nombre total de cures répond à la question : **quels sont les facteurs associés à un nombre total de cures plus élevé ?**
-
-Légèrement différent mais peut-être plus interprétable et robuste
-:::
 
 ::: panel-tabset
 # Modèle

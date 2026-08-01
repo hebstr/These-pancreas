@@ -28,6 +28,8 @@ n <- lst(
 
 ### GROBS ----------------------------------------------------------------------
 
+fig_size <- lst(width = 11.5, height = 8)
+
 col_blue <- "#08F"
 col_dark <- "#111"
 col_grey <- "grey95"
@@ -67,87 +69,97 @@ flow_box <- \(
   )
 }
 
-eligible_box <- flow_box(
-  str_glue(
-    "Patients éligibles (N = {n$eligible})
-    - Hommes et femmes >= 18 ans
-    - Opérés d'un cancer du pancréas
-    - Entre 01/2022 et 12/2025"
-  ),
-  x = 0.4,
-  y = 0.9,
-  just = "left",
-  col = col_dark
-)
-
-exclus_box <- flow_box(
-  str_glue("Exclus (n = {n$exclus})\n{label_exclus}"),
-  x = 0.75,
-  y = 0.775,
-  just = "left",
-  col = col_grey,
-  fill = col_grey,
-  lwd = 1.2,
-  txt = txt_gp(base_fontsize - 1.5, col = "#555")
-)
-
-coords_exclus_box <- coords(exclus_box)
-anchor_exclus_box <- boxGrob(
-  label = "",
-  x = coords_exclus_box$left,
-  y = coords_exclus_box$y * 1,
-  width = unit(0, "mm"),
-  height = unit(0, "mm"),
-  box_gp = gpar(col = NA, fill = NA)
-)
-anchor_exclus_connect <- connectGrob(
-  eligible_box,
-  anchor_exclus_box,
-  type = "L",
-  lty_gp = gpar(col = "grey90", lwd = 2.5)
-)
-
-inclus_box <- flow_box(
-  str_glue("Inclus (n = {n$inclus})\n{label_centre}"),
-  x = 0.4,
-  y = 0.6,
-  just = "left"
-)
-inclus_connect <- connectGrob(
-  eligible_box,
-  inclus_box,
-  type = "vertical",
-  lty_gp = gpar(col = base_textcolor, lwd = 1.5)
-)
-
-adjuvant_box <- flow_box(
-  label = str_glue("Chimiothérapie adjuvante seule\n(n = {n$chimio_adj})"),
-  x = 0.225,
-  y = 0.35
-)
-adjuvant_connect <- connectGrob(inclus_box, adjuvant_box, type = "N")
-
-periop_box <- flow_box(
-  label = str_glue("Chimiothérapie péri-opératoire\n(n = {n$chimio_periop})"),
-  x = 0.575,
-  y = 0.35
-)
-periop_connect <- connectGrob(inclus_box, periop_box, type = "N")
-
 ### FIG ------------------------------------------------------------------------
 
-fig_flowchart <- grobTree(
-  eligible_box,
-  exclus_box,
-  inclus_box,
-  adjuvant_box,
-  periop_box,
-  anchor_exclus_connect,
-  inclus_connect,
-  adjuvant_connect,
-  periop_connect
+fig_flowchart <- with_fig_device(
+  width = fig_size$width,
+  height = fig_size$height,
+  code = {
+    eligible_box <- flow_box(
+      str_glue(
+        "Patients éligibles (N = {n$eligible})
+        - Hommes et femmes >= 18 ans
+        - Opérés d'un cancer du pancréas
+        - Entre 01/2022 et 12/2025"
+      ),
+      x = 0.4,
+      y = 0.9,
+      just = "left",
+      col = col_dark
+    )
+
+    exclus_box <- flow_box(
+      str_glue("Exclus (n = {n$exclus})\n{label_exclus}"),
+      x = 0.75,
+      y = 0.76,
+      just = "left",
+      col = col_grey,
+      fill = col_grey,
+      lwd = 1.2,
+      txt = txt_gp(base_fontsize - 1.5, col = "#555")
+    )
+
+    coords_exclus_box <- coords(exclus_box)
+    anchor_exclus_box <- boxGrob(
+      label = "",
+      x = coords_exclus_box$left,
+      y = coords_exclus_box$y * 1,
+      width = unit(0, "mm"),
+      height = unit(0, "mm"),
+      box_gp = gpar(col = NA, fill = NA)
+    )
+    anchor_exclus_connect <- connectGrob(
+      eligible_box,
+      anchor_exclus_box,
+      type = "L",
+      lty_gp = gpar(col = "grey90", lwd = 2.5)
+    )
+
+    inclus_box <- flow_box(
+      str_glue("Inclus (n = {n$inclus})\n{label_centre}"),
+      x = 0.4,
+      y = 0.6,
+      just = "left"
+    )
+    inclus_connect <- connectGrob(
+      eligible_box,
+      inclus_box,
+      type = "vertical",
+      lty_gp = gpar(col = base_textcolor, lwd = 1.5)
+    )
+
+    adjuvant_box <- flow_box(
+      label = str_glue("Chimiothérapie adjuvante seule\n(n = {n$chimio_adj})"),
+      x = 0.25,
+      y = 0.35
+    )
+    adjuvant_connect <- connectGrob(inclus_box, adjuvant_box, type = "N")
+
+    periop_box <- flow_box(
+      label = str_glue("Chimiothérapie péri-opératoire\n(n = {n$chimio_periop})"),
+      x = 0.55,
+      y = 0.35
+    )
+    periop_connect <- connectGrob(inclus_box, periop_box, type = "N")
+
+    grobTree(
+      eligible_box,
+      exclus_box,
+      inclus_box,
+      adjuvant_box,
+      periop_box,
+      anchor_exclus_connect,
+      inclus_connect,
+      adjuvant_connect,
+      periop_connect
+    )
+  }
 )
 
-easy_out(fig_flowchart, width = 9, height = 8)
+easy_out(
+  x = fig_flowchart,
+  width = fig_size$width,
+  height = fig_size$height
+)
 
 # export_office(fig_flowchart, width = 9, height = 8)

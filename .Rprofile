@@ -6,7 +6,6 @@ source("rv/scripts/activate.R")
 options(
   repos = c(CRAN = "https://packagemanager.posit.co/cran/latest"),
   gargle_oauth_email = Sys.getenv("GARGLE_OAUTH_EMAIL", unset = NA)
-  # openxlsx2.maxWidth = 60,
 )
 
 library(conflicted)
@@ -38,9 +37,6 @@ auto_exec("config", quiet = TRUE)
 lang_fr()
 
 set_opts(
-  acro = acro(
-    DM ~ "données manquantes par groupe"
-  ),
   font = "luciole"
 )
 

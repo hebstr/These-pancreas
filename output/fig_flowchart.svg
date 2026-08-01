@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<svg xml:space="preserve" xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='574.52pt' height='421.26pt' viewBox='26.74 0.00 574.52 421.26'>
+<svg xml:space="preserve" xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='733.52pt' height='425.76pt' viewBox='83.24 0.00 733.52 425.76'>
 <g class='svglite'>
 <defs>
   <style type='text/css'><![CDATA[
@@ -19,49 +19,45 @@
     }
   ]]></style>
 </defs>
-<rect x='26.74' y='0.00' width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<rect x='83.24' y='0.00' width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
 <defs>
-  <clipPath id='cpMC4wMHw2NDguMDB8MC4wMHw1NzYuMDA='>
-    <rect x='0.00' y='0.00' width='648.00' height='576.00' />
+  <clipPath id='cpMC4wMHw4MjguMDB8MC4wMHw1NzYuMDA='>
+    <rect x='0.00' y='0.00' width='828.00' height='576.00' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMC4wMHw2NDguMDB8MC4wMHw1NzYuMDA=)'>
-<polygon points='156.85,102.57 361.55,102.57 361.35,102.56 362.15,102.53 362.93,102.37 363.68,102.08 364.38,101.68 365.00,101.18 365.53,100.58 365.96,99.90 366.27,99.16 366.46,98.38 366.53,97.58 366.53,97.58 366.53,17.62 366.53,17.62 366.46,16.82 366.27,16.04 365.96,15.30 365.53,14.62 365.00,14.02 364.38,13.52 363.68,13.12 362.93,12.83 362.15,12.67 361.55,12.63 156.85,12.63 157.45,12.67 156.65,12.64 155.86,12.74 155.09,12.96 154.36,13.30 153.70,13.76 153.12,14.31 152.64,14.95 152.27,15.66 152.02,16.42 151.89,17.22 151.87,17.62 151.87,97.58 151.89,97.18 151.89,97.98 152.02,98.78 152.27,99.54 152.64,100.25 153.12,100.89 153.70,101.44 154.36,101.90 155.09,102.24 155.86,102.46 156.65,102.56 ' style='stroke-width: 1.12; stroke: #111111; fill: #FFFFFF;' />
-<text x='168.88' y='38.04' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='145.69px' lengthAdjust='spacingAndGlyphs'>Patients éligibles (N = 337)</text>
-<text x='168.88' y='53.88' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='176.62px' lengthAdjust='spacingAndGlyphs'>- Hommes et femmes &gt;= 18 ans</text>
-<text x='168.88' y='69.72' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='180.64px' lengthAdjust='spacingAndGlyphs'>- Opérés d'un cancer du pancréas</text>
-<text x='168.88' y='85.56' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='148.75px' lengthAdjust='spacingAndGlyphs'>- Entre 01/2022 et 12/2025</text>
-<polygon points='392.55,211.79 579.45,211.79 579.25,211.79 580.05,211.76 580.83,211.60 581.58,211.31 582.28,210.91 582.90,210.40 583.43,209.80 583.86,209.13 584.17,208.39 584.37,207.61 584.43,206.81 584.43,206.81 584.43,52.39 584.43,52.39 584.37,51.59 584.17,50.81 583.86,50.07 583.43,49.40 582.90,48.80 582.28,48.29 581.58,47.89 580.83,47.60 580.05,47.44 579.45,47.41 392.55,47.41 393.15,47.44 392.35,47.41 391.56,47.51 390.79,47.73 390.06,48.07 389.40,48.53 388.82,49.09 388.34,49.73 387.97,50.44 387.71,51.20 387.59,51.99 387.57,52.39 387.57,206.81 387.59,206.41 387.59,207.21 387.71,208.00 387.97,208.76 388.34,209.47 388.82,210.11 389.40,210.67 390.06,211.13 390.79,211.47 391.56,211.69 392.35,211.79 ' style='stroke-width: 0.90; stroke: #F2F2F2; fill: #F2F2F2;' />
-<text x='404.58' y='71.67' style='font-size: 9.50px;fill: #555555; font-family: "Luciole";' textLength='75.03px' lengthAdjust='spacingAndGlyphs'>Exclus (n = 234)</text>
-<text x='404.58' y='85.35' style='font-size: 9.50px;fill: #555555; font-family: "Luciole";' textLength='116.34px' lengthAdjust='spacingAndGlyphs'>- Autre anapath (n = 84)</text>
-<text x='404.58' y='99.03' style='font-size: 9.50px;fill: #555555; font-family: "Luciole";' textLength='110.48px' lengthAdjust='spacingAndGlyphs'>- Non opérable (n = 43)</text>
-<text x='404.58' y='112.71' style='font-size: 9.50px;fill: #555555; font-family: "Luciole";' textLength='110.50px' lengthAdjust='spacingAndGlyphs'>- Métastatique (n = 38)</text>
-<text x='404.58' y='126.39' style='font-size: 9.50px;fill: #555555; font-family: "Luciole";' textLength='117.50px' lengthAdjust='spacingAndGlyphs'>- Chimio ailleurs (n = 36)</text>
-<text x='404.58' y='140.07' style='font-size: 9.50px;fill: #555555; font-family: "Luciole";' textLength='107.41px' lengthAdjust='spacingAndGlyphs'>- Autre chimio (n = 15)</text>
-<text x='404.58' y='153.75' style='font-size: 9.50px;fill: #555555; font-family: "Luciole";' textLength='74.17px' lengthAdjust='spacingAndGlyphs'>- Autre (n = 10)</text>
-<text x='404.58' y='167.43' style='font-size: 9.50px;fill: #555555; font-family: "Luciole";' textLength='145.83px' lengthAdjust='spacingAndGlyphs'>- Décès post-opératoire (n = 4)</text>
-<text x='404.58' y='181.11' style='font-size: 9.50px;fill: #555555; font-family: "Luciole";' textLength='162.84px' lengthAdjust='spacingAndGlyphs'>- Décès précoce après le dg (n = 3)</text>
-<text x='404.58' y='194.79' style='font-size: 9.50px;fill: #555555; font-family: "Luciole";' textLength='48.23px' lengthAdjust='spacingAndGlyphs'>- 9 (n = 1)</text>
-<polygon points='186.26,283.29 332.14,283.29 331.94,283.28 332.74,283.25 333.53,283.09 334.28,282.80 334.97,282.40 335.59,281.90 336.12,281.30 336.55,280.62 336.87,279.88 337.06,279.10 337.12,278.30 337.12,278.30 337.12,182.50 337.12,182.50 337.06,181.70 336.87,180.92 336.55,180.18 336.12,179.50 335.59,178.90 334.97,178.40 334.28,178.00 333.53,177.71 332.74,177.55 332.14,177.51 186.26,177.51 186.86,177.55 186.06,177.52 185.26,177.62 184.49,177.84 183.77,178.18 183.11,178.64 182.53,179.19 182.05,179.83 181.68,180.54 181.42,181.30 181.29,182.10 181.28,182.50 181.28,278.30 181.29,277.90 181.29,278.70 181.42,279.50 181.68,280.26 182.05,280.97 182.53,281.61 183.11,282.16 183.77,282.62 184.49,282.96 185.26,283.18 186.06,283.28 ' style='stroke-width: 1.12; stroke: #0088FF; fill: #FFFFFF;' />
-<text x='198.29' y='202.92' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='86.55px' lengthAdjust='spacingAndGlyphs'>Inclus (n = 103)</text>
-<text x='198.29' y='218.76' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='120.89px' lengthAdjust='spacingAndGlyphs'>- CHU Angers (n = 36)</text>
-<text x='198.29' y='234.60' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='121.16px' lengthAdjust='spacingAndGlyphs'>- CHU Nantes (n = 25)</text>
-<text x='198.29' y='250.44' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='121.83px' lengthAdjust='spacingAndGlyphs'>- CHD Vendée (n = 25)</text>
-<text x='198.29' y='266.28' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='106.94px' lengthAdjust='spacingAndGlyphs'>- CHU Lyon (n = 17)</text>
-<polygon points='48.88,403.53 242.72,403.53 242.52,403.52 243.33,403.49 244.11,403.33 244.86,403.04 245.55,402.64 246.18,402.14 246.71,401.54 247.14,400.86 247.45,400.12 247.64,399.34 247.71,398.54 247.71,398.54 247.71,350.26 247.71,350.26 247.64,349.46 247.45,348.68 247.14,347.94 246.71,347.26 246.18,346.66 245.55,346.16 244.86,345.76 244.11,345.47 243.33,345.31 242.72,345.27 48.88,345.27 49.48,345.31 48.67,345.28 47.88,345.38 47.11,345.60 46.38,345.94 45.72,346.40 45.15,346.95 44.66,347.59 44.29,348.30 44.04,349.06 43.91,349.86 43.89,350.26 43.89,398.54 43.91,398.14 43.91,398.94 44.04,399.74 44.29,400.50 44.66,401.21 45.15,401.85 45.72,402.40 46.38,402.86 47.11,403.20 47.88,403.42 48.67,403.52 ' style='stroke-width: 1.12; stroke: #0088FF; fill: #FFFFFF;' />
-<text x='145.80' y='370.68' text-anchor='middle' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='169.80px' lengthAdjust='spacingAndGlyphs'>Chimiothérapie adjuvante seule</text>
-<text x='145.80' y='386.52' text-anchor='middle' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='42.98px' lengthAdjust='spacingAndGlyphs'>(n = 53)</text>
-<polygon points='277.33,403.53 467.87,403.53 467.67,403.52 468.47,403.49 469.25,403.33 470.00,403.04 470.70,402.64 471.32,402.14 471.85,401.54 472.28,400.86 472.59,400.12 472.79,399.34 472.85,398.54 472.85,398.54 472.85,350.26 472.85,350.26 472.79,349.46 472.59,348.68 472.28,347.94 471.85,347.26 471.32,346.66 470.70,346.16 470.00,345.76 469.25,345.47 468.47,345.31 467.87,345.27 277.33,345.27 277.93,345.31 277.13,345.28 276.33,345.38 275.56,345.60 274.84,345.94 274.18,346.40 273.60,346.95 273.12,347.59 272.75,348.30 272.49,349.06 272.37,349.86 272.35,350.26 272.35,398.54 272.37,398.14 272.37,398.94 272.49,399.74 272.75,400.50 273.12,401.21 273.60,401.85 274.18,402.40 274.84,402.86 275.56,403.20 276.33,403.42 277.13,403.52 ' style='stroke-width: 1.12; stroke: #0088FF; fill: #FFFFFF;' />
-<text x='372.60' y='370.68' text-anchor='middle' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='166.48px' lengthAdjust='spacingAndGlyphs'>Chimiothérapie péri-opératoire</text>
-<text x='372.60' y='386.52' text-anchor='middle' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='44.20px' lengthAdjust='spacingAndGlyphs'>(n = 50)</text>
-<polyline points='259.20,102.57 259.20,129.60 387.57,129.60 ' style='stroke-width: 1.88; stroke: #E5E5E5;' />
-<polyline points='387.57,129.60 387.57,129.60 387.57,129.60 ' style='stroke-width: 1.88; stroke: #E5E5E5;' />
-<polyline points='259.20,102.57 259.20,177.51 ' style='stroke-width: 1.12; stroke: #333333;' />
-<polyline points='259.20,177.51 259.20,177.51 259.20,177.51 ' style='stroke-width: 1.12; stroke: #333333;' />
-<polyline points='259.20,283.29 259.20,287.28 145.80,287.28 145.80,345.27 ' style='stroke-width: 1.12; stroke: #0099FF;' />
-<polyline points='145.80,345.27 145.80,345.27 145.80,345.27 ' style='stroke-width: 1.12; stroke: #0099FF;' />
-<polyline points='259.20,283.29 259.20,287.28 372.60,287.28 372.60,345.27 ' style='stroke-width: 1.12; stroke: #0099FF;' />
-<polyline points='372.60,345.27 372.60,345.27 372.60,345.27 ' style='stroke-width: 1.12; stroke: #0099FF;' />
+<g clip-path='url(#cpMC4wMHw4MjguMDB8MC4wMHw1NzYuMDA=)'>
+<polygon points='228.85,102.57 433.55,102.57 433.35,102.56 434.15,102.53 434.93,102.37 435.68,102.08 436.38,101.68 437.00,101.18 437.53,100.58 437.96,99.90 438.27,99.16 438.46,98.38 438.53,97.58 438.53,97.58 438.53,17.62 438.53,17.62 438.46,16.82 438.27,16.04 437.96,15.30 437.53,14.62 437.00,14.02 436.38,13.52 435.68,13.12 434.93,12.83 434.15,12.67 433.55,12.63 228.85,12.63 229.45,12.67 228.65,12.64 227.86,12.74 227.09,12.96 226.36,13.30 225.70,13.76 225.12,14.31 224.64,14.95 224.27,15.66 224.02,16.42 223.89,17.22 223.87,17.62 223.87,97.58 223.89,97.18 223.89,97.98 224.02,98.78 224.27,99.54 224.64,100.25 225.12,100.89 225.70,101.44 226.36,101.90 227.09,102.24 227.86,102.46 228.65,102.56 ' style='stroke-width: 1.12; stroke: #111111; fill: #FFFFFF;' />
+<text x='240.88' y='38.04' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='145.97px' lengthAdjust='spacingAndGlyphs'>Patients éligibles (N = 333)</text>
+<text x='240.88' y='53.88' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='176.62px' lengthAdjust='spacingAndGlyphs'>- Hommes et femmes &gt;= 18 ans</text>
+<text x='240.88' y='69.72' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='180.64px' lengthAdjust='spacingAndGlyphs'>- Opérés d'un cancer du pancréas</text>
+<text x='240.88' y='85.56' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='148.75px' lengthAdjust='spacingAndGlyphs'>- Entre 01/2022 et 12/2025</text>
+<polygon points='450.84,193.07 791.16,193.07 790.96,193.07 791.76,193.04 792.55,192.88 793.29,192.59 793.99,192.19 794.61,191.68 795.14,191.08 795.57,190.41 795.88,189.67 796.08,188.89 796.14,188.09 796.14,188.09 796.14,88.39 796.14,88.39 796.08,87.59 795.88,86.81 795.57,86.07 795.14,85.40 794.61,84.80 793.99,84.29 793.29,83.89 792.55,83.60 791.76,83.44 791.16,83.41 450.84,83.41 451.44,83.44 450.64,83.41 449.84,83.51 449.07,83.73 448.35,84.07 447.69,84.53 447.11,85.09 446.63,85.73 446.26,86.44 446.00,87.20 445.88,87.99 445.86,88.39 445.86,188.09 445.88,187.69 445.88,188.49 446.00,189.28 446.26,190.04 446.63,190.75 447.11,191.39 447.69,191.95 448.35,192.41 449.07,192.75 449.84,192.97 450.64,193.07 ' style='stroke-width: 0.90; stroke: #F2F2F2; fill: #F2F2F2;' />
+<text x='462.87' y='107.67' style='font-size: 9.50px;fill: #555555; font-family: "Luciole";' textLength='75.41px' lengthAdjust='spacingAndGlyphs'>Exclus (n = 230)</text>
+<text x='462.87' y='121.35' style='font-size: 9.50px;fill: #555555; font-family: "Luciole";' textLength='228.91px' lengthAdjust='spacingAndGlyphs'>- autre diagnostic anatomopathologique (n = 85)</text>
+<text x='462.87' y='135.03' style='font-size: 9.50px;fill: #555555; font-family: "Luciole";' textLength='262.92px' lengthAdjust='spacingAndGlyphs'>- lésion non opérable ou d'emblée métastatique (n = 77)</text>
+<text x='462.87' y='148.71' style='font-size: 9.50px;fill: #555555; font-family: "Luciole";' textLength='147.22px' lengthAdjust='spacingAndGlyphs'>- données manquantes (n = 41)</text>
+<text x='462.87' y='162.39' style='font-size: 9.50px;fill: #555555; font-family: "Luciole";' textLength='222.98px' lengthAdjust='spacingAndGlyphs'>- protocole différent de chimiothérapie (n = 16)</text>
+<text x='462.87' y='176.07' style='font-size: 9.50px;fill: #555555; font-family: "Luciole";' textLength='316.27px' lengthAdjust='spacingAndGlyphs'>- décès précoce suivant le diagnostic ou en post-opératoire (n = 11)</text>
+<polygon points='258.26,283.29 404.14,283.29 403.94,283.28 404.74,283.25 405.53,283.09 406.28,282.80 406.97,282.40 407.59,281.90 408.12,281.30 408.55,280.62 408.87,279.88 409.06,279.10 409.12,278.30 409.12,278.30 409.12,182.50 409.12,182.50 409.06,181.70 408.87,180.92 408.55,180.18 408.12,179.50 407.59,178.90 406.97,178.40 406.28,178.00 405.53,177.71 404.74,177.55 404.14,177.51 258.26,177.51 258.86,177.55 258.06,177.52 257.26,177.62 256.49,177.84 255.77,178.18 255.11,178.64 254.53,179.19 254.05,179.83 253.68,180.54 253.42,181.30 253.29,182.10 253.28,182.50 253.28,278.30 253.29,277.90 253.29,278.70 253.42,279.50 253.68,280.26 254.05,280.97 254.53,281.61 255.11,282.16 255.77,282.62 256.49,282.96 257.26,283.18 258.06,283.28 ' style='stroke-width: 1.12; stroke: #0088FF; fill: #FFFFFF;' />
+<text x='270.29' y='202.92' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='86.55px' lengthAdjust='spacingAndGlyphs'>Inclus (n = 103)</text>
+<text x='270.29' y='218.76' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='120.89px' lengthAdjust='spacingAndGlyphs'>- CHU Angers (n = 36)</text>
+<text x='270.29' y='234.60' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='121.16px' lengthAdjust='spacingAndGlyphs'>- CHU Nantes (n = 25)</text>
+<text x='270.29' y='250.44' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='121.83px' lengthAdjust='spacingAndGlyphs'>- CHD Vendée (n = 25)</text>
+<text x='270.29' y='266.28' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='106.94px' lengthAdjust='spacingAndGlyphs'>- CHU Lyon (n = 17)</text>
+<polygon points='110.08,403.53 303.92,403.53 303.72,403.52 304.53,403.49 305.31,403.33 306.06,403.04 306.75,402.64 307.38,402.14 307.91,401.54 308.34,400.86 308.65,400.12 308.84,399.34 308.91,398.54 308.91,398.54 308.91,350.26 308.91,350.26 308.84,349.46 308.65,348.68 308.34,347.94 307.91,347.26 307.38,346.66 306.75,346.16 306.06,345.76 305.31,345.47 304.53,345.31 303.92,345.27 110.08,345.27 110.68,345.31 109.87,345.28 109.08,345.38 108.31,345.60 107.58,345.94 106.92,346.40 106.35,346.95 105.86,347.59 105.49,348.30 105.24,349.06 105.11,349.86 105.09,350.26 105.09,398.54 105.11,398.14 105.11,398.94 105.24,399.74 105.49,400.50 105.86,401.21 106.35,401.85 106.92,402.40 107.58,402.86 108.31,403.20 109.08,403.42 109.87,403.52 ' style='stroke-width: 1.12; stroke: #0088FF; fill: #FFFFFF;' />
+<text x='207.00' y='370.68' text-anchor='middle' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='169.80px' lengthAdjust='spacingAndGlyphs'>Chimiothérapie adjuvante seule</text>
+<text x='207.00' y='386.52' text-anchor='middle' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='42.98px' lengthAdjust='spacingAndGlyphs'>(n = 53)</text>
+<polygon points='360.13,403.53 550.67,403.53 550.47,403.52 551.27,403.49 552.05,403.33 552.80,403.04 553.50,402.64 554.12,402.14 554.65,401.54 555.08,400.86 555.39,400.12 555.59,399.34 555.65,398.54 555.65,398.54 555.65,350.26 555.65,350.26 555.59,349.46 555.39,348.68 555.08,347.94 554.65,347.26 554.12,346.66 553.50,346.16 552.80,345.76 552.05,345.47 551.27,345.31 550.67,345.27 360.13,345.27 360.73,345.31 359.93,345.28 359.13,345.38 358.36,345.60 357.64,345.94 356.98,346.40 356.40,346.95 355.92,347.59 355.55,348.30 355.29,349.06 355.17,349.86 355.15,350.26 355.15,398.54 355.17,398.14 355.17,398.94 355.29,399.74 355.55,400.50 355.92,401.21 356.40,401.85 356.98,402.40 357.64,402.86 358.36,403.20 359.13,403.42 359.93,403.52 ' style='stroke-width: 1.12; stroke: #0088FF; fill: #FFFFFF;' />
+<text x='455.40' y='370.68' text-anchor='middle' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='166.48px' lengthAdjust='spacingAndGlyphs'>Chimiothérapie péri-opératoire</text>
+<text x='455.40' y='386.52' text-anchor='middle' style='font-size: 11.00px;fill: #333333; font-family: "Luciole";' textLength='44.20px' lengthAdjust='spacingAndGlyphs'>(n = 50)</text>
+<polyline points='331.20,102.57 331.20,138.24 445.86,138.24 ' style='stroke-width: 1.88; stroke: #E5E5E5;' />
+<polyline points='445.86,138.24 445.86,138.24 445.86,138.24 ' style='stroke-width: 1.88; stroke: #E5E5E5;' />
+<polyline points='331.20,102.57 331.20,177.51 ' style='stroke-width: 1.12; stroke: #333333;' />
+<polyline points='331.20,177.51 331.20,177.51 331.20,177.51 ' style='stroke-width: 1.12; stroke: #333333;' />
+<polyline points='331.20,283.29 331.20,314.28 207.00,314.28 207.00,345.27 ' style='stroke-width: 1.12; stroke: #0099FF;' />
+<polyline points='207.00,345.27 207.00,345.27 207.00,345.27 ' style='stroke-width: 1.12; stroke: #0099FF;' />
+<polyline points='331.20,283.29 331.20,314.28 455.40,314.28 455.40,345.27 ' style='stroke-width: 1.12; stroke: #0099FF;' />
+<polyline points='455.40,345.27 455.40,345.27 455.40,345.27 ' style='stroke-width: 1.12; stroke: #0099FF;' />
 </g>
 </g>
 </svg>

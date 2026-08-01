@@ -19,10 +19,12 @@ dependencies = []
 
 [[packages]]
 name = "Deriv"
-version = "4.2.0"
+version = "4.3.0"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
 force_source = false
-dependencies = []
+dependencies = [
+    "Rcpp",
+]
 
 [[packages]]
 name = "Formula"
@@ -892,7 +894,7 @@ dependencies = [
 
 [[packages]]
 name = "future"
-version = "1.70.0"
+version = "1.75.0"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
 force_source = false
 dependencies = [
@@ -972,7 +974,7 @@ dependencies = [
 
 [[packages]]
 name = "ggsurvfit"
-version = "1.2.0"
+version = "1.2.1"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
 force_source = false
 dependencies = [
@@ -1241,6 +1243,7 @@ dependencies = [
     "gt",
     "gtsummary",
     "here",
+    { name = "httpuv", requirement = "(>= 1.6.12)" },
     "labelled",
     "lifecycle",
     "lubridate",
@@ -1264,6 +1267,7 @@ dependencies = [
     "tidyr",
     "webshot2",
     "withr",
+    "yaml",
 ]
 
 [[packages]]
