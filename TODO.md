@@ -5,7 +5,4 @@
 
 ## P1
 
-- complications post opératoires : 0, I, II puis \[III/IV/V\]
-- descriptif : seuil CA 19-9 500 U/mL
-
 ## P2

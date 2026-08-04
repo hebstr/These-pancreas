@@ -36,8 +36,11 @@ auto_exec("config", quiet = TRUE)
 
 lang_fr()
 
+source("_extensions/hebstr/hebstr-doc/fonts/register.R")
+
 set_opts(
-  font = "luciole"
+  font = "Luciole",
+  .default_font = "Helvetica"
 )
 
 opts <- get_opts()
@@ -67,7 +70,7 @@ easy_label <- \(data, variable = list(), value = list()) {
   data |>
     modify_if(is.logical, as.numeric) |>
     set_variable_labels(!!!dict$var, !!!variable, .strict = FALSE) |>
-    set_value_labels(!!!dict$val, !!!value, .strict = FALSE) |>
+    set_value_labels(!!!discard_at(dict$val, names2(value)), !!!value, .strict = FALSE) |>
     mutate(across(any_of(dict$type$int) | where(is.labelled), labelled::to_factor))
 }
 

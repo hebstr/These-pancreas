@@ -15,7 +15,7 @@ format:
 
 options(easy_out.quiet = TRUE)
 conflicts_prefer(dplyr::filter, Gmisc::coords, .quiet = TRUE)
-source("_extensions/hebstr/hebstr-doc/fonts/register.R")
+
 source("scripts/_setup.R")
 auto_exec()
 ```
@@ -71,10 +71,6 @@ Effectifs après éventuel recodage
 ## Flowchart
 
 {{< script scripts/fig_flowchart.R >}}
-
-::: callout-important
-# exclus : nettoyage/clarification des motifs (ambiguité autre chimio/autre anapat/autre)
-:::
 
 Dans un premier temps, `r n$eligible` patients ont été retenus pour éligibilité.
 Parmi ces patients, `r n$exclus` ont été exclus.
@@ -330,16 +326,6 @@ Récidive vs décès sans récidive traité comme risque compétitif, depuis la 
 ## Analyse multivariable
 
 ::: callout-important
-## Ne devrait pas être inclus en facteur d'ajustement
-
-Durée d'hospitalisation :
-- inversion temporelle : une partie de l'outcome (avoir < 12 cures) est antérieure à la chirurgie (groupe péri-opératoire)
-- possiblement sur le chemin causal : complications > hospit prolongée > moins de cures reçues
-
-CA19-9 : trop de données manquantes
-:::
-
-::: callout-important
 ## Important
 
 Principe de parcimonie à appliquer sur le choix et le nombre de variables à inclure dans l'analyse multivariée.
@@ -356,26 +342,12 @@ L'ajout d'une nouvelle variable expose à un risque de perte de puissance.
 
 CJP initial binaire "nombre de cures total >= 12" oui/non (atteinte du schéma complet)
 
-::: panel-tabset
-# Modèle
-
 ```{r}
 #| label: tbl-glm-model
 #| tbl-cap: Facteurs associés à la réalisation d'un schéma incomplet de chimiothérapie.
 
 tbl_model_glm_bin
 ```
-
-# Variables
-
-Détail des variables incluses (au moins dans l'analyse univariable)
-
-```{r}
-#| label: glm-vars
-
-.model$glm$bin$descr()
-```
-:::
 
 Manque de puissance : les coefficients sont poussés vers les extrêmes et les IC sont larges.
 Du fait des petits effectifs mais aussi par la binarisation du CJP qui crée une perte d'information (réduction d'un nombre de cures à oui/non)
@@ -402,26 +374,12 @@ Permet ici de corriger le manque de puissance.
 
 {{< script scripts/tbl_model_glm_pois.R >}}
 
-::: panel-tabset
-# Modèle
-
 ```{r}
 #| label: tbl-pois-model
 #| tbl-cap: "Facteurs associés à une augmentation du nombre total de cures reçues."
 
 tbl_model_glm_pois
 ```
-
-# Variables
-
-Détail des variables incluses (au moins dans l'analyse univariable)
-
-```{r}
-#| label: pois-vars
-
-.model$glm$pois$descr()
-```
-:::
 
 Nombre total de cures en moyenne 20% plus élevé dans le groupe péri-opératoire en comparaison au groupe adjuvant seul.
 Persiste après ajustement dans l'analyse multivariée.
@@ -447,9 +405,6 @@ Présenter les deux analyses (logistique et quasi-Poisson), dans l'ordre suivant
 Si biais de temps immortel entre groupe 1 et 2, tester modèle naïf + modèle avec landmark en analyse de sensibilité (seuil clinique)
 :::
 
-::: panel-tabset
-## Modèle
-
 ```{r}
 #| label: tbl-coxph-model
 #| tbl-cap: !expr title_suffix("Estimation de la survie globale")$strata
@@ -457,28 +412,17 @@ Si biais de temps immortel entre groupe 1 et 2, tester modèle naïf + modèle a
 tbl_coxph
 ```
 
-## Variables
-
-Détail des variables incluses (au moins dans l'analyse univariable)
-
-```{r}
-#| label: coxph-vars
-
-.model$coxph$descr()
-```
-:::
-
 ### Incidence cumulée de récidive
 
 Régression sur le risque de récidive avec décès sans récidive traité comme évènement compétitif (modèle de Fine Gray) : **skip car trop peu de décès et manque de puissance**
 
 # Annexe {.unnumbered}
 
-# Session {.unnumbered}
+<!-- # Session {.unnumbered}
 
 ```{r}
 #| label: session
 #| echo: true
 
 sessioninfo::session_info(pkgs = "attached")
-```
+``` -->

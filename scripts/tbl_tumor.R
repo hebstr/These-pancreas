@@ -14,7 +14,6 @@ tbl_tumor <- df |>
     chir_resec,
     chir_hosp,
     chir_complic_class,
-    chir_complic_class_maj,
     chir_marges,
     recidive_type,
     n_recidive_site_meta,

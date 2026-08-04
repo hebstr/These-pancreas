@@ -31,4 +31,13 @@ La modélisation en comptage du nombre total de cures répond à la question : *
 
 ## tbl_model_*
 
-- choix covariables en attente
+choix covariables en attente
+
+ne devrait pas être inclus en facteur d'ajustement :
+
+1) Durée d'hospitalisation :
+
+- inversion temporelle : une partie de l'outcome (avoir < 12 cures) est antérieure à la chirurgie (groupe péri-opératoire)
+- possiblement sur le chemin causal : complications > hospit prolongée > moins de cures reçues
+
+2) CA19-9 : trop de données manquantes

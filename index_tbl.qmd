@@ -1,7 +1,6 @@
 ---
 title: test render tables
 format:
-  hebstr-doc-html: {}
   hebstr-doc-docx: {}
 ---
 

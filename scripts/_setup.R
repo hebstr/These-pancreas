@@ -9,7 +9,8 @@ df_recode <- df_init |>
     tm_stade_n = tm_stade_n |> fct_relabel(~ str_glue("N{.x}")),
     tm_stade_m = tm_stade_m |> fct_relabel(~ str_glue("M{.x}")),
     chir_complic_class_maj = chir_complic_class >= 3,
-    # chir_complic_class = fct_collapse(factor(chir_complic_class), "III-IV-V" = 3:5),
+    chir_complic_class = pmin(chir_complic_class, 3),
+    ca_diag_bin = ca_diag >= 500,
     induc_nb = coalesce(induc_nb, 0),
     adj_nb = coalesce(adj_nb, 0),
     n_cures = induc_nb + adj_nb,
@@ -59,6 +60,7 @@ df_recode <- df_init |>
       age_incr = "Âge au diagnostic, années",
       time_diag_chir = "Délai entre diagnostic et chirurgie, mois",
       chir_complic_class_maj = "Complication post-opératoire majeure",
+      ca_diag_bin = "CA 19-9 au diagnostic >= 500 UI/L",
       n_cures = "Nombre total de cures",
       n_cures_outcome = "Nombre total de cures < 12",
       n_cures_outcome_sub = "Nombre total de cures < 12 : ou dose relative moyenne < 80%",
@@ -71,6 +73,7 @@ df_recode <- df_init |>
       pfs_cause = "Premier évènement"
     ),
     value = list(
+      chir_complic_class = c("0" = 0, "I" = 1, "II" = 2, "III-IV-V" = 3),
       n_recidive_site_meta = c("1" = 1, ">=2" = 2),
       pfs_cause = c("Censure" = 0, "Récidive" = 1, "Décès sans récidive" = 2)
     )

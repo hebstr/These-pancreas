@@ -8,6 +8,7 @@ tbl_baseline <- df |>
     ps_diag,
     dl_diag,
     ca_diag,
+    ca_diag_bin,
     tm_loc,
     starts_with("tm_stade")
   ) |>
