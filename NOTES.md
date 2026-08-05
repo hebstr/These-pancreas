@@ -2,6 +2,13 @@
 
 ## CJP
 
+Principe de parcimonie à appliquer sur le choix et le nombre de variables à inclure dans l'analyse multivariée.
+Avec le CJP binaire sur 100 patients, le modèle de régression est déjà sous-dimentionné : pas assez d'observations, donc pas assez d'évenement par variable, donc le modèle s'ajuste trop aux données et est moins généralisable.
+Coefficients poussés vers les extrêmes et IC trop larges.
+
+Une analyse multivariée ne peut porter que sur les observations complètes (= aucune donnée manquante sur aucune des variables incluses dans le modèle).
+L'ajout d'une nouvelle variable expose à un risque de perte de puissance.
+
 Proposition : au lieu d'un seuil arbitraire de 12 cures qui met au même niveau un patient ayant eu 1 cure qu'un autre en ayant eu 11, modélisation en comptage du nombre total de cures
 
 Alternative à la binarisation du CJP qui induite une perte d'information
@@ -16,7 +23,7 @@ La modélisation en comptage du nombre total de cures répond à la question : *
 
 ## CJS
 
-- [SUPPR] 16/07 : inverser l'évènement en "nombre de cures total < 12" oui/non
+- **SUPPR 16/07** : inverser l'évènement en "nombre de cures total < 12" oui/non
   > Plus de sens au niveau épidémiologique : aucun effet sur les conclusions mais permet une lecture plus naturelle et conventionnelle des estimations, qui vont dans le sens d'un effet protecteur si < 0 (= moins de risque d'avoir un schéma incomplet) et d'un excès de risque si > 1 (risque augmenté d'avoir un schéma incomplet)
 
 # tbls
@@ -29,7 +36,7 @@ La modélisation en comptage du nombre total de cures répond à la question : *
 
 - adapt_pct : pct adapt à la dernière cure
 
-## tbl_model_*
+## analyse multivariable
 
 choix covariables en attente
 
@@ -41,3 +48,13 @@ ne devrait pas être inclus en facteur d'ajustement :
 - possiblement sur le chemin causal : complications > hospit prolongée > moins de cures reçues
 
 2) CA19-9 : trop de données manquantes
+
+### survie
+
+Si biais de temps immortel entre groupe 1 et 2, tester modèle naïf + modèle avec landmark en analyse de sensibilité (seuil clinique)
+
+### Incidence cumulée de récidive
+
+Récidive vs décès sans récidive traité comme risque compétitif, depuis la chirurgie : **skip car trop peu de décès**
+
+Régression sur le risque de récidive avec décès sans récidive traité comme évènement compétitif (modèle de Fine Gray) : **skip car trop peu de décès et manque de puissance**

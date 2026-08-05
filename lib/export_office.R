@@ -1,6 +1,6 @@
 ### OFFICE EXPORT --------------------------------------------------------------
 
-export_office <- function(
+export_office <- \(
   x,
   filename = NULL,
   dir = getOption("easy_out.dir", default = "output"),

@@ -1,10 +1,10 @@
+# system("xcode-select --install")
 source("rv/scripts/rvr.R")
 source("rv/scripts/activate.R")
-# .rv$sync()
-# .rv$summary()
+.rv$sync()
+.rv$summary()
 
 options(
-  repos = c(CRAN = "https://packagemanager.posit.co/cran/latest"),
   gargle_oauth_email = Sys.getenv("GARGLE_OAUTH_EMAIL", unset = NA)
 )
 
@@ -19,8 +19,6 @@ library(ggsurvfit)
 library(survival)
 library(tidycmprsk)
 library(ggrepel)
-library(gt)
-library(ggswim)
 library(patchwork)
 library(Gmisc)
 library(grid)
@@ -32,7 +30,7 @@ print(conflict_scout())
 
 conflicts_prefer(dplyr::filter, Gmisc::coords, .quiet = TRUE)
 
-auto_exec("config", quiet = TRUE)
+auto_exec("lib", quiet = TRUE)
 
 lang_fr()
 
@@ -65,14 +63,6 @@ dict <- extract_from_dict(
   type = type,
   level = level
 )
-
-easy_label <- \(data, variable = list(), value = list()) {
-  data |>
-    modify_if(is.logical, as.numeric) |>
-    set_variable_labels(!!!dict$var, !!!variable, .strict = FALSE) |>
-    set_value_labels(!!!discard_at(dict$val, names2(value)), !!!value, .strict = FALSE) |>
-    mutate(across(any_of(dict$type$int) | where(is.labelled), labelled::to_factor))
-}
 
 df_init <- sheets$inclusions |>
   rownames_to_column() |>

@@ -1,4 +1,4 @@
-check_fun <- \(
+easy_check <- \(
   .data,
   ...,
   .prefix = "check_",

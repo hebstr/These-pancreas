@@ -1,7 +1,7 @@
 checklist <- list()
 
 checklist$ttt <- df_init |>
-  check_fun(
+  easy_check(
     induc_nb = coalesce(induc_nb, 0),
     adj_nb = coalesce(adj_nb, 0),
     n_cures = induc_nb + adj_nb,

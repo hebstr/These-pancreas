@@ -15,8 +15,7 @@ options(
 
 conflicts_prefer(dplyr::filter, Gmisc::coords, .quiet = TRUE)
 
-source(here::here("scripts", "_setup.R"))
-
+source("setup.R")
 auto_exec()
 ```
 
@@ -137,30 +136,6 @@ tbl_surv
 {{< pagebreak >}}
 
 # Analyse multivariable
-
-## Régression logistique
-
-```{r}
-#| label: tbl-glm
-#| tbl-cap: Facteurs associés à la réalisation d'un schéma incomplet de chimiothérapie.
-#| echo: false
-
-tbl_model_glm_bin
-```
-
-{{< pagebreak >}}
-
-## Régression logistique pénalisée
-
-```{r}
-#| label: tbl-plr
-#| tbl-cap: Facteurs associés à la réalisation d'un schéma incomplet de chimiothérapie (avec pénalisation de Firth).
-#| echo: false
-
-tbl_model_glm_plr
-```
-
-{{< pagebreak >}}
 
 ## Régression de quasi-Poisson
 

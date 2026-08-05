@@ -31,6 +31,37 @@ extract_from_dict <- \(data, var_name, var_label, type, level) {
   )
 }
 
+easy_label <- \(
+  data,
+  variable = list(),
+  value = list(),
+  drop = FALSE
+) {
+  data <- data |>
+    modify_if(is.logical, as.numeric) |>
+    set_variable_labels(
+      !!!dict$var,
+      !!!variable,
+      .strict = FALSE
+    ) |>
+    set_value_labels(
+      !!!discard_at(dict$val, names2(value)),
+      !!!value,
+      .strict = FALSE
+    ) |>
+    mutate(across(
+      any_of(dict$type$int) | where(is.labelled),
+      labelled::to_factor
+    ))
+
+  if (drop) {
+    data <- discard(data, ~ is.null(var_label(.x)))
+  }
+
+  data
+}
+
+
 title_suffix <- \(title, strata = "selon le protocole de chimiothérapie") {
   lst(
     strata = strata,

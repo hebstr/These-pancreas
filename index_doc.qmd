@@ -16,7 +16,7 @@ format:
 options(easy_out.quiet = TRUE)
 conflicts_prefer(dplyr::filter, Gmisc::coords, .quiet = TRUE)
 
-source("scripts/_setup.R")
+source("setup.R")
 auto_exec()
 ```
 
@@ -32,7 +32,7 @@ auto_exec()
 
 {{< script .Rprofile >}}
 
-{{< script scripts/_setup.R >}}
+{{< script setup.R >}}
 
 ## Variables
 
@@ -319,56 +319,7 @@ fig_surv_total$pfs
 fig_surv_strata$pfs
 ```
 
-### Incidence cumulée de récidive
-
-Récidive vs décès sans récidive traité comme risque compétitif, depuis la chirurgie : **skip car trop peu de décès**
-
 ## Analyse multivariable
-
-::: callout-important
-## Important
-
-Principe de parcimonie à appliquer sur le choix et le nombre de variables à inclure dans l'analyse multivariée.
-Avec le CJP binaire sur 100 patients, le modèle de régression est déjà sous-dimentionné : pas assez d'observations, donc pas assez d'évenement par variable, donc le modèle s'ajuste trop aux données et est moins généralisable.
-Coefficients poussés vers les extrêmes et IC trop larges.
-
-Une analyse multivariée ne peut porter que sur les observations complètes (= aucune donnée manquante sur aucune des variables incluses dans le modèle).
-L'ajout d'une nouvelle variable expose à un risque de perte de puissance.
-:::
-
-### Régression logistique
-
-{{< script scripts/tbl_model_glm_bin.R >}}
-
-CJP initial binaire "nombre de cures total >= 12" oui/non (atteinte du schéma complet)
-
-```{r}
-#| label: tbl-glm-model
-#| tbl-cap: Facteurs associés à la réalisation d'un schéma incomplet de chimiothérapie.
-
-tbl_model_glm_bin
-```
-
-Manque de puissance : les coefficients sont poussés vers les extrêmes et les IC sont larges.
-Du fait des petits effectifs mais aussi par la binarisation du CJP qui crée une perte d'information (réduction d'un nombre de cures à oui/non)
-
-::: callout-important
-## Proposition : garder le CJP binaire en corrigeant l'estimation (pénalisation de Firth)
-:::
-
-### Régression logistique pénalisée
-
-{{< script scripts/tbl_model_glm_plr.R >}}
-
-```{r}
-#| label: tbl-plr-model
-#| tbl-cap: Facteurs associés à la réalisation d'un schéma incomplet de chimiothérapie (avec pénalisation de Firth).
-
-tbl_model_glm_plr
-```
-
-Mêmes observations et mêmes variables que le modèle naïf.
-Permet ici de corriger le manque de puissance.
 
 ### Régression de quasi-Poisson
 
@@ -384,26 +335,9 @@ tbl_model_glm_pois
 Nombre total de cures en moyenne 20% plus élevé dans le groupe péri-opératoire en comparaison au groupe adjuvant seul.
 Persiste après ajustement dans l'analyse multivariée.
 
-::: callout-note
-## Suggestion de présentation
-
-Présenter les deux analyses (logistique et quasi-Poisson), dans l'ordre suivant :
-
-1. d'abord régression de quasi-Poisson (CJP comptage du nombre total de cures, brut)
-2. puis régression logistique (CJP binarisé) :
-- modèle "naïf" : @tbl-glm-model
-- modèle corrigé du manque de puissance (pénalisation de Firth) : @tbl-plr-model
-:::
-
 ### Estimation de la survie globale
 
 {{< script scripts/tbl_model_coxph.R >}}
-
-::: callout-important
-## Proposition
-
-Si biais de temps immortel entre groupe 1 et 2, tester modèle naïf + modèle avec landmark en analyse de sensibilité (seuil clinique)
-:::
 
 ```{r}
 #| label: tbl-coxph-model
@@ -411,10 +345,6 @@ Si biais de temps immortel entre groupe 1 et 2, tester modèle naïf + modèle a
 
 tbl_coxph
 ```
-
-### Incidence cumulée de récidive
-
-Régression sur le risque de récidive avec décès sans récidive traité comme évènement compétitif (modèle de Fine Gray) : **skip car trop peu de décès et manque de puissance**
 
 # Annexe {.unnumbered}
 

@@ -1,3 +1,6 @@
 {
-  "recommendations": ["Posit.air-vscode", "jolars.panache"]
+  "recommendations": [
+    "Posit.air-vscode"
+    // "jolars.panache"
+  ]
 }

@@ -10,13 +10,13 @@ df_flow <- sheets$exclusions |>
   set_value_labels(!!!dict$val, .strict = FALSE) |>
   modify_if(is.labelled, labelled::to_factor)
 
-label_centre <- get_label(df_recode, centre)
+label_centre <- get_label(df_label, centre)
 
 label_exclus <- df_flow |>
   filter(motif_exclusion != 0) |>
   get_label(motif_exclusion)
 
-n_groupe <- fct_count(df_recode$groupe)
+n_groupe <- fct_count(df_label$groupe)
 
 n <- lst(
   eligible = nrow(df_flow),
@@ -162,4 +162,8 @@ easy_out(
   height = fig_size$height
 )
 
-# export_office(fig_flowchart, width = 9, height = 8)
+export_office(
+  x = fig_flowchart,
+  width = fig_size$width,
+  height = fig_size$height
+)

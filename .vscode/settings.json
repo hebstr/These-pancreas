@@ -2,9 +2,15 @@
   "[r]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "Posit.air-vscode"
-  },
-  "[quarto]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "jolars.panache"
   }
+  // "[markdown]": {
+  //   "files.trimTrailingWhitespace": false,
+  //   "editor.formatOnSave": true,
+  //   "editor.defaultFormatter": "jolars.panache"
+  // },
+  // "[quarto]": {
+  //   "files.trimTrailingWhitespace": false,
+  //   "editor.formatOnSave": true,
+  //   "editor.defaultFormatter": "jolars.panache"
+  // }
 }

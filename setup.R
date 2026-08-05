@@ -52,7 +52,9 @@ df_recode <- df_init |>
     from = 40,
     to = 85,
     by = 5
-  ) |>
+  )
+
+df_label <- df_recode |>
   easy_label(
     variable = list(
       age = "Âge au diagnostic, années",
@@ -76,41 +78,13 @@ df_recode <- df_init |>
       chir_complic_class = c("0" = 0, "I" = 1, "II" = 2, "III-IV-V" = 3),
       n_recidive_site_meta = c("1" = 1, ">=2" = 2),
       pfs_cause = c("Censure" = 0, "Récidive" = 1, "Décès sans récidive" = 2)
-    )
-  ) |>
-  discard(~ is.null(var_label(.x)))
+    ),
+    drop = TRUE
+  )
 
-df <- df_recode |>
+df <- df_label |>
   rownames_to_column() |>
   mutate(rowname = as.numeric(rowname) + 1)
-
-.induc <- lst(
-  label = var_label(df$groupe),
-  level = levels(df$groupe)[2],
-  n = sum(df$groupe == level, na.rm = TRUE),
-  df = df |>
-    filter(groupe == level) |>
-    mutate(groupe = fct_drop(groupe))
-)
-
-.tox_vars <- map(
-  set_names(c("induc", "adj")),
-  ~ names(df) |>
-    str_subset(str_glue("{.x}_ei_")) |>
-    set_names() |>
-    imap_dbl(~ sum(as.numeric(df[[.]]), na.rm = TRUE)) |>
-    sort(decreasing = TRUE) |>
-    names()
-)
-
-.check_df <- lst(
-  data_recode = df |> select(-rowname),
-  names = names(data_recode),
-  data_init = df_init |> select(any_of(names)) |> easy_label(),
-  vars = easy_view(data_recode)$output,
-  distrib_recode = check_distrib(data_recode),
-  distrib_init = check_distrib(data_init),
-)
 
 ### FIT ------------------------------------------------------------------------
 
@@ -190,6 +164,36 @@ df <- df_recode |>
     pvalue_fun = opts$pvalue$format,
     exponentiate = TRUE
   )
+)
+
+### VARS -----------------------------------------------------------------------
+
+.induc <- lst(
+  label = var_label(df$groupe),
+  level = levels(df$groupe)[2],
+  n = sum(df$groupe == level, na.rm = TRUE),
+  df = df |>
+    filter(groupe == level) |>
+    mutate(groupe = fct_drop(groupe))
+)
+
+.tox_vars <- map(
+  set_names(c("induc", "adj")),
+  ~ names(df) |>
+    str_subset(str_glue("{.x}_ei_")) |>
+    set_names() |>
+    imap_dbl(~ sum(as.numeric(df[[.]]), na.rm = TRUE)) |>
+    sort(decreasing = TRUE) |>
+    names()
+)
+
+.check_df <- lst(
+  data_recode = df |> select(-rowname),
+  names = names(data_recode),
+  data_init = df_init |> select(any_of(names)) |> easy_label(),
+  vars = easy_view(data_recode)$output,
+  distrib_recode = check_distrib(data_recode),
+  distrib_init = check_distrib(data_init),
 )
 
 ### AUTO EXEC ------------------------------------------------------------------

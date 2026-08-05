@@ -1,6 +1,4 @@
 anova_logistf <- \(model, ...) {
-  # method = "nested" (default) shares the Jeffreys penalty across both models;
-  # method = "PLR" relates each to its own null and yields a negative statistic here
   attr(terms(model), "term.labels") |>
     map(\(v) {
       tibble(
