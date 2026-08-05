@@ -1181,7 +1181,7 @@ dependencies = [
 [[packages]]
 name = "hebstr"
 version = "0.0.0.9000"
-source = { git = "https://github.com/hebstr/hebstr", sha = "55ac80175d8bab8fa7442c14803dc99c074212fa", branch = "main" }
+source = { git = "https://github.com/hebstr/hebstr", sha = "88f37e93359d6423503fdce981ba666276fcf322", branch = "main" }
 force_source = true
 dependencies = [
     "aod",
@@ -1219,12 +1219,13 @@ dependencies = [
     "rsvg",
     "scales",
     "stringr",
-    "svglite",
+    { name = "svglite", requirement = "(>= 2.0.0)" },
     "systemfonts",
     "tibble",
     "tidyr",
     "webshot2",
     "withr",
+    "xfun",
     "yaml",
 ]
 
