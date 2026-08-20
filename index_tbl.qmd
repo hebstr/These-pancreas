@@ -13,8 +13,6 @@ options(
   hebstr.docx = knitr::pandoc_to("docx")
 )
 
-conflicts_prefer(dplyr::filter, Gmisc::coords, .quiet = TRUE)
-
 source("setup.R")
 auto_exec()
 ```

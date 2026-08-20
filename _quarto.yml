@@ -1,0 +1,6 @@
+project:
+  type: default
+  render:
+    - index_doc.qmd
+lang: fr
+date: last-modified

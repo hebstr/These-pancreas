@@ -136,7 +136,9 @@ fig_flowchart <- with_fig_device(
     adjuvant_connect <- connectGrob(inclus_box, adjuvant_box, type = "N")
 
     periop_box <- flow_box(
-      label = str_glue("Chimiothérapie péri-opératoire\n(n = {n$chimio_periop})"),
+      label = str_glue(
+        "Chimiothérapie péri-opératoire\n(n = {n$chimio_periop})"
+      ),
       x = 0.55,
       y = 0.35
     )

@@ -4,3 +4,6 @@
 Rplots.pdf
 filetree.yml
 /.claude/
+
+/.quarto/
+**/*.quarto_ipynb
