@@ -1,11 +1,11 @@
-### DATA ------------------------------------------------------------------------
+### DATA -----------------------------------------------------------------------
 
 .model$glm$pois <- lst(
   data = .model$default$data,
   vars = set_model_vars(
     y = "n_cures",
     x_uv = .model$default$vars$x$uv,
-    x_mv_exclude = "chir_resec"
+    x_mv_exclude = NULL
   ),
   args = .model$default$args,
   descr = \() {
@@ -13,14 +13,22 @@
       data = data[, c(vars$y, vars$x$uv)],
     )
   },
-  fit = glm(
-    formula = reformulate(vars$x$mv, vars$y),
-    family = quasipoisson,
-    data = data
+  fit_with = \(family) {
+    glm(
+      formula = reformulate(vars$x$mv, vars$y),
+      family = family,
+      data = data
+    )
+  },
+  fit = map(
+    c(pois = "poisson", qpois = "quasipoisson"),
+    fit_with
   )
 )
 
-### TBL ----------------------------------------------------------------------
+### TBL ------------------------------------------------------------------------
+
+.model_glm_pois_fit <- .model$glm$pois$fit$qpois
 
 .model$glm$pois$tbls <- lst(
   uv = tbl_uvregression(
@@ -33,7 +41,7 @@
     !!!.model$glm$pois$args
   ),
   mv = tbl_regression(
-    x = .model$glm$pois$fit,
+    x = .model_glm_pois_fit,
     !!!.model$glm$pois$args
   )
 )
@@ -45,7 +53,7 @@ tbl_model_glm_pois <- .model$glm$pois$tbls |>
         label_n = "N",
         stat_n = "{n_obs}",
         estim_acro = "IRR",
-        estim_label = "rapport du nombre moyen"
+        estim_label = "rapport du nombre moyen de cures"
       ) |>
       add_global_p()
   ) |>
@@ -61,21 +69,53 @@ tbl_model_glm_pois <- .model$glm$pois$tbls |>
     ),
     note_pvalue = str_glue(
       "Modèle de régression de quasi-Poisson multivariable
-      portant sur {nobs(.model$glm$pois$fit)} observations complètes
-      ({nrow(.model$glm$pois$data) - nobs(.model$glm$pois$fit)} observations
+      portant sur {nobs(.model_glm_pois_fit)} observations complètes
+      ({nrow(.model$glm$pois$data) - nobs(.model_glm_pois_fit)} observations
       supprimées pour cause de données manquantes)."
     ),
     width = 680
   )
 
-# .pois_check <- glm(
-#   formula = formula(.model_pois$fit),
-#   family = poisson,
-#   data = .model_pois$data
-# )
-# performance::check_overdispersion(.pois_check)
-# performance::check_collinearity(.pois_check)
-# performance::check_outliers(.pois_check)
-# performance::model_performance(.pois_check)
+### CHECK ----------------------------------------------------------------------
+
+.model$glm$pois$check <- lst(
+  fit = .model$glm$pois$fit$pois,
+  overdispersion = performance::check_overdispersion(fit),
+  collinearity = performance::check_collinearity(fit),
+  outliers = performance::check_outliers(fit),
+  performance = performance::model_performance(fit)
+)
+
+.pois_check_label <- .model$glm$pois$vars$x$mv |>
+  set_names() |>
+  map_chr(~ var_label(df[[.x]]))
+
+.pois_check_vif <- .model$glm$pois$check$collinearity |>
+  as_tibble() |>
+  transmute(
+    variable = .pois_check_label[Term],
+    vif = round(VIF, 2),
+    vif_adj = round(SE_factor, 2),
+    tolerance = round(Tolerance, 2)
+  )
+
+.pois_check_perf <- .model$glm$pois$check$performance |>
+  as_tibble() |>
+  transmute(
+    aic = round(AIC, 1),
+    aicc = round(AICc, 1),
+    bic = round(BIC, 1),
+    r2 = round(R2_Nagelkerke, 3),
+    rmse = round(RMSE, 2)
+  )
+
+.pois_check_cook <- lst(
+  attrs = attributes(.model$glm$pois$check$outliers),
+  n = sum(attrs$data$Outlier),
+  max = round(max(attrs$data$Distance_Cook), 3),
+  threshold = round(attrs$threshold$cook, 2)
+)
+
+### OUTPUT ---------------------------------------------------------------------
 
 easy_out(tbl_model_glm_pois)

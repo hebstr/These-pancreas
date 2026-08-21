@@ -161,10 +161,19 @@ df <- df_label |>
   tte = os_tte,
   event = 1 - os_event,
   strata = groupe,
-  estimate_label = "récidive ou décès",
+  estimate_label = "la fin de suivi",
   tbl_label = "Probabilité d'être encore suivi",
   type = "surv"
 )
+
+.followup_alive <- df |>
+  filter(os_event == 0) |>
+  summarise(
+    n = n(),
+    min = round(min(os_tte), 1),
+    max = round(max(os_tte), 1)
+  ) |>
+  as.list()
 
 .surv <- lst(
   os = build_model(
@@ -218,15 +227,14 @@ df <- df_label |>
 .model$default <- lst(
   data = df |> mutate(ps_diag = ps_diag |> fct_collapse("1-2" = c(1, 2))),
   vars = set_model_vars(
-    y = "n_cures_outcome",
+    y = "n_cures",
     x_uv = c(
       "groupe",
       "centre",
       "age_incr",
-      "ps_diag",
-      "chir_resec"
+      "ps_diag"
     ),
-    x_mv_exclude = "chir_resec"
+    x_mv_exclude = NULL
   ),
   args = lst(
     pvalue_fun = opts$pvalue$format,

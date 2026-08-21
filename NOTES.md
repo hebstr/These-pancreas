@@ -49,6 +49,8 @@ ne devrait pas être inclus en facteur d'ajustement :
 
 2) CA19-9 : trop de données manquantes
 
+3) chir_resec : mesurée avant le traitement, et détermine l'orientation vers l'un ou l'autre protocole = facteur de confusion structurel
+
 ### survie
 
 Si biais de temps immortel entre groupe 1 et 2, tester modèle naïf + modèle avec landmark en analyse de sensibilité (seuil clinique)

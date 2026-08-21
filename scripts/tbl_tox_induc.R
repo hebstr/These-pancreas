@@ -36,7 +36,7 @@ tbl_tox_induc <- .tox_induc$data |>
   modify_header(all_stat_cols(stat_0 = FALSE) ~ "**{level}<br>(n={n})**") |>
   add_note(
     vars = "induc_ei",
-    note = "Selon la Common Terminology Criteria for Adverse Events (CTCAE).",
+    note = "Selon la Common Terminology Criteria for Adverse Events (CTCAE) v5.0.",
   ) |>
   tbl_format(width = 450)
 

@@ -34,7 +34,7 @@ tbl_tox_adj <- .tox_adj$data |>
   ) |>
   add_note(
     vars = "adj_ei",
-    note = "Selon la Common Terminology Criteria for Adverse Events (CTCAE).",
+    note = "Selon la Common Terminology Criteria for Adverse Events (CTCAE) v5.0.",
   ) |>
   tbl_format(width = 600)
 

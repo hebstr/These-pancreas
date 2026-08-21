@@ -5,7 +5,7 @@
   vars = set_model_vars(
     y = c("os_tte", "os_event"),
     x_uv = .model$default$vars$x$uv,
-    x_mv_exclude = "chir_resec"
+    x_mv_exclude = NULL
   ),
   args = .model$default$args,
   descr = \() {
@@ -61,7 +61,24 @@ tbl_coxph <- .model$coxph$tbls |>
     width = 680
   )
 
-# coxph_ph <- cox.zph(.model$coxph$fit)
-# coxph_ph_plot <- ggcoxzph(coxph_ph)
+### CHECK -------------------------------------------------------------------
+
+.model$coxph$check <- cox.zph(.model$coxph$fit)
+
+.coxph_check_label <- .model$coxph$vars$x$mv |>
+  set_names() |>
+  map_chr(~ var_label(df[[.x]])) |>
+  c(GLOBAL = "Ensemble du modèle")
+
+.coxph_check_tbl <- .model$coxph$check$table |>
+  as_tibble(rownames = "term") |>
+  transmute(
+    variable = .coxph_check_label[term],
+    chi2 = round(chisq, 2),
+    ddl = df,
+    p = style_pvalue(p, digits = 2)
+  )
+
+### OUTPUT ---------------------------------------------------------------------
 
 easy_out(tbl_coxph)
