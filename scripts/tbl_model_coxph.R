@@ -1,84 +1,109 @@
 ### DATA ------------------------------------------------------------------------
 
-.model$coxph <- lst(
-  data = .model$default$data,
-  vars = set_model_vars(
-    y = c("os_tte", "os_event"),
-    x_uv = .model$default$vars$x$uv,
-    x_mv_exclude = NULL
-  ),
-  args = .model$default$args,
-  descr = \() {
-    check_model_vars(
-      data = data[, c(vars$y[2], vars$x$uv)],
-      by = vars$y[2]
-    )
-  },
-  y_fun = call2("Surv", rlang::splice(syms(vars$y))),
-  fit = coxph(reformulate(vars$x$mv, y_fun), data)
-)
+.model$coxph <- map(set_names(names(.surv$total)), \(outcome) {
+  lst(
+    data = .model$default$data,
+    vars = set_model_vars(
+      y = paste0(outcome, c("_tte", "_event")),
+      x_uv = .model$default$vars$x$uv,
+      x_mv_exclude = c("centre", "chir_complic_class_maj")
+    ),
+    args = .model$default$args,
+    descr = \() {
+      check_model_vars(
+        data = data[, c(vars$y[2], vars$x$uv)],
+        by = vars$y[2]
+      )
+    },
+    y_fun = call2("Surv", rlang::splice(syms(vars$y))),
+    strata_term = "strata(centre)",
+    fit = coxph(reformulate(c(vars$x$mv, strata_term), y_fun), data),
+    check = cox.zph(fit)
+  )
+})
 
 ### TBL ------------------------------------------------------------------------
 
-.model$coxph$tbls <- lst(
-  uv = tbl_uvregression(
-    data = .model$coxph$data,
-    y = !!.model$coxph$y_fun,
-    method = coxph,
-    hide_n = TRUE,
-    include = .model$coxph$vars$x$uv,
-    !!!.model$coxph$args
-  ),
-  mv = tbl_regression(
-    x = .model$coxph$fit,
-    !!!.model$coxph$args
-  )
-)
+get_tbl_coxph <- \(outcome) {
+  model <- .model$coxph[[outcome]]
 
-tbl_coxph <- .model$coxph$tbls |>
-  map(
-    ~ . |>
-      gtsum_format() |>
-      add_global_p()
-  ) |>
-  tbl_merge(tab_spanner = str_glue("**{opts$labs$spanner}**")) |>
-  add_note(
-    vars = "age_incr",
-    note = "Incrémentation par tranches de 5 ans."
-  ) |>
-  tbl_format(
-    note_global = str_glue(
-      "Le critère de jugement est la survie globale, définie par le délai entre
-      le diagnostic et le décès toutes causes. Les patients vivants sont
-      censurés à la date de point du centre."
+  surv_def <- df[[model$vars$y[1]]] |>
+    var_label() |>
+    str_remove(",\\s*mois$") |>
+    str_replace("^.", str_to_lower)
+
+  event_def <- df[[model$vars$y[2]]] |>
+    var_label() |>
+    str_replace("^.", str_to_lower)
+
+  lst(
+    uv = tbl_uvregression(
+      data = model$data,
+      y = !!model$y_fun,
+      method = coxph,
+      hide_n = TRUE,
+      include = model$vars$x$uv,
+      !!!model$args
     ),
-    note_pvalue = str_glue(
-      "Modèle de regression de Cox multivariable incluant
-      {.model$coxph$fit$nevent} évènements pour {.model$coxph$fit$n}
-      observations complètes ({nrow(.model$coxph$data) - .model$coxph$fit$n}
-      observations supprimées pour cause de données manquantes)."
-    ),
-    width = 680
-  )
+    mv = tbl_regression(
+      x = model$fit,
+      !!!model$args
+    )
+  ) |>
+    map(
+      ~ . |>
+        gtsum_format() |>
+        add_global_p()
+    ) |>
+    tbl_merge(tab_spanner = str_glue("**{opts$labs$spanner}**")) |>
+    add_note(
+      vars = "age_incr",
+      note = "Incrémentation par tranches de 5 ans."
+    ) |>
+    add_note(
+      vars = "chir_complic_class_maj",
+      note = "Définie par un grade supérieur ou égal à III selon la classification
+      de Clavien-Dindo."
+    ) |>
+    tbl_format(
+      note_global = paste(
+        str_glue("Le critère de jugement est le {surv_def}."),
+        "Les patients sans évènement sont censurés à la date de point du centre.",
+        str_glue(
+          "Un hazard ratio > 1 est en faveur d'un risque plus élevé de
+          {event_def} comparé au groupe de référence."
+        )
+      ),
+      note_pvalue = str_glue(
+        "Modèle de régression de Cox multivariable stratifié sur le centre,
+        incluant {model$fit$nevent} évènements pour {model$fit$n} observations
+        complètes ({nrow(model$data) - model$fit$n} observations supprimées
+        pour cause de données manquantes)."
+      ),
+      width = 750
+    )
+}
+
+tbl_coxph <- map(set_names(names(.model$coxph)), get_tbl_coxph)
 
 ### CHECK -------------------------------------------------------------------
 
-.model$coxph$check <- cox.zph(.model$coxph$fit)
+.coxph_check_tbl <- map(.model$coxph, \(model) {
+  labels <- model$vars$x$mv |>
+    set_names() |>
+    map_chr(~ var_label(df[[.x]])) |>
+    c(GLOBAL = "Ensemble du modèle")
 
-.coxph_check_label <- .model$coxph$vars$x$mv |>
-  set_names() |>
-  map_chr(~ var_label(df[[.x]])) |>
-  c(GLOBAL = "Ensemble du modèle")
-
-.coxph_check_tbl <- .model$coxph$check$table |>
-  as_tibble(rownames = "term") |>
-  transmute(
-    variable = .coxph_check_label[term],
-    chi2 = round(chisq, 2),
-    ddl = df,
-    p = style_pvalue(p, digits = 2)
-  )
+  model$check$table |>
+    as_tibble(rownames = "term") |>
+    transmute(
+      variable = labels[term],
+      chi2 = round(chisq, 2),
+      ddl = df,
+      p = style_pvalue(p, digits = 2)
+    )
+})
 
 ### OUTPUT ---------------------------------------------------------------------
 
-easy_out(tbl_coxph)
+easy_out_map(tbl_coxph)

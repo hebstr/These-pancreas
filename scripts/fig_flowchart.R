@@ -77,21 +77,22 @@ fig_flowchart <- with_fig_device(
   code = {
     eligible_box <- flow_box(
       str_glue(
-        "Patients éligibles (N = {n$eligible})
-        - Hommes et femmes >= 18 ans
-        - Opérés d'un cancer du pancréas
-        - Entre 01/2022 et 12/2025"
+        "Éligibilité (N = {n$eligible})
+        - Patients >= 18 ans
+        - Diagnostic d’adénocarcinome pancréatique
+        - Indication chirurgicale retenue en RCP
+        - Date opératoire entre 01/2022 et 12/2025"
       ),
       x = 0.4,
-      y = 0.9,
+      y = 0.88,
       just = "left",
       col = col_dark
     )
 
     exclus_box <- flow_box(
-      str_glue("Exclus (n = {n$exclus})\n{label_exclus}"),
-      x = 0.75,
-      y = 0.76,
+      str_glue("Exclusion (n = {n$exclus})\n{label_exclus}"),
+      x = 0.77,
+      y = 0.74,
       just = "left",
       col = col_grey,
       fill = col_grey,
@@ -116,7 +117,7 @@ fig_flowchart <- with_fig_device(
     )
 
     inclus_box <- flow_box(
-      str_glue("Inclus (n = {n$inclus})\n{label_centre}"),
+      str_glue("Inclusion (n = {n$inclus})\n{label_centre}"),
       x = 0.4,
       y = 0.6,
       just = "left"

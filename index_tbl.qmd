@@ -128,7 +128,19 @@ tbl_event
 #| tbl-cap: !expr title_suffix("Estimations Kaplan-Meier de la survie globale")$overall
 #| echo: false
 
-tbl_surv
+tbl_surv$os
+```
+
+{{< pagebreak >}}
+
+## Survie sans récidive
+
+```{r}
+#| label: tbl-surv-pfs
+#| tbl-cap: !expr title_suffix("Estimations Kaplan-Meier de la survie sans récidive")$overall
+#| echo: false
+
+tbl_surv$pfs
 ```
 
 {{< pagebreak >}}
@@ -154,5 +166,17 @@ tbl_model_glm_pois
 #| tbl-cap: !expr title_suffix("Estimation de la survie globale")$strata
 #| echo: false
 
-tbl_coxph
+tbl_coxph$os
+```
+
+{{< pagebreak >}}
+
+## Estimation de la survie sans récidive
+
+```{r}
+#| label: tbl-coxph-pfs
+#| tbl-cap: !expr title_suffix("Estimation de la survie sans récidive")$strata
+#| echo: false
+
+tbl_coxph$pfs
 ```

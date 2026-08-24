@@ -161,20 +161,37 @@ get_surv_model <- \(
   )
 }
 
-get_tbl <- \(x, fun = c("tbl_survfit", "tbl_cuminc"), tbl_label) {
+surv_times <- c(12, 24, 36, 48)
+
+get_tbl <- \(
+  x,
+  fun = c("tbl_survfit", "tbl_cuminc"),
+  tbl_label,
+  at_risk = fun == "tbl_survfit"
+) {
   fun <- arg_match(fun)
+
+  at_risk <- at_risk && fun == "tbl_survfit"
+  label_risk <- if (at_risk) " (n à risque)" else ""
 
   args <- list(
     x = x,
-    times = c(12, 24, 36, 48),
-    statistic = "{estimate} {str_glue(opts$ci$data)}",
+    times = surv_times,
+    statistic = paste0(
+      "{estimate} {str_glue(opts$ci$data)}",
+      if (at_risk) " ({n.risk})"
+    ),
     estimate_fun = label_style_percent(digits = 1),
-    label_header = "**{time} months**"
+    label_header = "**{time} mois**"
   )
 
   do.call(fun, args) |>
+    modify_table_body(
+      ~ .x |>
+        mutate(across(starts_with("stat_"), \(v) str_replace(v, ",0\\)$", ")")))
+    ) |>
     modify_spanning_header(
-      all_stat_cols() ~ str_glue("**{tbl_label}, % {opts$ci$label}**")
+      all_stat_cols() ~ str_glue("**{tbl_label}, % {opts$ci$label}{label_risk}**")
     )
 }
 
@@ -210,6 +227,6 @@ build_model <- \(data, tte, event, strata, estimate_label, tbl_label, type) {
 
   map(
     list(total = total_model, strata = strata_model),
-    ~ lst(data = .x, tbl = make_tbl(.x, tbl_label = tbl_label))
+    ~ lst(data = .x, tbl_label = tbl_label, tbl = make_tbl(.x, tbl_label = tbl_label))
   )
 }

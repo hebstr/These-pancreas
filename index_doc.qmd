@@ -1,6 +1,9 @@
 ---
-title: "these nesrine"
-subtitle: ""
+title: "Thèse Nesrine"
+subtitle: "Rapport d'analyses statistiques"
+author:
+  name: "Julien ELICES-DIEZ"
+  email: "ju.diez@protonmail.com"
 format:
   hebstr-doc-html:
     code-tools:
@@ -22,18 +25,9 @@ crossref:
 #| include: false
 
 options(easy_out.quiet = TRUE)
-
 source("setup.R")
 auto_exec()
 ```
-
-::: callout-warning
-# Rapport statistique en cours de rédaction
-:::
-
-<!-- # Structure du projet
-
-{{< filetree >}} -->
 
 # Matériel et méthodes
 
@@ -57,7 +51,11 @@ Les objectifs secondaires étaient de décrire les caractéristiques des patient
 ### Critère de jugement principal
 
 Le critère de jugement principal était le nombre total de cures de chimiothérapie reçues, toutes phases confondues (phase d'induction et phase adjuvante).
+Il s'agit d'un décompte de cures effectivement administrées, et non du nombre de cures planifié, qui n'a pas été recueilli.
 Un patient n'ayant reçu aucune cure d'une phase a été compté à zéro pour cette phase, et non en donnée manquante.
+
+Le protocole de chimiothérapie désigne la stratégie décidée pour le patient, et non le traitement effectivement reçu.
+Un patient orienté vers une chimiothérapie adjuvante seule qui n'a finalement reçu aucune cure reste donc analysé dans ce bras, ce qui correspond à une analyse en intention de traiter.
 
 Ce critère a été analysé sous forme de comptage brut.
 Le comptage du nombre de cures de chimiothérapie reçues par phase a été décrit.
@@ -65,18 +63,8 @@ La proportion de patients ayant reçu moins de 12 cures ou une dose relative moy
 
 ### Critères de jugement secondaires
 
-Les critères de jugement secondaires étaient la survie globale, la survie sans récidive, les doses reçues avec leurs adaptations ainsi que la toxicité chimio-induite de grade III-IV.
-
-Les patients vivants ont été censurés à la date du recueil dans leur centre (date de point), la date de dernières nouvelles individuelle n'ayant pas été recueillie.
-La censure était donc exclusivement administrative.
-
-La survie globale était définie comme le délai entre la date de diagnostic et le décès toutes causes.
-La survie sans récidive était définie comme le délai entre la date de la chirurgie et le premier évènement survenu parmi la récidive ou le décès toutes causes.
-Le premier évènement observé pour chaque patient a été classé en récidive, décès sans récidive, ou censure.
-Cette distribution des évènements a été décrite.
-
+Les critères de jugement secondaires étaient la survie globale et sans récidive, les doses reçues avec leurs adaptations ainsi que la toxicité chimio-induite de grade III-IV.
 Les doses reçues et adaptations de doses ont été décrites séparément selon la phase de chimiothérapie.
-
 La toxicité chimio-induite étudiée était la toxicité de grade III-IV cotée selon la classification Common Terminology Criteria for Adverse Events (CTCAE) v5.0, et décrite séparément selon la phase de chimiothérapie.
 
 ## Population d'étude
@@ -99,21 +87,16 @@ Les variables catégorielles ont été présentées sous forme d'effectif et de 
 Les variables continues ont été présentées sous forme de médiane avec leur intervalle interquartile.
 Le nombre de données manquantes a été précisé pour chaque variable concernée et pour chaque sous-groupe.
 
-Les caractéristiques ont été décrites globalement et selon le protocole de chimiothérapie reçu.
-Les groupes ont été comparés à l'aide des tests adaptés : test du Chi2 ou test exact de Fisher pour les variables qualitatives selon les conditions d'application, test de Wilcoxon-Mann-Whitney pour les variables quantitatives.
-Ces comparaisons étaient descriptives.
-Elles n'ont servi à sélectionner aucune variable des modèles multivariables.
-Les variables ont été incluses a priori sur des considérations cliniques.
-
+Les caractéristiques ont été décrites globalement et selon le protocole de chimiothérapie reçu, sans test de comparaison entre les groupes.
 Les tests statistiques étaient bilatéraux.
 Le degré de significativité statistique était défini par une p-valeur inférieure ou égale au seuil de 5%.
 
 ### Analyse du critère de jugement principal
 
-Le nombre total de cures reçues a été analysé sous sa forme de comptage, sans dichotomisation.
+Le nombre total de cures reçues a été analysé sous sa forme brute de comptage, sans dichotomisation.
 Le nombre total de cures a d'abord été modélisé par une régression de Poisson.
 L'hypothèse d'équidispersion que cette loi suppose a été vérifiée sur ce modèle par un test de dispersion de Pearson.
-Une surdispersion ayant été mise en évidence, la famille quasi-Poisson a été retenue pour l'ensemble des estimations rapportées.
+Le facteur de dispersion estimé étant supérieur à 1 sans que le test atteigne le seuil de 5%, la famille quasi-Poisson a été retenue par prudence pour l'ensemble des estimations rapportées.
 Ce choix a été fait au vu des données et non a priori.
 Il laisse les estimations ponctuelles inchangées et n'agit que sur leur précision, corrigée du facteur de dispersion.
 
@@ -126,28 +109,45 @@ La présence d'observations influentes a été vérifiée par la détection des 
 
 ### Analyses de survie
 
-Le suivi médian a été estimé par la méthode de Kaplan-Meier inversée (méthode de Schemper), l'évènement étant la fin du suivi et la censure étant le décès.
-La courbe de suivi a été représenté graphiquement depuis la date de diagnostic, selon le protocole de chimiothérapie.
+La survie globale et la survie sans récidive ont fait l'objet du même plan d'analyse.
+La survie globale était définie comme le délai entre la date de diagnostic et le décès toutes causes.
+La survie sans récidive était définie comme le délai entre la date de la chirurgie et le premier évènement survenu parmi la récidive ou le décès toutes causes.
 
-Les courbes de survie globale et de survie sans récidive ont été estimées par la méthode de Kaplan-Meier, d'abord dans la population totale puis selon le protocole de chimiothérapie.
+Le premier évènement observé pour chaque patient a été classé en récidive, décès sans récidive, ou censure.
+Les patients sans évènement ont été censurés à la date du recueil dans leur centre (date de point), la date de dernières nouvelles individuelle n'ayant pas été recueillie.
+La censure était donc exclusivement administrative.
+
+#### Suivi des patients
+
+Le suivi médian a été estimé par la méthode de Kaplan-Meier inversée (méthode de Schemper), l'évènement étant la fin du suivi et la censure étant le décès.
+La courbe de suivi a été représentée graphiquement depuis la date de diagnostic, selon le protocole de chimiothérapie.
+Le recul des patients vivants à la date de point a été décrit, ainsi que les dates de point propres à chaque centre.
+
+#### Évènements
+
+La distribution du premier évènement observé, classé en récidive, décès sans récidive ou censure, a été décrite globalement et selon le protocole de chimiothérapie.
+
+#### Courbes de survie
+
+Les courbes de survie ont été estimées par la méthode de Kaplan-Meier, d'abord dans la population totale puis selon le protocole de chimiothérapie.
 Les probabilités de survie ont été rapportées à plusieurs intervalles de temps, avec leur intervalle de confiance à 95 %.
 Les médianes de survie ont été rapportées avec leur intervalle de confiance à 95 %, ou déclarées non atteintes le cas échéant.
 Les effectifs à risque ont été rapportés sous chaque courbe, ainsi que les évènements et les censures rapportés en effectifs cumulés au cours du temps.
+Les distributions de survie ont été comparées par le test du log-rank, non ajusté.
 
-Les courbes ont été comparées par le test du log-rank.
-L'effet du protocole de chimiothérapie a été estimé par un modèle de Cox univariable.
+#### Analyse multivariable
 
-### Analyse multivariable de la survie globale
+L'effet du protocole de chimiothérapie sur la survie globale et sans récidive a été estimé par un modèle de Cox univariable, rapporté sous la table d'estimation correspondante.
 
-L'effet de chaque facteur pronostique sur le risque de décès a été estimé par des modèles de Cox univariables.
-Les facteurs étudiés étaient le protocole de chimiothérapie, le centre, l'âge au diagnostic et le Performance Status au diagnostic.
-Les hazard ratios et leurs intervalles de confiance à 95 % représentent, pour chacun de ces facteurs, le sur-risque ou le sous-risque de décès par rapport à la modalité de référence.
-
-Les variables incluses dans le modèle multivariable ont été définies a priori sur des considérations cliniques.
+L'effet de chaque facteur associé a été estimé par des modèles de Cox univariables, puis par un modèle multivariable.
+Les variables incluses dans l'analyse multivariable ont été définies a priori sur des considérations cliniques, puis cette liste a été révisée à la lecture des effectifs réellement observés.
+La même spécification a été retenue pour l'estimation de la survie globale et de la survie sans récidive.
 Aucune sélection de variables fondée sur la significativité statistique en analyse univariable n'a été réalisée.
-Le nombre d'évènements et le nombre d'observations complètes du modèle multivariable ont été rapportés, ainsi que le nombre d'observations écartées pour données manquantes.
+Le centre a été traité comme variable de stratification et non comme covariable : le modèle admet un risque de base propre à chaque centre sans en estimer le coefficient.
 
-L'hypothèse de proportionnalité des risques a été vérifiée pour chaque variable et ainsi que globalement par le test basé sur les résidus de Schoenfeld.
+Les hazard ratios et leurs intervalles de confiance à 95 % représentent, pour chacune des variables, le sur-risque ou le sous-risque d'évènement par rapport à la modalité de référence.
+Le nombre d'évènements et le nombre d'observations complètes de chaque modèle multivariable ont été rapportés, ainsi que le nombre d'observations écartées pour données manquantes.
+L'hypothèse de proportionnalité des risques a été vérifiée pour chaque variable ainsi que globalement, par le test basé sur les résidus de Schoenfeld.
 
 ### Données manquantes
 
@@ -168,16 +168,12 @@ Les analyses ont été réalisées avec `r R.version.string`.
 
 # Résultats
 
-{{< script .Rprofile >}}
-
-{{< script setup.R >}}
-
 ## Variables
 
 ::: panel-tabset
-# Variables
+# Dictionnaire
 
-Vue d'ensemble des variables utilisées
+Vue d'ensemble des variables utilisées (initiales + de novo)
 
 ```{r}
 #| label: df-vars
@@ -185,9 +181,7 @@ Vue d'ensemble des variables utilisées
 .check_df$vars
 ```
 
-# Effectifs (init)
-
-Effectifs bruts avant recodage
+# Effectifs (avant recodage)
 
 ```{r}
 #| label: df-distrib-init
@@ -195,9 +189,7 @@ Effectifs bruts avant recodage
 .check_df$distrib_init
 ```
 
-# Effectifs (recode)
-
-Effectifs après éventuel recodage
+# Effectifs (après recodage)
 
 ```{r}
 #| label: df-distrib-recode
@@ -223,7 +215,7 @@ Au total, ont été inclus `r n$inclus` patients adultes atteints d'un cancer du
 knitr::include_graphics("output/fig_flowchart.svg")
 ```
 
-## Analyse descriptive
+## Analyses descriptives
 
 ### Caractéristiques des patients at baseline
 
@@ -331,7 +323,7 @@ tbl_tox_adj
 {{< script scripts/tbl_model_glm_pois.R >}}
 
 Le facteur de dispersion estimé était de `r round(.model$glm$pois$check$overdispersion$dispersion_ratio, 2)` (test de dispersion de Pearson : `r style_pvalue(.model$glm$pois$check$overdispersion$p_value, digits = 2, prepend_p = TRUE)`).
-La dispersion observée justifiait le recours à la famille quasi-Poisson.
+Le test ne concluait donc pas à une surdispersion au seuil de 5%, mais le facteur de dispersion restant supérieur à 1, la famille quasi-Poisson a été conservée.
 
 ```{r}
 #| label: tbl-pois-model
@@ -343,7 +335,7 @@ tbl_model_glm_pois
 Nombre total de cures en moyenne 20% plus élevé dans le groupe péri-opératoire en comparaison au groupe adjuvant seul.
 Persiste après ajustement dans l'analyse multivariée.
 
-## Analyse de survie
+## Analyses de survie
 
 Analyse comparative de la survie globale (OS) et de la survie sans récidive (PFS) selon le protocole de chimiothérapie.
 
@@ -425,8 +417,10 @@ tbl_event
 #| label: tbl-surv
 #| tbl-cap: !expr title_suffix("Estimations Kaplan-Meier de la survie globale")$overall
 
-tbl_surv
+tbl_surv$os
 ```
+
+Estimé par un modèle de Cox univariable, le hazard ratio de décès toutes causes associé à la chimiothérapie péri-opératoire, par rapport à la chimiothérapie adjuvante seule, était de `r .surv_cox$os$estimate_ci` (`r .surv_cox$os$p.value`).
 
 #### Population totale
 
@@ -460,7 +454,29 @@ fig_surv_total$os
 fig_surv_strata$os
 ```
 
+#### Analyse multivariable
+
+{{< script scripts/tbl_model_coxph.R >}}
+
+```{r}
+#| label: tbl-coxph-model
+#| tbl-cap: "Facteurs associés à la survie globale."
+
+tbl_coxph$os
+```
+
+L'hypothèse des risques proportionnels n'était mise en défaut ni pour l'ensemble du modèle (`r style_pvalue(.model$coxph$os$check$table["GLOBAL", "p"], digits = 2, prepend_p = TRUE)`), ni pour aucune des variables prises séparément (@anx-coxzph-os).
+
 ### Survie sans récidive
+
+```{r}
+#| label: tbl-surv-pfs
+#| tbl-cap: !expr title_suffix("Estimations Kaplan-Meier de la survie sans récidive")$overall
+
+tbl_surv$pfs
+```
+
+Estimé par un modèle de Cox univariable, le hazard ratio de récidive ou de décès toutes causes associé à la chimiothérapie péri-opératoire, par rapport à la chimiothérapie adjuvante seule, était de `r .surv_cox$pfs$estimate_ci` (`r .surv_cox$pfs$p.value`).
 
 #### Population totale
 
@@ -478,7 +494,7 @@ fig_surv_strata$os
 fig_surv_total$pfs
 ```
 
-#### Par sous-groupes
+#### Selon le protocole de chimiothérapie
 
 ```{r}
 #| label: fig-surv-strata-pfs
@@ -494,18 +510,64 @@ fig_surv_total$pfs
 fig_surv_strata$pfs
 ```
 
-### Analyse multivariable de la survie globale
+Les deux hazard ratios univariables du protocole, rapportés sous chacune des deux tables d'estimation, vont en sens contraire, sans qu'aucun n'atteigne le seuil de significativité.
+Cette divergence tient d'abord aux deux origines de temps : la survie globale est comptée depuis le diagnostic, la survie sans récidive depuis la chirurgie.
+Le délai médian séparant ces deux dates vaut 5,2 mois dans le bras péri-opératoire contre 1,5 mois dans le bras adjuvant seul (@tbl-tumor), si bien que la phase d'induction entre dans la fenêtre d'observation de la survie globale et sort de celle de la survie sans récidive.
+S'y ajoute la composition des deux bras : le bras péri-opératoire réunit l'ensemble des tumeurs borderline et localement avancées, quand le bras adjuvant seul ne comporte que des tumeurs résécables d'emblée (@tbl-tumor).
+Les deux résultats portent donc sur des horloges et sur des populations tumorales différentes, et aucun des deux n'établit de différence entre les protocoles.
 
-{{< script scripts/tbl_model_coxph.R >}}
+#### Analyse multivariable
 
 ```{r}
-#| label: tbl-coxph-model
-#| tbl-cap: !expr title_suffix("Estimation de la survie globale")$strata
+#| label: tbl-coxph-model-pfs
+#| tbl-cap: "Facteurs associés à la survie sans récidive."
 
-tbl_coxph
+tbl_coxph$pfs
 ```
 
-L'hypothèse des risques proportionnels n'était mise en défaut ni pour l'ensemble du modèle (`r style_pvalue(.model$coxph$check$table["GLOBAL", "p"], digits = 2, prepend_p = TRUE)`), ni pour aucune des variables prises séparément (@anx-coxzph).
+L'hypothèse des risques proportionnels n'était mise en défaut ni pour l'ensemble du modèle (`r style_pvalue(.model$coxph$pfs$check$table["GLOBAL", "p"], digits = 2, prepend_p = TRUE)`), ni pour aucune des variables prises séparément (@anx-coxzph-pfs).
+
+# Discussion
+
+## Principaux résultats
+
+## Limites
+
+L'étude est rétrospective et observationnelle, et les données proviennent du dossier patient informatisé.
+La stratégie de chimiothérapie n'a pas été attribuée par tirage au sort, si bien que les différences observées entre les deux bras ne peuvent pas être interprétées comme l'effet propre du protocole.
+
+La population analysée est restreinte aux patients effectivement opérés, soit `r n$inclus` patients sur les `r n$eligible` dossiers éligibles.
+Un patient orienté vers une chimiothérapie péri-opératoire dont la maladie a progressé pendant l'induction, et qui n'a pas été opéré, ne figure donc pas dans l'analyse.
+Le bras péri-opératoire est à ce titre une sélection de patients ayant toléré l'induction sans progresser, ce qui joue en sa faveur sur l'ensemble des critères.
+L'exclusion des décès précoces post-diagnostic ou post-opératoire retire par ailleurs de l'analyse la mortalité la plus directement imputable à la chirurgie, et allonge d'autant les estimations de survie rapportées.
+
+Les deux protocoles ne s'adressent pas aux mêmes tumeurs.
+Tous les patients du bras adjuvant seul dont la résécabilité est renseignée sont résécables d'emblée, quand le bras péri-opératoire compte 12 patients résécables d'emblée, 19 borderline et 17 localement avancés (@tbl-tumor).
+La séparation entre les deux bras étant complète sur deux des trois modalités, aucun terme de résécabilité n'est estimable en présence du protocole dans un modèle ajusté.
+La comparaison entre protocoles reste donc confondue par la résécabilité, dans un sens défavorable au bras péri-opératoire, et cette confusion n'est corrigeable par aucun ajustement.
+
+Le nombre total de cures n'est pas borné de la même façon dans les deux bras.
+Il plafonne à `r .limits$cures$adj$max` dans le bras adjuvant seul, quand `r .limits$cures$periop$over` patients du bras péri-opératoire dépassent ce total, jusqu'à `r .limits$cures$periop$max` cures.
+Le délai médian entre le diagnostic et la chirurgie vaut par ailleurs 5,2 mois dans le bras péri-opératoire contre 1,5 mois dans le bras adjuvant seul (@tbl-tumor).
+Le bras péri-opératoire accumule donc des cures pendant une période où le bras adjuvant seul n'en reçoit pas encore, et une part de l'écart observé sur le critère principal tient à cette asymétrie de construction plutôt qu'à une différence d'observance ou de tolérance.
+
+Le recul de suivi est comparable entre les deux protocoles, mais inégal entre les centres.
+Les dates de point diffèrent d'un centre à l'autre, et le suivi médian estimé par la méthode de Kaplan-Meier inversée va de `r .limits$followup$med[1]` mois au `r .limits$followup$centre[1]` à `r last(.limits$followup$med)` mois au `r last(.limits$followup$centre)`.
+Les estimations de survie aux horizons les plus éloignés reposent en conséquence sur un nombre restreint de patients et sur une contribution inégale des centres.
+La date de dernières nouvelles individuelle n'ayant pas été recueillie, la censure est exclusivement administrative : un patient perdu de vue avant la date de point de son centre est traité comme suivi jusqu'à cette date, ce qui surestime le suivi réel et sous-estime le nombre d'évènements.
+
+Le nombre d'évènements limite ce que le modèle multivariable de survie peut estimer.
+Ce modèle porte `r .model$coxph$os$fit$nevent` décès pour trois termes ajustés, le centre étant traité en strate.
+Sa spécification a été révisée au vu des effectifs observés et de la temporalité de mesure des variables, ce qui en fait une analyse exploratoire et non une analyse confirmatoire pré-spécifiée.
+La qualité de la résection, retenue comme covariable, est mesurée à la chirurgie, donc après l'induction dans le seul bras péri-opératoire : pour la comparaison entre protocoles, elle constitue un médiateur potentiel plutôt qu'un facteur de confusion.
+L'écart entre les deux bras sur ce point est faible et l'estimation du protocole ne varie pas selon le jeu de covariables retenu, si bien que le biais introduit reste limité.
+
+Aucun calcul du nombre de sujets nécessaires n'a été réalisé, l'effectif étant fixé par la disponibilité des dossiers.
+Avec `r n$inclus` patients et `r sum(df$os_event)` décès, l'étude n'a pas la puissance de détecter une différence de survie de taille modérée entre les deux protocoles, et l'absence de significativité statistique ne peut pas être lue comme une absence d'effet.
+Aucun ajustement pour la multiplicité des comparaisons n'a été appliqué : les analyses secondaires sont exploratoires et destinées à générer des hypothèses.
+
+Les analyses ajustées ont été conduites sur les observations complètes, sans imputation.
+Le recueil étant rétrospectif et fondé sur le dossier, les toxicités et les complications post-opératoires ne sont documentées que lorsqu'elles ont été consignées, et leur fréquence est vraisemblablement sous-estimée.
 
 # Annexes
 
@@ -535,24 +597,38 @@ La valeur maximale observée était de `r .pois_check_cook$max` pour un seuil de
 
 ### Modèle de Cox
 
-La @anx-coxzph rapporte, pour chaque variable du modèle multivariable et pour l'ensemble du modèle, le test de proportionnalité des risques basé sur les résidus de Schoenfeld.
+La @anx-coxzph-os et la @anx-coxzph-pfs rapportent, pour chaque variable du modèle multivariable et pour l'ensemble du modèle, le test de proportionnalité des risques basé sur les résidus de Schoenfeld.
 
-::: {#anx-coxzph}
+::: {#anx-coxzph-os}
 ```{r}
-gt_qmd(.coxph_check_tbl)
+gt_qmd(.coxph_check_tbl$os)
 ```
 
-Test des risques proportionnels (résidus de Schoenfeld)
+Test des risques proportionnels de la survie globale (résidus de Schoenfeld)
+:::
+
+::: {#anx-coxzph-pfs}
+```{r}
+gt_qmd(.coxph_check_tbl$pfs)
+```
+
+Test des risques proportionnels de la survie sans récidive (résidus de Schoenfeld)
 :::
 
 Un degré de significativité faible < 0,05 signalerait un effet variable au cours du temps (risque non-proportionnel).
 Hypothèse de proportionnalité valide ici.
 
-<!-- # Session {.unnumbered}
+# Session {.unnumbered}
+
+{{< script .Rprofile >}}
+
+{{< script setup.R >}}
+
+{{< script index_doc.qmd >}}
 
 ```{r}
 #| label: session
 #| echo: true
 
 sessioninfo::session_info(pkgs = "attached")
-``` -->
+```

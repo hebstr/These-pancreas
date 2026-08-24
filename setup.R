@@ -22,7 +22,7 @@ if (interactive()) {
   print(conflict_scout())
 }
 
-conflicts_prefer(dplyr::filter, Gmisc::coords, .quiet = TRUE)
+conflicts_prefer(dplyr::filter, .quiet = TRUE)
 
 auto_exec("lib", quiet = TRUE)
 
@@ -225,14 +225,15 @@ df <- df_label |>
 .model <- lst()
 
 .model$default <- lst(
-  data = df |> mutate(ps_diag = ps_diag |> fct_collapse("1-2" = c(1, 2))),
+  data = df |> modify_if(is.factor, fct_drop),
   vars = set_model_vars(
     y = "n_cures",
     x_uv = c(
       "groupe",
       "centre",
       "age_incr",
-      "ps_diag"
+      "chir_marges",
+      "chir_complic_class_maj"
     ),
     x_mv_exclude = NULL
   ),
@@ -261,6 +262,27 @@ df <- df_label |>
     imap_dbl(~ sum(as.numeric(df[[.]]), na.rm = TRUE)) |>
     sort(decreasing = TRUE) |>
     names()
+)
+
+.limits <- lst(
+  cures = map(
+    set_names(levels(df$groupe), c("adj", "periop")),
+    ~ df |>
+      filter(groupe == .x) |>
+      summarise(
+        max = max(n_cures, na.rm = TRUE),
+        over = sum(n_cures > 12, na.rm = TRUE)
+      )
+  ),
+  followup = survfit(Surv(os_tte, 1 - os_event) ~ centre, data = df) |>
+    summary() |>
+    pluck("table") |>
+    as_tibble(rownames = "centre") |>
+    transmute(
+      centre = str_remove(centre, "^centre="),
+      med = round(median, 1)
+    ) |>
+    arrange(med)
 )
 
 .check_df <- lst(

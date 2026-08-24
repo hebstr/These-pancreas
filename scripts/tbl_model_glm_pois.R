@@ -62,10 +62,17 @@ tbl_model_glm_pois <- .model$glm$pois$tbls |>
     vars = "age_incr",
     note = "Incrémentation par tranches de 5 ans."
   ) |>
+  add_note(
+    vars = "chir_complic_class_maj",
+    note = c(
+      "Définie par un grade supérieur ou égal à III selon la classification
+      de Clavien-Dindo."
+    )
+  ) |>
   tbl_format(
     note_global = str_glue(
-      "Le critère de jugement est le nombre total de cures reçues,
-      modélisé en comptage."
+      "Le critère de jugement est le nombre total de cures de chimiothérapie
+      reçues, toutes phases confondues, modélisé en comptage."
     ),
     note_pvalue = str_glue(
       "Modèle de régression de quasi-Poisson multivariable
