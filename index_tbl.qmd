@@ -19,11 +19,11 @@ auto_exec()
 
 # Analyse descriptive
 
-## Caractéristiques des patients at baseline
+## Caractéristiques des patients à l'inclusion
 
 ```{r}
 #| label: tbl-baseline
-#| tbl-cap: !expr title_suffix("Caractéristiques des patients at baseline")$overall
+#| tbl-cap: !expr title_suffix("Caractéristiques des patients à l'inclusion")$overall
 #| echo: false
 
 tbl_baseline
@@ -124,7 +124,7 @@ tbl_event
 ## Survie globale
 
 ```{r}
-#| label: tbl-surv
+#| label: tbl-surv-os
 #| tbl-cap: !expr title_suffix("Estimations Kaplan-Meier de la survie globale")$overall
 #| echo: false
 
@@ -145,13 +145,13 @@ tbl_surv$pfs
 
 {{< pagebreak >}}
 
-# Analyse multivariable
+# Modèles
 
 ## Régression de quasi-Poisson
 
 ```{r}
-#| label: tbl-pois
-#| tbl-cap: Facteurs associés à une augmentation du nombre total de cures reçues.
+#| label: tbl-model-pois
+#| tbl-cap: Facteurs associés au nombre total de cures reçues.
 #| echo: false
 
 tbl_model_glm_pois
@@ -162,7 +162,7 @@ tbl_model_glm_pois
 ## Estimation de la survie globale
 
 ```{r}
-#| label: tbl-coxph
+#| label: tbl-model-coxph-os
 #| tbl-cap: !expr title_suffix("Estimation de la survie globale")$strata
 #| echo: false
 
@@ -174,7 +174,7 @@ tbl_coxph$os
 ## Estimation de la survie sans récidive
 
 ```{r}
-#| label: tbl-coxph-pfs
+#| label: tbl-model-coxph-pfs
 #| tbl-cap: !expr title_suffix("Estimation de la survie sans récidive")$strata
 #| echo: false
 

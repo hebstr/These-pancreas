@@ -64,9 +64,9 @@ tbl_model_glm_pois <- .model$glm$pois$tbls |>
   ) |>
   add_note(
     vars = "chir_complic_class_maj",
-    note = c(
-      "Définie par un grade supérieur ou égal à III selon la classification
-      de Clavien-Dindo."
+    note = paste(
+      "Définie par un grade supérieur ou égal à III",
+      "selon la classification de Clavien-Dindo."
     )
   ) |>
   tbl_format(

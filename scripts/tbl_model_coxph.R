@@ -62,8 +62,10 @@ get_tbl_coxph <- \(outcome) {
     ) |>
     add_note(
       vars = "chir_complic_class_maj",
-      note = "Définie par un grade supérieur ou égal à III selon la classification
-      de Clavien-Dindo."
+      note = paste(
+        "Définie par un grade supérieur ou égal à III",
+        "selon la classification de Clavien-Dindo."
+      )
     ) |>
     tbl_format(
       note_global = paste(

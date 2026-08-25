@@ -58,6 +58,8 @@ dict <- extract_from_dict(
   level = level
 )
 
+### DF -------------------------------------------------------------------------
+
 df_init <- sheets$inclusions |>
   rownames_to_column() |>
   mutate(
@@ -65,8 +67,6 @@ df_init <- sheets$inclusions |>
     across(any_of(c(dict$type$dbl, dict$type$int)), as.numeric),
     across(all_of(dict$type$date), dmy)
   )
-
-### DF -------------------------------------------------------------------------
 
 df_recode <- df_init |>
   mutate(
@@ -82,10 +82,10 @@ df_recode <- df_init |>
     induc_nb = coalesce(induc_nb, 0),
     adj_nb = coalesce(adj_nb, 0),
     n_cures = induc_nb + adj_nb,
-    n_cures_outcome = n_cures < 12,
-    n_cures_outcome_sub = n_cures_outcome |
-      induc_adapt_pct %in% 2 |
-      adj_adapt_pct %in% 2,
+    n_cures_complete = n_cures >= 12,
+    n_cures_complete_sub = n_cures_complete &
+      !(induc_adapt_pct %in% 2) &
+      !(adj_adapt_pct %in% 2),
     total_ei = coalesce(induc_ei, adj_ei),
     n_recidive_site_meta = rowSums(across(starts_with("recidive_site_meta"))) |>
       na_if(0),
@@ -132,8 +132,8 @@ df_label <- df_recode |>
       chir_complic_class_maj = "Complication post-opératoire majeure",
       ca_diag_bin = "CA 19-9 au diagnostic >= 500 UI/L",
       n_cures = "Nombre total de cures",
-      n_cures_outcome = "Nombre total de cures < 12",
-      n_cures_outcome_sub = "Nombre total de cures < 12 : ou dose relative moyenne < 80%",
+      n_cures_complete = "Nombre total de cures >= 12",
+      n_cures_complete_sub = "Nombre total de cures >= 12 : avec dose relative moyenne >= 80%",
       total_ei = "Toxicité de grade III-IV",
       n_recidive_site_meta = "Nombre de sites métastatiques",
       os_event = "Décès toutes causes",
@@ -291,7 +291,7 @@ df <- df_label |>
   data_init = df_init |> select(any_of(names)) |> easy_label(),
   vars = easy_view(data_recode)$output,
   distrib_recode = check_distrib(data_recode),
-  distrib_init = check_distrib(data_init),
+  distrib_init = check_distrib(data_init)
 )
 
 ### AUTO EXEC ------------------------------------------------------------------

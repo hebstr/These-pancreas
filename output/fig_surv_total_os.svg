@@ -157,6 +157,10 @@
 <text x='445.25' y='167.57' text-anchor='middle' style='font-size: 9.48px; font-family: "Luciole";' textLength='2.77px' lengthAdjust='spacingAndGlyphs'>ı</text>
 <text x='472.98' y='167.57' text-anchor='middle' style='font-size: 9.48px; font-family: "Luciole";' textLength='2.77px' lengthAdjust='spacingAndGlyphs'>ı</text>
 <text x='477.60' y='167.57' text-anchor='middle' style='font-size: 9.48px; font-family: "Luciole";' textLength='2.77px' lengthAdjust='spacingAndGlyphs'>ı</text>
+<line x1='317.54' y1='111.81' x2='317.54' y2='213.08' style='stroke-width: 0.64; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
+<line x1='47.54' y1='111.81' x2='317.54' y2='111.81' style='stroke-width: 0.64; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
+<polygon points='48.82,207.00 257.86,207.00 257.81,207.00 258.02,206.99 258.22,206.95 258.41,206.88 258.59,206.78 258.75,206.64 258.89,206.49 259.00,206.32 259.08,206.13 259.13,205.93 259.14,205.72 259.14,205.72 259.14,199.48 259.14,199.48 259.13,199.28 259.08,199.08 259.00,198.89 258.89,198.71 258.75,198.56 258.59,198.43 258.41,198.33 258.22,198.25 258.02,198.21 257.86,198.20 48.82,198.20 48.97,198.21 48.76,198.20 48.56,198.23 48.36,198.29 48.18,198.37 48.01,198.49 47.86,198.63 47.73,198.80 47.64,198.98 47.57,199.18 47.54,199.38 47.54,199.48 47.54,205.72 47.54,205.62 47.54,205.82 47.57,206.03 47.64,206.22 47.73,206.41 47.86,206.57 48.01,206.71 48.18,206.83 48.36,206.92 48.56,206.98 48.76,207.00 ' style='stroke-width: 0.53; stroke: none; fill: #FFFFFF;' />
+<text x='48.82' y='205.32' style='font-size: 7.11px; font-family: "Luciole";' textLength='209.05px' lengthAdjust='spacingAndGlyphs'>Médiane de survie globale, mois [IC95%] : 37,0 [29,0 ; 52,4]</text>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwyNzAuMDA=)'>
 </g>

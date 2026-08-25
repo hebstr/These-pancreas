@@ -1,5 +1,3 @@
-### TBL FIT SURV ---------------------------------------------------------------
-
 get_tbl_surv <- \(outcome, at_risk = FALSE) {
   build <- \(part) {
     model <- .surv[[part]][[outcome]]
@@ -43,23 +41,29 @@ get_tbl_surv <- \(outcome, at_risk = FALSE) {
     )
 }
 
-tbl_surv <- map(set_names(names(.surv$total)), get_tbl_surv, at_risk = TRUE)
+tbl_surv <- map(set_names(names(.surv$total)), get_tbl_surv)
 
 .surv_cox <- map(.surv$strata, ~ .x$data$cox)
 
+.surv_logrank <- map(.surv$strata, ~ .x$data$logrank)
+
+.surv_median <- {
+  add_unit <- \(x) if_else(x == "non atteinte", x, paste(x, "mois"))
+
+  map(set_names(names(.surv$total)), \(outcome) {
+    strata <- .surv$strata[[outcome]]$data$tte$median
+
+    lst(
+      total = add_unit(.surv$total[[outcome]]$data$tte$median),
+      strata = str_flatten(
+        str_glue(
+          "{add_unit(strata)} dans le groupe {str_to_lower(names(strata))}"
+        ),
+        collapse = ", ",
+        last = " contre "
+      )
+    )
+  })
+}
+
 easy_out_map(tbl_surv)
-
-### TBL FIT CUMINC -------------------------------------------------------------
-
-# tbl_cuminc <- list(
-#   .cmp$total$tbl,
-#   .cmp$strata$tbl |> add_p()
-# ) |>
-#   tbl_stack() |>
-#   modify_indent(columns = label, rows = !row_type %in% 'label') |>
-#   tbl_format(row_strip = FALSE) |>
-#   style_strata(
-#     set_names(.fig_palette, levels(.surv$strata$os$data$tte$obs$strata))
-#   )
-
-# easy_out(tbl_cuminc, width = 750)

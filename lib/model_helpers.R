@@ -121,7 +121,7 @@ get_surv_model <- \(
       )
   }
 
-  get_tte_median <- \(model) {
+  get_tte_median <- \(model, median_na = "non atteinte") {
     tbl <- summary(model)$table
 
     tbl <- if (is.matrix(tbl)) {
@@ -133,7 +133,8 @@ get_surv_model <- \(
     tbl <- tbl |>
       rename_with(~"conf.low", ends_with("LCL")) |>
       rename_with(~"conf.high", ends_with("UCL")) |>
-      merge_estim_ci(estim_col = "median", digit = 1)
+      merge_estim_ci(estim_col = "median", digit = 1, keep = TRUE) |>
+      mutate(estimate_ci = if_else(is.na(median), median_na, estimate_ci))
 
     tbl <- if ("strata" %in% names(tbl)) {
       strata <- tbl |> pull("strata") |> str_remove("\\S+=")

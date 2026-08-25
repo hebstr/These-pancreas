@@ -5,12 +5,12 @@ tbl_outcome <- df |>
     induc_nb,
     adj_chimio,
     adj_nb,
-    n_cures_outcome,
-    n_cures_outcome_sub,
+    n_cures_complete,
+    n_cures_complete_sub
   ) |>
   strip_label(str_glue("^(Induction|Adjuvant)\\s*:\\s*")) |>
   strip_label(
-    str_glue("^{var_label(df$n_cures_outcome)}\\s*:\\s*"),
+    str_glue("^{var_label(df$n_cures_complete)}\\s*:\\s*"),
     to_upper = FALSE
   ) |>
   use_vars() |>
@@ -27,7 +27,7 @@ tbl_outcome <- df |>
   modify_indent(
     columns = label,
     rows = variable %in%
-      c("induc_nb", "adj_nb", "n_cures_outcome_sub") &
+      c("induc_nb", "adj_nb", "n_cures_complete_sub") &
       row_type %in% 'label'
   ) |>
   modify_table_body(
@@ -39,8 +39,15 @@ tbl_outcome <- df |>
   ) |>
   add_note(
     vars = c("induc_chimio", "adj_chimio"),
-    note = "Nombre de patients ayant reçu au moins une cure.",
+    note = "Nombre de patients ayant reçu au moins une cure."
   ) |>
-  tbl_format(width = 650)
+  add_note(
+    vars = "n_cures_complete_sub",
+    note = paste(
+      "Sans réduction de dose de plus de 20 % à la dernière cure de chaque phase,",
+      "sur aucune des trois molécules."
+    )
+  ) |>
+  tbl_format()
 
 easy_out(tbl_outcome)

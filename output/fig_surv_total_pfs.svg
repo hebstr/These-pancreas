@@ -139,6 +139,10 @@
 <text x='410.58' y='165.73' text-anchor='middle' style='font-size: 9.48px; font-family: "Luciole";' textLength='2.77px' lengthAdjust='spacingAndGlyphs'>ı</text>
 <text x='426.19' y='165.73' text-anchor='middle' style='font-size: 9.48px; font-family: "Luciole";' textLength='2.77px' lengthAdjust='spacingAndGlyphs'>ı</text>
 <text x='453.49' y='165.73' text-anchor='middle' style='font-size: 9.48px; font-family: "Luciole";' textLength='2.77px' lengthAdjust='spacingAndGlyphs'>ı</text>
+<line x1='172.56' y1='111.81' x2='172.56' y2='213.08' style='stroke-width: 0.64; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
+<line x1='47.54' y1='111.81' x2='172.56' y2='111.81' style='stroke-width: 0.64; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
+<polygon points='48.82,207.00 277.33,207.00 277.28,207.00 277.49,206.99 277.69,206.95 277.88,206.88 278.06,206.78 278.22,206.64 278.35,206.49 278.47,206.32 278.55,206.13 278.60,205.93 278.61,205.72 278.61,205.72 278.61,199.48 278.61,199.48 278.60,199.28 278.55,199.08 278.47,198.89 278.35,198.71 278.22,198.56 278.06,198.43 277.88,198.33 277.69,198.25 277.49,198.21 277.33,198.20 48.82,198.20 48.97,198.21 48.76,198.20 48.56,198.23 48.36,198.29 48.18,198.37 48.01,198.49 47.86,198.63 47.73,198.80 47.64,198.98 47.57,199.18 47.54,199.38 47.54,199.48 47.54,205.72 47.54,205.62 47.54,205.82 47.57,206.03 47.64,206.22 47.73,206.41 47.86,206.57 48.01,206.71 48.18,206.83 48.36,206.92 48.56,206.98 48.76,207.00 ' style='stroke-width: 0.53; stroke: none; fill: #FFFFFF;' />
+<text x='48.82' y='205.32' style='font-size: 7.11px; font-family: "Luciole";' textLength='228.52px' lengthAdjust='spacingAndGlyphs'>Médiane de survie sans récidive, mois [IC95%] : 15,4 [12,8 ; 24,0]</text>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwyNzAuMDA=)'>
 </g>
