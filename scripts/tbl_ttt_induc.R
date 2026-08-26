@@ -5,7 +5,7 @@ tbl_ttt_induc <- .induc$df |>
     matches("induc_dose"),
     induc_adapt,
     induc_adapt_pct,
-    starts_with("induc_adapt_c"),
+    starts_with("induc_adapt_c")
   ) |>
   strip_label("^(Induction|Adjuvant)\\s*: (dose)?\\s*") |>
   use_vars() |>
@@ -26,6 +26,10 @@ tbl_ttt_induc <- .induc$df |>
   ) |>
   modify_column_hide(columns = stat_0) |>
   modify_header(all_stat_cols(stat_0 = FALSE) ~ "**{level}<br>(n={n})**") |>
+  add_note(
+    vars = "induc_adapt_pct",
+    note = "Adaptation maximale parmi les trois molécules, à la dernière cure."
+  ) |>
   tbl_format(width = 500)
 
 easy_out(tbl_ttt_induc)

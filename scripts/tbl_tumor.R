@@ -26,7 +26,7 @@ tbl_tumor <- df |>
     statistic = opts$vars$stat,
     value = binary_value(df),
     digits = opts$digits,
-    missing = "ifany",
+    missing = "ifany"
   ) |>
   add_stat_label(label = opts$vars$label) |>
   gtsum_format() |>

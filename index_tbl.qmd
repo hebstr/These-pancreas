@@ -31,11 +31,11 @@ tbl_baseline
 
 {{< pagebreak >}}
 
-## Caractéristiques tumorales et prise en charge chirurgicale
+## Caractéristiques tumorales, prise en charge chirurgicale et récidive
 
 ```{r}
 #| label: tbl-tumor
-#| tbl-cap: !expr title_suffix("Caractéristiques tumorales et prise en charge chirurgicale")$overall
+#| tbl-cap: !expr title_suffix("Caractéristiques tumorales, prise en charge chirurgicale et récidive")$overall
 #| echo: false
 
 tbl_tumor

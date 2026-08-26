@@ -58,6 +58,8 @@ dict <- extract_from_dict(
   level = level
 )
 
+# source("backup.R")
+
 ### DF -------------------------------------------------------------------------
 
 df_init <- sheets$inclusions |>
@@ -143,7 +145,7 @@ df_label <- df_recode |>
       pfs_cause = "Premier évènement"
     ),
     value = list(
-      chir_complic_class = c("0" = 0, "I" = 1, "II" = 2, "III-IV-V" = 3),
+      chir_complic_class = c("Pas de complication" = 0, "I" = 1, "II" = 2, "III-IV-V" = 3),
       n_recidive_site_meta = c("1" = 1, ">=2" = 2),
       pfs_cause = c("Censure" = 0, "Récidive" = 1, "Décès sans récidive" = 2)
     ),

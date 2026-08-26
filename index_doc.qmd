@@ -76,7 +76,7 @@ La censure était donc exclusivement administrative.
 
 ## Population d'étude
 
-Étaient éligibles les patients (H/F) âgés de 18 ans ou plus porteurs d'un diagnostic d'adénocarcinome pancréatique, pour lesquels une indication chirurgicale avait été retenue en RCP et dont la date opératoire était comprise entre le 1er janvier 2022 et le 31 décembre 2025, dans l'un des quatre centres sus-cités.
+Étaient éligibles les patients (H/F) âgés de 18 ans ou plus porteurs d'un diagnostic d'adénocarcinome pancréatique, pour lesquels une indication chirurgicale avait été retenue en RCP, et dont la date opératoire était comprise entre le 1er janvier 2022 et le 31 décembre 2025, dans l'un des quatre centres sus-cités.
 
 Les critères d'exclusion étaient les suivants :
 
@@ -90,6 +90,7 @@ Les critères d'exclusion étaient les suivants :
 
 Les tests statistiques étaient bilatéraux.
 Le degré de significativité statistique était défini par une p-valeur strictement inférieure au seuil de 5 %.
+Les p-valeurs ont été rapportées à deux décimales, portées à trois pour les valeurs inférieures à 0,10 ; les valeurs inférieures à 0,001 ont été notées « <0,001 » et celles supérieures à 0,99 « >0,99 ».
 Pour chaque variable, le degré de significativité rapporté était global.
 Il a été obtenu par un test du rapport de vraisemblance pour les modèles de comptage et pour les modèles de Cox univariables, et par un test de Wald dans les modèles de Cox multivariables en cas de stratification.
 L'âge a été introduit dans les modèles après discrétisation en tranches de 5 ans : l'estimation rapportée correspondait à l'effet d'une tranche de 5 ans supplémentaire.
@@ -99,12 +100,14 @@ L'âge a été introduit dans les modèles après discrétisation en tranches de
 Les variables catégorielles ont été présentées sous forme d'effectif et de pourcentage.
 Les variables continues ont été présentées sous forme de médiane avec leur intervalle interquartile.
 
-Les caractéristiques décrites étaient celles des patients à l'inclusion, les caractéristiques tumorales et la prise en charge chirurgicale, les doses de chimiothérapie reçues avec leurs adaptations, ainsi que la toxicité chimio-induite de grade III-IV.
-Elles ont été décrites globalement et selon le protocole de chimiothérapie reçu, sans test de comparaison entre les groupes.
+Les caractéristiques décrites étaient celles des patients à l'inclusion, les caractéristiques tumorales et la prise en charge chirurgicale, le type et le siège de la récidive, les doses de chimiothérapie reçues avec leurs adaptations, ainsi que la toxicité chimio-induite de grade III-IV.
+Elles ont été décrites globalement et selon le protocole de chimiothérapie, sans test de comparaison entre les groupes.
 
+La résécabilité de la tumeur au diagnostic a été classée selon les critères du National Comprehensive Cancer Network (NCCN), en tumeur résécable d'emblée, borderline ou localement avancée.
 Les complications post-opératoires ont été cotées selon la classification de Clavien-Dindo, une complication majeure étant définie par un grade supérieur ou égal à III.
-Les doses reçues et leurs adaptations ont été décrites séparément selon la phase de chimiothérapie.
-La toxicité chimio-induite étudiée était la toxicité de grade III-IV cotée selon la classification Common Terminology Criteria for Adverse Events (CTCAE) v5.0, également décrite séparément selon la phase de chimiothérapie.
+Les doses reçues et leurs adaptations, ainsi que la toxicité chimio-induite, ont été décrites séparément selon la phase de chimiothérapie, chez les patients ayant reçu au moins une cure de la phase considérée.
+La phase d'induction ne concernait que le groupe péri-opératoire.
+La toxicité chimio-induite rapportée était la toxicité de grade III-IV cotée selon la classification Common Terminology Criteria for Adverse Events (CTCAE) v5.0.
 
 ### Analyse du critère de jugement principal
 
@@ -176,39 +179,10 @@ La puissance statistique n'a pas été planifiée.
 Les analyses ont été réalisées avec le langage `r R.version.string`.
 Les estimations de survie et les modèles de Cox ont été obtenus avec `survival` (version `r packageVersion("survival")`).
 Les modèles de comptage ont été obtenus avec `stats::glm` (familles Poisson et quasi-Poisson), et leurs diagnostics avec `performance` (version `r packageVersion("performance")`).
-L'inventaire complet de l'environnement et des packages utilisés est disponible en @sec-session.
+Les p-valeurs globales par variable ont été obtenues avec `car` (version `r packageVersion("car")`).
+L'inventaire détaillé de l'environnement et des packages utilisés est disponible en @sec-session.
 
 # Résultats
-
-## Variables
-
-::: panel-tabset
-# Dictionnaire
-
-Vue d'ensemble des variables utilisées (initiales + de novo)
-
-```{r}
-#| label: df-vars
-
-.check_df$vars
-```
-
-# Effectifs (avant recodage)
-
-```{r}
-#| label: df-distrib-init
-
-.check_df$distrib_init
-```
-
-# Effectifs (après recodage)
-
-```{r}
-#| label: df-distrib-recode
-
-.check_df$distrib_recode
-```
-:::
 
 ## Flowchart
 
@@ -240,20 +214,18 @@ knitr::include_graphics("output/fig_flowchart.svg")
 tbl_baseline
 ```
 
-### Caractéristiques tumorales et prise en charge chirurgicale
+### Caractéristiques tumorales, prise en charge chirurgicale et récidive
 
 {{< script scripts/tbl_tumor.R >}}
 
 ```{r}
 #| label: tbl-tumor
-#| tbl-cap: !expr title_suffix("Caractéristiques tumorales et prise en charge chirurgicale")$overall
+#| tbl-cap: !expr title_suffix("Caractéristiques tumorales, prise en charge chirurgicale et récidive")$overall
 
 tbl_tumor
 ```
 
 ### Critère de jugement principal
-
-Nombre de cures reçues, par phase de chimiothérapie et au total, globalement et selon le protocole de chimiothérapie.
 
 {{< script scripts/tbl_outcome.R >}}
 
@@ -278,8 +250,6 @@ fig_outcome
 
 ### Caractéristiques du traitement
 
-Doses reçues et adaptations de doses, par phase de chimiothérapie.
-
 #### Phase d'induction
 
 {{< script scripts/tbl_ttt_induc.R >}}
@@ -303,8 +273,6 @@ tbl_ttt_adj
 ```
 
 ### Toxicité chimio-induite
-
-Toxicité chimio-induite de grade III-IV, par phase de chimiothérapie.
 
 #### Phase d'induction
 
@@ -346,12 +314,37 @@ Le test ne concluait donc pas à une surdispersion au seuil de 5 %, mais le fact
 tbl_model_glm_pois
 ```
 
-Nombre total de cures en moyenne 20% plus élevé dans le groupe péri-opératoire en comparaison au groupe adjuvant seul.
-Persiste après ajustement dans l'analyse multivariée.
+```{r}
+#| label: pois-inline
+
+.pois_estim <- \(part, ...) {
+  inline_text(
+    .model$glm$pois$tbls[[part]],
+    ...,
+    pattern = paste0("{estimate} ", opts$ci$data)
+  )
+}
+
+.pois_p <- \(variable) {
+  car::Anova(.model_glm_pois_fit, type = "III") |>
+    tidy() |>
+    filter(term == variable) |>
+    pull(p.value) |>
+    style_pvalue(digits = 2, prepend_p = TRUE)
+}
+```
+
+Le nombre moyen de cures reçues était plus élevé dans le groupe péri-opératoire que dans le groupe adjuvant seul, en analyse univariable (IRR `r .pois_estim("uv", variable = "groupe", level = "Péri-opératoire")`) comme après ajustement sur le centre, l'âge, la qualité de la résection et la survenue d'une complication post-opératoire majeure (aIRR `r .pois_estim("mv", variable = "groupe", level = "Péri-opératoire")`, `r .pois_p("groupe")`).
+
+Deux autres facteurs étaient associés au nombre total de cures reçues.
+Chaque tranche de 5 ans d'âge supplémentaire s'accompagnait d'un nombre de cures plus faible (aIRR `r .pois_estim("mv", variable = "age_incr")`, `r .pois_p("age_incr")`), de même que la survenue d'une complication post-opératoire majeure (aIRR `r .pois_estim("mv", variable = "chir_complic_class_maj")`, `r .pois_p("chir_complic_class_maj")`).
+
+Aucune colinéarité n'était mise en évidence entre les variables du modèle ajusté (facteur d'inflation de la variance ne dépassant pas `r max(.pois_check_vif$vif)`, @anx-pois-vif).
+Aucune observation n'était influente au sens de la distance de Cook.
 
 ## Analyses de survie
 
-Analyse comparative de la survie globale (OS) et de la survie sans récidive (PFS) selon le protocole de chimiothérapie.
+Analyse comparative de la survie globale et de la survie sans récidive selon le protocole de chimiothérapie.
 
 ### Suivi des patients
 
@@ -405,6 +398,9 @@ Les durées de suivi étaient comparables entre les deux groupes.
 
 tbl_event
 ```
+
+Les analyses de survie globale portaient sur `r sum(df$os_event)` décès toutes causes.
+Les analyses de survie sans récidive portaient sur `r sum(df$pfs_event)` évènements, récidive ou décès toutes causes.
 
 ### Survie globale
 
@@ -559,6 +555,15 @@ L'hypothèse des risques proportionnels n'était invalidée ni pour l'ensemble d
 
 ## Principaux résultats
 
+Sur les `r n$inclus` patients inclus, `r n$chimio_adj` ont reçu une chimiothérapie adjuvante seule et `r n$chimio_periop` une chimiothérapie péri-opératoire.
+
+Le nombre total de cures reçues était plus élevé dans le bras péri-opératoire que dans le bras adjuvant seul, après ajustement sur le centre, l'âge, la qualité de la résection et la survenue d'une complication post-opératoire majeure (aIRR `r .pois_estim("mv", variable = "groupe", level = "Péri-opératoire")`, `r .pois_p("groupe")`).
+Deux autres facteurs y étaient associés, dans le sens d'un nombre de cures plus faible : l'âge (aIRR `r .pois_estim("mv", variable = "age_incr")`, `r .pois_p("age_incr")`) et la survenue d'une complication post-opératoire majeure (aIRR `r .pois_estim("mv", variable = "chir_complic_class_maj")`, `r .pois_p("chir_complic_class_maj")`).
+
+Sur un suivi médian de `r .followup_median` mois, `r sum(df$os_event)` décès et `r sum(df$pfs_event)` évènements de survie sans récidive ont été observés.
+La médiane de survie globale était de `r .surv_median$os$total`, celle de survie sans récidive de `r .surv_median$pfs$total`.
+Aucune différence n'était mise en évidence entre les deux protocoles, ni sur la survie globale (test du log-rank, `r .surv_logrank$os$p.value`) ni sur la survie sans récidive (test du log-rank, `r .surv_logrank$pfs$p.value`), les deux hazard ratios univariables allant en sens contraire (`r .surv_cox$os$estimate_ci` et `r .surv_cox$pfs$estimate_ci`).
+
 ## Limites
 
 L'étude est rétrospective et observationnelle, et les données proviennent du dossier patient informatisé.
@@ -575,7 +580,7 @@ La séparation entre les deux bras étant complète sur deux des trois modalité
 La comparaison entre protocoles reste donc confondue par la résécabilité, dans un sens défavorable au bras péri-opératoire, et cette confusion n'est corrigeable par aucun ajustement.
 
 Le nombre total de cures n'est pas borné de la même façon dans les deux bras.
-Il plafonne à `r .limits$cures$adj$max` dans le bras adjuvant seul, quand `r .limits$cures$periop$over` patients du bras péri-opératoire dépassent ce total, jusqu'à `r .limits$cures$periop$max` cures.
+Il plafonne à `r .limits$cures$adj$max` dans le bras adjuvant seul, quand `r .limits$cures$periop$over` patients du bras péri-opératoire dépassent ce total, jusqu'à `r .limits$cures$periop$max` cures (@fig-cjp).
 Le délai médian entre le diagnostic et la chirurgie vaut par ailleurs 5,2 mois dans le bras péri-opératoire contre 1,5 mois dans le bras adjuvant seul (@tbl-tumor).
 Le bras péri-opératoire accumule donc des cures pendant une période où le bras adjuvant seul n'en reçoit pas encore, et une part de l'écart observé sur le critère principal tient à cette asymétrie de construction plutôt qu'à une différence d'observance ou de tolérance.
 
@@ -599,11 +604,39 @@ Le recueil étant rétrospectif et fondé sur le dossier, les toxicités et les 
 
 # Annexes
 
+## Variables
+
+::: panel-tabset
+# Dictionnaire
+
+Vue d'ensemble des variables utilisées (initiales + de novo)
+
+```{r}
+#| label: df-vars
+
+.check_df$vars
+```
+
+# Effectifs (avant recodage)
+
+```{r}
+#| label: df-distrib-init
+
+.check_df$distrib_init
+```
+
+# Effectifs (après recodage)
+
+```{r}
+#| label: df-distrib-recode
+
+.check_df$distrib_recode
+```
+:::
+
 ## Vérification des hypothèses
 
 ### Modèle de comptage
-
-@tbl-model-pois
 
 VIF : mesure de combien la variance du coefficient est augmentée par la corrélation de la variable avec les autres variables du modèle.
 
@@ -612,7 +645,7 @@ VIF : mesure de combien la variance du coefficient est augmentée par la corrél
 gt_qmd(.pois_check_vif)
 ```
 
-Facteurs d'inflation de la variance
+Facteurs d'inflation de la variance (@tbl-model-pois)
 :::
 
 1 = absence de corrélation\
@@ -629,24 +662,20 @@ La valeur maximale observée était de `r .pois_check_cook$max` pour un seuil de
 
 Pour chaque variable du modèle multivariable et pour l'ensemble du modèle, test de proportionnalité des risques basé sur les résidus de Schoenfeld :
 
-@tbl-model-coxph-os
-
 ::: {#anx-coxzph-os}
 ```{r}
 gt_qmd(.coxph_check_tbl$os)
 ```
 
-Test des risques proportionnels de la survie globale (résidus de Schoenfeld)
+Test des risques proportionnels de la survie globale (@tbl-model-coxph-os)
 :::
-
-@tbl-model-coxph-pfs
 
 ::: {#anx-coxzph-pfs}
 ```{r}
 gt_qmd(.coxph_check_tbl$pfs)
 ```
 
-Test des risques proportionnels de la survie sans récidive (résidus de Schoenfeld)
+Test des risques proportionnels de la survie sans récidive (@tbl-model-coxph-pfs)
 :::
 
 Un degré de significativité faible < 0,05 signalerait un effet variable au cours du temps (risque non-proportionnel).
@@ -665,5 +694,5 @@ L'hypothèse de proportionnalité n'était pas invalidée ici.
 #| echo: true
 #| code-fold: false
 
-sessioninfo::session_info(pkgs = "attached")
+sessioninfo::session_info()
 ```

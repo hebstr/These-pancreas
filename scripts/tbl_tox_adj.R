@@ -34,8 +34,14 @@ tbl_tox_adj <- .tox_adj$data |>
   ) |>
   add_note(
     vars = "adj_ei",
-    note = "Selon la Common Terminology Criteria for Adverse Events (CTCAE) v5.0.",
+    note = "Selon la Common Terminology Criteria for Adverse Events (CTCAE) v5.0."
   ) |>
-  tbl_format(width = 600)
+  tbl_format(
+    note_global = paste(
+      "Patients ayant reçu au moins une cure de chimiothérapie adjuvante",
+      str_glue("({sum(df$adj_nb > 0)} sur {nrow(df)} patients inclus).")
+    ),
+    width = 600
+  )
 
 easy_out(tbl_tox_adj)

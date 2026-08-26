@@ -5,6 +5,7 @@ tbl_outcome <- df |>
     induc_nb,
     adj_chimio,
     adj_nb,
+    n_cures,
     n_cures_complete,
     n_cures_complete_sub
   ) |>

@@ -5,7 +5,7 @@ tbl_ttt_adj <- df |>
     matches("adj_dose"),
     adj_adapt,
     adj_adapt_pct,
-    starts_with("adj_adapt_c"),
+    starts_with("adj_adapt_c")
   ) |>
   strip_label("^(Induction|Adjuvant)\\s*: (dose)?\\s*") |>
   use_vars() |>
@@ -23,8 +23,15 @@ tbl_ttt_adj <- df |>
     name = "Dernière dose reçue",
     levels = c("adj_dose_5fu", "adj_dose_irino", "adj_dose_oxali")
   ) |>
-  tbl_format()
+  add_note(
+    vars = "adj_adapt_pct",
+    note = "Adaptation maximale parmi les trois molécules, à la dernière cure."
+  ) |>
+  tbl_format(
+    note_global = paste(
+      "Patients ayant reçu au moins une cure de chimiothérapie adjuvante",
+      str_glue("({sum(df$adj_nb > 0)} sur {nrow(df)} patients inclus).")
+    )
+  )
 
 easy_out(tbl_ttt_adj)
-
-# pct : adaptation max parmi les 3 mol (dernière cure)

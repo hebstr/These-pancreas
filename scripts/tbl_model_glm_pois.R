@@ -10,7 +10,7 @@
   args = .model$default$args,
   descr = \() {
     check_model_vars(
-      data = data[, c(vars$y, vars$x$uv)],
+      data = data[, c(vars$y, vars$x$uv)]
     )
   },
   fit_with = \(family) {
@@ -70,17 +70,17 @@ tbl_model_glm_pois <- .model$glm$pois$tbls |>
     )
   ) |>
   tbl_format(
-    note_global = str_glue(
-      "Le critère de jugement est le nombre total de cures de chimiothérapie
-      reçues, toutes phases confondues, modélisé en comptage."
+    note_global = paste(
+      "Le critère de jugement est le nombre total de cures de chimiothérapie",
+      "reçues, toutes phases confondues, modélisé en comptage."
     ),
-    note_pvalue = str_glue(
-      "Modèle de régression de quasi-Poisson multivariable
-      portant sur {nobs(.model_glm_pois_fit)} observations complètes
-      ({nrow(.model$glm$pois$data) - nobs(.model_glm_pois_fit)} observations
-      supprimées pour cause de données manquantes)."
+    note_pvalue = paste(
+      "Modèle de régression de quasi-Poisson multivariable portant sur",
+      str_glue("{nobs(.model_glm_pois_fit)} observations complètes"),
+      str_glue("({nrow(.model$glm$pois$data) - nobs(.model_glm_pois_fit)} observations"),
+      "supprimées pour cause de données manquantes)."
     ),
-    width = 680
+    width = 750
   )
 
 ### CHECK ----------------------------------------------------------------------
