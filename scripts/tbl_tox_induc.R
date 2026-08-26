@@ -3,11 +3,7 @@
   level = binary_value(data)$induc_ei,
   n = nrow(data),
   n_ei = sum(data$induc_ei == level, na.rm = TRUE),
-  pct = style_percent(
-    n_ei / sum(!is.na(data$induc_ei)),
-    symbol = TRUE,
-    digits = 1
-  )
+  pct = style_pct(n_ei / sum(!is.na(data$induc_ei)))
 )
 
 tbl_tox_induc <- .tox_induc$data |>
@@ -36,7 +32,7 @@ tbl_tox_induc <- .tox_induc$data |>
   modify_header(all_stat_cols(stat_0 = FALSE) ~ "**{level}<br>(n={n})**") |>
   add_note(
     vars = "induc_ei",
-    note = "Selon la Common Terminology Criteria for Adverse Events (CTCAE) v5.0.",
+    note = "Selon la Common Terminology Criteria for Adverse Events (CTCAE) v5.0."
   ) |>
   tbl_format(width = 450)
 

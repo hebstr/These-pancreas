@@ -5,7 +5,10 @@
   sort(decreasing = TRUE) |>
   names()
 
-.site_meta_note <- "Parmi les patients ayant récidivé au niveau métastatique ou local + métastatique."
+.site_meta_note <- paste(
+  "Parmi les patients ayant récidivé au niveau métastatique",
+  "ou à la fois au niveau local et métastatique."
+)
 
 tbl_tumor <- df |>
   select(

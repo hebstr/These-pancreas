@@ -95,6 +95,10 @@ df_recode <- df_init |>
     os_date = date_death,
     os_event = complete.cases(os_date),
     os_tte = time_length(
+      x = interval(date_chir, coalesce(os_date, date_lastnews)),
+      unit = "months"
+    ),
+    os_tte_diag = time_length(
       x = interval(date_diag, coalesce(os_date, date_lastnews)),
       unit = "months"
     ),
@@ -135,11 +139,12 @@ df_label <- df_recode |>
       ca_diag_bin = "CA 19-9 au diagnostic >= 500 UI/L",
       n_cures = "Nombre total de cures",
       n_cures_complete = "Nombre total de cures >= 12",
-      n_cures_complete_sub = "Nombre total de cures >= 12 : avec dose relative moyenne >= 80%",
+      n_cures_complete_sub = "Nombre total de cures >= 12 : avec dose relative moyenne >= 80 %",
       total_ei = "Toxicité de grade III-IV",
       n_recidive_site_meta = "Nombre de sites métastatiques",
       os_event = "Décès toutes causes",
-      os_tte = "Délai entre le diagnostic et le décès toutes causes, mois",
+      os_tte = "Délai entre la chirurgie et le décès toutes causes, mois",
+      os_tte_diag = "Délai entre le diagnostic et le décès toutes causes, mois",
       pfs_event = "Récidive ou décès toutes causes",
       pfs_tte = "Délai entre la chirurgie et la récidive ou le décès toutes causes, mois",
       pfs_cause = "Premier évènement"
@@ -177,6 +182,11 @@ df <- df_label |>
   ) |>
   as.list()
 
+.followup_median <- lst(
+  total = style_median(.followup$total$data$tte$median),
+  strata = style_median_strata(.followup$strata$data$tte$median)
+)
+
 .surv <- lst(
   os = build_model(
     data = df,
@@ -201,7 +211,7 @@ df <- df_label |>
 
 .surv_labs <- list(
   os = list(
-    x = "Durée depuis le diagnostic (mois)",
+    x = "Durée depuis la chirurgie (mois)",
     y = "Probabilité de survie globale (%)"
   ),
   pfs = list(

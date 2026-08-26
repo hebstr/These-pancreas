@@ -45,7 +45,7 @@ tbl_outcome <- df |>
   add_note(
     vars = "n_cures_complete_sub",
     note = paste(
-      "Sans réduction de dose de plus de 20 % à la dernière cure de chaque phase,",
+      "Sans réduction de dose de plus de 20 % à la dernière cure de chaque phase,",
       "sur aucune des trois molécules."
     )
   ) |>

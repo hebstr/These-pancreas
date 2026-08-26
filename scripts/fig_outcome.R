@@ -23,7 +23,7 @@
   count(groupe) |>
   mutate(
     label = as.character(
-      str_glue("{groupe}\n(n={n}, {style_percent(n / sum(n), digits = 1)}%)")
+      str_glue("{groupe}\n(n={n}, {style_pct(n / sum(n))})")
     )
   ) |>
   pull(label, name = groupe)

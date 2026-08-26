@@ -3,11 +3,7 @@
   level = binary_value(data)$adj_ei,
   n = nrow(data),
   n_ei = sum(data$adj_ei == level, na.rm = TRUE),
-  pct = style_percent(
-    n_ei / sum(!is.na(data$adj_ei)),
-    symbol = TRUE,
-    digits = 1
-  )
+  pct = style_pct(n_ei / sum(!is.na(data$adj_ei)))
 )
 
 tbl_tox_adj <- .tox_adj$data |>

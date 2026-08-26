@@ -154,7 +154,7 @@ tbl_surv$pfs
 #| tbl-cap: Facteurs associés au nombre total de cures reçues.
 #| echo: false
 
-tbl_model_glm_pois
+tbl_model_pois
 ```
 
 {{< pagebreak >}}

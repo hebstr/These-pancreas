@@ -62,6 +62,26 @@ easy_label <- \(
 }
 
 
+pct_suffix <- \(x) str_glue("{x}\u00A0%")
+
+style_pct <- \(x, digits = 1) pct_suffix(style_percent(x, digits = digits))
+
+style_median <- \(x, unit = "mois") {
+  str_replace(
+    x,
+    "^(\\S+)\\s+(\\[.+\\])$",
+    paste0("\\1 ", unit, " (", str_remove_all(opts$ci$label, "\\[|\\]"), " \\2)")
+  )
+}
+
+style_median_strata <- \(x, unit = "mois") {
+  str_flatten(
+    str_glue("{style_median(x, unit)} dans le groupe {str_to_lower(names(x))}"),
+    collapse = ", ",
+    last = " contre "
+  )
+}
+
 title_suffix <- \(title, strata = "selon le protocole de chimiothérapie") {
   lst(
     strata = strata,

@@ -22,8 +22,12 @@ n <- lst(
   eligible = nrow(df_flow),
   exclus = sum(df_flow$motif_exclusion != 0),
   inclus = eligible - exclus,
+  pct_exclus = style_pct(exclus / eligible),
+  pct_inclus = style_pct(inclus / eligible),
   chimio_adj = n_groupe$n[1],
-  chimio_periop = n_groupe$n[2]
+  chimio_periop = n_groupe$n[2],
+  pct_chimio_adj = style_pct(chimio_adj / inclus),
+  pct_chimio_periop = style_pct(chimio_periop / inclus)
 )
 
 ### GROBS ----------------------------------------------------------------------
@@ -90,7 +94,7 @@ fig_flowchart <- with_fig_device(
     )
 
     exclus_box <- flow_box(
-      str_glue("Exclusion (n = {n$exclus})\n{label_exclus}"),
+      str_glue("Exclusion (n = {n$exclus}, {n$pct_exclus})\n{label_exclus}"),
       x = 0.77,
       y = 0.74,
       just = "left",
@@ -117,7 +121,7 @@ fig_flowchart <- with_fig_device(
     )
 
     inclus_box <- flow_box(
-      str_glue("Inclusion (n = {n$inclus})\n{label_centre}"),
+      str_glue("Inclusion (n = {n$inclus}, {n$pct_inclus})\n{label_centre}"),
       x = 0.4,
       y = 0.6,
       just = "left"
@@ -130,7 +134,9 @@ fig_flowchart <- with_fig_device(
     )
 
     adjuvant_box <- flow_box(
-      label = str_glue("Chimiothérapie adjuvante seule\n(n = {n$chimio_adj})"),
+      label = str_glue(
+        "Chimiothérapie adjuvante seule\n(n = {n$chimio_adj}, {n$pct_chimio_adj} des inclus)"
+      ),
       x = 0.25,
       y = 0.35
     )
@@ -138,7 +144,7 @@ fig_flowchart <- with_fig_device(
 
     periop_box <- flow_box(
       label = str_glue(
-        "Chimiothérapie péri-opératoire\n(n = {n$chimio_periop})"
+        "Chimiothérapie péri-opératoire\n(n = {n$chimio_periop}, {n$pct_chimio_periop} des inclus)"
       ),
       x = 0.55,
       y = 0.35

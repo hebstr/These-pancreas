@@ -22,6 +22,69 @@
   )
 })
 
+### SENSI ----------------------------------------------------------------------
+
+.coxph_sensi <- local({
+  model <- .model$coxph$os
+
+  estim <- \(fit) {
+    fit |>
+      tidy(exp = TRUE, conf.int = TRUE) |>
+      filter(str_starts(term, "groupe")) |>
+      merge_estim_ci(ci_data = opts$ci$data) |>
+      pull(estimate_ci)
+  }
+
+  y_naif <- call2("Surv", sym("os_tte_diag"), sym("os_event"))
+  y_trunc <- call2("Surv", sym("time_diag_chir"), sym("os_tte_diag"), sym("os_event"))
+
+  lst(
+    naif = estim(coxph(reformulate("groupe", y_naif), model$data)),
+    uv = estim(coxph(reformulate("groupe", y_trunc), model$data)),
+    mv = estim(
+      coxph(reformulate(c(model$vars$x$mv, model$strata_term), y_trunc), model$data)
+    )
+  )
+})
+
+.coxph_estim_ci <- \(fit, variable) {
+  fit |>
+    tidy(exp = TRUE, conf.int = TRUE) |>
+    filter(str_starts(term, variable)) |>
+    merge_estim_ci(ci_data = opts$ci$data) |>
+    pull(estimate_ci)
+}
+
+.coxph_estim <- \(outcome, variable = "groupe") {
+  .coxph_estim_ci(.model$coxph[[outcome]]$fit, variable)
+}
+
+.coxph_p <- \(outcome, variable) {
+  car::Anova(
+    .model$coxph[[outcome]]$fit,
+    type = "III",
+    test.statistic = "Wald"
+  ) |>
+    tidy() |>
+    filter(term == variable) |>
+    pull(p.value) |>
+    style_pvalue(digits = 2, prepend_p = TRUE)
+}
+
+.coxph_uv <- \(outcome, variable) {
+  model <- .model$coxph[[outcome]]
+  fit <- coxph(reformulate(variable, model$y_fun), model$data)
+
+  lst(
+    estim = .coxph_estim_ci(fit, variable),
+    p = car::Anova(fit, type = "III") |>
+      tidy() |>
+      filter(term == variable) |>
+      pull(p.value) |>
+      style_pvalue(digits = 2, prepend_p = TRUE)
+  )
+}
+
 ### TBL ------------------------------------------------------------------------
 
 get_tbl_coxph <- \(outcome) {

@@ -19,6 +19,7 @@ dependencies = [
   "ggrepel",
   "Gmisc",
   "grid",
+  "gt",
   "rvg",
   "officer",
   "tidycmprsk",

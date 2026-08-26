@@ -43,12 +43,6 @@ ne devrait pas être inclus en facteur d'ajustement :
 
 3) chir_resec : mesurée avant le traitement, et détermine l'orientation vers l'un ou l'autre protocole = facteur de confusion structurel
 
-### survie
+## questions
 
-Si biais de temps immortel entre groupe 1 et 2, tester modèle naïf + modèle avec landmark en analyse de sensibilité (seuil clinique)
-
-### Incidence cumulée de récidive
-
-Récidive vs décès sans récidive traité comme risque compétitif, depuis la chirurgie : **skip car trop peu de décès**
-
-Régression sur le risque de récidive avec décès sans récidive traité comme évènement compétitif (modèle de Fine Gray) : **skip car trop peu de décès et manque de puissance**
+- critères exclusions : préciser données manquantes

@@ -47,23 +47,11 @@ tbl_surv <- map(set_names(names(.surv$total)), get_tbl_surv)
 
 .surv_logrank <- map(.surv$strata, ~ .x$data$logrank)
 
-.surv_median <- {
-  add_unit <- \(x) if_else(x == "non atteinte", x, paste(x, "mois"))
-
-  map(set_names(names(.surv$total)), \(outcome) {
-    strata <- .surv$strata[[outcome]]$data$tte$median
-
-    lst(
-      total = add_unit(.surv$total[[outcome]]$data$tte$median),
-      strata = str_flatten(
-        str_glue(
-          "{add_unit(strata)} dans le groupe {str_to_lower(names(strata))}"
-        ),
-        collapse = ", ",
-        last = " contre "
-      )
-    )
-  })
-}
+.surv_median <- map(set_names(names(.surv$total)), \(outcome) {
+  lst(
+    total = style_median(.surv$total[[outcome]]$data$tte$median),
+    strata = style_median_strata(.surv$strata[[outcome]]$data$tte$median)
+  )
+})
 
 easy_out_map(tbl_surv)

@@ -1,5 +1,5 @@
 .followup_data <- .followup$strata$data$tte
-.followup_median <- .followup$total$data$tte$median
+.followup_med <- .followup$total$data$tte$median
 .followup_brks <- auto_ceiling(time = max(.followup_data$obs$time), by = 6)
 .followup_xlim <- c(0, max(.followup_data$obs$time) * 1.05)
 
@@ -13,16 +13,19 @@
     linewidth = 0.3
   ) +
   annotate(
-    geom = "text",
+    geom = "label",
     label = str_glue(
-      "Durée médiane de suivi global, mois {opts$ci$label}{opts$sep$int}{.followup_median}"
+      "Durée médiane de suivi global, mois {opts$ci$label}{opts$sep$int}{.followup_med}"
     ),
     x = 0,
     y = 0.03,
     size = 2.5,
     hjust = 0,
     vjust = 0,
-    family = opts$font$alpha
+    family = opts$font$alpha,
+    fill = "white",
+    border.colour = NA,
+    label.padding = unit(0.15, "lines")
   ) +
   geom_label_repel(
     data = .followup_data$obs |> slice_tail(n = 1, by = strata),
@@ -43,7 +46,7 @@
   ) +
   scale_ggsurvfit(
     x_scales = list(
-      name = "Durée depuis le diagnostic (mois)",
+      name = "Durée depuis la chirurgie (mois)",
       breaks = .followup_brks,
       limits = .followup_xlim
     ),
