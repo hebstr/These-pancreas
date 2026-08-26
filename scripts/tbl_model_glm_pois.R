@@ -52,8 +52,8 @@ tbl_model_glm_pois <- .model$glm$pois$tbls |>
       gtsum_format(
         label_n = "N",
         stat_n = "{n_obs}",
-        estim_acro = "IRR",
-        estim_label = "rapport du nombre moyen de cures"
+        estim_acro = list(irr = "RM"),
+        estim_label = list(irr = "rapport du nombre moyen de cures")
       ) |>
       add_global_p()
   ) |>
