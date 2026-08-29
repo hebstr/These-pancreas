@@ -3,7 +3,6 @@ get_tbl_surv <- \(outcome, at_risk = FALSE) {
     model <- .surv[[part]][[outcome]]
     get_tbl(
       x = model$data$tte$model,
-      fun = "tbl_survfit",
       tbl_label = model$tbl_label,
       at_risk = at_risk
     )

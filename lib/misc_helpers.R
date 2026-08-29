@@ -61,6 +61,28 @@ easy_label <- \(
   data
 }
 
+get_label <- \(data, ..., sort = TRUE, indent = "  ") {
+  vars <- enquos(...)
+  recurse <- \(data, vars, depth) {
+    var <- vars[[1]]
+    pad <- strrep(indent, depth)
+    .n <- count(data, !!var, name = ".n", sort = sort)
+    lines <- str_glue("{pad}- {.n[[1]]} (n = {.n$.n})")
+    if (length(vars) == 1L) {
+      return(str_flatten(lines, "\n"))
+    }
+    children <- map_chr(
+      .n[[1]],
+      \(value) recurse(filter(data, !!var == value), vars[-1], depth + 1)
+    )
+    str_flatten(str_glue("{lines}\n{children}"), "\n")
+  }
+  recurse(data, vars, 0)
+}
+
+auto_ceiling <- \(time, by) {
+  seq(0, ceiling(time / by - 1e-3) * by, by = by)
+}
 
 pct_suffix <- \(x) str_glue("{x}\u00A0%")
 

@@ -8,16 +8,6 @@ format:
   hebstr-doc-html:
     code-tools:
       source: https://github.com/hebstr/These-pancreas
-crossref:
-  title-delim: "\\."
-  tbl-title: "Table"
-  custom:
-    - kind: float
-      key: anx
-      reference-prefix: Annexe
-      caption-prefix: Annexe
-      caption-location: top
-      latex-env: anx
 ---
 
 ```{r}
@@ -211,7 +201,7 @@ Au total, ont été inclus `r n$inclus` (`r n$pct_inclus`) patients adultes atte
 #| fig-cap: Flowchart
 #| fig-cap-location: top
 
-knitr::include_graphics("output/fig_flowchart.svg")
+knitr::include_graphics("output/fig-flowchart/fig-flowchart.svg")
 ```
 
 ## Analyses descriptives
@@ -710,13 +700,12 @@ Vue d'ensemble des variables utilisées (initiales + de novo)
 
 VIF : mesure de combien la variance du coefficient est augmentée par la corrélation de la variable avec les autres variables du modèle.
 
-::: {#anx-pois-vif}
 ```{r}
+#| label: tbl-anx-pois-vif
+#| tbl-cap: "Facteurs d'inflation de la variance (@tbl-model-pois)"
+
 gt_qmd(.pois_check_vif)
 ```
-
-Facteurs d'inflation de la variance (@tbl-model-pois)
-:::
 
 1 = absence de corrélation\
 < 5 = pas de collinéarité
@@ -734,23 +723,21 @@ La valeur maximale observée était de `r .pois_check_cook$max` pour un seuil de
 
 Pour chaque variable du modèle multivariable et pour l'ensemble du modèle, test de proportionnalité des risques basé sur les résidus de Schoenfeld :
 
-::: {#anx-coxzph-os}
 ```{r}
+#| label: tbl-anx-coxzph-os
+#| tbl-cap: "Test des risques proportionnels de la survie globale (@tbl-model-coxph-os)"
+
 gt_qmd(.coxph_check_tbl$os)
 ```
 
-Test des risques proportionnels de la survie globale (@tbl-model-coxph-os)
-:::
-
 L'hypothèse des risques proportionnels n'était mise en défaut ni pour l'ensemble du modèle (`r style_pvalue(.model$coxph$os$check$table["GLOBAL", "p"], digits = 2, prepend_p = TRUE)`), ni pour aucune des variables prises séparément.
 
-::: {#anx-coxzph-pfs}
 ```{r}
+#| label: tbl-anx-coxzph-pfs
+#| tbl-cap: "Test des risques proportionnels de la survie sans récidive (@tbl-model-coxph-pfs)"
+
 gt_qmd(.coxph_check_tbl$pfs)
 ```
-
-Test des risques proportionnels de la survie sans récidive (@tbl-model-coxph-pfs)
-:::
 
 L'hypothèse des risques proportionnels n'était invalidée ni pour l'ensemble du modèle (`r style_pvalue(.model$coxph$pfs$check$table["GLOBAL", "p"], digits = 2, prepend_p = TRUE)`), ni pour aucune des variables prises séparément (@anx-coxzph-pfs).
 
@@ -768,7 +755,7 @@ L'hypothèse de proportionnalité n'était pas invalidée ici.
 ```{r}
 #| label: session
 #| echo: true
-#| code-fold: false
+#| code-summary: "environnement"
 
 sessioninfo::session_info()
 ```

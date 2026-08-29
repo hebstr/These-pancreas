@@ -9,13 +9,10 @@ library(labelled)
 library(gtsummary)
 library(ggsurvfit)
 library(survival)
-library(tidycmprsk)
 library(ggrepel)
 library(patchwork)
 library(Gmisc)
 library(grid)
-library(officer)
-library(rvg)
 library(hebstr)
 
 if (interactive()) {
@@ -128,7 +125,7 @@ df_recode <- df_init |>
     by = 5
   )
 
-df_label <- df_recode |>
+df <- df_recode |>
   easy_label(
     variable = list(
       age = "Âge au diagnostic, années",
@@ -157,10 +154,6 @@ df_label <- df_recode |>
     drop = TRUE
   )
 
-df <- df_label |>
-  rownames_to_column() |>
-  mutate(rowname = as.numeric(rowname) + 1)
-
 ### FIT ------------------------------------------------------------------------
 
 .followup <- build_model(
@@ -169,8 +162,7 @@ df <- df_label |>
   event = 1 - os_event,
   strata = groupe,
   estimate_label = "la fin de suivi",
-  tbl_label = "Probabilité d'être encore suivi",
-  type = "surv"
+  tbl_label = "Probabilité d'être encore suivi"
 )
 
 .followup_alive <- df |>
@@ -194,8 +186,7 @@ df <- df_label |>
     event = os_event,
     strata = groupe,
     estimate_label = "le décès toutes causes",
-    tbl_label = "Probabilité de survie globale",
-    type = "surv"
+    tbl_label = "Probabilité de survie globale"
   ),
   pfs = build_model(
     data = df,
@@ -203,8 +194,7 @@ df <- df_label |>
     event = pfs_event,
     strata = groupe,
     estimate_label = "la récidive ou le décès toutes causes",
-    tbl_label = "Probabilité de survie sans récidive",
-    type = "surv"
+    tbl_label = "Probabilité de survie sans récidive"
   )
 ) |>
   list_transpose()
@@ -218,16 +208,6 @@ df <- df_label |>
     x = "Durée depuis la chirurgie (mois)",
     y = "Probabilité de survie sans récidive (%)"
   )
-)
-
-.cmp <- build_model(
-  data = df,
-  tte = pfs_tte,
-  event = pfs_cause,
-  strata = groupe,
-  estimate_label = "la récidive",
-  tbl_label = "Probabilité de survie sans récidive (%)",
-  type = "cmp"
 )
 
 .fig_palette <- c(opts$color$base, opts$color$cold[2])
@@ -276,34 +256,13 @@ df <- df_label |>
     names()
 )
 
-.limits <- lst(
-  cures = map(
-    set_names(levels(df$groupe), c("adj", "periop")),
-    ~ df |>
-      filter(groupe == .x) |>
-      summarise(
-        max = max(n_cures, na.rm = TRUE),
-        over = sum(n_cures > 12, na.rm = TRUE)
-      )
-  ),
-  followup = survfit(Surv(os_tte, 1 - os_event) ~ centre, data = df) |>
-    summary() |>
-    pluck("table") |>
-    as_tibble(rownames = "centre") |>
-    transmute(
-      centre = str_remove(centre, "^centre="),
-      med = round(median, 1)
-    ) |>
-    arrange(med)
-)
-
 .check_df <- lst(
-  data_recode = df |> select(-rowname),
-  names = names(data_recode),
-  data_init = df_init |> select(any_of(names)) |> easy_label(),
-  vars = easy_view(data_recode)$output,
-  distrib_recode = check_distrib(data_recode),
-  distrib_init = check_distrib(data_init)
+  vars = easy_view(df)$output,
+  distrib_init = df_init |>
+    select(any_of(names(df))) |>
+    easy_label() |>
+    check_distrib(),
+  distrib_recode = check_distrib(df)
 )
 
 ### AUTO EXEC ------------------------------------------------------------------

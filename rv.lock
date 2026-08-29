@@ -122,27 +122,6 @@ force_source = false
 dependencies = []
 
 [[packages]]
-name = "ROI"
-version = "1.0-2"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = [
-    { name = "registry", requirement = "(>= 0.5)" },
-    "slam",
-    "checkmate",
-]
-
-[[packages]]
-name = "ROI.plugin.lpsolve"
-version = "1.0-2"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = [
-    { name = "ROI", requirement = "(>= 0.3-0)" },
-    { name = "lpSolveAPI", requirement = "(>= 5.5.2.0-1)" },
-]
-
-[[packages]]
 name = "Rcpp"
 version = "1.1.2"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -499,15 +478,6 @@ force_source = false
 dependencies = []
 
 [[packages]]
-name = "cmprsk"
-version = "2.2-12"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = [
-    "survival",
-]
-
-[[packages]]
 name = "codetools"
 version = "0.2-20"
 source = { builtin = true }
@@ -610,28 +580,6 @@ dependencies = [
     { name = "tidyselect", requirement = "(>= 1.2.1)" },
     { name = "vctrs", requirement = "(>= 0.6.3)" },
     { name = "withr", requirement = "(>= 2.5.0)" },
-]
-
-[[packages]]
-name = "desc"
-version = "1.4.3"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = [
-    "cli",
-    "R6",
-]
-
-[[packages]]
-name = "detectseparation"
-version = "0.4.0"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = [
-    "ROI",
-    "ROI.plugin.lpsolve",
-    "lpSolveAPI",
-    "pkgload",
 ]
 
 [[packages]]
@@ -787,16 +735,6 @@ dependencies = [
 ]
 
 [[packages]]
-name = "foreach"
-version = "1.5.2"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = [
-    "codetools",
-    "iterators",
-]
-
-[[packages]]
 name = "forecast"
 version = "9.0.2"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -832,15 +770,6 @@ force_source = false
 dependencies = [
     "checkmate",
     "abind",
-]
-
-[[packages]]
-name = "formula.tools"
-version = "1.7.1"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = [
-    { name = "operator.tools", requirement = "(>= 1.4.0)" },
 ]
 
 [[packages]]
@@ -978,20 +907,6 @@ dependencies = [
     "gridtext",
     "rlang",
     "scales",
-]
-
-[[packages]]
-name = "glmnet"
-version = "5.0"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = [
-    { name = "Matrix", requirement = "(>= 1.0-6)" },
-    "foreach",
-    "shape",
-    "survival",
-    "Rcpp",
-    "RcppEigen",
 ]
 
 [[packages]]
@@ -1181,7 +1096,7 @@ dependencies = [
 [[packages]]
 name = "hebstr"
 version = "0.0.0.9000"
-source = { git = "https://github.com/hebstr/hebstr", sha = "287bc7107de58168813106d3cd041a9c35720a97", branch = "main" }
+source = { path = "/home/julien/Documents/packages/R-hebstr" }
 force_source = true
 dependencies = [
     "aod",
@@ -1354,26 +1269,6 @@ dependencies = [
 ]
 
 [[packages]]
-name = "iterators"
-version = "1.0.14"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = []
-
-[[packages]]
-name = "jomo"
-version = "2.7-6"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = [
-    "lme4",
-    "survival",
-    "MASS",
-    "ordinal",
-    "tibble",
-]
-
-[[packages]]
 name = "jpeg"
 version = "0.1-11"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -1514,25 +1409,6 @@ dependencies = [
 ]
 
 [[packages]]
-name = "logistf"
-version = "1.26.1"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = [
-    "mice",
-    "mgcv",
-    "formula.tools",
-    "Matrix",
-]
-
-[[packages]]
-name = "lpSolveAPI"
-version = "5.5.2.0-17.15"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = []
-
-[[packages]]
 name = "lubridate"
 version = "1.9.5"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -1591,24 +1467,6 @@ dependencies = [
 ]
 
 [[packages]]
-name = "mice"
-version = "3.19.0"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = [
-    "broom",
-    "dplyr",
-    "glmnet",
-    "lattice",
-    "mitml",
-    "nnet",
-    "Rcpp",
-    "rpart",
-    "tidyr",
-    "cpp11",
-]
-
-[[packages]]
 name = "mime"
 version = "0.13"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -1622,17 +1480,6 @@ source = { repository = "https://packagemanager.posit.co/cran/latest" }
 force_source = false
 dependencies = [
     { name = "Rcpp", requirement = "(>= 0.9.10)" },
-]
-
-[[packages]]
-name = "mitml"
-version = "0.4-5"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = [
-    "pan",
-    "jomo",
-    "haven",
 ]
 
 [[packages]]
@@ -1719,35 +1566,8 @@ dependencies = [
 ]
 
 [[packages]]
-name = "operator.tools"
-version = "1.6.3.1"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = []
-
-[[packages]]
-name = "ordinal"
-version = "2026.7-26"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = [
-    "ucminf",
-    "MASS",
-    "Matrix",
-    "numDeriv",
-    "nlme",
-]
-
-[[packages]]
 name = "otel"
 version = "0.2.0"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = []
-
-[[packages]]
-name = "pan"
-version = "2.0"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
 force_source = false
 dependencies = []
@@ -1849,41 +1669,11 @@ dependencies = [
 ]
 
 [[packages]]
-name = "pkgbuild"
-version = "1.4.8"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = [
-    { name = "callr", requirement = "(>= 3.2.0)" },
-    { name = "cli", requirement = "(>= 3.4.0)" },
-    "desc",
-    "processx",
-    "R6",
-]
-
-[[packages]]
 name = "pkgconfig"
 version = "2.0.3"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
 force_source = false
 dependencies = []
-
-[[packages]]
-name = "pkgload"
-version = "1.5.3"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = [
-    { name = "cli", requirement = "(>= 3.3.0)" },
-    "desc",
-    "fs",
-    "glue",
-    "lifecycle",
-    "pkgbuild",
-    "processx",
-    { name = "rlang", requirement = "(>= 1.1.1)" },
-    "rprojroot",
-]
 
 [[packages]]
 name = "png"
@@ -2057,13 +1847,6 @@ dependencies = [
     "Matrix",
     "Rdpack",
 ]
-
-[[packages]]
-name = "registry"
-version = "0.5-1"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = []
 
 [[packages]]
 name = "rematch"
@@ -2255,20 +2038,6 @@ dependencies = [
 ]
 
 [[packages]]
-name = "shape"
-version = "1.4.6.1"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = []
-
-[[packages]]
-name = "slam"
-version = "0.1-56"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = []
-
-[[packages]]
 name = "slider"
 version = "0.3.3"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -2384,27 +2153,6 @@ dependencies = [
 ]
 
 [[packages]]
-name = "tidycmprsk"
-version = "1.1.2"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = [
-    { name = "broom", requirement = "(>= 1.0.1)" },
-    "cli",
-    { name = "cmprsk", requirement = "(>= 2.2.10)" },
-    "dplyr",
-    { name = "ggplot2", requirement = "(>= 3.3.5)" },
-    { name = "gtsummary", requirement = "(>= 2.0.0)" },
-    { name = "hardhat", requirement = "(>= 1.3.0)" },
-    { name = "purrr", requirement = "(>= 0.3.4)" },
-    "rlang",
-    { name = "stringr", requirement = "(>= 1.4.0)" },
-    "survival",
-    { name = "tibble", requirement = "(>= 3.1.6)" },
-    "tidyr",
-]
-
-[[packages]]
 name = "tidyr"
 version = "1.3.2"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -2509,13 +2257,6 @@ force_source = false
 dependencies = [
     { name = "cpp11", requirement = "(>= 0.5.2)" },
 ]
-
-[[packages]]
-name = "ucminf"
-version = "1.2.3"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = []
 
 [[packages]]
 name = "urca"

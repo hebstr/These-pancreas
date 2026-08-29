@@ -7,7 +7,8 @@ repositories = [
 ]
 
 dependencies = [
-  { name = "hebstr", git = "https://github.com/hebstr/hebstr", branch = "main" },
+  { name = "hebstr", path = "/home/julien/Documents/packages/R-hebstr" },
+  # { name = "hebstr", git = "https://github.com/hebstr/hebstr", branch = "main" },
   # { name = "ggswim", git = "https://github.com/CHOP-CGTInformatics/ggswim", branch = "main" },
   "tidyverse",
   "googlesheets4",
@@ -21,11 +22,7 @@ dependencies = [
   "grid",
   "gt",
   "rvg",
-  "officer",
-  "tidycmprsk",
   "performance",
-  "logistf",
-  "detectseparation",
   "sessioninfo",
   "rlang",
   "broom",
@@ -34,8 +31,8 @@ dependencies = [
   "car",
   "cli",
   "openxlsx2",
-  "broom.helpers",
   "knitr",
   "svglite",
-  "httpuv",
+  "systemfonts",
+  "xfun",
 ]

@@ -1,26 +1,3 @@
-anova_logistf <- \(model, ...) {
-  attr(terms(model), "term.labels") |>
-    map(\(v) {
-      tibble(
-        term = v,
-        p.value = as.numeric(anova(model, formula = reformulate(v))$pval)
-      )
-    }) |>
-    list_rbind()
-}
-
-anova_wald <- \(model, ...) {
-  a <- tryCatch(
-    car::Anova(model, test.statistic = "Wald", type = "II"),
-    error = \(e) NULL
-  )
-  if (is.null(a)) {
-    tibble(term = attr(terms(model), "term.labels"), p.value = NA_real_)
-  } else {
-    tibble(term = rownames(a), p.value = a[["Pr(>Chisq)"]])
-  }
-}
-
 set_model_vars <- \(y, x_uv, x_mv_exclude = character(0)) {
   unknown <- setdiff(x_mv_exclude, x_uv)
   if (length(unknown)) {
@@ -55,10 +32,8 @@ get_surv_model <- \(
   time_to_event,
   event,
   strata = 1,
-  estimate_label,
-  type = c("surv", "cmp")
+  estimate_label
 ) {
-  type <- arg_match(type)
   strata <- enexpr(strata)
 
   formula <- expr(
@@ -82,41 +57,6 @@ get_surv_model <- \(
       glance() |>
       transmute(
         str = "Log rank",
-        p.value = style_pvalue(p.value, digits = 2, pre = TRUE)
-      )
-  }
-
-  cuminc_model <- \() {
-    op <- options(OutDec = ".")
-    on.exit(options(op))
-    do.call("cuminc", fit)
-  }
-
-  gray_test <- \(model) {
-    glance(model) |>
-      pivot_longer(
-        cols = everything(),
-        names_to = c(".value", "id"),
-        names_pattern = "(.+)_(\\d+)"
-      ) |>
-      transmute(
-        outcome,
-        str = str_glue("Test de Gray pour {tolower(outcome)}"),
-        p.value = style_pvalue(p.value, digits = 2, pre = TRUE)
-      )
-  }
-
-  fg_model <- \() {
-    events <- tail(levels(data[[all.vars(formula)[[2]]]]), 2)
-    map(events, \(e) {
-      do.call("crr", c(fit, failcode = e)) |>
-        tidy(exp = TRUE, conf.int = TRUE) |>
-        mutate(outcome = e)
-    }) |>
-      list_rbind() |>
-      merge_estim_ci(ci_data = opts$ci$data) |>
-      mutate(
-        str = str_glue("sHR pour {tolower(outcome)}"),
         p.value = style_pvalue(p.value, digits = 2, pre = TRUE)
       )
   }
@@ -152,30 +92,19 @@ get_surv_model <- \(
     tte = lst(
       model = do.call("survfit2", fit),
       obs = tidy_survfit(model),
-      median = if (type == "surv") get_tte_median(model) else NULL,
+      median = get_tte_median(model)
     ),
-    cox = if (type == "surv" && has_strata) cox_model() else NULL,
-    logrank = if (type == "surv" && has_strata) logrank_test() else NULL,
-    crr = if (type == "cmp") cuminc_model() else NULL,
-    crr_test = if (type == "cmp" && has_strata) gray_test(crr) else NULL,
-    crr_fg = if (type == "cmp" && has_strata) fg_model() else NULL
+    cox = if (has_strata) cox_model() else NULL,
+    logrank = if (has_strata) logrank_test() else NULL
   )
 }
 
 surv_times <- c(12, 24, 36, 48)
 
-get_tbl <- \(
-  x,
-  fun = c("tbl_survfit", "tbl_cuminc"),
-  tbl_label,
-  at_risk = fun == "tbl_survfit"
-) {
-  fun <- arg_match(fun)
-
-  at_risk <- at_risk && fun == "tbl_survfit"
+get_tbl <- \(x, tbl_label, at_risk = TRUE) {
   label_risk <- if (at_risk) " (n à risque)" else ""
 
-  args <- list(
+  tbl_survfit(
     x = x,
     times = surv_times,
     statistic = paste0(
@@ -184,9 +113,7 @@ get_tbl <- \(
     ),
     estimate_fun = label_style_percent(digits = 1),
     label_header = "**{time} mois**"
-  )
-
-  do.call(fun, args) |>
+  ) |>
     modify_table_body(
       ~ .x |>
         mutate(across(starts_with("stat_"), \(v) str_replace(v, ",0\\)$", ")")))
@@ -196,7 +123,7 @@ get_tbl <- \(
     )
 }
 
-build_model <- \(data, tte, event, strata, estimate_label, tbl_label, type) {
+build_model <- \(data, tte, event, strata, estimate_label, tbl_label) {
   data <- enexpr(data)
   tte <- enexpr(tte)
   event <- enexpr(event)
@@ -205,8 +132,7 @@ build_model <- \(data, tte, event, strata, estimate_label, tbl_label, type) {
   total_model <- inject(get_surv_model(
     data = !!data,
     time_to_event = !!tte,
-    event = !!event,
-    type = type
+    event = !!event
   ))
 
   strata_model <- inject(get_surv_model(
@@ -214,20 +140,15 @@ build_model <- \(data, tte, event, strata, estimate_label, tbl_label, type) {
     time_to_event = !!tte,
     event = !!event,
     strata = !!strata,
-    estimate_label = estimate_label,
-    type = type
+    estimate_label = estimate_label
   ))
-
-  make_tbl <- \(model, ...) {
-    if (type == "surv") {
-      get_tbl(x = model$tte$model, fun = "tbl_survfit", ...)
-    } else {
-      get_tbl(x = model$crr, fun = "tbl_cuminc", ...)
-    }
-  }
 
   map(
     list(total = total_model, strata = strata_model),
-    ~ lst(data = .x, tbl_label = tbl_label, tbl = make_tbl(.x, tbl_label = tbl_label))
+    ~ lst(
+      data = .x,
+      tbl_label = tbl_label,
+      tbl = get_tbl(x = .x$tte$model, tbl_label = tbl_label)
+    )
   )
 }
