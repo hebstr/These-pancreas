@@ -169,4 +169,4 @@ tbl_coxph <- map(set_names(names(.model$coxph)), get_tbl_coxph)
 
 ### OUTPUT ---------------------------------------------------------------------
 
-easy_out_map(tbl_coxph)
+easy_out(tbl_coxph)

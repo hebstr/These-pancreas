@@ -1,7 +1,7 @@
 # system("xcode-select --install")
 source("rv/scripts/rvr.R")
 source("rv/scripts/activate.R")
-# .rv$sync()
+.rv$sync()
 # .rv$summary()
 
 options(

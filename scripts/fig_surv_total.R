@@ -57,4 +57,4 @@ get_fig_surv <- \(data, outcome) {
 
 fig_surv_total <- imap(.surv$total, get_fig_surv)
 
-easy_out_map(fig_surv_total, height = 3.75, width = 7)
+easy_out(fig_surv_total, height = 3.75, width = 7)

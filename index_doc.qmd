@@ -313,7 +313,7 @@ Toutes phases confondues, le nombre total médian de cures était de `r .descr$n
 {{< script scripts/tbl_outcome.R >}}
 
 ```{r}
-#| label: tbl-cjp
+#| label: tbl-outcome
 #| tbl-cap: !expr title_suffix("Nombre de cures reçues")$overall
 
 tbl_outcome
@@ -322,7 +322,7 @@ tbl_outcome
 {{< script scripts/fig_outcome.R >}}
 
 ```{r}
-#| label: fig-cjp
+#| label: fig-outcome
 #| fig-cap: Distribution du nombre de cures reçues, par phase et selon le protocole de chimiothérapie.
 #| fig-height: 5
 #| fig-width: 6
@@ -390,13 +390,13 @@ tbl_tox_adj
 Le facteur de dispersion estimé était de `r round(.model$pois$check$overdispersion$dispersion_ratio, 2)` (test de dispersion de Pearson : `r style_pvalue(.model$pois$check$overdispersion$p_value, digits = 2, prepend_p = TRUE)`).
 Le test ne concluait donc pas à une surdispersion au seuil de 5 %, cependant le facteur de dispersion étant supérieure à 1 avec un degré de significativité limite, la famille quasi-Poisson a été retenue conformément au plan d'analyse.
 
-{{< script scripts/tbl_model_pois.R >}}
+{{< script scripts/tbl_pois.R >}}
 
 ```{r}
-#| label: tbl-model-pois
+#| label: tbl-pois
 #| tbl-cap: "Facteurs associés au nombre total de cures reçues."
 
-tbl_model_pois
+tbl_pois
 ```
 
 ```{r}
@@ -452,13 +452,13 @@ Les dates de point étaient fixées pour chaque centre à la date du recueil :
 #| label: date-point
 
 df |>
-  distinct(centre, date_lastnews) |>
+  distinct(centre, date_point) |>
   arrange(centre) |>
-  mutate(date_lastnews = format(date_lastnews, "%d/%m/%Y")) |>
+  mutate(date_point = format(date_point, "%d/%m/%Y")) |>
   gt::gt() |>
   gt::cols_label(
     centre = "Centre",
-    date_lastnews = "Date de point"
+    date_point = "Date de point"
   ) |>
   gt::cols_align(align = "left") |>
   theme_gt(width = 300)
@@ -548,10 +548,10 @@ fig_surv_strata$os
 
 #### Modèles de Cox
 
-{{< script scripts/tbl_model_coxph.R >}}
+{{< script scripts/tbl_coxph.R >}}
 
 ```{r}
-#| label: tbl-model-coxph-os
+#| label: tbl-coxph-os
 #| tbl-cap: "Facteurs associés à la survie globale."
 
 tbl_coxph$os
@@ -617,10 +617,10 @@ fig_surv_strata$pfs
 
 #### Modèles de Cox
 
-{{< script scripts/tbl_model_coxph.R >}}
+{{< script scripts/tbl_coxph.R >}}
 
 ```{r}
-#| label: tbl-model-coxph-pfs
+#| label: tbl-coxph-pfs
 #| tbl-cap: "Facteurs associés à la survie sans récidive."
 
 tbl_coxph$pfs
@@ -666,33 +666,9 @@ Cette absence de différence persistait après ajustement (aHR `r .coxph_estim("
 
 ## Variables
 
-::: panel-tabset
-# Dictionnaire
-
-Vue d'ensemble des variables utilisées (initiales + de novo)
-
-```{r}
-#| label: df-vars
-
-.check_df$vars
-```
-
-# Effectifs (avant recodage)
-
-```{r}
-#| label: df-distrib-init
-
-.check_df$distrib_init
-```
-
-# Effectifs (après recodage)
-
-```{r}
-#| label: df-distrib-recode
-
-.check_df$distrib_recode
-```
-:::
+- [Dictionnaire des variables](output/var-dict/var-dict.html){target="_blank"}
+- [Distribution des variables avant recodage](output/var-distrib/var-distrib-initial.html){target="_blank"}
+- [Distribution des variables après recodage](output/var-distrib/var-distrib-final.html){target="_blank"}
 
 ## Vérification des hypothèses
 
@@ -702,7 +678,7 @@ VIF : mesure de combien la variance du coefficient est augmentée par la corrél
 
 ```{r}
 #| label: tbl-anx-pois-vif
-#| tbl-cap: "Facteurs d'inflation de la variance (@tbl-model-pois)"
+#| tbl-cap: "Facteurs d'inflation de la variance (@tbl-pois)"
 
 gt_qmd(.pois_check_vif)
 ```
@@ -725,7 +701,7 @@ Pour chaque variable du modèle multivariable et pour l'ensemble du modèle, tes
 
 ```{r}
 #| label: tbl-anx-coxzph-os
-#| tbl-cap: "Test des risques proportionnels de la survie globale (@tbl-model-coxph-os)"
+#| tbl-cap: "Test des risques proportionnels de la survie globale (@tbl-coxph-os)"
 
 gt_qmd(.coxph_check_tbl$os)
 ```
@@ -734,12 +710,12 @@ L'hypothèse des risques proportionnels n'était mise en défaut ni pour l'ensem
 
 ```{r}
 #| label: tbl-anx-coxzph-pfs
-#| tbl-cap: "Test des risques proportionnels de la survie sans récidive (@tbl-model-coxph-pfs)"
+#| tbl-cap: "Test des risques proportionnels de la survie sans récidive (@tbl-coxph-pfs)"
 
 gt_qmd(.coxph_check_tbl$pfs)
 ```
 
-L'hypothèse des risques proportionnels n'était invalidée ni pour l'ensemble du modèle (`r style_pvalue(.model$coxph$pfs$check$table["GLOBAL", "p"], digits = 2, prepend_p = TRUE)`), ni pour aucune des variables prises séparément (@anx-coxzph-pfs).
+L'hypothèse des risques proportionnels n'était invalidée ni pour l'ensemble du modèle (`r style_pvalue(.model$coxph$pfs$check$table["GLOBAL", "p"], digits = 2, prepend_p = TRUE)`), ni pour aucune des variables prises séparément.
 
 Un degré de significativité faible < 0,05 signalerait un effet variable au cours du temps (risque non-proportionnel).
 L'hypothèse de proportionnalité n'était pas invalidée ici.

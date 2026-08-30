@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<body>
+<div id="picylrtoms" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:100%;height:100%;">
+  <style>#picylrtoms table {
+  font-family: Luciole;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#picylrtoms thead, #picylrtoms tbody, #picylrtoms tfoot, #picylrtoms tr, #picylrtoms td, #picylrtoms th {
+  border-style: none;
+}
+
+#picylrtoms p {
+  margin: 0;
+  padding: 0;
+}
+
+#picylrtoms .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #F0FAFF;
+  width: 800px;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#picylrtoms .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#picylrtoms .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #F0FAFF;
+  border-bottom-width: 0;
+}
+
+#picylrtoms .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 9px;
+  padding-bottom: 11px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #F0FAFF;
+  border-top-width: 0;
+}
+
+#picylrtoms .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #F0FAFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#picylrtoms .gt_bottom_border {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#picylrtoms .gt_col_headings {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #333333;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#picylrtoms .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#picylrtoms .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#picylrtoms .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#picylrtoms .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#picylrtoms .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #333333;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#picylrtoms .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#picylrtoms .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #F0FAFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#picylrtoms .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #F0FAFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#picylrtoms .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#picylrtoms .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#picylrtoms .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: none;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#picylrtoms .gt_stub {
+  color: #333333;
+  background-color: #F0FAFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#picylrtoms .gt_stub_row_group {
+  color: #333333;
+  background-color: #F0FAFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#picylrtoms .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#picylrtoms .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#picylrtoms .gt_summary_row {
+  color: #333333;
+  background-color: #F0FAFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#picylrtoms .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#picylrtoms .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#picylrtoms .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#picylrtoms .gt_grand_summary_row {
+  color: #333333;
+  background-color: #F0FAFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#picylrtoms .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#picylrtoms .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#picylrtoms .gt_striped {
+  background-color: #FFFFFF;
+}
+
+#picylrtoms .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #333333;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #333333;
+}
+
+#picylrtoms .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#picylrtoms .gt_footnote {
+  margin: 0px;
+  font-size: 11px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#picylrtoms .gt_sourcenotes {
+  color: #333333;
+  background-color: #F0FAFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#picylrtoms .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#picylrtoms .gt_left {
+  text-align: left;
+}
+
+#picylrtoms .gt_center {
+  text-align: center;
+}
+
+#picylrtoms .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#picylrtoms .gt_font_normal {
+  font-weight: normal;
+}
+
+#picylrtoms .gt_font_bold {
+  font-weight: bold;
+}
+
+#picylrtoms .gt_font_italic {
+  font-style: italic;
+}
+
+#picylrtoms .gt_super {
+  font-size: 65%;
+}
+
+#picylrtoms .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#picylrtoms .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#picylrtoms .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#picylrtoms .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#picylrtoms .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#picylrtoms .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#picylrtoms .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#picylrtoms .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#picylrtoms div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="text-align: center;"><span class='gt_from_md'>Distribution des variables <strong>avant</strong> recodage</span></td>
+    </tr>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Caractéristique</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="dm"><span class='gt_from_md'><strong>DM</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>N = 103</strong></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left">Centre, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    CHU Nantes</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">25 (24,3)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    CHD La Roche-sur-Yon</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">25 (24,3)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    CHU Angers</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">36 (35,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    CHU Lyon</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">17 (16,5)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Protocole de chimiothérapie, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Adjuvant seul</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">53 (51,5)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Péri-opératoire</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">50 (48,5)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Sexe, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Femme</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">47 (45,6)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Homme</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">56 (54,4)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Douleur au diagnostic, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">5</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Non</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">58 (59,2)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Oui</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">40 (40,8)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Type histologique, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Adénocarcinome</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">103 (100,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Autre</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">0</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Localisation tumorale, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Tête</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">79 (76,7)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Corps</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">13 (12,6)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Queue</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">11 (10,7)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Stade T, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">3</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    1</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">23 (23,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    2</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">62 (62,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    3</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">13 (13,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    4</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">2 (2,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Stade N, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">3</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    0</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">29 (29,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    1</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">49 (49,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    2</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">22 (22,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Stade M, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">1</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    0</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">102 (100,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Résécabilité, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">5</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Résécable d'emblée</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">62 (63,3)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Borderline</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">19 (19,4)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Localement avancé</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">17 (17,3)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Résection chirurgicale, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">8</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    R0</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">68 (71,6)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    R1</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">27 (28,4)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    R2</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">0</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Durée d'hospitalisation, jours, médiane (IQR)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">5</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">16,0 (12,0—23,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Complication post-opératoire, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">5</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Pas de complication</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">60 (61,2)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    I</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">12 (12,2)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    II</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">12 (12,2)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    III</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">11 (11,2)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    IV</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">2 (2,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    V</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">1 (1,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Complication post-opératoire, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">5</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Non</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">60 (61,2)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Oui</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">38 (38,8)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">PS au diagnostic, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">13</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    0</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">60 (66,7)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    1</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">27 (30,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    2</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">3 (3,3)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">PS avant chimio d'induction, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">51</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    0</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">29 (55,8)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    1</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">20 (38,5)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    2</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">3 (5,8)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">PS pré-opératoire, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">18</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    0</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">60 (70,6)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    1</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">23 (27,1)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    2</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">2 (2,4)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">PS avant chimio adjuvante, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">18</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    0</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">38 (44,7)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    1</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">42 (49,4)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    2</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">5 (5,9)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">CA 19-9 au diagnostic, UI/L, médiane (IQR)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">46</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">82,0 (20,0—147,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">CA 19-9 pré-induction, UI/L, médiane (IQR)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">86</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">103,0 (20,0—681,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">CA 19-9 pré-opératoire, UI/L, médiane (IQR)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">74</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">64,0 (37,0—106,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">CA 19-9 post-opératoire, UI/L, médiane (IQR)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">85</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">21,0 (11,0—47,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">CA 19-9 avant chimio adjuvante, UI/L, médiane (IQR)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">72</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">19,0 (7,0—50,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Chimiothérapie d'induction, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Non</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">53 (51,5)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Oui</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">50 (48,5)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Induction : nombre de cures, médiane (IQR)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">0,0 (0,0—6,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Induction : bolus 5-FU, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">53</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Sans bolus</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">40 (80,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Bolus</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">10 (20,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Induction : adaptation de doses, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">53</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Non</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">7 (14,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Oui</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">43 (86,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Induction : pourcentage d'adaptation, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">53</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Pas d'adaptation</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">6 (12,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    &lt;=20%</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">6 (12,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    &gt;20%</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">38 (76,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Induction : adaptation de dose à C4, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">54</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Non</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">10 (20,4)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    &lt;=20%</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">14 (28,6)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    &gt;20%</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">25 (51,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Induction : adaptation de dose à C8, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">86</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Non</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">1 (5,9)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    &lt;=20%</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">7 (41,2)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    &gt;20%</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">9 (52,9)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Induction : adaptation de dose à C12, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">99</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Non</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">0</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    &lt;=20%</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">2 (50,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    &gt;20%</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">2 (50,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Induction : dose 5-FU, %, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">53</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    40</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">1 (2,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    50</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">3 (6,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    60</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">2 (4,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    70</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">1 (2,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    71</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">1 (2,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    75</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">2 (4,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    80</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">7 (14,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    90</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">1 (2,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    100</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">32 (64,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Induction : dose irinotécan, %, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">53</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    0</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">4 (8,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    30</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">1 (2,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    50</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">6 (12,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    60</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">7 (14,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    70</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">12 (24,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    75</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">1 (2,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    80</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">6 (12,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    90</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">1 (2,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    100</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">12 (24,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Induction : dose oxaliplatine, %, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">53</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    0</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">11 (22,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    50</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">2 (4,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    60</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">3 (6,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    70</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">4 (8,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    75</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">4 (8,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    80</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">8 (16,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    85</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">1 (2,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    90</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">1 (2,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    100</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">16 (32,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Induction : toxicité de grade III-IV, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">53</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Non</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">40 (80,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Oui</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">10 (20,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Induction : asthénie grade 3-4, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">53</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Non</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">48 (96,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Oui</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">2 (4,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Induction : diarrhée grade 3-4, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">53</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Non</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">49 (98,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Oui</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">1 (2,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Induction : nausées/vomissement grade 3-4, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">53</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Non</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">45 (90,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Oui</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">5 (10,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Induction : neutropénie grade 3-4, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">53</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Non</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">49 (98,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Oui</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">1 (2,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Induction : neurotoxicité grade 3-4, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">53</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Non</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">46 (92,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Oui</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">4 (8,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Induction : cytolyse/cholestase grade 3-4, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">53</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Non</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">49 (98,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Oui</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">1 (2,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Chimiothérapie adjuvante, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Non</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">9 (8,7)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Oui</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">94 (91,3)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Adjuvant : nombre de cures, médiane (IQR)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">9</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">7,5 (6,0—12,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Adjuvant : bolus 5-FU, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">12</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Sans bolus</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">80 (87,9)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Bolus</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">11 (12,1)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Adjuvant : adaptation de doses, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">11</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Non</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">4 (4,3)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Oui</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">88 (95,7)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Adjuvant : pourcentage d'adaptation, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">3</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Pas d'adaptation</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">12 (12,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    &lt;=20%</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">8 (8,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    &gt;20%</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">80 (80,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Adjuvant : adaptation de dose à C4, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">20</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Non</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">4 (4,8)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    &lt;=20%</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">33 (39,8)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    &gt;20%</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">46 (55,4)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Adjuvant : adaptation de dose à C8, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">57</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Non</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">2 (4,3)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    &lt;=20%</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">6 (13,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    &gt;20%</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">38 (82,6)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Adjuvant : adaptation de dose à C12, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">72</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Non</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">1 (3,2)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    &lt;=20%</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">6 (19,4)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    &gt;20%</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">24 (77,4)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Adjuvant : dose 5-FU, %, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">11</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    0</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">2 (2,2)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    12</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">1 (1,1)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    40</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">1 (1,1)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    50</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">10 (10,9)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    60</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">1 (1,1)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    70</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">5 (5,4)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    75</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">17 (18,5)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    80</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">17 (18,5)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    100</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">38 (41,3)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Adjuvant : dose irinotécan, %, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">11</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    0</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">17 (18,5)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    50</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">20 (21,7)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    60</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">4 (4,3)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    70</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">15 (16,3)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    75</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">7 (7,6)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    78</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">1 (1,1)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    80</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">14 (15,2)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    90</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">1 (1,1)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    100</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">13 (14,1)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Adjuvant : dose oxaliplatine, %, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">11</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    0</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">46 (50,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    50</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">16 (17,4)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    60</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">2 (2,2)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    70</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">6 (6,5)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    75</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">5 (5,4)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    80</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">9 (9,8)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    100</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">8 (8,7)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Adjuvant : toxicité de grade III-IV, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">11</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Non</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">69 (75,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Oui</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">23 (25,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Adjuvant : asthénie grade 3-4, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">11</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Non</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">88 (95,7)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Oui</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">4 (4,3)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Adjuvant : diarrhée grade 3-4, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">11</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Non</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">83 (90,2)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Oui</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">9 (9,8)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Adjuvant : nausées/vomissement grade 3-4, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">11</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Non</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">84 (91,3)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Oui</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">8 (8,7)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Adjuvant : neutropénie grade 3-4, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">11</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Non</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">88 (95,7)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Oui</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">4 (4,3)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Adjuvant : neurotoxicité grade 3-4, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;">11</td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Non</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">83 (90,2)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Oui</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">9 (9,8)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Adjuvant : cytolyse/cholestase grade 3-4, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">12</td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Non</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">91 (100,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Oui</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">0</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Type de récidive, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Aucune</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">46 (44,7)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Locale</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">18 (17,5)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Métastatique</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">28 (27,2)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Locale et métastatique</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">11 (10,7)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Récidive locale, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Non</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">79 (76,7)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Oui</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">24 (23,3)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Récidive ganglionnaire, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Non</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">93 (90,3)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Oui</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">10 (9,7)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Récidive hépatique, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Non</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">80 (77,7)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Oui</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">23 (22,3)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Récidive péritonéale, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Non</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">90 (87,4)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Oui</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">13 (12,6)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Récidive cérébrale, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Non</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">102 (99,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Oui</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">1 (1,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Récidive pulmonaire, n (%)</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Non</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">93 (90,3)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Oui</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">10 (9,7)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">Récidive autre, n (%)</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Non</td>
+<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole; font-size: 12px;">102 (99,0)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left gt_striped">    Oui</td>
+<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br /></td>
+<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole; font-size: 12px;">1 (1,0)</td></tr>
+  </tbody>
+  <tfoot>
+    <tr class="gt_footnotes">
+      <td class="gt_footnote" style="text-align: justify;" colspan="3"> IQR : intervalle interquartile ; DM : données manquantes par groupe.</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+</body>
+</html>

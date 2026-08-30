@@ -46,7 +46,7 @@
   )
 )
 
-tbl_model_pois <- .model$pois$tbls |>
+tbl_pois <- .model$pois$tbls |>
   map(
     ~ . |>
       gtsum_format(
@@ -125,4 +125,4 @@ tbl_model_pois <- .model$pois$tbls |>
 
 ### OUTPUT ---------------------------------------------------------------------
 
-easy_out(tbl_model_pois)
+easy_out(tbl_pois)

@@ -46,7 +46,7 @@ tbl_tumor
 ## Critère de jugement principal
 
 ```{r}
-#| label: tbl-cjp
+#| label: tbl-outcome
 #| tbl-cap: !expr title_suffix("Nombre de cures reçues")$overall
 #| echo: false
 
@@ -150,11 +150,11 @@ tbl_surv$pfs
 ## Régression de quasi-Poisson
 
 ```{r}
-#| label: tbl-model-pois
+#| label: tbl-pois
 #| tbl-cap: Facteurs associés au nombre total de cures reçues.
 #| echo: false
 
-tbl_model_pois
+tbl_pois
 ```
 
 {{< pagebreak >}}
@@ -162,7 +162,7 @@ tbl_model_pois
 ## Estimation de la survie globale
 
 ```{r}
-#| label: tbl-model-coxph-os
+#| label: tbl-coxph-os
 #| tbl-cap: !expr title_suffix("Estimation de la survie globale")$strata
 #| echo: false
 
@@ -174,7 +174,7 @@ tbl_coxph$os
 ## Estimation de la survie sans récidive
 
 ```{r}
-#| label: tbl-model-coxph-pfs
+#| label: tbl-coxph-pfs
 #| tbl-cap: !expr title_suffix("Estimation de la survie sans récidive")$strata
 #| echo: false
 

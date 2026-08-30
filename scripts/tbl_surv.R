@@ -53,4 +53,4 @@ tbl_surv <- map(set_names(names(.surv$total)), get_tbl_surv)
   )
 })
 
-easy_out_map(tbl_surv)
+easy_out(tbl_surv)

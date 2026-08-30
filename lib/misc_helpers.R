@@ -1,3 +1,10 @@
+export_docx <- \() {
+  withr::with_options(
+    list(hebstr.docx = TRUE, easy_out.export = TRUE, easy_out.quiet = TRUE),
+    auto_exec(include = "^tbl")
+  )
+}
+
 extract_from_dict <- \(data, var_name, var_label, type, level) {
   .var <- data |>
     select({{ var_name }}, {{ var_label }}) |>
@@ -78,6 +85,24 @@ get_label <- \(data, ..., sort = TRUE, indent = "  ") {
     str_flatten(str_glue("{lines}\n{children}"), "\n")
   }
   recurse(data, vars, 0)
+}
+
+get_var_distrib <- \(data, title = NULL, ...) {
+  data |>
+    discard(is.Date) |>
+    use_vars() |>
+    tbl_summary(
+      statistic = opts$vars$stat,
+      digits = opts$digits,
+      missing = "ifany",
+      missing_text = opts$labs$row_missing
+    ) |>
+    add_stat_label(label = opts$vars$label) |>
+    tbl_format(
+      title = title,
+      title_align = "center",
+      ...
+    )
 }
 
 auto_ceiling <- \(time, by) {

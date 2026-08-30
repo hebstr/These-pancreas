@@ -92,17 +92,17 @@ df_recode <- df_init |>
     os_date = date_death,
     os_event = complete.cases(os_date),
     os_tte = time_length(
-      x = interval(date_chir, coalesce(os_date, date_lastnews)),
+      x = interval(date_chir, coalesce(os_date, date_point)),
       unit = "months"
     ),
     os_tte_diag = time_length(
-      x = interval(date_diag, coalesce(os_date, date_lastnews)),
+      x = interval(date_diag, coalesce(os_date, date_point)),
       unit = "months"
     ),
     pfs_date = pmin(date_recidive, date_death, na.rm = TRUE),
     pfs_event = complete.cases(pfs_date),
     pfs_tte = time_length(
-      x = interval(date_chir, coalesce(pfs_date, date_lastnews)),
+      x = interval(date_chir, coalesce(pfs_date, date_point)),
       unit = "months"
     ),
     pfs_cause = case_when(
@@ -256,15 +256,7 @@ df <- df_recode |>
     names()
 )
 
-.check_df <- lst(
-  vars = easy_view(df)$output,
-  distrib_init = df_init |>
-    select(any_of(names(df))) |>
-    easy_label() |>
-    check_distrib(),
-  distrib_recode = check_distrib(df)
-)
-
-### AUTO EXEC ------------------------------------------------------------------
+### RUN ------------------------------------------------------------------------
 
 # auto_exec()
+# export_docx()

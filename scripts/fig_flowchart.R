@@ -99,7 +99,7 @@ flow_box <- \(
 
 ### FIG ------------------------------------------------------------------------
 
-.flow_grob <- {
+.flow_grob <- \() {
   eligible_box <- flow_box(
     label = .flow_labels$eligible,
     x = 0.4,
@@ -110,8 +110,8 @@ flow_box <- \(
 
   exclus_box <- flow_box(
     label = .flow_labels$exclus,
-    x = 0.77,
-    y = 0.74,
+    x = 0.615,
+    y = 0.665,
     just = "left",
     col = col_grey,
     fill = col_grey,
@@ -138,7 +138,7 @@ flow_box <- \(
   inclus_box <- flow_box(
     .flow_labels$inclus,
     x = 0.4,
-    y = 0.6,
+    y = 0.45,
     just = "left"
   )
   inclus_connect <- connectGrob(
@@ -151,14 +151,14 @@ flow_box <- \(
   adjuvant_box <- flow_box(
     label = .flow_labels$groupe_adjuvant,
     x = 0.25,
-    y = 0.35
+    y = 0.23
   )
   adjuvant_connect <- connectGrob(inclus_box, adjuvant_box, type = "N")
 
   periop_box <- flow_box(
     label = .flow_labels$groupe_periop,
     x = 0.55,
-    y = 0.35
+    y = 0.23
   )
   periop_connect <- connectGrob(inclus_box, periop_box, type = "N")
 
@@ -178,7 +178,7 @@ flow_box <- \(
 fig_flowchart <- with_fig_device(
   width = fig_size$width,
   height = fig_size$height,
-  code = .flow_grob
+  code = .flow_grob()
 )
 
 ### OUT ------------------------------------------------------------------------
