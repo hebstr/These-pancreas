@@ -34,7 +34,10 @@ tbl_tumor <- df |>
   add_stat_label(label = opts$vars$label) |>
   gtsum_format() |>
   remove_row_type(variables = "n_recidive_site_meta", type = "missing") |>
-  add_label(name = "Site métastatique", levels = .site_meta_vars) |>
+  add_variable_group_header(
+    header = "Site métastatique",
+    variables = .site_meta_vars
+  ) |>
   add_note(
     vars = "chir_complic_class",
     note = "Selon la classification de Clavien-Dindo."

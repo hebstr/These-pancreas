@@ -1,6 +1,6 @@
 # Project instructions
 
-R analysis project for a retrospective multicentre study on resected pancreatic cancer, producing a statistical analysis report (`index_doc.qmd`, HTML) and a Word table export (`index_tbl.qmd`).
+R analysis project for a retrospective multicentre study on resected pancreatic cancer, producing a statistical analysis report as HTML. The report source sits at the repository root under a dated name, `<date>_rapport-stat.qmd`, one file per version; `_quarto.yml` picks it up through the glob `*_rapport-stat.qmd`, so the render list survives a re-dating. Refer to it as "the report", never by a filename that a new version invalidates.
 
 Global conventions (tone, R idioms, gate ordering, prose rules) come from `~/.claude/CLAUDE.md` and `rules/r.md`. This file carries only what the repository does not state on its own.
 
@@ -14,7 +14,7 @@ Data are stored in a Google Sheets workbook with three sheets, imported into a l
 
 The sheet is read live on every run, so any figure quoted from a past run describes that draw, not the current cohort.
 
-The import pipeline is already configured. `setup.R` attaches the packages, imports the three sheets, and builds the raw dataframe `df_init`, then the analysis-ready dataframe `df`. It is sourced explicitly: manually in an interactive session, or at the top of each Quarto document via `source("setup.R")` immediately before `auto_exec()`. `.Rprofile` only bootstraps `rv` and sets the gargle OAuth email.
+The import pipeline is already configured. `setup.R` attaches the packages, imports the three sheets, and builds the raw dataframe `df_init`, then the analysis-ready dataframe `df`. It is sourced explicitly: manually in an interactive session, or at the top of the report via `source("setup.R")` immediately before `auto_exec()`. `.Rprofile` only bootstraps `rv` and sets the gargle OAuth email.
 
 Do not write import or setup code unless asked.
 
@@ -34,24 +34,23 @@ The main grouping variable is `groupe` (adjuvant only vs peri-operative). It cod
 ```
 setup.R            attaches packages, imports the sheets, builds df (sourced explicitly, before auto_exec)
 lib/               project-local helpers, sourced by setup.R via auto_exec("lib")
-lib/misc_helpers.R export_docx(), the only path that refreshes the Word tables without a render: it sources the tbl_*.R scripts alone under hebstr.docx = TRUE. No caller in the repo, it is run by hand
+lib/misc_helpers.R export_docx(), the only path to the Word tables: it sources the tbl_*.R scripts alone under hebstr.docx = TRUE. No caller in the repo, it is run by hand
 scripts/           R scripts, one script per table or figure
 scripts/var.R      variable dictionary and distribution tables, written to output/ only
 output/            HTML/SVG and PNG exports, plus the JSON and XLSX get_vars_dict() feeds and the PPTX easy_out(pptx = TRUE) writes; one folder per output, kebab-named
-index_doc.qmd      main Quarto document (renders to HTML)
-index_tbl.qmd      Word (.docx) export of the descriptive, survival and multivariable tables
-_quarto.yml        project config: render list, lang, date
+<date>_rapport-stat.qmd  the report, the only Quarto document (renders to HTML)
+_quarto.yml        project config: render list (glob *_rapport-stat.qmd), lang, date
 ```
 
 New scripts go in `scripts/`. New outputs go in `output/`. Use `here::here()` for paths.
 
 ## Script execution
 
-Each Quarto document calls `auto_exec()` at render time, which sources every `.R` file in `scripts/` in alphabetical order **except** those whose name starts with `_` (`auto_exec()` defaults to `exclude = "^_"`, a regular expression matched on the filename).
+The report calls `auto_exec()` at render time, which sources every `.R` file in `scripts/` in alphabetical order **except** those whose name starts with `_` (`auto_exec()` defaults to `exclude = "^_"`, a regular expression matched on the filename).
 
 The underscore prefix is the mechanism for making a script dormant while keeping it in the tree, and it is also the scope boundary of the report: a `_`-prefixed script is neither rendered, nor annexed, nor mentioned. No script is dormant today.
 
-A script without an underscore runs on every render even if the Quarto document never displays its object: it still executes and `easy_out()` still writes to `output/`. A render is therefore a write operation on `output/`, not only a read.
+A script without an underscore runs on every render even if the report never displays its object: it still executes and `easy_out()` still writes to `output/`. A render is therefore a write operation on `output/`, not only a read.
 
 Each non-dormant script is expected to produce a named object (e.g. `tbl_baseline`) that is then referenced in the Quarto document.
 
@@ -59,7 +58,7 @@ Each non-dormant script is expected to produce a named object (e.g. `tbl_baselin
 
 Attached by `setup.R`: `conflicted`, `tidyverse`, `googlesheets4`, `rlang`, `broom`, `labelled`, `gtsummary`, `ggsurvfit`, `survival`, `ggrepel`, `patchwork`, `Gmisc`, `grid`, `hebstr` (https://github.com/hebstr/hebstr, declared as a local path in `rproject.toml:10`, the git entry staying commented out on line 11).
 
-Declared in `rproject.toml` and used via `::` without being attached: `fs` (`backup.R`), `performance` (`scripts/tbl_pois.R`), `car` (`scripts/tbl_coxph.R:63,80`, and the `pois-inline` chunk of `index_doc.qmd`, where `.pois_p()` calls `car::Anova(type = "III")`, which makes `car` a render dependency of the document and not only of the scripts), `cli` (`lib/model_helpers.R`, `lib/tbl_helpers.R`), `openxlsx2` (`backup.R`), `sessioninfo` and `gt` (`index_doc.qmd`), `knitr` (both `.qmd` and `_extensions/hebstr/hebstr-doc/fonts/register.R:75`), `svglite` (set as the knitr device by the extension, `_extension.yml:55`, and called at `register.R:58`), `systemfonts` (`register.R:21,23`) and `xfun` (`register.R:54`), the last three reached through `setup.R:28` on every session and every render. `grid` is declared despite being a base-priority package.
+Declared in `rproject.toml` and used via `::` without being attached: `fs` (`backup.R`), `performance` (`scripts/tbl_pois.R`), `car` (`scripts/tbl_coxph.R:63,80`, and the `pois-inline` chunk of the report, where `.pois_p()` calls `car::Anova(type = "III")`, which makes `car` a render dependency of the document and not only of the scripts), `cli` (`lib/model_helpers.R`, `lib/tbl_helpers.R`), `openxlsx2` (`backup.R`), `sessioninfo` and `gt` (the report), `knitr` (the report and `_extensions/hebstr/hebstr-doc/fonts/register.R:75`), `svglite` (set as the knitr device by the extension, `_extension.yml:55`, and called at `register.R:58`), `systemfonts` (`register.R:21,23`) and `xfun` (`register.R:54`), the last three reached through `setup.R:28` on every session and every render. `grid` is declared despite being a base-priority package.
 
 `rvg` is declared but never called by the project: `easy_out(pptx = TRUE)` reaches it, and hebstr only carries it as a `Suggests`, so the entry has to stay. Packages hebstr carries as `Imports` arrive transitively and are deliberately **not** declared, whether the project never touches them (`officer`, `httpuv`, `broom.helpers`, `jsonlite`, `here`) or calls them by `::` like any declared one (`withr` in `lib/misc_helpers.R`): an undeclared `pkg::` call is the convention here, not an omission.
 
@@ -100,7 +99,7 @@ Default to the packages listed above. Only suggest an additional package if none
 
 ## Project pitfalls
 
-**A table footnote never contains a line break.** Any newline inside a footnote string, literal or interpolated, is swallowed **without a space** in the Word conversion, producing `classificationde Clavien-Dindo` or `95observations`. Beyond one line, build the note with `paste()` and one segment per line, each interpolation fitting on a single `str_glue()` line. HTML re-glues the space and shows nothing, so the check only happens on `index_tbl.docx`. Figure labels are out of scope: there the break is wanted.
+**A table footnote never contains a line break.** Any newline inside a footnote string, literal or interpolated, is swallowed **without a space** in the Word conversion, producing `classificationde Clavien-Dindo` or `95observations`. Beyond one line, build the note with `paste()` and one segment per line, each interpolation fitting on a single `str_glue()` line. HTML re-glues the space and shows nothing, so the check only happens on the `output/tbl-*/*.docx` files `export_docx()` writes. Figure labels are out of scope: there the break is wanted.
 
 **A `Gmisc` grob freezes its geometry at construction, not at drawing.** `boxGrob()` queries the current device to convert text height, and `connectGrob(type = "N")` places its horizontal bar against that same device. A grob built in the Positron plot pane and exported on another canvas comes out deformed. `hebstr::with_fig_device(width, height, code)` is the fix; `scripts/fig_flowchart.R` declares the size once in `fig_size` (`:59`) and passes it to the wrapper (`:178-182`) then to `easy_out()`. The construction device must come from `svglite`, whose font metrics match the export; `pdf(NULL)` and `cairo_pdf` measure differently.
 
@@ -131,7 +130,7 @@ Default to the packages listed above. Only suggest an additional package if none
 | `Ctrl+Shift+Enter` | Run entire script                             |
 | `Ctrl+Shift+M`     | Insert `|>` (native pipe)                     |
 | `Ctrl+Shift+C`     | Comment / uncomment selected lines            |
-| `Ctrl+Shift+K`     | Render the Quarto document (`index_doc.qmd`)  |
+| `Ctrl+Shift+K`     | Render the report                             |
 | `Tab`              | Autocomplete                                  |
 ```
 

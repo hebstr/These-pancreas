@@ -8,3 +8,6 @@ filetree.yml
 
 /.quarto/
 **/*.quarto_ipynb
+
+NOTES.md
+TODO.md

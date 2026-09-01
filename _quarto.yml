@@ -1,6 +1,6 @@
 project:
   type: default
   render:
-    - index_doc.qmd
+    - "*_rapport-stat.qmd"
 lang: fr
 date: last-modified

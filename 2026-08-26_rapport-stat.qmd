@@ -1,6 +1,7 @@
 ---
 title: "Thèse Nesrine"
 subtitle: "Rapport d'analyse statistique"
+date: 2026-08-26
 author:
   name: "Julien ELICES-DIEZ"
   email: "ju.diez@protonmail.com"
@@ -726,7 +727,7 @@ L'hypothèse de proportionnalité n'était pas invalidée ici.
 
 {{< script setup.R >}}
 
-{{< script index_doc.qmd >}}
+{{< script 2026-08-26_rapport-stat.qmd >}}
 
 ```{r}
 #| label: session

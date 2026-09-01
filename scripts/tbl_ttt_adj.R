@@ -19,9 +19,9 @@ tbl_ttt_adj <- df |>
   ) |>
   add_stat_label(label = opts$vars$label) |>
   gtsum_format() |>
-  add_label(
-    name = "Dernière dose reçue",
-    levels = c("adj_dose_5fu", "adj_dose_irino", "adj_dose_oxali")
+  add_variable_group_header(
+    header = "Dernière dose reçue",
+    variables = matches("adj_dose")
   ) |>
   add_note(
     vars = "adj_adapt_pct",

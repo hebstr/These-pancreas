@@ -55,8 +55,6 @@ dict <- extract_from_dict(
   level = level
 )
 
-# source("backup.R")
-
 ### DF -------------------------------------------------------------------------
 
 df_init <- sheets$inclusions |>
@@ -258,5 +256,6 @@ df <- df_recode |>
 
 ### RUN ------------------------------------------------------------------------
 
+# source("backup.R")
 # auto_exec()
 # export_docx()

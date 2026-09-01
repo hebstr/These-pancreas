@@ -20,9 +20,9 @@ tbl_ttt_induc <- .induc$df |>
   ) |>
   add_stat_label(label = opts$vars$label) |>
   gtsum_format() |>
-  add_label(
-    name = "Dernière dose reçue",
-    levels = c("induc_dose_5fu", "induc_dose_irino", "induc_dose_oxali")
+  add_variable_group_header(
+    header = "Dernière dose reçue",
+    variables = matches("induc_dose")
   ) |>
   modify_column_hide(columns = stat_0) |>
   modify_header(all_stat_cols(stat_0 = FALSE) ~ "**{level}<br>(n={n})**") |>
