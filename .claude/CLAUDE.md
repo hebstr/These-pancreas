@@ -40,6 +40,7 @@ scripts/var.R      variable dictionary and distribution tables, written to outpu
 output/            HTML/SVG and PNG exports, plus the JSON and XLSX get_vars_dict() feeds and the PPTX easy_out(pptx = TRUE) writes; one folder per output, kebab-named
 <date>_rapport-stat.qmd  the report, the only Quarto document (renders to HTML)
 _quarto.yml        project config: render list (glob *_rapport-stat.qmd), lang, date
+.gitattributes     puts the HTML outputs and the report HTML through the gtid clean filter
 ```
 
 New scripts go in `scripts/`. New outputs go in `output/`. Use `here::here()` for paths.
@@ -106,6 +107,8 @@ Default to the packages listed above. Only suggest an additional package if none
 **Never pipe an `Rscript` that writes outputs into `grep` or `head`.** SIGPIPE kills R mid-write and leaves inconsistent files (HTML from one state, PNG from another), which yields contradictory checks on the same file.
 
 **`gtsummary` pre-formats numeric fields before passing them to glue**, so a value arrives as `"34,0"` and any formatting function called inside a `statistic` template fails on receiving a string. Clean up afterwards with `modify_table_body()`.
+
+**The `gtid` filter is not versioned, and two binaries escape it.** `.gitattributes` routes `output/**/*.html` and the report HTML through `filter=gtid`, whose driver lives in the local git config (`git config filter.gtid.clean`) and travels with the machine, not with the repository. It renumbers the random ten-letter ids `gt` assigns to its tables, so a re-render diffs on content alone; a clone without the driver sees every HTML change on every render. `git check-attr filter <file>` and `git config --get filter.gtid.clean` settle whether a diff is real. The PNG, SVG and JSON outputs regenerate byte-identically, but `output/fig-flowchart/fig-flowchart.pptx` and `output/var-dict/var-dict.xlsx` carry OOXML creation timestamps and so churn on every run: their diff never means the content moved.
 
 ## Gate
 

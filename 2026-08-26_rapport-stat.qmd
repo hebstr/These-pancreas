@@ -73,7 +73,7 @@ La survie sans récidive était définie comme le délai entre la date de la chi
 
 Un patient orienté vers un protocole de chimiothérapie péri-opératoire devait nécessairement survivre à la phase d'induction et être opéré : considérer la survie globale depuis le diagnostic aurait attribué à ce groupe un temps de survie garanti par construction, d'autant plus long que le délai entre le diagnostic et la chirurgie est long.
 La chirurgie comme point de départ pour la survie globale a été choisie pour contrôler ce biais de temps immortel favorable au protocole de chimiothérapie péri-opératoire.
-Une analyse de sensibilité conservant l'échelle de temps depuis le diagnostic a été conduite, *les patients y entrant dans l'ensemble à risque à la date de leur chirurgie.*
+Une analyse de sensibilité conservant l'échelle de temps depuis le diagnostic a été conduite.
 
 Le premier évènement observé pour chaque patient a été classé en récidive, décès sans récidive, ou censure.
 Les patients sans évènement ont été censurés à la date du recueil dans leur centre (date de point), la date de dernières nouvelles individuelle n'ayant pas été recueillie.
@@ -150,7 +150,7 @@ Les distributions de survie ont été comparées par un test du log-rank, non aj
 
 #### Modèles de Cox
 
-L'effet du protocole de chimiothérapie sur la survie globale et sans récidive a été estimé par un modèle de Cox univariable, *rapporté sous la table d'estimation correspondante.*
+L'effet du protocole de chimiothérapie sur la survie globale et sans récidive a été estimé par un modèle de Cox univariable.
 
 L'effet de chaque facteur associé a été estimé par des modèles de Cox univariables, puis par un modèle multivariable.
 Les variables incluses dans l'analyse multivariable ont été définies a priori sur des considérations cliniques, puis cette liste a été révisée à la lecture des effectifs réellement observés.
