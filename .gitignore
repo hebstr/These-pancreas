@@ -3,8 +3,7 @@
 .Renviron
 Rplots.pdf
 filetree.yml
-/.claude/*
-!/.claude/CLAUDE.md
+/.claude/
 
 /.quarto/
 **/*.quarto_ipynb
