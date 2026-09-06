@@ -2,6 +2,8 @@
 
 n_screening <- 374
 
+motif_non_evalue <- NULL
+
 df_flow <- sheets$exclusions |>
   select(centre, motif_exclusion) |>
   bind_rows(sheets$inclusions[, "centre"]) |>
@@ -23,6 +25,7 @@ n_groupe <- fct_count(df$groupe)
 n <- lst(
   screening = n_screening,
   eligible = nrow(df_flow),
+  non_evalue = screening - eligible,
   exclus = sum(df_flow$motif_exclusion != 0),
   inclus = eligible - exclus,
   chimio_adj = n_groupe$n[1],
@@ -33,18 +36,28 @@ n <- lst(
   pct_chimio_periop = style_pct(chimio_periop / inclus)
 )
 
-stopifnot(n$screening >= n$eligible)
+stopifnot(n$non_evalue >= 0)
 
 ### LABELS ---------------------------------------------------------------------
 
 .flow_labels <- list(
-  eligible = str_glue(
-    "Patients évalués pour éligibilité : {n$eligible}
+  screening = str_glue(
+    "Screening : {n$screening} dossiers
     - Patients >= 18 ans
-    - Diagnostic d’adénocarcinome pancréatique
+    - Diagnostic d’adénocarcinome canalaire pancréatique
     - Indication chirurgicale retenue en RCP
-    - Date opératoire entre 01/2022 et 12/2025"
+    - Date opératoire programmée entre 01/2022 et 12/2025"
   ),
+  non_evalue = str_c(
+    str_glue(
+      "Dossiers non évalués : {n$non_evalue}
+      - Patients opérés hors période
+      - Doublons"
+    ),
+    motif_non_evalue,
+    sep = "\n"
+  ),
+  eligible = str_glue("Patients évalués pour éligibilité : {n$eligible} (100 %)"),
   exclus = str_glue(
     "Patients exclus : {n$exclus} ({n$pct_exclus})\n{label_exclus}"
   ),
@@ -156,6 +169,7 @@ side_connect <- \(from, to) {
 
 .flow_grob <- \() {
   h_trunk <- c(
+    box_height(flow_box(.flow_labels$screening, x = 0.4, y = 0.5)),
     box_height(flow_box(.flow_labels$eligible, x = 0.4, y = 0.5)),
     box_height(flow_box(.flow_labels$inclus, x = 0.4, y = 0.5)),
     max(
@@ -164,29 +178,46 @@ side_connect <- \(from, to) {
     )
   )
   h_side <- c(
+    box_height(side_box(.flow_labels$non_evalue, y = 0.5)),
     box_height(side_box(.flow_labels$exclus, y = 0.5))
   )
 
   gaps <- c(h_side + 2 * clear_side, gap_trunk)
   y_trunk <- stack_y(h_trunk, gaps)
-  i_side <- seq_along(h_side)
-  y_side <- y_trunk[i_side] - h_trunk[i_side] / 2 - gaps[i_side] / 2
+  y_side <- y_trunk[1:2] - h_trunk[1:2] / 2 - gaps[1:2] / 2
 
-  eligible_box <- flow_box(
-    label = .flow_labels$eligible,
+  screening_box <- flow_box(
+    label = .flow_labels$screening,
     x = 0.4,
     y = y_trunk[1],
     just = "left",
     col = col_dark
   )
 
-  exclus_box <- side_box(.flow_labels$exclus, y = y_side[1])
+  non_evalue_box <- side_box(.flow_labels$non_evalue, y = y_side[1])
+  non_evalue_connect <- side_connect(screening_box, non_evalue_box)
+
+  eligible_box <- flow_box(
+    label = .flow_labels$eligible,
+    x = 0.4,
+    y = y_trunk[2],
+    just = "left",
+    col = col_dark
+  )
+  eligible_connect <- connectGrob(
+    screening_box,
+    eligible_box,
+    type = "vertical",
+    lty_gp = gpar(col = base_textcolor, lwd = 1.5)
+  )
+
+  exclus_box <- side_box(.flow_labels$exclus, y = y_side[2])
   exclus_connect <- side_connect(eligible_box, exclus_box)
 
   inclus_box <- flow_box(
     .flow_labels$inclus,
     x = 0.4,
-    y = y_trunk[2],
+    y = y_trunk[3],
     just = "left"
   )
   inclus_connect <- connectGrob(
@@ -199,23 +230,27 @@ side_connect <- \(from, to) {
   adjuvant_box <- flow_box(
     label = .flow_labels$groupe_adjuvant,
     x = 0.25,
-    y = y_trunk[3]
+    y = y_trunk[4]
   )
   adjuvant_connect <- connectGrob(inclus_box, adjuvant_box, type = "N")
 
   periop_box <- flow_box(
     label = .flow_labels$groupe_periop,
     x = 0.55,
-    y = y_trunk[3]
+    y = y_trunk[4]
   )
   periop_connect <- connectGrob(inclus_box, periop_box, type = "N")
 
   grobTree(
+    screening_box,
+    non_evalue_box,
     eligible_box,
     exclus_box,
     inclus_box,
     adjuvant_box,
     periop_box,
+    non_evalue_connect,
+    eligible_connect,
     exclus_connect,
     inclus_connect,
     adjuvant_connect,
@@ -223,7 +258,7 @@ side_connect <- \(from, to) {
   )
 }
 
-fig_flowchart <- with_fig_device(
+fig_flowchart_screening <- with_fig_device(
   width = fig_size$width,
   height = fig_size$height,
   code = .flow_grob()
@@ -232,7 +267,7 @@ fig_flowchart <- with_fig_device(
 ### OUT ------------------------------------------------------------------------
 
 easy_out(
-  x = fig_flowchart,
+  x = fig_flowchart_screening,
   width = fig_size$width,
   height = fig_size$height,
   pptx = TRUE

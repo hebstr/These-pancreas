@@ -129,7 +129,7 @@
     "p_miss": 0.01,
     "range": null,
     "q1_med_q3": null,
-    "levels": ["M0"]
+    "levels": ["0"]
   },
   {
     "pos": 13,
@@ -905,26 +905,202 @@
     "pos": 83,
     "variable": "total_ei",
     "label": "Toxicité de grade III-IV",
-    "type": "bin",
-    "n_miss": 3,
-    "p_miss": 0.029,
-    "range": [0, 1],
+    "type": "fct",
+    "n_miss": 5,
+    "p_miss": 0.049,
+    "range": null,
     "q1_med_q3": null,
-    "levels": null
+    "levels": ["Non", "Oui"]
   },
   {
     "pos": 84,
-    "variable": "n_recidive_site_meta",
-    "label": "Nombre de sites métastatiques",
+    "variable": "total_ei_asthenie",
+    "label": "Asthénie grade 3-4",
     "type": "fct",
-    "n_miss": 62,
-    "p_miss": 0.602,
+    "n_miss": 5,
+    "p_miss": 0.049,
     "range": null,
     "q1_med_q3": null,
-    "levels": ["1", ">=2"]
+    "levels": ["Non", "Oui"]
   },
   {
     "pos": 85,
+    "variable": "total_ei_dig",
+    "label": "Diarrhée grade 3-4",
+    "type": "fct",
+    "n_miss": 5,
+    "p_miss": 0.049,
+    "range": null,
+    "q1_med_q3": null,
+    "levels": ["Non", "Oui"]
+  },
+  {
+    "pos": 86,
+    "variable": "total_ei_vom",
+    "label": "Nausées/vomissement grade 3-4",
+    "type": "fct",
+    "n_miss": 5,
+    "p_miss": 0.049,
+    "range": null,
+    "q1_med_q3": null,
+    "levels": ["Non", "Oui"]
+  },
+  {
+    "pos": 87,
+    "variable": "total_ei_neutrop",
+    "label": "Neutropénie grade 3-4",
+    "type": "fct",
+    "n_miss": 5,
+    "p_miss": 0.049,
+    "range": null,
+    "q1_med_q3": null,
+    "levels": ["Non", "Oui"]
+  },
+  {
+    "pos": 88,
+    "variable": "total_ei_neuro",
+    "label": "Neurotoxicité grade 3-4",
+    "type": "fct",
+    "n_miss": 5,
+    "p_miss": 0.049,
+    "range": null,
+    "q1_med_q3": null,
+    "levels": ["Non", "Oui"]
+  },
+  {
+    "pos": 89,
+    "variable": "total_ei_cytolyse",
+    "label": "Cytolyse/cholestase grade 3-4",
+    "type": "fct",
+    "n_miss": 6,
+    "p_miss": 0.058,
+    "range": null,
+    "q1_med_q3": null,
+    "levels": ["Non", "Oui"]
+  },
+  {
+    "pos": 90,
+    "variable": "total_adapt",
+    "label": "Adaptation de doses",
+    "type": "fct",
+    "n_miss": 3,
+    "p_miss": 0.029,
+    "range": null,
+    "q1_med_q3": null,
+    "levels": ["Non", "Oui"]
+  },
+  {
+    "pos": 91,
+    "variable": "total_adapt_pct",
+    "label": "Pourcentage d'adaptation",
+    "type": "fct",
+    "n_miss": 5,
+    "p_miss": 0.049,
+    "range": null,
+    "q1_med_q3": null,
+    "levels": ["Pas d'adaptation", "<=20%", ">20%"]
+  },
+  {
+    "pos": 92,
+    "variable": "total_dose_5fu",
+    "label": "Dernière dose reçue : 5-FU, %",
+    "type": "num",
+    "n_miss": 5,
+    "p_miss": 0.049,
+    "range": [0, 100],
+    "q1_med_q3": [75, 80, 100],
+    "levels": null
+  },
+  {
+    "pos": 93,
+    "variable": "total_dose_irino",
+    "label": "Dernière dose reçue : Irinotécan, %",
+    "type": "num",
+    "n_miss": 5,
+    "p_miss": 0.049,
+    "range": [0, 100],
+    "q1_med_q3": [50, 70, 80],
+    "levels": null
+  },
+  {
+    "pos": 94,
+    "variable": "total_dose_oxali",
+    "label": "Dernière dose reçue : Oxaliplatine, %",
+    "type": "num",
+    "n_miss": 5,
+    "p_miss": 0.049,
+    "range": [0, 100],
+    "q1_med_q3": [0, 25, 70],
+    "levels": null
+  },
+  {
+    "pos": 95,
+    "variable": "total_adapt_c4",
+    "label": "Adaptation de dose à C4",
+    "type": "fct",
+    "n_miss": 9,
+    "p_miss": 0.087,
+    "range": null,
+    "q1_med_q3": null,
+    "levels": ["Non", "<=20%", ">20%"]
+  },
+  {
+    "pos": 96,
+    "variable": "total_adapt_c8",
+    "label": "Adaptation de dose à C8",
+    "type": "fct",
+    "n_miss": 40,
+    "p_miss": 0.388,
+    "range": null,
+    "q1_med_q3": null,
+    "levels": ["Non", "<=20%", ">20%"]
+  },
+  {
+    "pos": 97,
+    "variable": "total_adapt_c12",
+    "label": "Adaptation de dose à C12",
+    "type": "fct",
+    "n_miss": 68,
+    "p_miss": 0.66,
+    "range": null,
+    "q1_med_q3": null,
+    "levels": ["Non", "<=20%", ">20%"]
+  },
+  {
+    "pos": 98,
+    "variable": "recidive_none",
+    "label": "Type de récidive : Aucune",
+    "type": "fct",
+    "n_miss": 0,
+    "p_miss": 0,
+    "range": null,
+    "q1_med_q3": null,
+    "levels": ["Non", "Oui"]
+  },
+  {
+    "pos": 99,
+    "variable": "recidive_loc",
+    "label": "Type de récidive : Locale",
+    "type": "fct",
+    "n_miss": 0,
+    "p_miss": 0,
+    "range": null,
+    "q1_med_q3": null,
+    "levels": ["Non", "Oui"]
+  },
+  {
+    "pos": 100,
+    "variable": "recidive_meta",
+    "label": "Type de récidive : Métastatique",
+    "type": "fct",
+    "n_miss": 0,
+    "p_miss": 0,
+    "range": null,
+    "q1_med_q3": null,
+    "levels": ["Non", "Oui"]
+  },
+  {
+    "pos": 101,
     "variable": "os_event",
     "label": "Décès toutes causes",
     "type": "bin",
@@ -935,7 +1111,7 @@
     "levels": null
   },
   {
-    "pos": 86,
+    "pos": 102,
     "variable": "os_tte",
     "label": "Délai entre la chirurgie et le décès toutes causes, mois",
     "type": "num",
@@ -946,7 +1122,7 @@
     "levels": null
   },
   {
-    "pos": 87,
+    "pos": 103,
     "variable": "os_tte_diag",
     "label": "Délai entre le diagnostic et le décès toutes causes, mois",
     "type": "num",
@@ -957,7 +1133,7 @@
     "levels": null
   },
   {
-    "pos": 88,
+    "pos": 104,
     "variable": "pfs_event",
     "label": "Récidive ou décès toutes causes",
     "type": "bin",
@@ -968,7 +1144,7 @@
     "levels": null
   },
   {
-    "pos": 89,
+    "pos": 105,
     "variable": "pfs_tte",
     "label": "Délai entre la chirurgie et la récidive ou le décès toutes causes, mois",
     "type": "num",
@@ -979,7 +1155,7 @@
     "levels": null
   },
   {
-    "pos": 90,
+    "pos": 106,
     "variable": "pfs_cause",
     "label": "Premier évènement",
     "type": "fct",

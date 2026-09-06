@@ -126,3 +126,21 @@ tbl_pois <- .model$pois$tbls |>
 ### OUTPUT ---------------------------------------------------------------------
 
 easy_out(tbl_pois)
+
+### QMD ------------------------------------------------------------------------
+
+.pois_estim <- \(part, ...) {
+  inline_text(
+    .model$pois$tbls[[part]],
+    ...,
+    pattern = paste0("{estimate} ", opts$ci$data)
+  )
+}
+
+.pois_p <- \(variable) {
+  car::Anova(.model_pois_fit, type = "III") |>
+    tidy() |>
+    filter(term == variable) |>
+    pull(p.value) |>
+    style_pvalue(digits = 2, prepend_p = TRUE)
+}

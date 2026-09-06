@@ -3,4 +3,3 @@ project:
   render:
     - "*_rapport-stat.qmd"
 lang: fr
-date: last-modified

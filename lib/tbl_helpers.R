@@ -27,6 +27,10 @@ strip_label <- \(
   set_variable_labels(data, .labels = new, .strict = FALSE)
 }
 
+qmd_only <- \(x) {
+  if (!getOption("hebstr.docx", FALSE)) x
+}
+
 tbl_cell <- \(tbl, variable, level = NULL, column = "stat_0") {
   body <- tbl[["_data"]]
 
@@ -56,6 +60,12 @@ tbl_med_iqr <- \(tbl, variable, level = NULL, column = "stat_0") {
   parts <- tbl_cell(tbl, variable, level, column)
 
   lst(med = parts[1], iqr = str_replace(parts[2], "\\p{Pd}", " à "))
+}
+
+med_iqr <- \(x, digits = 1) {
+  q <- quantile(x, c(0.25, 0.5, 0.75), na.rm = TRUE) |> style_number(digits = digits)
+
+  lst(med = q[[2]], iqr = str_c(q[[1]], " à ", q[[3]]))
 }
 
 style_strata <- \(data, palette) {

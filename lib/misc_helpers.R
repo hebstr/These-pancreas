@@ -74,7 +74,7 @@ get_label <- \(data, ..., sort = TRUE, indent = "  ") {
     var <- vars[[1]]
     pad <- strrep(indent, depth)
     .n <- count(data, !!var, name = ".n", sort = sort)
-    lines <- str_glue("{pad}- {.n[[1]]} (n = {.n$.n})")
+    lines <- str_glue("{pad}- {.n[[1]]} : {.n$.n}")
     if (length(vars) == 1L) {
       return(str_flatten(lines, "\n"))
     }

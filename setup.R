@@ -34,7 +34,11 @@ set_opts(
 
 opts <- get_opts()
 
+.test_args <- all_tests("wilcox.test") ~ list(exact = FALSE)
+
 update_geom_defaults("text", list(family = opts$font$alpha))
+
+.fig_palette <- c(opts$color$base, opts$color$cold[2])
 
 ### GS IMPORT ------------------------------------------------------------------
 
@@ -55,7 +59,7 @@ dict <- extract_from_dict(
   level = level
 )
 
-### DF -------------------------------------------------------------------------
+### DF RECODE ------------------------------------------------------------------
 
 df_init <- sheets$inclusions |>
   rownames_to_column() |>
@@ -72,7 +76,6 @@ df_recode <- df_init |>
     across(starts_with("tm_stade"), factor),
     tm_stade_t = fct_collapse(tm_stade_t, "T1-T2" = 1:2, "T3-T4" = 3:4),
     tm_stade_n = tm_stade_n |> fct_relabel(~ str_glue("N{.x}")),
-    tm_stade_m = tm_stade_m |> fct_relabel(~ str_glue("M{.x}")),
     chir_complic_class_maj = chir_complic_class >= 3,
     chir_complic_class = pmin(chir_complic_class, 3),
     ca_diag_bin = ca_diag >= 500,
@@ -83,10 +86,53 @@ df_recode <- df_init |>
     n_cures_complete_sub = n_cures_complete &
       !(induc_adapt_pct %in% 2) &
       !(adj_adapt_pct %in% 2),
-    total_ei = coalesce(induc_ei, adj_ei),
-    n_recidive_site_meta = rowSums(across(starts_with("recidive_site_meta"))) |>
-      na_if(0),
-    n_recidive_site_meta = if_else(n_recidive_site_meta == 1, 1, 2),
+    across(
+      starts_with("induc_ei"),
+      \(x) {
+        y <- pick(starts_with("adj_ei"))[[
+          str_replace(cur_column(), "^induc", "adj")
+        ]]
+        case_when(
+          x == 1 | y == 1 ~ 1,
+          (induc_nb > 0 & is.na(x)) | (adj_nb > 0 & is.na(y)) ~ NA,
+          induc_nb > 0 | adj_nb > 0 ~ 0
+        )
+      },
+      .names = '{str_replace(.col, "^induc", "total")}'
+    ),
+    total_adapt = case_when(
+      induc_adapt == 1 | adj_adapt == 1 ~ 1,
+      (induc_nb > 0 & is.na(induc_adapt)) |
+        (adj_nb > 0 & is.na(adj_adapt)) ~ NA,
+      induc_nb > 0 | adj_nb > 0 ~ 0
+    ),
+    across(
+      c(induc_adapt_pct, starts_with("induc_dose")),
+      \(x) {
+        y <- pick(c(adj_adapt_pct, starts_with("adj_dose")))[[
+          str_replace(cur_column(), "^induc", "adj")
+        ]]
+        if_else(adj_nb > 0, y, x)
+      },
+      .names = '{str_replace(.col, "^induc", "total")}'
+    ),
+    across(
+      starts_with("induc_adapt_c"),
+      \(x) {
+        y <- pick(starts_with("adj_adapt_c"))[[
+          str_replace(cur_column(), "^induc", "adj")
+        ]]
+        cure <- as.numeric(str_extract(cur_column(), "\\d+$"))
+        case_when(
+          (induc_nb >= cure & is.na(x)) | (adj_nb >= cure & is.na(y)) ~ NA,
+          induc_nb >= cure | adj_nb >= cure ~ pmax(x, y, na.rm = TRUE)
+        )
+      },
+      .names = '{str_replace(.col, "^induc", "total")}'
+    ),
+    recidive_none = recidive_type == 0,
+    recidive_loc = recidive_type == 1 | recidive_type == 3,
+    recidive_meta = recidive_type == 2 | recidive_type == 3,
     os_date = date_death,
     os_event = complete.cases(os_date),
     os_tte = time_length(
@@ -123,31 +169,70 @@ df_recode <- df_init |>
     by = 5
   )
 
+### DF LABEL -------------------------------------------------------------------
+
+.grp_lab <- lst(
+  recidive = dict$var$recidive_type,
+  dose = "Dernière dose reçue"
+)
+
+.lab_total <- names(df_recode) |>
+  str_subset("^total_") |>
+  set_names() |>
+  map_chr(\(x) {
+    lab <- dict$var[[str_replace(x, "^total", "induc")]] |>
+      str_remove("^Induction : (dose )?") |>
+      str_replace("^\\p{L}", toupper)
+    if (str_starts(x, "total_dose")) str_c(.grp_lab$dose, " : ", lab) else lab
+  })
+
+.val_lab <- lst(
+  yn = c("Non" = 0, "Oui" = 1),
+  adapt = c("Non" = 0, "<=20%" = 1, ">20%" = 2)
+)
+
+.vars_val <- lst(
+  yn = c(
+    str_subset(names(df_recode), "^total_ei"),
+    "total_adapt",
+    str_subset(names(df_recode), "^recidive_(none|loc|meta)$")
+  ),
+  adapt = str_subset(names(df_recode), "^total_adapt_c")
+)
+
 df <- df_recode |>
   easy_label(
-    variable = list(
-      age = "Âge au diagnostic, années",
-      age_cat = "Âge au diagnostic, années",
-      age_incr = "Âge au diagnostic, années",
-      time_diag_chir = "Délai entre diagnostic et chirurgie, mois",
-      chir_complic_class_maj = "Complication post-opératoire majeure",
-      ca_diag_bin = "CA 19-9 au diagnostic >= 500 UI/L",
-      n_cures = "Nombre total de cures",
-      n_cures_complete = "Nombre total de cures >= 12",
-      n_cures_complete_sub = "Nombre total de cures >= 12 : avec dose relative moyenne >= 80 %",
-      total_ei = "Toxicité de grade III-IV",
-      n_recidive_site_meta = "Nombre de sites métastatiques",
-      os_event = "Décès toutes causes",
-      os_tte = "Délai entre la chirurgie et le décès toutes causes, mois",
-      os_tte_diag = "Délai entre le diagnostic et le décès toutes causes, mois",
-      pfs_event = "Récidive ou décès toutes causes",
-      pfs_tte = "Délai entre la chirurgie et la récidive ou le décès toutes causes, mois",
-      pfs_cause = "Premier évènement"
+    variable = c(
+      as.list(.lab_total),
+      list(
+        age = "Âge au diagnostic, années",
+        age_cat = "Âge au diagnostic, années",
+        age_incr = "Âge au diagnostic, années",
+        time_diag_chir = "Délai entre diagnostic et chirurgie, mois",
+        chir_complic_class_maj = "Complication post-opératoire majeure",
+        ca_diag_bin = "CA 19-9 au diagnostic >= 500 UI/L",
+        n_cures = "Nombre total de cures",
+        n_cures_complete = "Nombre total de cures >= 12",
+        n_cures_complete_sub = "Nombre total de cures >= 12 : avec dose relative moyenne >= 80 %",
+        recidive_none = str_c(.grp_lab$recidive, " : Aucune"),
+        recidive_loc = str_c(.grp_lab$recidive, " : Locale"),
+        recidive_meta = str_c(.grp_lab$recidive, " : Métastatique"),
+        os_event = "Décès toutes causes",
+        os_tte = "Délai entre la chirurgie et le décès toutes causes, mois",
+        os_tte_diag = "Délai entre le diagnostic et le décès toutes causes, mois",
+        pfs_event = "Récidive ou décès toutes causes",
+        pfs_tte = "Délai entre la chirurgie et la récidive ou le décès toutes causes, mois",
+        pfs_cause = "Premier évènement"
+      )
     ),
-    value = list(
-      chir_complic_class = c("Pas de complication" = 0, "I" = 1, "II" = 2, "III-IV-V" = 3),
-      n_recidive_site_meta = c("1" = 1, ">=2" = 2),
-      pfs_cause = c("Censure" = 0, "Récidive" = 1, "Décès sans récidive" = 2)
+    value = c(
+      map(set_names(.vars_val$yn), ~ .val_lab$yn),
+      map(set_names(.vars_val$adapt), ~ .val_lab$adapt),
+      list(
+        chir_complic_class = c("Pas de complication" = 0, "I" = 1, "II" = 2, "III-IV-V" = 3),
+        pfs_cause = c("Censure" = 0, "Récidive" = 1, "Décès sans récidive" = 2),
+        total_adapt_pct = c("Pas d'adaptation" = 0, "<=20%" = 1, ">20%" = 2)
+      )
     ),
     drop = TRUE
   )
@@ -208,8 +293,6 @@ df <- df_recode |>
   )
 )
 
-.fig_palette <- c(opts$color$base, opts$color$cold[2])
-
 ### MODEL ----------------------------------------------------------------------
 
 .model <- lst()
@@ -244,15 +327,12 @@ df <- df_recode |>
     mutate(groupe = fct_drop(groupe))
 )
 
-.tox_vars <- map(
-  set_names(c("induc", "adj")),
-  ~ names(df) |>
-    str_subset(str_glue("{.x}_ei_")) |>
-    set_names() |>
-    imap_dbl(~ sum(as.numeric(df[[.]]), na.rm = TRUE)) |>
-    sort(decreasing = TRUE) |>
-    names()
-)
+.tox_vars <- names(df) |>
+  str_subset("total_ei_") |>
+  set_names() |>
+  imap_dbl(~ sum(as.numeric(df[[.]]), na.rm = TRUE)) |>
+  sort(decreasing = TRUE) |>
+  names()
 
 ### RUN ------------------------------------------------------------------------
 

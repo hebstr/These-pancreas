@@ -1,14 +1,12 @@
 ---
 title: "Thèse Nesrine"
 subtitle: "Rapport d'analyse statistique"
-date: 2026-08-26
+date: 2026-09-06
 author:
   name: "Julien ELICES-DIEZ"
   email: "ju.diez@protonmail.com"
 format:
-  hebstr-doc-html:
-    code-tools:
-      source: https://github.com/hebstr/These-pancreas
+  hebstr-doc-html: {}
 ---
 
 ```{r}
@@ -20,21 +18,19 @@ source("setup.R")
 auto_exec()
 ```
 
-::: callout-warning
-# Avant-dernière version 3.0.0
-
-- plan OK
-- méthode OK
-- résultats OK
-- discussion > principaux résultats OK
-- **reste à faire : compléter discussion > limites + détails lecture/interprétation des modèles**
-:::
+```{=html}
+<style>
+p {
+  text-align: justify
+}
+</style>
+```
 
 # Matériel et méthodes
 
 ## Design et aspects réglementaires
 
-Il s'agissait d'une étude observationnelle, rétrospective, multicentrique, conduite dans quatre centres hospitaliers ou hospitalo-universitaires français : CHU Nantes, CHD La Roche-sur-Yon, CHU Angers et CHU Lyon.
+Il s'agissait d'une étude observationnelle, rétrospective, multicentrique, conduite dans quatre centres hospitaliers français : CHU Nantes, CHD La Roche-sur-Yon, CHU Angers et CHU Lyon.
 
 Les données ont été recueillies rétrospectivement à partir du dossier patient informatisé.
 L'étude a été menée conformément à la méthodologie de référence MR004 de la Commission nationale de l'informatique et des libertés (CNIL), qui encadre les recherches n'impliquant pas la personne humaine et les réutilisations de données de santé déjà recueillies.
@@ -49,7 +45,7 @@ Les objectifs secondaires étaient les suivants :
 
 - Comparer la survie globale et la survie sans récidive entre les deux protocoles de chimiothérapie
 - Décrire les caractéristiques des patients à l'inclusion, les caractéristiques tumorales et la prise en charge chirurgicale
-- Décrire, pour chaque phase de chimiothérapie, les doses reçues, leurs adaptations et la toxicité chimio-induite de grade III-IV
+- Décrire les doses reçues, leurs adaptations et la toxicité chimio-induite de grade III-IV sur l'ensemble du traitement
 
 ## Critères de jugement
 
@@ -95,6 +91,7 @@ Les critères d'exclusion étaient les suivants :
 
 Les tests statistiques étaient bilatéraux.
 Le degré de significativité était défini par une p-valeur strictement inférieure au seuil de 5 %.
+Les p-valeurs étaient rapportées avec deux chiffres significatifs.
 Pour chaque variable, le degré de significativité rapporté était global.
 Il a été obtenu par un test du rapport de vraisemblance pour les modèles de comptage et pour les modèles de Cox univariables, et par un test de Wald dans les modèles de Cox multivariables en cas de stratification.
 L'âge a été introduit dans les modèles après discrétisation en tranches de 5 ans : l'estimation rapportée correspondait à l'effet d'une tranche de 5 ans supplémentaire.
@@ -104,13 +101,17 @@ L'âge a été introduit dans les modèles après discrétisation en tranches de
 Les variables catégorielles ont été présentées sous forme d'effectif et de pourcentage.
 Les variables continues ont été présentées sous forme de médiane avec leur intervalle interquartile.
 
-Les caractéristiques décrites étaient celles des patients à l'inclusion, les caractéristiques tumorales et la prise en charge chirurgicale, le type et le siège de la récidive, les doses de chimiothérapie reçues avec leurs adaptations, ainsi que la toxicité chimio-induite de grade III-IV.
-Elles ont été décrites globalement et selon le protocole de chimiothérapie, sans test de comparaison entre les groupes.
+Les caractéristiques décrites étaient celles des patients à l'inclusion, les caractéristiques tumorales et la prise en charge chirurgicale, le type de récidive, les doses de chimiothérapie reçues avec leurs adaptations, ainsi que la toxicité chimio-induite de grade III-IV.
+Elles ont été décrites globalement et selon le protocole de chimiothérapie.
+
+Les deux protocoles ont été comparés par un test du khi-deux d'indépendance sans correction de continuité pour les variables catégorielles, remplacé par un test exact de Fisher dès qu'un effectif théorique était inférieur à 5, et par un test de Wilcoxon-Mann-Whitney pour les variables continues.
+Ces comparaisons étaient descriptives.
 
 La résécabilité de la tumeur au diagnostic a été classée selon les critères du *National Comprehensive Cancer Network* (NCCN), en tumeur résécable d'emblée, borderline ou localement avancée.
 Les complications post-opératoires ont été cotées selon la classification de Clavien-Dindo, une complication majeure étant définie par un grade supérieur ou égal à III.
-Les doses reçues et leurs adaptations, ainsi que la toxicité chimio-induite, ont été décrites séparément selon la phase de chimiothérapie, chez les patients ayant reçu au moins une cure de la phase considérée.
+Les doses reçues, leurs adaptations et la toxicité chimio-induite ont été décrites sur l'ensemble du traitement, chez les patients ayant reçu au moins une cure, sans distinguer la phase d'induction de la phase adjuvante.
 La phase d'induction ne concernait que le groupe péri-opératoire.
+La dose et le pourcentage d'adaptation retenus étaient ceux de la dernière cure.
 La toxicité chimio-induite rapportée était la toxicité de grade III-IV cotée selon la *Common Terminology Criteria for Adverse Events* (CTCAE) v5.0.
 
 ### Analyse du critère de jugement principal
@@ -191,7 +192,7 @@ L'inventaire détaillé de l'environnement et des packages utilisés est disponi
 
 ## Flowchart
 
-Dans un premier temps, `r n$eligible` patients ont été retenus sur les critères d'éligibilité.
+Dans un premier temps, l'analyse de `r n$screening` dossiers a permis de retenir `r n$eligible` patients sur les critères d'éligibilité.
 Parmi ces patients, `r n$exclus` (`r n$pct_exclus`) ont été exclus.
 Au total, ont été inclus `r n$inclus` (`r n$pct_inclus`) patients adultes atteints d'un adénocarcinome pancréatique opéré entre le 1er janvier 2022 et le 31 décembre 2025 inclus, au CHU de Nantes ou dans un autre centre (4 centres au total).
 
@@ -207,79 +208,10 @@ knitr::include_graphics("output/fig-flowchart/fig-flowchart.svg")
 
 ## Analyses descriptives
 
-```{r}
-#| label: descr-inline
-
-.descr <- lst(
-  age = tbl_med_iqr(tbl_baseline, "age"),
-  homme = tbl_n_pct(tbl_baseline, "sexe", level = "Homme"),
-  delai = map(
-    lst(total = "stat_0", adj = "stat_1", periop = "stat_2"),
-    ~ tbl_med_iqr(tbl_tumor, "time_diag_chir", column = .x)
-  ),
-  recidive = lst(
-    n = sum(df$recidive_type != "Aucune"),
-    pct = style_pct(mean(df$recidive_type != "Aucune")),
-    locale = tbl_n_pct(tbl_tumor, "recidive_type", level = "Locale"),
-    meta = tbl_n_pct(tbl_tumor, "recidive_type", level = "Métastatique"),
-    mixte = tbl_n_pct(
-      tbl_tumor,
-      "recidive_type",
-      level = "Locale et métastatique"
-    )
-  ),
-  induc_nb = tbl_med_iqr(tbl_outcome, "induc_nb", column = "stat_2"),
-  adj_chimio = map(
-    lst(total = "stat_0", adj = "stat_1", periop = "stat_2"),
-    ~ tbl_n_pct(tbl_outcome, "adj_chimio", column = .x)
-  ),
-  adj_nb = map(
-    lst(adj = "stat_1", periop = "stat_2"),
-    ~ tbl_med_iqr(tbl_outcome, "adj_nb", column = .x)
-  ),
-  n_cures = tbl_med_iqr(tbl_outcome, "n_cures"),
-  resec = map(
-    lst(adj = "stat_1", periop = "stat_2"),
-    ~ tbl_n_pct(
-      tbl_tumor,
-      "chir_resec",
-      level = "Résécable d'emblée",
-      column = .x
-    )
-  ),
-  adapt = lst(
-    induc = tbl_n_pct(tbl_ttt_induc, "induc_adapt_pct", level = ">20%"),
-    adj = tbl_n_pct(tbl_ttt_adj, "adj_adapt_pct", level = ">20%")
-  ),
-  tox_bras = map(
-    lst(adj = "stat_1", periop = "stat_2"),
-    ~ tbl_n_pct(tbl_tox_adj, "adj_ei", column = .x)
-  ),
-  tox_induc = map(
-    lst(
-      vom = "induc_ei_vom",
-      neuro = "induc_ei_neuro",
-      asth = "induc_ei_asthenie"
-    ),
-    ~ tbl_n_pct(tbl_tox_induc, .x)
-  ),
-  tox_adj = map(
-    lst(
-      dig = "adj_ei_dig",
-      neuro = "adj_ei_neuro",
-      vom = "adj_ei_vom",
-      asth = "adj_ei_asthenie",
-      neutrop = "adj_ei_neutrop"
-    ),
-    ~ tbl_n_pct(tbl_tox_adj, .x)
-  )
-)
-```
-
 ### Caractéristiques des patients à l'inclusion
 
 Parmi les `r n$inclus` patients inclus, `r n$chimio_adj` (`r n$pct_chimio_adj`) étaient assignés dans le protocole de chimiothérapie adjuvante seule, contre `r n$chimio_periop` (`r n$pct_chimio_periop`) dans le protocole de chimiothérapie péri-opératoire.
-L'âge médian au diagnostic était de `r .descr$age$med` ans (IQR `r .descr$age$iqr`), `r .descr$homme$n` patients (`r .descr$homme$pct`) étaient des hommes.
+L'âge médian au diagnostic était de `r .baseline$age$med` ans (IQR `r .baseline$age$iqr`), `r .baseline$homme$n` patients (`r .baseline$homme$pct`) étaient des hommes.
 
 {{< script scripts/tbl_baseline.R >}}
 
@@ -292,8 +224,8 @@ tbl_baseline
 
 ### Caractéristiques tumorales, prise en charge chirurgicale et récidive
 
-Le délai médian entre le diagnostic et la chirurgie était de `r .descr$delai$total$med` mois (IQR `r .descr$delai$total$iqr`), avec un écart marqué entre les deux protocoles : `r .descr$delai$adj$med` mois (IQR `r .descr$delai$adj$iqr`) dans le groupe adjuvant seul contre `r .descr$delai$periop$med` mois (IQR `r .descr$delai$periop$iqr`) dans le groupe péri-opératoire.
-Au terme du suivi, `r .descr$recidive$n` patients sur `r n$inclus` (`r .descr$recidive$pct`) avaient récidivé : `r .descr$recidive$locale$n` récidives locales (`r .descr$recidive$locale$pct`), `r .descr$recidive$meta$n` métastatiques (`r .descr$recidive$meta$pct`) et `r .descr$recidive$mixte$n` à la fois locales et métastatiques (`r .descr$recidive$mixte$pct`).
+Le délai médian entre le diagnostic et la chirurgie était de `r .tumor$delai$total$med` mois (IQR `r .tumor$delai$total$iqr`), avec un écart marqué entre les deux protocoles : `r .tumor$delai$adj$med` mois (IQR `r .tumor$delai$adj$iqr`) dans le groupe adjuvant seul contre `r .tumor$delai$periop$med` mois (IQR `r .tumor$delai$periop$iqr`) dans le groupe péri-opératoire.
+Au terme du suivi, `r .tumor$recidive$n` patients sur `r n$inclus` (`r .tumor$recidive$pct`) avaient récidivé : `r .tumor$recidive$locale$n` récidives locales (`r .tumor$recidive$locale$pct`) et `r .tumor$recidive$meta$n` métastatiques (`r .tumor$recidive$meta$pct`), une même récidive pouvant être à la fois locale et métastatique.
 
 {{< script scripts/tbl_tumor.R >}}
 
@@ -306,10 +238,10 @@ tbl_tumor
 
 ### Critère de jugement principal
 
-Les `r n$chimio_periop` patients du groupe péri-opératoire ont tous reçu au moins une cure de chimiothérapie d'induction, avec une nombre médian de `r .descr$induc_nb$med` cures (IQR `r .descr$induc_nb$iqr`).
-Une chimiothérapie adjuvante a été délivrée à `r .descr$adj_chimio$total$n` patients (`r .descr$adj_chimio$total$pct` des inclus) : `r .descr$adj_chimio$adj$n` sur `r n$chimio_adj` dans le groupe adjuvant seul et `r .descr$adj_chimio$periop$n` sur `r n$chimio_periop` dans le groupe péri-opératoire.
-Le nombre médian de cures de chimiothérapie adjuvante était de `r .descr$adj_nb$adj$med` (IQR `r .descr$adj_nb$adj$iqr`) dans le groupe adjuvant seul contre `r .descr$adj_nb$periop$med` (IQR `r .descr$adj_nb$periop$iqr`) dans le groupe péri-opératoire (la phase d'induction ayant déjà délivré une partie du traitement).
-Toutes phases confondues, le nombre total médian de cures était de `r .descr$n_cures$med` dans les deux groupes.
+Les `r n$chimio_periop` patients du groupe péri-opératoire ont tous reçu au moins une cure de chimiothérapie d'induction, avec une nombre médian de `r .outcome$induc_nb$med` cures (IQR `r .outcome$induc_nb$iqr`).
+Une chimiothérapie adjuvante a été délivrée à `r .outcome$adj_chimio$total$n` patients (`r .outcome$adj_chimio$total$pct` des inclus) : `r .outcome$adj_chimio$adj$n` sur `r n$chimio_adj` dans le groupe adjuvant seul et `r .outcome$adj_chimio$periop$n` sur `r n$chimio_periop` dans le groupe péri-opératoire.
+Le nombre médian de cures de chimiothérapie adjuvante était de `r .outcome$adj_nb$adj$med` (IQR `r .outcome$adj_nb$adj$iqr`) dans le groupe adjuvant seul contre `r .outcome$adj_nb$periop$med` (IQR `r .outcome$adj_nb$periop$iqr`) dans le groupe péri-opératoire (la phase d'induction ayant déjà délivré une partie du traitement).
+Toutes phases confondues, le nombre total médian de cures était de `r .outcome$n_cures$med` dans les deux groupes.
 
 {{< script scripts/tbl_outcome.R >}}
 
@@ -334,56 +266,29 @@ fig_outcome
 
 ### Caractéristiques du traitement
 
-#### Phase d'induction
+Parmi les `r .ttt$n` patients ayant reçu au moins une cure, une adaptation de doses a été rapportée chez `r .ttt$adapt$n` d'entre eux (`r .ttt$adapt$pct`), et elle dépassait 20 % dans `r .ttt$adapt_sup$pct` des cas évaluables.
 
-{{< script scripts/tbl_ttt_induc.R >}}
-
-```{r}
-#| label: tbl-ttt-induc
-#| tbl-cap: "Doses reçues et adaptations de doses à la phase d'induction, groupe péri-opératoire."
-
-tbl_ttt_induc
-```
-
-#### Phase adjuvante
-
-{{< script scripts/tbl_ttt_adj.R >}}
+{{< script scripts/tbl_ttt.R >}}
 
 ```{r}
-#| label: tbl-ttt-adj
-#| tbl-cap: !expr title_suffix("Doses reçues et adaptations de doses à la phase adjuvante")$overall
+#| label: tbl-ttt
+#| tbl-cap: !expr title_suffix("Doses reçues et adaptations de doses")$overall
 
-tbl_ttt_adj
+tbl_ttt
 ```
 
 ### Toxicité chimio-induite
 
-#### Phase d'induction
+Au total, parmi les `r .tox$n` patients ayant reçu au moins une cure de chimiothérapie, la toxicité était évaluable chez `r .tox$n_eval` d'entre eux, dont `r .tox$n_ei` (`r .tox$pct`) ont présenté au moins un effet indésirable de grade III-IV.
+Les nausées et vomissements étaient l'évènement indésirable le plus fréquent, chez `r .tox$ei$vom$n` patients (`r .tox$ei$vom$pct`), devant la neurotoxicité (`r .tox$ei$neuro$pct`) et la diarrhée (`r .tox$ei$dig$pct`), puis l'asthénie (`r .tox$ei$asth$pct`) et la neutropénie (`r .tox$ei$neutrop$pct`).
 
-Au total, sur l'ensemble des `r .tox_induc$n` patients ayant reçu une chimiothérapie d'induction, `r .tox_induc$n_ei` (`r .tox_induc$pct`) ont présenté au moins un effet indésirable de grade III-IV.
-Les nausées et vomissements étaient l'évènement indésirable le plus fréquent, chez `r .descr$tox_induc$vom$n` patients (`r .descr$tox_induc$vom$pct`), devant la neurotoxicité (`r .descr$tox_induc$neuro$pct`) et l'asthénie (`r .descr$tox_induc$asth$pct`).
-
-{{< script scripts/tbl_tox_induc.R >}}
+{{< script scripts/tbl_tox.R >}}
 
 ```{r}
-#| label: tbl-tox-induc
-#| tbl-cap: "Toxicité chimio-induite de grade III-IV à la phase d'induction, groupe péri-opératoire."
+#| label: tbl-tox
+#| tbl-cap: !expr title_suffix("Toxicité chimio-induite de grade III-IV")$overall
 
-tbl_tox_induc
-```
-
-#### Phase adjuvante
-
-Au total, sur l'ensemble des `r .tox_adj$n` patients ayant reçu une chimiothérapie adjuvante, `r .tox_adj$n_ei` (`r .tox_adj$pct`) ont présenté au moins un effet indésirable de grade III-IV.
-La diarrhée et la neurotoxicité étaient les évènements les plus fréquents, chez `r .descr$tox_adj$dig$n` patients chacune (`r .descr$tox_adj$dig$pct`), devant les nausées et vomissements (`r .descr$tox_adj$vom$pct`), puis l'asthénie et la neutropénie (`r .descr$tox_adj$asth$pct`).
-
-{{< script scripts/tbl_tox_adj.R >}}
-
-```{r}
-#| label: tbl-tox-adj
-#| tbl-cap: !expr title_suffix("Toxicité chimio-induite de grade III-IV à la phase adjuvante")$overall
-
-tbl_tox_adj
+tbl_tox
 ```
 
 ## Analyse du critère de jugement principal
@@ -398,26 +303,6 @@ Le test ne concluait donc pas à une surdispersion au seuil de 5 %, cependant l
 #| tbl-cap: "Facteurs associés au nombre total de cures reçues."
 
 tbl_pois
-```
-
-```{r}
-#| label: pois-inline
-
-.pois_estim <- \(part, ...) {
-  inline_text(
-    .model$pois$tbls[[part]],
-    ...,
-    pattern = paste0("{estimate} ", opts$ci$data)
-  )
-}
-
-.pois_p <- \(variable) {
-  car::Anova(.model_pois_fit, type = "III") |>
-    tidy() |>
-    filter(term == variable) |>
-    pull(p.value) |>
-    style_pvalue(digits = 2, prepend_p = TRUE)
-}
 ```
 
 Le nombre moyen de cures reçues était plus élevé dans le groupe péri-opératoire que dans le groupe adjuvant seul, en analyse univariable (RM `r .pois_estim("uv", variable = "groupe", level = "Péri-opératoire")`) ainsi qu'après ajustement sur le centre, l'âge, les marges de résection et la survenue d'une complication post-opératoire majeure (aRM `r .pois_estim("mv", variable = "groupe", level = "Péri-opératoire")`, `r .pois_p("groupe")`).
@@ -635,7 +520,7 @@ Comme pour la survie globale, la complication post-opératoire majeure était as
 ## Principaux résultats
 
 Parmi les `r n$inclus` patients inclus, `r n$chimio_adj` (`r n$pct_chimio_adj`) étaient assignés dans le protocole de chimiothérapie adjuvante seule, contre `r n$chimio_periop` (`r n$pct_chimio_periop`) dans le protocole de chimiothérapie péri-opératoire.
-L'âge médian au diagnostic était de `r .descr$age$med` ans (IQR `r .descr$age$iqr`), `r .descr$homme$n` patients (`r .descr$homme$pct`) étaient des hommes.
+L'âge médian au diagnostic était de `r .baseline$age$med` ans (IQR `r .baseline$age$iqr`), `r .baseline$homme$n` patients (`r .baseline$homme$pct`) étaient des hommes.
 
 Le nombre total de cures reçues était plus élevé dans le groupe péri-opératoire que dans le groupe adjuvant seul, après ajustement sur le centre, l'âge, les marges de résection et la survenue d'une complication post-opératoire majeure (aRM `r .pois_estim("mv", variable = "groupe", level = "Péri-opératoire")`, `r .pois_p("groupe")`).
 Deux autres facteurs y étaient associés, dans le sens d'un nombre de cures plus faible : l'âge (aRM `r .pois_estim("mv", variable = "age_incr")`, `r .pois_p("age_incr")`) et la survenue d'une complication post-opératoire majeure (aRM `r .pois_estim("mv", variable = "chir_complic_class_maj")`, `r .pois_p("chir_complic_class_maj")`).
@@ -644,24 +529,6 @@ Sur un suivi médian de `r .followup_median$total`, `r sum(df$os_event)` décès
 La médiane de survie globale était de `r .surv_median$os$total` ; la médiane de survie sans récidive était de `r .surv_median$pfs$total`.
 Aucune différence n'était mise en évidence entre les deux protocoles, ni sur la survie globale (test du log-rank, `r .surv_logrank$os$p.value`) ni sur la survie sans récidive (test du log-rank, `r .surv_logrank$pfs$p.value`).
 Cette absence de différence persistait après ajustement (aHR `r .coxph_estim("os")` sur la survie globale, `r .coxph_estim("pfs")` sur la survie sans récidive).
-
-## Limites
-
-- étude rétrospective observationnelle, recueil sur données du dossier patient informatisé
-
-- pas de randomisation : différences entre groupes ne s'interprètent pas comme effet propre du groupe
-
-- biais de temps immortel favorable au groupe péri-opératoire
-
-- restriction aux patients opérés impose la chirurgie comme origine de la survie globale (délais diagnostic-chirugie par construction différents entre les groupes)
-
-- exclusion des décès précoces post-diag et post-op : allonge les estimations de survie
-
-- censure administrative : surestime le suivi réel
-
-- nombre d'évènements insuffisant / manque global de puissance : impact sur variables à inclure dans les analyses multivariées et interprétation des coefficients
-
-- ;;
 
 # Annexes
 
@@ -727,7 +594,7 @@ L'hypothèse de proportionnalité n'était pas invalidée ici.
 
 {{< script setup.R >}}
 
-{{< script 2026-08-26_rapport-stat.qmd >}}
+{{< script 2026-09-06_rapport-stat.qmd >}}
 
 ```{r}
 #| label: session

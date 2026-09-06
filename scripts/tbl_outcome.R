@@ -52,3 +52,18 @@ tbl_outcome <- df |>
   tbl_format()
 
 easy_out(tbl_outcome)
+
+### QMD ------------------------------------------------------------------------
+
+.outcome <- qmd_only(lst(
+  induc_nb = tbl_med_iqr(tbl_outcome, "induc_nb", column = "stat_2"),
+  adj_chimio = map(
+    lst(total = "stat_0", adj = "stat_1", periop = "stat_2"),
+    ~ tbl_n_pct(tbl_outcome, "adj_chimio", column = .x)
+  ),
+  adj_nb = map(
+    lst(adj = "stat_1", periop = "stat_2"),
+    ~ tbl_med_iqr(tbl_outcome, "adj_nb", column = .x)
+  ),
+  n_cures = tbl_med_iqr(tbl_outcome, "n_cures")
+))
