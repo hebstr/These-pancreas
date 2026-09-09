@@ -36,13 +36,21 @@
   }
 
   y_naif <- call2("Surv", sym("os_tte_diag"), sym("os_event"))
-  y_trunc <- call2("Surv", sym("time_diag_chir"), sym("os_tte_diag"), sym("os_event"))
+  y_trunc <- call2(
+    "Surv",
+    sym("time_diag_chir"),
+    sym("os_tte_diag"),
+    sym("os_event")
+  )
 
   lst(
     naif = estim(coxph(reformulate("groupe", y_naif), model$data)),
     uv = estim(coxph(reformulate("groupe", y_trunc), model$data)),
     mv = estim(
-      coxph(reformulate(c(model$vars$x$mv, model$strata_term), y_trunc), model$data)
+      coxph(
+        reformulate(c(model$vars$x$mv, model$strata_term), y_trunc),
+        model$data
+      )
     )
   )
 })
@@ -134,13 +142,19 @@ get_tbl_coxph <- \(outcome) {
       note_global = paste(
         str_glue("Le critère de jugement est le {surv_def}."),
         "Les patients sans évènement sont censurés à la date de point du centre.",
-        str_glue("Un hazard ratio > 1 est en faveur d'un risque plus élevé de {event_def}"),
+        str_glue(
+          "Un hazard ratio > 1 est en faveur d'un risque plus élevé de {event_def}"
+        ),
         "comparé au groupe de référence."
       ),
       note_pvalue = paste(
         "Modèle de régression de Cox multivariable stratifié sur le centre,",
-        str_glue("incluant {model$fit$nevent} évènements pour {model$fit$n} observations"),
-        str_glue("complètes ({nrow(model$data) - model$fit$n} observations supprimées"),
+        str_glue(
+          "incluant {model$fit$nevent} évènements pour {model$fit$n} observations"
+        ),
+        str_glue(
+          "complètes ({nrow(model$data) - model$fit$n} observations supprimées"
+        ),
         "pour cause de données manquantes)."
       ),
       width = 800

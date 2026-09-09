@@ -57,7 +57,9 @@ stopifnot(n$non_evalue >= 0)
     motif_non_evalue,
     sep = "\n"
   ),
-  eligible = str_glue("Patients évalués pour éligibilité : {n$eligible} (100 %)"),
+  eligible = str_glue(
+    "Patients évalués pour éligibilité : {n$eligible} (100 %)"
+  ),
   exclus = str_glue(
     "Patients exclus : {n$exclus} ({n$pct_exclus})\n{label_exclus}"
   ),

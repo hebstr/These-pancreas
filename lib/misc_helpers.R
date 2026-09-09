@@ -117,7 +117,13 @@ style_median <- \(x, unit = "mois") {
   str_replace(
     x,
     "^(\\S+)\\s+(\\[.+\\])$",
-    paste0("\\1 ", unit, " (", str_remove_all(opts$ci$label, "\\[|\\]"), " \\2)")
+    paste0(
+      "\\1 ",
+      unit,
+      " (",
+      str_remove_all(opts$ci$label, "\\[|\\]"),
+      " \\2)"
+    )
   )
 }
 

@@ -1,6 +1,6 @@
 [project]
 name = "These-pancreas"
-r_version = "4.5"
+r_version = "4.6"
 
 repositories = [
   { alias = "CRAN", url = "https://packagemanager.posit.co/cran/latest" },
@@ -9,7 +9,6 @@ repositories = [
 dependencies = [
   { name = "hebstr", path = "/home/julien/Documents/packages/R-hebstr" },
   # { name = "hebstr", git = "https://github.com/hebstr/hebstr", branch = "main" },
-  # { name = "ggswim", git = "https://github.com/CHOP-CGTInformatics/ggswim", branch = "main" },
   "tidyverse",
   "googlesheets4",
   "labelled",

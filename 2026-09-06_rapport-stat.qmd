@@ -18,14 +18,6 @@ source("setup.R")
 auto_exec()
 ```
 
-```{=html}
-<style>
-p {
-  text-align: justify
-}
-</style>
-```
-
 # Matériel et méthodes
 
 ## Design et aspects réglementaires
@@ -186,7 +178,6 @@ Les analyses statistiques ont été réalisées avec le langage `r R.version.str
 Les estimations de survie et les modèles de Cox ont été obtenus avec `survival` (version `r packageVersion("survival")`).
 Les modèles de comptage ont été obtenus avec `stats::glm` (familles Poisson et quasi-Poisson), et leurs diagnostics avec `performance` (version `r packageVersion("performance")`).
 Les p-valeurs globales par variable ont été obtenues avec `car` (version `r packageVersion("car")`).
-L'inventaire détaillé de l'environnement et des packages utilisés est disponible en @sec-session.
 
 # Résultats
 
@@ -203,7 +194,7 @@ Au total, ont été inclus `r n$inclus` (`r n$pct_inclus`) patients adultes atte
 #| fig-cap: Flowchart
 #| fig-cap-location: top
 
-knitr::include_graphics("output/fig-flowchart/fig-flowchart.svg")
+out_qmd(fig_flowchart)
 ```
 
 ## Analyses descriptives
@@ -219,7 +210,7 @@ L'âge médian au diagnostic était de `r .baseline$age$med` ans (IQR `r .baseli
 #| label: tbl-baseline
 #| tbl-cap: !expr title_suffix("Caractéristiques des patients à l'inclusion")$overall
 
-tbl_baseline
+out_qmd(tbl_baseline)
 ```
 
 ### Caractéristiques tumorales, prise en charge chirurgicale et récidive
@@ -233,7 +224,7 @@ Au terme du suivi, `r .tumor$recidive$n` patients sur `r n$inclus` (`r .tumor$re
 #| label: tbl-tumor
 #| tbl-cap: !expr title_suffix("Caractéristiques tumorales, prise en charge chirurgicale et récidive")$overall
 
-tbl_tumor
+out_qmd(tbl_tumor)
 ```
 
 ### Critère de jugement principal
@@ -249,7 +240,7 @@ Toutes phases confondues, le nombre total médian de cures était de `r .outcome
 #| label: tbl-outcome
 #| tbl-cap: !expr title_suffix("Nombre de cures reçues")$overall
 
-tbl_outcome
+out_qmd(tbl_outcome)
 ```
 
 {{< script scripts/fig_outcome.R >}}
@@ -261,7 +252,7 @@ tbl_outcome
 #| fig-width: 6
 #| out-width: 90%
 
-fig_outcome
+out_qmd(fig_outcome)
 ```
 
 ### Caractéristiques du traitement
@@ -274,7 +265,7 @@ Parmi les `r .ttt$n` patients ayant reçu au moins une cure, une adaptation de d
 #| label: tbl-ttt
 #| tbl-cap: !expr title_suffix("Doses reçues et adaptations de doses")$overall
 
-tbl_ttt
+out_qmd(tbl_ttt)
 ```
 
 ### Toxicité chimio-induite
@@ -288,7 +279,7 @@ Les nausées et vomissements étaient l'évènement indésirable le plus fréque
 #| label: tbl-tox
 #| tbl-cap: !expr title_suffix("Toxicité chimio-induite de grade III-IV")$overall
 
-tbl_tox
+out_qmd(tbl_tox)
 ```
 
 ## Analyse du critère de jugement principal
@@ -302,7 +293,7 @@ Le test ne concluait donc pas à une surdispersion au seuil de 5 %, cependant l
 #| label: tbl-pois
 #| tbl-cap: "Facteurs associés au nombre total de cures reçues."
 
-tbl_pois
+out_qmd(tbl_pois)
 ```
 
 Le nombre moyen de cures reçues était plus élevé dans le groupe péri-opératoire que dans le groupe adjuvant seul, en analyse univariable (RM `r .pois_estim("uv", variable = "groupe", level = "Péri-opératoire")`) ainsi qu'après ajustement sur le centre, l'âge, les marges de résection et la survenue d'une complication post-opératoire majeure (aRM `r .pois_estim("mv", variable = "groupe", level = "Péri-opératoire")`, `r .pois_p("groupe")`).
@@ -329,7 +320,7 @@ Deux autres facteurs étaient associés au nombre total de cures reçues : l'âg
   )
 )
 
-fig_follow
+out_qmd(fig_follow)
 ```
 
 Les dates de point étaient fixées pour chaque centre à la date du recueil :
@@ -365,7 +356,7 @@ Les analyses de survie sans récidive portaient sur `r sum(df$pfs_event)` évèn
 #| label: tbl-event
 #| tbl-cap: Évènements.
 
-tbl_event
+out_qmd(tbl_event)
 ```
 
 ### Survie globale
@@ -389,7 +380,7 @@ tbl_event
 #| label: tbl-surv-os
 #| tbl-cap: !expr title_suffix("Estimations de la survie globale")$overall
 
-tbl_surv$os
+out_qmd(tbl_surv$os)
 ```
 
 La médiane de survie globale était de `r .surv_median$os$total` dans la population totale, et de `r .surv_median$os$strata` (test du log-rank, `r .surv_logrank$os$p.value`).
@@ -411,7 +402,7 @@ Le hazard ratio de décès toutes causes associé à la chimiothérapie péri-op
   title = "Survie globale dans la population totale."
 )
 
-fig_surv_total$os
+out_qmd(fig_surv_total$os)
 ```
 
 #### Selon le protocole de chimiothérapie
@@ -429,7 +420,7 @@ fig_surv_total$os
   title = title_suffix("Survie globale")$strata
 )
 
-fig_surv_strata$os
+out_qmd(fig_surv_strata$os)
 ```
 
 #### Modèles de Cox
@@ -440,7 +431,7 @@ fig_surv_strata$os
 #| label: tbl-coxph-os
 #| tbl-cap: "Facteurs associés à la survie globale."
 
-tbl_coxph$os
+out_qmd(tbl_coxph$os)
 ```
 
 Aucune des variables du modèle ajusté n'était associée à la survie globale.
@@ -458,7 +449,7 @@ La conclusion ne diffère pas de l'analyse principale.
 #| label: tbl-surv-pfs
 #| tbl-cap: !expr title_suffix("Estimations de la survie sans récidive")$overall
 
-tbl_surv$pfs
+out_qmd(tbl_surv$pfs)
 ```
 
 La médiane de survie sans récidive était de `r .surv_median$pfs$total` dans la population totale, et de `r .surv_median$pfs$strata` (test du log-rank, `r .surv_logrank$pfs$p.value`).
@@ -480,7 +471,7 @@ Le hazard ratio de récidive ou de décès toutes causes associé à la chimioth
   title = "Survie sans récidive dans la population totale."
 )
 
-fig_surv_total$pfs
+out_qmd(fig_surv_total$pfs)
 ```
 
 #### Selon le protocole de chimiothérapie
@@ -498,7 +489,7 @@ fig_surv_total$pfs
   title = title_suffix("Survie sans récidive")$strata
 )
 
-fig_surv_strata$pfs
+out_qmd(fig_surv_strata$pfs)
 ```
 
 #### Modèles de Cox
@@ -509,7 +500,7 @@ fig_surv_strata$pfs
 #| label: tbl-coxph-pfs
 #| tbl-cap: "Facteurs associés à la survie sans récidive."
 
-tbl_coxph$pfs
+out_qmd(tbl_coxph$pfs)
 ```
 
 Aucune des variables du modèle ajusté n'était associée à la survie sans récidive.
@@ -588,6 +579,7 @@ L'hypothèse des risques proportionnels n'était invalidée ni pour l'ensemble d
 Un degré de significativité faible < 0,05 signalerait un effet variable au cours du temps (risque non-proportionnel).
 L'hypothèse de proportionnalité n'était pas invalidée ici.
 
+::: {.content-hidden when-format="docx"}
 ## Session {#sec-session}
 
 {{< script .Rprofile >}}
@@ -603,3 +595,4 @@ L'hypothèse de proportionnalité n'était pas invalidée ici.
 
 sessioninfo::session_info()
 ```
+:::

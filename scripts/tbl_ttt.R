@@ -61,7 +61,9 @@ tbl_ttt <- .ttt$data |>
         )
       ) |>
       filter(
-        !(row_type %in% "missing" & variable %in% .ttt_dm$variable[.ttt_dm$stat_0 == "0"])
+        !(row_type %in%
+          "missing" &
+          variable %in% .ttt_dm$variable[.ttt_dm$stat_0 == "0"])
       )
   }) |>
   add_variable_group_header(

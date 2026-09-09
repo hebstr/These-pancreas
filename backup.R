@@ -7,5 +7,8 @@ fs::dir_create(backup_dir)
 
 purrr::iwalk(
   sheets,
-  ~ openxlsx2::write_xlsx(.x, fs::path(backup_dir, stringr::str_glue("{.y}.xlsx")))
+  ~ openxlsx2::write_xlsx(
+    .x,
+    fs::path(backup_dir, stringr::str_glue("{.y}.xlsx"))
+  )
 )

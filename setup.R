@@ -214,9 +214,9 @@ df <- df_recode |>
         n_cures = "Nombre total de cures",
         n_cures_complete = "Nombre total de cures >= 12",
         n_cures_complete_sub = "Nombre total de cures >= 12 : avec dose relative moyenne >= 80 %",
-        recidive_none = str_c(.grp_lab$recidive, " : Aucune"),
-        recidive_loc = str_c(.grp_lab$recidive, " : Locale"),
-        recidive_meta = str_c(.grp_lab$recidive, " : Métastatique"),
+        recidive_none = str_glue("{.grp_lab$recidive} : Aucune"),
+        recidive_loc = str_glue("{.grp_lab$recidive} : Locale"),
+        recidive_meta = str_glue("{.grp_lab$recidive} : Métastatique"),
         os_event = "Décès toutes causes",
         os_tte = "Délai entre la chirurgie et le décès toutes causes, mois",
         os_tte_diag = "Délai entre le diagnostic et le décès toutes causes, mois",
@@ -229,7 +229,12 @@ df <- df_recode |>
       map(set_names(.vars_val$yn), ~ .val_lab$yn),
       map(set_names(.vars_val$adapt), ~ .val_lab$adapt),
       list(
-        chir_complic_class = c("Pas de complication" = 0, "I" = 1, "II" = 2, "III-IV-V" = 3),
+        chir_complic_class = c(
+          "Pas de complication" = 0,
+          "I" = 1,
+          "II" = 2,
+          "III-IV-V" = 3
+        ),
         pfs_cause = c("Censure" = 0, "Récidive" = 1, "Décès sans récidive" = 2),
         total_adapt_pct = c("Pas d'adaptation" = 0, "<=20%" = 1, ">20%" = 2)
       )

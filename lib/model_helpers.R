@@ -119,7 +119,9 @@ get_tbl <- \(x, tbl_label, at_risk = TRUE) {
         mutate(across(starts_with("stat_"), \(v) str_replace(v, ",0\\)$", ")")))
     ) |>
     modify_spanning_header(
-      all_stat_cols() ~ str_glue("**{tbl_label}, % {opts$ci$label}{label_risk}**")
+      all_stat_cols() ~ str_glue(
+        "**{tbl_label}, % {opts$ci$label}{label_risk}**"
+      )
     )
 }
 

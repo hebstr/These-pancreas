@@ -63,7 +63,8 @@ tbl_med_iqr <- \(tbl, variable, level = NULL, column = "stat_0") {
 }
 
 med_iqr <- \(x, digits = 1) {
-  q <- quantile(x, c(0.25, 0.5, 0.75), na.rm = TRUE) |> style_number(digits = digits)
+  q <- quantile(x, c(0.25, 0.5, 0.75), na.rm = TRUE) |>
+    style_number(digits = digits)
 
   lst(med = q[[2]], iqr = str_c(q[[1]], " à ", q[[3]]))
 }

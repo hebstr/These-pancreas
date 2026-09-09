@@ -77,7 +77,9 @@ tbl_pois <- .model$pois$tbls |>
     note_pvalue = paste(
       "Modèle de régression de quasi-Poisson multivariable portant sur",
       str_glue("{nobs(.model_pois_fit)} observations complètes"),
-      str_glue("({nrow(.model$pois$data) - nobs(.model_pois_fit)} observations"),
+      str_glue(
+        "({nrow(.model$pois$data) - nobs(.model_pois_fit)} observations"
+      ),
       "supprimées pour cause de données manquantes)."
     ),
     width = 750
