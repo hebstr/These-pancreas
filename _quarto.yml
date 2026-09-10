@@ -6,4 +6,3 @@ project:
   pre-render: prerender.R
   post-render: postrender.R
 lang: fr
-lightbox: false

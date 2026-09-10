@@ -1,7 +1,18 @@
-export_docx <- \() {
-  withr::with_options(
-    list(hebstr.docx = TRUE, easy_out.export = TRUE, easy_out.quiet = TRUE),
-    auto_exec(include = "^tbl")
+get_backup <- \(data) {
+  stem <- "backup"
+
+  backup_dir <- paste0(".", stem)
+  backup_subdir <- paste(stem, Sys.time()) |> stringr::str_to_kebab()
+  backup_subdir <- fs::path(backup_dir, backup_subdir)
+
+  fs::dir_create(backup_subdir)
+
+  purrr::iwalk(
+    data,
+    ~ openxlsx2::write_xlsx(
+      .x,
+      fs::path(backup_subdir, stringr::str_glue("{.y}.xlsx"))
+    )
   )
 }
 

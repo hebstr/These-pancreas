@@ -7,16 +7,16 @@ author:
   email: "ju.diez@protonmail.com"
 format:
   hebstr-doc-html: {}
-  hebstr-doc-docx: {}
+  # hebstr-doc-docx: {}
 ---
 
 ```{r}
 #| label: setup
 #| include: false
 
-options(easy_out.quiet = TRUE)
 source("setup.R")
-auto_exec()
+source("scripts/_common.R")
+auto_build()
 ```
 
 # Matériel et méthodes
@@ -586,6 +586,8 @@ L'hypothèse de proportionnalité n'était pas invalidée ici.
 {{< script .Rprofile >}}
 
 {{< script setup.R >}}
+
+{{< script scripts/_common.R >}}
 
 {{< script index.qmd >}}
 

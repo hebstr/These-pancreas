@@ -1,4 +1,4 @@
-qmd <- here::here("index.qmd")
+qmd <- yaml12::read_yaml(here::here("_quarto.yml"))$project$render
 stem <- "rapport-stat"
 
 lines <- readLines(qmd)
