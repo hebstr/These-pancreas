@@ -3,12 +3,11 @@
 .Renviron
 Rplots.pdf
 filetree.yml
+/_metadata.yml
+/docs/output/
 /.claude/
-
 /.quarto/
 **/*.quarto_ipynb
-
+/.luarc.json
 NOTES.md
 TODO.md
-
-/.luarc.json

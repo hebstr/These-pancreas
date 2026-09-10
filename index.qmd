@@ -7,6 +7,7 @@ author:
   email: "ju.diez@protonmail.com"
 format:
   hebstr-doc-html: {}
+  hebstr-doc-docx: {}
 ---
 
 ```{r}
@@ -525,9 +526,9 @@ Cette absence de différence persistait après ajustement (aHR `r .coxph_estim("
 
 ## Variables
 
-- [Dictionnaire des variables](output/var-dict/var-dict.html){target="_blank"}
-- [Distribution des variables avant recodage](output/var-distrib/var-distrib-initial.html){target="_blank"}
-- [Distribution des variables après recodage](output/var-distrib/var-distrib-final.html){target="_blank"}
+- [Dictionnaire des variables](../output/var-dict/var-dict.html){target="_blank"}
+- [Distribution des variables avant recodage](../output/var-distrib/var-distrib-initial.html){target="_blank"}
+- [Distribution des variables après recodage](../output/var-distrib/var-distrib-final.html){target="_blank"}
 
 ## Vérification des hypothèses
 
@@ -586,7 +587,7 @@ L'hypothèse de proportionnalité n'était pas invalidée ici.
 
 {{< script setup.R >}}
 
-{{< script 2026-09-06_rapport-stat.qmd >}}
+{{< script index.qmd >}}
 
 ```{r}
 #| label: session

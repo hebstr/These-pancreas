@@ -1,5 +1,9 @@
 project:
   type: default
+  output-dir: docs
   render:
-    - "*_rapport-stat.qmd"
+    - index.qmd
+  pre-render: prerender.R
+  post-render: postrender.R
 lang: fr
+lightbox: false
