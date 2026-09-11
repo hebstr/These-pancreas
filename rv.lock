@@ -1099,7 +1099,7 @@ dependencies = [
 [[packages]]
 name = "hebstr"
 version = "0.0.0.9000"
-source = { git = "https://github.com/hebstr/hebstr", sha = "1937cddc7b380054716bc335f2eff2985b8c1cb1", branch = "main" }
+source = { git = "https://github.com/hebstr/hebstr", sha = "366761651a64447667fdfb2e910b4d86c8515af1", branch = "main" }
 force_source = true
 dependencies = [
     "aod",

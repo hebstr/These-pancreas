@@ -234,6 +234,5 @@ fig_flowchart <- with_fig_device(
 easy_out(
   x = fig_flowchart,
   width = fig_size$width,
-  height = fig_size$height,
-  pptx = TRUE
+  height = fig_size$height
 )
