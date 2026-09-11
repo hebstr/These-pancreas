@@ -7,7 +7,7 @@ author:
   email: "ju.diez@protonmail.com"
 format:
   hebstr-doc-html: {}
-  # hebstr-doc-docx: {}
+  hebstr-doc-docx: {}
 ---
 
 ```{r}
