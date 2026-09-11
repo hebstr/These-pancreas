@@ -1134,6 +1134,7 @@ dependencies = [
     "parsnip",
     "png",
     "purrr",
+    "ragg",
     "reactable",
     "rlang",
     "rsample",
@@ -1147,7 +1148,9 @@ dependencies = [
     "webshot2",
     "withr",
     "xfun",
+    "xml2",
     "yaml",
+    "zip",
 ]
 
 [[packages]]

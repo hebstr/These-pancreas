@@ -7,8 +7,8 @@ repositories = [
 ]
 
 dependencies = [
-  { name = "hebstr", path = "/home/julien/Documents/packages/R-hebstr" },
-  # { name = "hebstr", git = "https://github.com/hebstr/hebstr", branch = "main" },
+  # { name = "hebstr", path = "/home/julien/Documents/packages/R-hebstr" },
+  { name = "hebstr", git = "https://github.com/hebstr/hebstr", branch = "main" },
   "tidyverse",
   "googlesheets4",
   "labelled",
