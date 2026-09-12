@@ -3,6 +3,6 @@ project:
   output-dir: docs
   render:
     - index.qmd
-  pre-render: prerender.R
-  post-render: postrender.R
+  pre-render: qmd-prerender.R
+  post-render: qmd-postrender.R
 lang: fr

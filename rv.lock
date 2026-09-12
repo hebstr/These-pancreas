@@ -1985,20 +1985,6 @@ dependencies = [
 ]
 
 [[packages]]
-name = "rvg"
-version = "0.4.2"
-source = { repository = "https://packagemanager.posit.co/cran/__linux__/noble/latest" }
-force_source = false
-dependencies = [
-    { name = "gdtools", requirement = "(>= 0.5.0)" },
-    { name = "officer", requirement = "(>= 0.7.4)" },
-    { name = "Rcpp", requirement = "(>= 0.12.12)" },
-    "rlang",
-    "systemfonts",
-    { name = "xml2", requirement = "(>= 1.0.0)" },
-]
-
-[[packages]]
 name = "sass"
 version = "0.4.10"
 source = { repository = "https://packagemanager.posit.co/cran/__linux__/noble/latest" }
