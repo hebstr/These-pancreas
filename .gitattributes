@@ -1,2 +1,2 @@
-output/**/*.html filter=gtid
-*_rapport-stat.html filter=gtid
+output/**/*.html filter=html-id
+*_rapport-stat.html filter=html-id

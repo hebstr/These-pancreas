@@ -15,7 +15,6 @@ format:
 #| include: false
 
 source("setup.R")
-source("scripts/_common.R")
 auto_build()
 ```
 

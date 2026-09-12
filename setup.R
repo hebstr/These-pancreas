@@ -39,3 +39,5 @@ opts <- get_opts()
 update_geom_defaults("text", list(family = opts$font$alpha))
 
 .fig_palette <- c(opts$color$base, opts$color$cold[2])
+
+source("scripts/_common.R")
