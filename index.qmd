@@ -539,11 +539,10 @@ VIF : mesure de combien la variance du coefficient est augmentée par la corrél
 #| label: tbl-anx-pois-vif
 #| tbl-cap: "Facteurs d'inflation de la variance (@tbl-pois)"
 
-gt_qmd(.pois_check_vif)
+.pois_check_vif |> gt::gt() |> theme_gt()
 ```
 
-1 = absence de corrélation\
-< 5 = pas de collinéarité
+1 = absence de corrélation ; < 5 = pas de collinéarité
 
 vif_adj : VIF corrigé du nombre de degrés de liberté de la variable, ce qui le rend comparable d'une variable à l'autre et lui donne l'interprétation directe d'un facteur multiplicatif appliqué à l'erreur standard.
 
@@ -562,7 +561,7 @@ Pour chaque variable du modèle multivariable et pour l'ensemble du modèle, tes
 #| label: tbl-anx-coxzph-os
 #| tbl-cap: "Test des risques proportionnels de la survie globale (@tbl-coxph-os)"
 
-gt_qmd(.coxph_check_tbl$os)
+.coxph_check_tbl$os |> gt::gt() |> theme_gt()
 ```
 
 L'hypothèse des risques proportionnels n'était mise en défaut ni pour l'ensemble du modèle (`r style_pvalue(.model$coxph$os$check$table["GLOBAL", "p"], digits = 2, prepend_p = TRUE)`), ni pour aucune des variables prises séparément.
@@ -571,7 +570,7 @@ L'hypothèse des risques proportionnels n'était mise en défaut ni pour l'ensem
 #| label: tbl-anx-coxzph-pfs
 #| tbl-cap: "Test des risques proportionnels de la survie sans récidive (@tbl-coxph-pfs)"
 
-gt_qmd(.coxph_check_tbl$pfs)
+.coxph_check_tbl$pfs |> gt::gt() |> theme_gt()
 ```
 
 L'hypothèse des risques proportionnels n'était invalidée ni pour l'ensemble du modèle (`r style_pvalue(.model$coxph$pfs$check$table["GLOBAL", "p"], digits = 2, prepend_p = TRUE)`), ni pour aucune des variables prises séparément.
