@@ -45,9 +45,10 @@ export_tables <- \(
       ))
     }
 
-    flextable::set_caption(
+    hebstr::tbl_caption(
       obj,
-      str_glue("{crossref$prefix}\u00a0{i}{crossref$delim} {x$cap}")
+      str_glue("{crossref$prefix}\u00a0{i}{crossref$delim} {x$cap}"),
+      align = "center"
     )
   })
 
