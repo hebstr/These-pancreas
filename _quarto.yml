@@ -6,5 +6,3 @@ project:
   pre-render: qmd-prerender.R
   post-render: qmd-postrender.R
 lang: fr
-language:
-  toc-title-document: "Sommaire"
