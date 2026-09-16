@@ -3,12 +3,14 @@ export_tables <- \(
   dir = .output_dir(quarto, qmd),
   stem = "tables",
   crossref = .crossref(quarto),
+  template = .reference_doc(quarto, qmd),
   quarto = .inspect(qmd)
 ) {
   report <- .read_floats(qmd, "tbl")
   tables <- report$floats
 
   force(crossref)
+  force(template)
 
   path <- .export_path(dir, report$date, stem)
 
@@ -48,7 +50,7 @@ export_tables <- \(
   ft |>
     unname() |>
     map(\(x) \(doc) flextable::body_add_flextable(doc, x, align = NULL)) |>
-    .save_docx(path)
+    .save_docx(path, template)
 
   cli::cli_alert_success("{length(ft)} table{?s} written to {.file {path}}.")
 
@@ -60,6 +62,7 @@ export_figures <- \(
   dir = .output_dir(quarto, qmd),
   stem = "figures",
   crossref = .crossref(quarto, type = "fig"),
+  template = .reference_doc(quarto, qmd),
   quarto = .inspect(qmd),
   section = .docx_section()
 ) {
@@ -67,6 +70,7 @@ export_figures <- \(
   figures <- report$floats
 
   force(crossref)
+  force(template)
 
   path <- .export_path(dir, report$date, stem)
 
@@ -88,7 +92,7 @@ export_figures <- \(
     \(doc) reduce(blocks, \(d, b) officer::body_add_fpar(d, b), .init = doc)
   })
 
-  .save_docx(unname(pages), path, section)
+  .save_docx(unname(pages), path, template, section)
 
   cli::cli_alert_success(
     "{length(pages)} figure{?s} written to {.file {path}}."
@@ -238,7 +242,33 @@ export_figures <- \(
 
 .docx_section <- \() officer::prop_section(type = "continuous")
 
-.save_docx <- \(pages, path, section = .docx_section()) {
+# The theme's reference doc declares Aptos with Calibri as its fallback, which officer's default template lacks.
+.empty_docx <- \(template) {
+  doc <- officer::read_docx(template) |>
+    officer::cursor_begin()
+
+  blocks <- \(x) {
+    x$doc_obj$get() |>
+      xml2::xml_find_all("/w:document/w:body/*[not(self::w:sectPr)]") |>
+      length()
+  }
+
+  n <- blocks(doc)
+
+  while (n > 0) {
+    doc <- officer::body_remove(doc)
+
+    if (blocks(doc) >= n) {
+      cli::cli_abort("{.file {template}}: the template body could not be emptied.")
+    }
+
+    n <- blocks(doc)
+  }
+
+  doc
+}
+
+.save_docx <- \(pages, path, template, section = .docx_section()) {
   pages |>
     seq_along() |>
     reduce(
@@ -246,7 +276,7 @@ export_figures <- \(
         doc <- if (i > 1) officer::body_add_break(doc) else doc
         pages[[i]](doc)
       },
-      .init = officer::read_docx()
+      .init = .empty_docx(template)
     ) |>
     officer::body_set_default_section(section) |>
     print(target = path)
@@ -360,7 +390,7 @@ export_figures <- \(
   if (!length(out) || !is.null(attr(out, "status"))) {
     cli::cli_abort(c(
       "{.code quarto inspect} failed on {.file {qmd}}.",
-      i = "It resolves the output directory and the {.field crossref} of the theme."
+      i = "It resolves the output directory, the {.field crossref} and the {.field reference-doc} of the theme."
     ))
   }
 
@@ -371,6 +401,29 @@ export_figures <- \(
   root <- quarto$project$dir %||% fs::path_dir(qmd)
 
   fs::path_abs(quarto$project$config$project$`output-dir` %||% root, start = root)
+}
+
+.reference_doc <- \(quarto, qmd, format = "docx") {
+  root <- quarto$project$dir %||% fs::path_dir(qmd)
+
+  doc <- quarto$formats |>
+    keep(\(x) identical(x$identifier$`base-format`, format)) |>
+    pluck(1, "pandoc", "reference-doc")
+
+  if (is.null(doc)) {
+    cli::cli_abort(c(
+      "{.code quarto inspect} names no {.field reference-doc} for the {format} format.",
+      i = "The assembled files take the report's template, which carries the font fallback."
+    ))
+  }
+
+  path <- fs::path_abs(doc, start = root)
+
+  if (!fs::file_exists(path)) {
+    cli::cli_abort("The {.field reference-doc} {.file {path}} does not exist.")
+  }
+
+  path
 }
 
 .crossref <- \(quarto, type = c("tbl", "fig"), format = "docx") {
