@@ -94,3 +94,12 @@ fig_follow <- list(.followup_plot, .followup_risktable) |>
   wrap_plots(ncol = 1, heights = c(1, 0.1))
 
 easy_out(fig_follow, height = 3.75, width = 7)
+
+### QMD ------------------------------------------------------------------------
+
+.title_fig_follow <- str_fig(
+  title = title_suffix("Recul de suivi")$strata,
+  note = str_glue(
+    "Recul de suivi estimé par la méthode de Kaplan-Meier inversée : l'évènement est la fin du suivi, la censure est le décès."
+  )
+)

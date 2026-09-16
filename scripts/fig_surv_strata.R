@@ -94,3 +94,10 @@ get_fig_surv <- \(data, outcome) {
 fig_surv_strata <- imap(.surv$strata, get_fig_surv)
 
 easy_out(fig_surv_strata, height = 3.75, width = 7)
+
+### QMD ------------------------------------------------------------------------
+
+.title_fig_surv_strata <- list(
+  os = title_surv(title_suffix("Survie globale")$strata),
+  pfs = title_surv(title_suffix("Survie sans récidive")$strata)
+)

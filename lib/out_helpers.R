@@ -13,7 +13,7 @@ export_tables <- \(
 
   tables <- lines |>
     .chunk_lines(qmd) |>
-    map(.chunk_table, qmd = qmd) |>
+    map(.chunk_float, qmd = qmd, type = "tbl") |>
     compact()
 
   if (!length(tables)) {
@@ -45,14 +45,25 @@ export_tables <- \(
       ))
     }
 
-    hebstr::tbl_caption(
+    flextable::set_caption(
       obj,
-      str_glue("{crossref$prefix}\u00a0{i}{crossref$delim} {x$cap}"),
-      align = "center"
+      caption = str_glue("{crossref$prefix}\u00a0{i}{crossref$delim} {x$cap}") |>
+        flextable::as_chunk(props = .caption_text()) |>
+        flextable::as_paragraph(),
+      fp_p = officer::fp_par(
+        text.align = "center",
+        padding.top = 12,
+        padding.bottom = 12,
+        padding.left = 3,
+        padding.right = 3
+      )
     )
   })
 
-  .save_docx(unname(ft), path)
+  ft |>
+    unname() |>
+    map(\(x) \(doc) flextable::body_add_flextable(doc, x, align = NULL)) |>
+    .save_docx(path)
 
   list2env(inline, globalenv())
 
@@ -61,13 +72,180 @@ export_tables <- \(
   invisible(path)
 }
 
-.save_docx <- \(ft, path, section = officer::prop_section(type = "continuous")) {
-  ft |>
+export_figures <- \(
+  qmd = here::here("index.qmd"),
+  dir = .output_dir(quarto, qmd),
+  stem = "figures",
+  crossref = .crossref(quarto, type = "fig"),
+  quarto = .inspect(qmd),
+  section = .docx_section()
+) {
+  if (!fs::file_exists(qmd)) {
+    cli::cli_abort("{.file {qmd}}: no such file to read the figures from.")
+  }
+
+  lines <- readLines(qmd)
+
+  figures <- lines |>
+    .chunk_lines(qmd) |>
+    map(.chunk_float, qmd = qmd, type = "fig") |>
+    compact()
+
+  if (!length(figures)) {
+    cli::cli_abort("{.file {qmd}}: no {.field fig-} chunk to export.")
+  }
+
+  date <- .front_date(lines, qmd)
+
+  force(crossref)
+
+  pages <- imap(figures, \(x, i) {
+    cap <- .split_caption(x$cap, x$label, qmd)
+    top <- identical(x$location %||% crossref$location, "top")
+
+    caption <- .figure_caption(
+      str_glue("{crossref$prefix} {i}{crossref$delim} {cap$title}"),
+      cap$note,
+      keep = top,
+      spacing = if (top) 12 else 6
+    )
+
+    image <- .figure_image(.figure_path(x, qmd), section, keep = !top)
+
+    blocks <- if (top) c(caption, list(image)) else c(list(image), caption)
+
+    \(doc) reduce(blocks, \(d, b) officer::body_add_fpar(d, b), .init = doc)
+  })
+
+  fs::dir_create(dir)
+
+  path <- fs::path(dir, str_glue("{date}_{stem}"), ext = "docx")
+
+  .save_docx(unname(pages), path, section)
+
+  cli::cli_alert_success(
+    "{length(pages)} figure{?s} written to {.file {path}}."
+  )
+
+  invisible(path)
+}
+
+.figure_path <- \(x, qmd) {
+  path <- eval(x$call, globalenv())
+
+  if (
+    !inherits(path, "knit_image_paths") ||
+      length(path) != 1 ||
+      !identical(fs::path_ext(path), "png")
+  ) {
+    cli::cli_abort(c(
+      "{.file {qmd}}: chunk {.val {x$label}} does not publish a single PNG figure.",
+      i = "{.code {as_label(x$call)}} must resolve to an exported PNG outside HTML."
+    ))
+  }
+
+  unclass(path)
+}
+
+.split_caption <- \(cap, label, qmd) {
+  parts <- cap |>
+    str_split_1("<br\\s*/?>") |>
+    str_remove_all("</?span[^>]*>") |>
+    str_squish()
+
+  if (length(parts) > 2 || any(str_detect(parts, "<[^>]*>"))) {
+    cli::cli_abort(c(
+      "{.file {qmd}}: the {.field fig-cap} of {.val {label}} carries markup beyond a title and a note.",
+      i = "A caption is read as {.fun str_fig} writes it, {.code title<br><span>note</span>}."
+    ))
+  }
+
+  list(
+    title = parts[[1]],
+    note = if (length(parts) == 2 && nzchar(parts[[2]])) parts[[2]]
+  )
+}
+
+# Mirrors the flextable caption hebstr writes, so both assembled files read alike.
+.caption_text <- \(size = 10, bold = TRUE, color = "#111111") {
+  officer::fp_text(
+    font.family = "Aptos",
+    font.size = size,
+    bold = bold,
+    italic = FALSE,
+    color = color
+  )
+}
+
+# Mirrors the report: a caption above its figure takes the centred Table Caption style, one below the left-aligned Image Caption styles.
+.figure_caption <- \(title, note, keep, spacing = 6) {
+  par <- \(text, props, keep_next, top, bottom) {
+    officer::ftext(text, props) |>
+      officer::fpar(
+        fp_p = officer::fp_par(
+          text.align = if (keep) "center" else "left",
+          padding.top = top,
+          padding.bottom = bottom,
+          padding.left = 0,
+          padding.right = 0,
+          keep_with_next = keep_next,
+          word_style = "Image Caption"
+        )
+      )
+  }
+
+  if (is.null(note)) {
+    return(list(par(title, .caption_text(), keep, spacing, spacing)))
+  }
+
+  list(
+    par(title, .caption_text(), TRUE, spacing, 0),
+    par(
+      note,
+      .caption_text(size = 9, bold = FALSE, color = "#555555"),
+      keep,
+      0,
+      spacing
+    )
+  )
+}
+
+.figure_image <- \(src, section, keep, max_height = 0.8, spacing = 12) {
+  dims <- dim(png::readPNG(src))
+
+  width <- section$page_size$width -
+    section$page_margins$left -
+    section$page_margins$right
+
+  height <- width * dims[[1]] / dims[[2]]
+
+  limit <- max_height *
+    (section$page_size$height -
+      section$page_margins$top -
+      section$page_margins$bottom)
+
+  scale <- min(1, limit / height)
+
+  officer::fpar(
+    officer::external_img(src, width = width * scale, height = height * scale),
+    fp_p = officer::fp_par(
+      text.align = "center",
+      padding.top = spacing,
+      padding.bottom = spacing,
+      keep_with_next = keep
+    )
+  )
+}
+
+.docx_section <- \() officer::prop_section(type = "continuous")
+
+.save_docx <- \(pages, path, section = .docx_section()) {
+  pages |>
     seq_along() |>
     reduce(
       \(doc, i) {
         doc <- if (i > 1) officer::body_add_break(doc) else doc
-        flextable::body_add_flextable(doc, ft[[i]], align = NULL)
+        pages[[i]](doc)
       },
       .init = officer::read_docx()
     ) |>
@@ -92,29 +270,44 @@ export_tables <- \(
   })
 }
 
-.chunk_table <- \(x, qmd) {
+.chunk_float <- \(x, qmd, type = c("tbl", "fig")) {
+  type <- arg_match(type)
+
   chunk <- knitr::partition_chunk("r", x)
 
   label <- chunk$options$label
 
   if (
     !is_string(label) ||
-      !str_starts(label, "tbl-") ||
-      str_starts(label, "tbl-anx-")
+      !str_starts(label, str_glue("{type}-")) ||
+      str_starts(label, str_glue("{type}-anx-"))
   ) {
     return(NULL)
   }
 
-  cap <- chunk$options[["tbl-cap"]]
+  option <- str_glue("{type}-cap")
+
+  cap <- chunk$options[[option]]
 
   if (is.expression(cap)) {
-    cap <- eval(cap, globalenv())
+    cap <- tryCatch(
+      eval(cap, globalenv()),
+      error = \(e) {
+        cli::cli_abort(
+          c(
+            "{.file {qmd}}: the {.field {option}} of {.val {label}} cannot be evaluated.",
+            i = "A caption is built by a script before the report runs, never in its own chunk."
+          ),
+          parent = e
+        )
+      }
+    )
   }
 
   if (!is_string(cap)) {
     cli::cli_abort(c(
-      "{.file {qmd}}: chunk {.val {label}} carries no {.field tbl-cap}.",
-      i = "A table published by the report is captioned by its own chunk."
+      "{.file {qmd}}: chunk {.val {label}} carries no {.field {option}}.",
+      i = "A float published by the report is captioned by its own chunk."
     ))
   }
 
@@ -126,11 +319,17 @@ export_tables <- \(
   if (length(calls) != 1) {
     cli::cli_abort(c(
       "{.file {qmd}}: chunk {.val {label}} holds {length(calls)} {.fun out_qmd} call{?s}.",
-      i = "A {.field tbl-} chunk publishes exactly one table, by name."
+      i = "A {.field {type}-} chunk publishes exactly one output, by name."
     ))
   }
 
-  list(label = label, cap = cap, expr = calls[[1]][[2]])
+  list(
+    label = label,
+    cap = cap,
+    location = chunk$options[[str_glue("{type}-cap-location")]],
+    call = calls[[1]],
+    expr = calls[[1]][[2]]
+  )
 }
 
 .front_date <- \(lines, qmd) {
@@ -171,7 +370,9 @@ export_tables <- \(
   fs::path_abs(quarto$project$config$project$`output-dir` %||% root, start = root)
 }
 
-.crossref <- \(quarto, format = "docx") {
+.crossref <- \(quarto, type = c("tbl", "fig"), format = "docx") {
+  type <- arg_match(type)
+
   formats <- quarto$formats
 
   target <- formats |>
@@ -187,10 +388,12 @@ export_tables <- \(
   }
 
   list(
-    prefix = target$metadata$crossref$`tbl-title` %||%
-      target$language$`crossref-tbl-title` %||%
-      "Table",
-    delim = target$metadata$crossref$`title-delim` %||% ":"
+    prefix = target$metadata$crossref[[str_glue("{type}-title")]] %||%
+      target$language[[str_glue("crossref-{type}-title")]] %||%
+      c(tbl = "Table", fig = "Figure")[[type]],
+    delim = target$metadata$crossref$`title-delim` %||% ":",
+    location = target$metadata[[str_glue("{type}-cap-location")]] %||%
+      c(tbl = "top", fig = "bottom")[[type]]
   ) |>
     map(\(x) str_replace_all(as.character(x), "\\\\(.)", "\\1"))
 }
@@ -204,5 +407,9 @@ auto_build <- \(
     auto_exec()
   )
 
-  if (docx) export_tables()
+  if (docx) {
+    quarto <- .inspect(here::here("index.qmd"))
+    export_tables(quarto = quarto)
+    export_figures(quarto = quarto)
+  }
 }

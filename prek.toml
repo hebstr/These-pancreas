@@ -3,7 +3,7 @@ repo = "local"
 hooks = [
   { id = "prose-lint", name = "prose lint (.md/.qmd)", entry = "prose-lint", language = "system", files = '\.(md|qmd)$', exclude = '^_extensions/' },
   { id = "panache-format", name = "panache format (.md/.qmd)", entry = "panache format", language = "system", files = '\.(md|qmd)$', exclude = '^_extensions/' },
-  { id = "metadata-only", name = "metadata-only rewrite (.docx/.pptx/.xlsx/.png)", entry = "prek-metadata-only", language = "system", files = '\.(docx|pptx|xlsx|png)$' },
+  { id = "metadata-only", name = "metadata-only rewrite (.docx/.pptx/.xlsx/.png)", entry = "prek-metadata-only", language = "system", files = '\.(docx|pptx|xlsx|png)$', require_serial = true },
 ]
 
 [[repos]]

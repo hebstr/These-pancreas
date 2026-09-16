@@ -153,3 +153,12 @@ title_suffix <- \(title, strata = "selon le protocole de chimiothérapie") {
   ) |>
     map(~ str_glue("{title}, {.x}."))
 }
+
+title_surv <- \(title) {
+  str_fig(
+    title = title,
+    note = str_glue(
+      "Les évènements et censures sont présentés en effectifs cumulés au cours du temps."
+    )
+  )
+}

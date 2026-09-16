@@ -6,7 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Julien ELICES-DIEZ">
 
 <title>Thèse Nesrine</title>
 <style>
@@ -2636,12 +2635,6 @@ src: url(data:font/woff2;base64,d09GMk9UVE8AAbpsAAkAAAAEzT4AAbokA4ADAAAAAAAAAAAA
 
 <div class="quarto-title-meta column-page-left">
 
-    <div>
-    <div class="quarto-title-meta-heading">Auteur·rice</div>
-    <div class="quarto-title-meta-contents">
-             <p>Julien ELICES-DIEZ <a href="mailto:ju.diez@protonmail.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
-          </div>
-  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Date de publication</div>
@@ -2751,7 +2744,7 @@ src: url(data:font/woff2;base64,d09GMk9UVE8AAbpsAAkAAAAEzT4AAbokA4ADAAAAAAAAAAAA
 </section>
 <section id="environnement-logiciel" class="level3" data-number="1.5.6">
 <h3 data-number="1.5.6" data-anchor-id="environnement-logiciel"><span class="header-section-number">1.5.6</span> Environnement logiciel</h3>
-<p>Les analyses statistiques ont été réalisées avec le langage R version 4.6.1 (2026-06-24). Les estimations de survie et les modèles de Cox ont été obtenus avec <code>survival</code> (version 3.8.6). Les modèles de comptage ont été obtenus avec <code>stats::glm</code> (familles Poisson et quasi-Poisson), et leurs diagnostics avec <code>performance</code> (version 0.18.2). Les p-valeurs globales par variable ont été obtenues avec <code>car</code> (version 3.1.5).</p>
+<p>Les analyses statistiques ont été réalisées avec le langage R version 4.6.1 (2026-06-24). Les estimations de survie et les modèles de Cox ont été obtenus avec <em>survival</em> (version 3.8.6). Les modèles de comptage ont été obtenus avec <em>stats::glm</em> (familles Poisson et quasi-Poisson), et leurs diagnostics avec <em>performance</em> (version 0.18.2). Les p-valeurs globales par variable ont été obtenues avec <em>car</em> (version 3.1.5).</p>
 </section>
 </section>
 </section>
@@ -6974,7 +6967,16 @@ height: 0px !important;
 <span id="cb9-93"><a href="#cb9-93" aria-label="93"></a>  <span class="fu">ggsurvfit_align_plots</span><span class="re">()</span> <span class="sc">|&gt;</span></span>
 <span id="cb9-94"><a href="#cb9-94" aria-label="94"></a>  <span class="fu">wrap_plots</span><span class="re">(</span><span class="at">ncol</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">,</span> <span class="at">heights</span> <span class="ot">=</span> <span class="fu">c</span><span class="re">(</span><span class="dv">1</span><span class="sc">,</span> <span class="fl">0.1</span><span class="re">))</span></span>
 <span id="cb9-95"><a href="#cb9-95" aria-label="95"></a></span>
-<span id="cb9-96"><a href="#cb9-96" aria-label="96"></a><span class="fu">easy_out</span><span class="re">(</span>fig_follow<span class="sc">,</span> <span class="at">height</span> <span class="ot">=</span> <span class="fl">3.75</span><span class="sc">,</span> <span class="at">width</span> <span class="ot">=</span> <span class="dv">7</span><span class="re">)</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-96"><a href="#cb9-96" aria-label="96"></a><span class="fu">easy_out</span><span class="re">(</span>fig_follow<span class="sc">,</span> <span class="at">height</span> <span class="ot">=</span> <span class="fl">3.75</span><span class="sc">,</span> <span class="at">width</span> <span class="ot">=</span> <span class="dv">7</span><span class="re">)</span></span>
+<span id="cb9-97"><a href="#cb9-97" aria-label="97"></a></span>
+<span id="cb9-98"><a href="#cb9-98" aria-label="98"></a><span class="do">### QMD ------------------------------------------------------------------------</span></span>
+<span id="cb9-99"><a href="#cb9-99" aria-label="99"></a></span>
+<span id="cb9-100"><a href="#cb9-100" aria-label="100"></a>.title_fig_follow <span class="ot">&lt;-</span> <span class="fu">str_fig</span><span class="re">(</span></span>
+<span id="cb9-101"><a href="#cb9-101" aria-label="101"></a>  <span class="at">title</span> <span class="ot">=</span> <span class="fu">title_suffix</span><span class="re">(</span><span class="st">&quot;Recul de suivi&quot;</span><span class="re">)</span><span class="sc">$</span>strata<span class="sc">,</span></span>
+<span id="cb9-102"><a href="#cb9-102" aria-label="102"></a>  <span class="at">note</span> <span class="ot">=</span> <span class="fu">str_glue</span><span class="re">(</span></span>
+<span id="cb9-103"><a href="#cb9-103" aria-label="103"></a>    <span class="st">&quot;Recul de suivi estimé par la méthode de Kaplan-Meier inversée : l&#39;évènement est la fin du suivi, la censure est le décès.&quot;</span></span>
+<span id="cb9-104"><a href="#cb9-104" aria-label="104"></a>  <span class="re">)</span></span>
+<span id="cb9-105"><a href="#cb9-105" aria-label="105"></a><span class="re">)</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
@@ -8487,7 +8489,14 @@ height: 0px !important;
 <span id="cb12-57"><a href="#cb12-57" aria-label="57"></a></span>
 <span id="cb12-58"><a href="#cb12-58" aria-label="58"></a>fig_surv_total <span class="ot">&lt;-</span> <span class="fu">imap</span><span class="re">(</span>.surv<span class="sc">$</span>total<span class="sc">,</span> get_fig_surv<span class="re">)</span></span>
 <span id="cb12-59"><a href="#cb12-59" aria-label="59"></a></span>
-<span id="cb12-60"><a href="#cb12-60" aria-label="60"></a><span class="fu">easy_out</span><span class="re">(</span>fig_surv_total<span class="sc">,</span> <span class="at">height</span> <span class="ot">=</span> <span class="fl">3.75</span><span class="sc">,</span> <span class="at">width</span> <span class="ot">=</span> <span class="dv">7</span><span class="re">)</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-60"><a href="#cb12-60" aria-label="60"></a><span class="fu">easy_out</span><span class="re">(</span>fig_surv_total<span class="sc">,</span> <span class="at">height</span> <span class="ot">=</span> <span class="fl">3.75</span><span class="sc">,</span> <span class="at">width</span> <span class="ot">=</span> <span class="dv">7</span><span class="re">)</span></span>
+<span id="cb12-61"><a href="#cb12-61" aria-label="61"></a></span>
+<span id="cb12-62"><a href="#cb12-62" aria-label="62"></a><span class="do">### QMD ------------------------------------------------------------------------</span></span>
+<span id="cb12-63"><a href="#cb12-63" aria-label="63"></a></span>
+<span id="cb12-64"><a href="#cb12-64" aria-label="64"></a>.title_fig_surv_total <span class="ot">&lt;-</span> <span class="fu">list</span><span class="re">(</span></span>
+<span id="cb12-65"><a href="#cb12-65" aria-label="65"></a>  <span class="at">os</span> <span class="ot">=</span> <span class="fu">title_surv</span><span class="re">(</span><span class="st">&quot;Survie globale dans la population totale.&quot;</span><span class="re">)</span><span class="sc">,</span></span>
+<span id="cb12-66"><a href="#cb12-66" aria-label="66"></a>  <span class="at">pfs</span> <span class="ot">=</span> <span class="fu">title_surv</span><span class="re">(</span><span class="st">&quot;Survie sans récidive dans la population totale.&quot;</span><span class="re">)</span></span>
+<span id="cb12-67"><a href="#cb12-67" aria-label="67"></a><span class="re">)</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
@@ -8605,7 +8614,14 @@ Figure 4. Survie globale dans la population totale.<br> <span class="quarto-flo
 <span id="cb13-93"><a href="#cb13-93" aria-label="93"></a></span>
 <span id="cb13-94"><a href="#cb13-94" aria-label="94"></a>fig_surv_strata <span class="ot">&lt;-</span> <span class="fu">imap</span><span class="re">(</span>.surv<span class="sc">$</span>strata<span class="sc">,</span> get_fig_surv<span class="re">)</span></span>
 <span id="cb13-95"><a href="#cb13-95" aria-label="95"></a></span>
-<span id="cb13-96"><a href="#cb13-96" aria-label="96"></a><span class="fu">easy_out</span><span class="re">(</span>fig_surv_strata<span class="sc">,</span> <span class="at">height</span> <span class="ot">=</span> <span class="fl">3.75</span><span class="sc">,</span> <span class="at">width</span> <span class="ot">=</span> <span class="dv">7</span><span class="re">)</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-96"><a href="#cb13-96" aria-label="96"></a><span class="fu">easy_out</span><span class="re">(</span>fig_surv_strata<span class="sc">,</span> <span class="at">height</span> <span class="ot">=</span> <span class="fl">3.75</span><span class="sc">,</span> <span class="at">width</span> <span class="ot">=</span> <span class="dv">7</span><span class="re">)</span></span>
+<span id="cb13-97"><a href="#cb13-97" aria-label="97"></a></span>
+<span id="cb13-98"><a href="#cb13-98" aria-label="98"></a><span class="do">### QMD ------------------------------------------------------------------------</span></span>
+<span id="cb13-99"><a href="#cb13-99" aria-label="99"></a></span>
+<span id="cb13-100"><a href="#cb13-100" aria-label="100"></a>.title_fig_surv_strata <span class="ot">&lt;-</span> <span class="fu">list</span><span class="re">(</span></span>
+<span id="cb13-101"><a href="#cb13-101" aria-label="101"></a>  <span class="at">os</span> <span class="ot">=</span> <span class="fu">title_surv</span><span class="re">(</span><span class="fu">title_suffix</span><span class="re">(</span><span class="st">&quot;Survie globale&quot;</span><span class="re">)</span><span class="sc">$</span>strata<span class="re">)</span><span class="sc">,</span></span>
+<span id="cb13-102"><a href="#cb13-102" aria-label="102"></a>  <span class="at">pfs</span> <span class="ot">=</span> <span class="fu">title_surv</span><span class="re">(</span><span class="fu">title_suffix</span><span class="re">(</span><span class="st">&quot;Survie sans récidive&quot;</span><span class="re">)</span><span class="sc">$</span>strata<span class="re">)</span></span>
+<span id="cb13-103"><a href="#cb13-103" aria-label="103"></a><span class="re">)</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
@@ -9948,7 +9964,14 @@ height: 0px !important;
 <span id="cb16-57"><a href="#cb16-57" aria-label="57"></a></span>
 <span id="cb16-58"><a href="#cb16-58" aria-label="58"></a>fig_surv_total <span class="ot">&lt;-</span> <span class="fu">imap</span><span class="re">(</span>.surv<span class="sc">$</span>total<span class="sc">,</span> get_fig_surv<span class="re">)</span></span>
 <span id="cb16-59"><a href="#cb16-59" aria-label="59"></a></span>
-<span id="cb16-60"><a href="#cb16-60" aria-label="60"></a><span class="fu">easy_out</span><span class="re">(</span>fig_surv_total<span class="sc">,</span> <span class="at">height</span> <span class="ot">=</span> <span class="fl">3.75</span><span class="sc">,</span> <span class="at">width</span> <span class="ot">=</span> <span class="dv">7</span><span class="re">)</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-60"><a href="#cb16-60" aria-label="60"></a><span class="fu">easy_out</span><span class="re">(</span>fig_surv_total<span class="sc">,</span> <span class="at">height</span> <span class="ot">=</span> <span class="fl">3.75</span><span class="sc">,</span> <span class="at">width</span> <span class="ot">=</span> <span class="dv">7</span><span class="re">)</span></span>
+<span id="cb16-61"><a href="#cb16-61" aria-label="61"></a></span>
+<span id="cb16-62"><a href="#cb16-62" aria-label="62"></a><span class="do">### QMD ------------------------------------------------------------------------</span></span>
+<span id="cb16-63"><a href="#cb16-63" aria-label="63"></a></span>
+<span id="cb16-64"><a href="#cb16-64" aria-label="64"></a>.title_fig_surv_total <span class="ot">&lt;-</span> <span class="fu">list</span><span class="re">(</span></span>
+<span id="cb16-65"><a href="#cb16-65" aria-label="65"></a>  <span class="at">os</span> <span class="ot">=</span> <span class="fu">title_surv</span><span class="re">(</span><span class="st">&quot;Survie globale dans la population totale.&quot;</span><span class="re">)</span><span class="sc">,</span></span>
+<span id="cb16-66"><a href="#cb16-66" aria-label="66"></a>  <span class="at">pfs</span> <span class="ot">=</span> <span class="fu">title_surv</span><span class="re">(</span><span class="st">&quot;Survie sans récidive dans la population totale.&quot;</span><span class="re">)</span></span>
+<span id="cb16-67"><a href="#cb16-67" aria-label="67"></a><span class="re">)</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
@@ -10066,7 +10089,14 @@ Figure 6. Survie sans récidive dans la population totale.<br> <span class="qua
 <span id="cb17-93"><a href="#cb17-93" aria-label="93"></a></span>
 <span id="cb17-94"><a href="#cb17-94" aria-label="94"></a>fig_surv_strata <span class="ot">&lt;-</span> <span class="fu">imap</span><span class="re">(</span>.surv<span class="sc">$</span>strata<span class="sc">,</span> get_fig_surv<span class="re">)</span></span>
 <span id="cb17-95"><a href="#cb17-95" aria-label="95"></a></span>
-<span id="cb17-96"><a href="#cb17-96" aria-label="96"></a><span class="fu">easy_out</span><span class="re">(</span>fig_surv_strata<span class="sc">,</span> <span class="at">height</span> <span class="ot">=</span> <span class="fl">3.75</span><span class="sc">,</span> <span class="at">width</span> <span class="ot">=</span> <span class="dv">7</span><span class="re">)</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-96"><a href="#cb17-96" aria-label="96"></a><span class="fu">easy_out</span><span class="re">(</span>fig_surv_strata<span class="sc">,</span> <span class="at">height</span> <span class="ot">=</span> <span class="fl">3.75</span><span class="sc">,</span> <span class="at">width</span> <span class="ot">=</span> <span class="dv">7</span><span class="re">)</span></span>
+<span id="cb17-97"><a href="#cb17-97" aria-label="97"></a></span>
+<span id="cb17-98"><a href="#cb17-98" aria-label="98"></a><span class="do">### QMD ------------------------------------------------------------------------</span></span>
+<span id="cb17-99"><a href="#cb17-99" aria-label="99"></a></span>
+<span id="cb17-100"><a href="#cb17-100" aria-label="100"></a>.title_fig_surv_strata <span class="ot">&lt;-</span> <span class="fu">list</span><span class="re">(</span></span>
+<span id="cb17-101"><a href="#cb17-101" aria-label="101"></a>  <span class="at">os</span> <span class="ot">=</span> <span class="fu">title_surv</span><span class="re">(</span><span class="fu">title_suffix</span><span class="re">(</span><span class="st">&quot;Survie globale&quot;</span><span class="re">)</span><span class="sc">$</span>strata<span class="re">)</span><span class="sc">,</span></span>
+<span id="cb17-102"><a href="#cb17-102" aria-label="102"></a>  <span class="at">pfs</span> <span class="ot">=</span> <span class="fu">title_surv</span><span class="re">(</span><span class="fu">title_suffix</span><span class="re">(</span><span class="st">&quot;Survie sans récidive&quot;</span><span class="re">)</span><span class="sc">$</span>strata<span class="re">)</span></span>
+<span id="cb17-103"><a href="#cb17-103" aria-label="103"></a><span class="re">)</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
@@ -12552,601 +12582,562 @@ height: 0px !important;
 <span id="cb22-2"><a href="#cb22-2" aria-label="2"></a><span class="an">title:</span><span class="co"> &quot;Thèse Nesrine&quot;</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-label="3"></a><span class="an">subtitle:</span><span class="co"> &quot;Rapport d&#39;analyse statistique&quot;</span></span>
 <span id="cb22-4"><a href="#cb22-4" aria-label="4"></a><span class="an">date:</span><span class="co"> 2026-09-06</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-label="5"></a><span class="an">author:</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-label="6"></a><span class="co">  name: &quot;Julien ELICES-DIEZ&quot;</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-label="7"></a><span class="co">  email: &quot;ju.diez@protonmail.com&quot;</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-label="8"></a><span class="an">format:</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-label="9"></a><span class="co">  hebstr-doc-html: {}</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-label="10"></a><span class="co">  hebstr-doc-docx: {}</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-label="11"></a><span class="co">---</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-label="12"></a></span>
-<span id="cb22-13"><a href="#cb22-13" aria-label="13"></a><span class="in">```{r}</span></span>
-<span id="cb22-14"><a href="#cb22-14" aria-label="14"></a><span class="co">#| label: setup</span></span>
-<span id="cb22-15"><a href="#cb22-15" aria-label="15"></a><span class="co">#| include: false</span></span>
-<span id="cb22-16"><a href="#cb22-16" aria-label="16"></a></span>
-<span id="cb22-17"><a href="#cb22-17" aria-label="17"></a><span class="fu">source</span>(<span class="st">&quot;setup.R&quot;</span>)</span>
-<span id="cb22-18"><a href="#cb22-18" aria-label="18"></a><span class="fu">auto_build</span>()</span>
-<span id="cb22-19"><a href="#cb22-19" aria-label="19"></a><span class="in">```</span></span>
-<span id="cb22-20"><a href="#cb22-20" aria-label="20"></a></span>
-<span id="cb22-21"><a href="#cb22-21" aria-label="21"></a><span class="fu"># Matériel et méthodes</span></span>
-<span id="cb22-22"><a href="#cb22-22" aria-label="22"></a></span>
-<span id="cb22-23"><a href="#cb22-23" aria-label="23"></a><span class="fu">## Design et aspects réglementaires</span></span>
-<span id="cb22-24"><a href="#cb22-24" aria-label="24"></a></span>
-<span id="cb22-25"><a href="#cb22-25" aria-label="25"></a>Il s&#39;agissait d&#39;une étude observationnelle, rétrospective, multicentrique, conduite dans quatre centres hospitaliers français : CHU Nantes, CHD La Roche-sur-Yon, CHU Angers et CHU Lyon.</span>
-<span id="cb22-26"><a href="#cb22-26" aria-label="26"></a></span>
-<span id="cb22-27"><a href="#cb22-27" aria-label="27"></a>Les données ont été recueillies rétrospectivement à partir du dossier patient informatisé.</span>
-<span id="cb22-28"><a href="#cb22-28" aria-label="28"></a>L&#39;étude a été menée conformément à la méthodologie de référence MR004 de la Commission nationale de l&#39;informatique et des libertés (CNIL), qui encadre les recherches n&#39;impliquant pas la personne humaine et les réutilisations de données de santé déjà recueillies.</span>
-<span id="cb22-29"><a href="#cb22-29" aria-label="29"></a>L&#39;absence d&#39;opposition de chaque patient au traitement de ses données a été vérifiée.</span>
-<span id="cb22-30"><a href="#cb22-30" aria-label="30"></a>S&#39;agissant d&#39;une recherche n&#39;impliquant pas la personne humaine, l&#39;avis d&#39;un comité de protection des personnes n&#39;était pas requis.</span>
-<span id="cb22-31"><a href="#cb22-31" aria-label="31"></a></span>
-<span id="cb22-32"><a href="#cb22-32" aria-label="32"></a><span class="fu">## Objectifs de l&#39;étude</span></span>
-<span id="cb22-33"><a href="#cb22-33" aria-label="33"></a></span>
-<span id="cb22-34"><a href="#cb22-34" aria-label="34"></a>L&#39;objectif principal était de comparer le nombre total de cures de chimiothérapie reçues entre les deux protocoles (chimiothérapie adjuvante seule et chimiothérapie péri-opératoire), et d&#39;identifier les autres facteurs associés.</span>
-<span id="cb22-35"><a href="#cb22-35" aria-label="35"></a></span>
-<span id="cb22-36"><a href="#cb22-36" aria-label="36"></a>Les objectifs secondaires étaient les suivants :</span>
-<span id="cb22-37"><a href="#cb22-37" aria-label="37"></a></span>
-<span id="cb22-38"><a href="#cb22-38" aria-label="38"></a><span class="ss">- </span>Comparer la survie globale et la survie sans récidive entre les deux protocoles de chimiothérapie</span>
-<span id="cb22-39"><a href="#cb22-39" aria-label="39"></a><span class="ss">- </span>Décrire les caractéristiques des patients à l&#39;inclusion, les caractéristiques tumorales et la prise en charge chirurgicale</span>
-<span id="cb22-40"><a href="#cb22-40" aria-label="40"></a><span class="ss">- </span>Décrire les doses reçues, leurs adaptations et la toxicité chimio-induite de grade III-IV sur l&#39;ensemble du traitement</span>
-<span id="cb22-41"><a href="#cb22-41" aria-label="41"></a></span>
-<span id="cb22-42"><a href="#cb22-42" aria-label="42"></a><span class="fu">## Critères de jugement</span></span>
-<span id="cb22-43"><a href="#cb22-43" aria-label="43"></a></span>
-<span id="cb22-44"><a href="#cb22-44" aria-label="44"></a><span class="fu">### Critère de jugement principal</span></span>
-<span id="cb22-45"><a href="#cb22-45" aria-label="45"></a></span>
-<span id="cb22-46"><a href="#cb22-46" aria-label="46"></a>Le critère de jugement principal était le nombre total de cures de chimiothérapie reçues, toutes phases confondues (phase d&#39;induction et phase adjuvante).</span>
-<span id="cb22-47"><a href="#cb22-47" aria-label="47"></a>Il s&#39;agit du nombre de cures effectivement reçues et non d&#39;un nombre de cures planifié.</span>
-<span id="cb22-48"><a href="#cb22-48" aria-label="48"></a>Un patient n&#39;ayant reçu aucune cure d&#39;une phase a été compté à zéro pour cette phase, et non en donnée manquante.</span>
-<span id="cb22-49"><a href="#cb22-49" aria-label="49"></a></span>
-<span id="cb22-50"><a href="#cb22-50" aria-label="50"></a>Le protocole de chimiothérapie désignait la stratégie choisie pour le patient et non le traitement effectivement reçu : un patient orienté vers une chimiothérapie adjuvante seule n&#39;ayant finalement reçu aucune cure a donc été analysé dans ce groupe (intention de traiter).</span>
-<span id="cb22-51"><a href="#cb22-51" aria-label="51"></a></span>
-<span id="cb22-52"><a href="#cb22-52" aria-label="52"></a>Ce nombre de cures de chimiothérapie a été analysé sous forme de comptage brut.</span>
-<span id="cb22-53"><a href="#cb22-53" aria-label="53"></a>Le comptage du nombre de cures reçues a été décrit par phase et toutes phases confondues.</span>
-<span id="cb22-54"><a href="#cb22-54" aria-label="54"></a>La proportion de patients ayant reçu au moins 12 cures a été décrite à titre complémentaire, ainsi que celle des patients les ayant reçues sans réduction de dose de plus de 20 % à la dernière cure de chaque phase, sur aucune des trois molécules.</span>
-<span id="cb22-55"><a href="#cb22-55" aria-label="55"></a></span>
-<span id="cb22-56"><a href="#cb22-56" aria-label="56"></a><span class="fu">### Critères de jugement secondaires</span></span>
-<span id="cb22-57"><a href="#cb22-57" aria-label="57"></a></span>
-<span id="cb22-58"><a href="#cb22-58" aria-label="58"></a>Les critères de jugement secondaires étaient la survie globale et la survie sans récidive.</span>
-<span id="cb22-59"><a href="#cb22-59" aria-label="59"></a>La survie globale était définie comme le délai entre la date de la chirurgie et le décès toutes causes.</span>
-<span id="cb22-60"><a href="#cb22-60" aria-label="60"></a>La survie sans récidive était définie comme le délai entre la date de la chirurgie et le premier évènement survenu parmi la récidive ou le décès toutes causes.</span>
-<span id="cb22-61"><a href="#cb22-61" aria-label="61"></a></span>
-<span id="cb22-62"><a href="#cb22-62" aria-label="62"></a>Un patient orienté vers un protocole de chimiothérapie péri-opératoire devait nécessairement survivre à la phase d&#39;induction et être opéré : considérer la survie globale depuis le diagnostic aurait attribué à ce groupe un temps de survie garanti par construction, d&#39;autant plus long que le délai entre le diagnostic et la chirurgie est long.</span>
-<span id="cb22-63"><a href="#cb22-63" aria-label="63"></a>La chirurgie comme point de départ pour la survie globale a été choisie pour contrôler ce biais de temps immortel favorable au protocole de chimiothérapie péri-opératoire.</span>
-<span id="cb22-64"><a href="#cb22-64" aria-label="64"></a>Une analyse de sensibilité conservant l&#39;échelle de temps depuis le diagnostic a été conduite.</span>
-<span id="cb22-65"><a href="#cb22-65" aria-label="65"></a></span>
-<span id="cb22-66"><a href="#cb22-66" aria-label="66"></a>Le premier évènement observé pour chaque patient a été classé en récidive, décès sans récidive, ou censure.</span>
-<span id="cb22-67"><a href="#cb22-67" aria-label="67"></a>Les patients sans évènement ont été censurés à la date du recueil dans leur centre (date de point), la date de dernières nouvelles individuelle n&#39;ayant pas été recueillie.</span>
-<span id="cb22-68"><a href="#cb22-68" aria-label="68"></a>La censure était donc exclusivement administrative.</span>
-<span id="cb22-69"><a href="#cb22-69" aria-label="69"></a></span>
-<span id="cb22-70"><a href="#cb22-70" aria-label="70"></a><span class="fu">## Population d&#39;étude</span></span>
-<span id="cb22-71"><a href="#cb22-71" aria-label="71"></a></span>
-<span id="cb22-72"><a href="#cb22-72" aria-label="72"></a>Étaient éligibles les patients (H/F) âgés de 18 ans ou plus porteurs d&#39;un diagnostic d&#39;adénocarcinome pancréatique, pour lesquels une indication chirurgicale avait été retenue en RCP, et dont la date opératoire était programmée entre le 1er janvier 2022 et le 31 décembre 2025 inclus, dans l&#39;un des quatre centres sus-cités.</span>
-<span id="cb22-73"><a href="#cb22-73" aria-label="73"></a></span>
-<span id="cb22-74"><a href="#cb22-74" aria-label="74"></a>Les critères d&#39;exclusion étaient les suivants :</span>
-<span id="cb22-75"><a href="#cb22-75" aria-label="75"></a></span>
-<span id="cb22-76"><a href="#cb22-76" aria-label="76"></a><span class="ss">- </span>Autre diagnostic anatomopathologique</span>
-<span id="cb22-77"><a href="#cb22-77" aria-label="77"></a><span class="ss">- </span>Lésion non opérable ou d&#39;emblée métastatique</span>
-<span id="cb22-78"><a href="#cb22-78" aria-label="78"></a><span class="ss">- </span>Autre protocole de chimiothérapie</span>
-<span id="cb22-79"><a href="#cb22-79" aria-label="79"></a><span class="ss">- </span>Décès précoce post-diagnostic ou post-opératoire</span>
-<span id="cb22-80"><a href="#cb22-80" aria-label="80"></a><span class="ss">- </span>Données insuffisantes</span>
-<span id="cb22-81"><a href="#cb22-81" aria-label="81"></a></span>
-<span id="cb22-82"><a href="#cb22-82" aria-label="82"></a><span class="fu">## Plan d&#39;analyse statistique</span></span>
-<span id="cb22-83"><a href="#cb22-83" aria-label="83"></a></span>
-<span id="cb22-84"><a href="#cb22-84" aria-label="84"></a>Les tests statistiques étaient bilatéraux.</span>
-<span id="cb22-85"><a href="#cb22-85" aria-label="85"></a>Le degré de significativité était défini par une p-valeur strictement inférieure au seuil de 5 %.</span>
-<span id="cb22-86"><a href="#cb22-86" aria-label="86"></a>Les p-valeurs étaient rapportées avec deux chiffres significatifs.</span>
-<span id="cb22-87"><a href="#cb22-87" aria-label="87"></a>Pour chaque variable, le degré de significativité rapporté était global.</span>
-<span id="cb22-88"><a href="#cb22-88" aria-label="88"></a>Il a été obtenu par un test du rapport de vraisemblance pour les modèles de comptage et pour les modèles de Cox univariables, et par un test de Wald dans les modèles de Cox multivariables en cas de stratification.</span>
-<span id="cb22-89"><a href="#cb22-89" aria-label="89"></a>L&#39;âge a été introduit dans les modèles après discrétisation en tranches de 5 ans : l&#39;estimation rapportée correspondait à l&#39;effet d&#39;une tranche de 5 ans supplémentaire.</span>
-<span id="cb22-90"><a href="#cb22-90" aria-label="90"></a></span>
-<span id="cb22-91"><a href="#cb22-91" aria-label="91"></a><span class="fu">### Analyses descriptives</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-label="5"></a><span class="an">format:</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-label="6"></a><span class="co">  hebstr-doc-html: {}</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-label="7"></a><span class="co">  hebstr-doc-docx: {}</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-label="8"></a><span class="co">---</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-label="9"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-label="10"></a><span class="in">```{r}</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-label="11"></a><span class="co">#| label: setup</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-label="12"></a><span class="co">#| include: false</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-label="13"></a></span>
+<span id="cb22-14"><a href="#cb22-14" aria-label="14"></a><span class="fu">source</span>(<span class="st">&quot;setup.R&quot;</span>)</span>
+<span id="cb22-15"><a href="#cb22-15" aria-label="15"></a><span class="fu">auto_build</span>()</span>
+<span id="cb22-16"><a href="#cb22-16" aria-label="16"></a><span class="in">```</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-label="17"></a></span>
+<span id="cb22-18"><a href="#cb22-18" aria-label="18"></a><span class="fu"># Matériel et méthodes</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-label="19"></a></span>
+<span id="cb22-20"><a href="#cb22-20" aria-label="20"></a><span class="fu">## Design et aspects réglementaires</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-label="21"></a></span>
+<span id="cb22-22"><a href="#cb22-22" aria-label="22"></a>Il s&#39;agissait d&#39;une étude observationnelle, rétrospective, multicentrique, conduite dans quatre centres hospitaliers français : CHU Nantes, CHD La Roche-sur-Yon, CHU Angers et CHU Lyon.</span>
+<span id="cb22-23"><a href="#cb22-23" aria-label="23"></a></span>
+<span id="cb22-24"><a href="#cb22-24" aria-label="24"></a>Les données ont été recueillies rétrospectivement à partir du dossier patient informatisé.</span>
+<span id="cb22-25"><a href="#cb22-25" aria-label="25"></a>L&#39;étude a été menée conformément à la méthodologie de référence MR004 de la Commission nationale de l&#39;informatique et des libertés (CNIL), qui encadre les recherches n&#39;impliquant pas la personne humaine et les réutilisations de données de santé déjà recueillies.</span>
+<span id="cb22-26"><a href="#cb22-26" aria-label="26"></a>L&#39;absence d&#39;opposition de chaque patient au traitement de ses données a été vérifiée.</span>
+<span id="cb22-27"><a href="#cb22-27" aria-label="27"></a>S&#39;agissant d&#39;une recherche n&#39;impliquant pas la personne humaine, l&#39;avis d&#39;un comité de protection des personnes n&#39;était pas requis.</span>
+<span id="cb22-28"><a href="#cb22-28" aria-label="28"></a></span>
+<span id="cb22-29"><a href="#cb22-29" aria-label="29"></a><span class="fu">## Objectifs de l&#39;étude</span></span>
+<span id="cb22-30"><a href="#cb22-30" aria-label="30"></a></span>
+<span id="cb22-31"><a href="#cb22-31" aria-label="31"></a>L&#39;objectif principal était de comparer le nombre total de cures de chimiothérapie reçues entre les deux protocoles (chimiothérapie adjuvante seule et chimiothérapie péri-opératoire), et d&#39;identifier les autres facteurs associés.</span>
+<span id="cb22-32"><a href="#cb22-32" aria-label="32"></a></span>
+<span id="cb22-33"><a href="#cb22-33" aria-label="33"></a>Les objectifs secondaires étaient les suivants :</span>
+<span id="cb22-34"><a href="#cb22-34" aria-label="34"></a></span>
+<span id="cb22-35"><a href="#cb22-35" aria-label="35"></a><span class="ss">- </span>Comparer la survie globale et la survie sans récidive entre les deux protocoles de chimiothérapie</span>
+<span id="cb22-36"><a href="#cb22-36" aria-label="36"></a><span class="ss">- </span>Décrire les caractéristiques des patients à l&#39;inclusion, les caractéristiques tumorales et la prise en charge chirurgicale</span>
+<span id="cb22-37"><a href="#cb22-37" aria-label="37"></a><span class="ss">- </span>Décrire les doses reçues, leurs adaptations et la toxicité chimio-induite de grade III-IV sur l&#39;ensemble du traitement</span>
+<span id="cb22-38"><a href="#cb22-38" aria-label="38"></a></span>
+<span id="cb22-39"><a href="#cb22-39" aria-label="39"></a><span class="fu">## Critères de jugement</span></span>
+<span id="cb22-40"><a href="#cb22-40" aria-label="40"></a></span>
+<span id="cb22-41"><a href="#cb22-41" aria-label="41"></a><span class="fu">### Critère de jugement principal</span></span>
+<span id="cb22-42"><a href="#cb22-42" aria-label="42"></a></span>
+<span id="cb22-43"><a href="#cb22-43" aria-label="43"></a>Le critère de jugement principal était le nombre total de cures de chimiothérapie reçues, toutes phases confondues (phase d&#39;induction et phase adjuvante).</span>
+<span id="cb22-44"><a href="#cb22-44" aria-label="44"></a>Il s&#39;agit du nombre de cures effectivement reçues et non d&#39;un nombre de cures planifié.</span>
+<span id="cb22-45"><a href="#cb22-45" aria-label="45"></a>Un patient n&#39;ayant reçu aucune cure d&#39;une phase a été compté à zéro pour cette phase, et non en donnée manquante.</span>
+<span id="cb22-46"><a href="#cb22-46" aria-label="46"></a></span>
+<span id="cb22-47"><a href="#cb22-47" aria-label="47"></a>Le protocole de chimiothérapie désignait la stratégie choisie pour le patient et non le traitement effectivement reçu : un patient orienté vers une chimiothérapie adjuvante seule n&#39;ayant finalement reçu aucune cure a donc été analysé dans ce groupe (intention de traiter).</span>
+<span id="cb22-48"><a href="#cb22-48" aria-label="48"></a></span>
+<span id="cb22-49"><a href="#cb22-49" aria-label="49"></a>Ce nombre de cures de chimiothérapie a été analysé sous forme de comptage brut.</span>
+<span id="cb22-50"><a href="#cb22-50" aria-label="50"></a>Le comptage du nombre de cures reçues a été décrit par phase et toutes phases confondues.</span>
+<span id="cb22-51"><a href="#cb22-51" aria-label="51"></a>La proportion de patients ayant reçu au moins 12 cures a été décrite à titre complémentaire, ainsi que celle des patients les ayant reçues sans réduction de dose de plus de 20 % à la dernière cure de chaque phase, sur aucune des trois molécules.</span>
+<span id="cb22-52"><a href="#cb22-52" aria-label="52"></a></span>
+<span id="cb22-53"><a href="#cb22-53" aria-label="53"></a><span class="fu">### Critères de jugement secondaires</span></span>
+<span id="cb22-54"><a href="#cb22-54" aria-label="54"></a></span>
+<span id="cb22-55"><a href="#cb22-55" aria-label="55"></a>Les critères de jugement secondaires étaient la survie globale et la survie sans récidive.</span>
+<span id="cb22-56"><a href="#cb22-56" aria-label="56"></a>La survie globale était définie comme le délai entre la date de la chirurgie et le décès toutes causes.</span>
+<span id="cb22-57"><a href="#cb22-57" aria-label="57"></a>La survie sans récidive était définie comme le délai entre la date de la chirurgie et le premier évènement survenu parmi la récidive ou le décès toutes causes.</span>
+<span id="cb22-58"><a href="#cb22-58" aria-label="58"></a></span>
+<span id="cb22-59"><a href="#cb22-59" aria-label="59"></a>Un patient orienté vers un protocole de chimiothérapie péri-opératoire devait nécessairement survivre à la phase d&#39;induction et être opéré : considérer la survie globale depuis le diagnostic aurait attribué à ce groupe un temps de survie garanti par construction, d&#39;autant plus long que le délai entre le diagnostic et la chirurgie est long.</span>
+<span id="cb22-60"><a href="#cb22-60" aria-label="60"></a>La chirurgie comme point de départ pour la survie globale a été choisie pour contrôler ce biais de temps immortel favorable au protocole de chimiothérapie péri-opératoire.</span>
+<span id="cb22-61"><a href="#cb22-61" aria-label="61"></a>Une analyse de sensibilité conservant l&#39;échelle de temps depuis le diagnostic a été conduite.</span>
+<span id="cb22-62"><a href="#cb22-62" aria-label="62"></a></span>
+<span id="cb22-63"><a href="#cb22-63" aria-label="63"></a>Le premier évènement observé pour chaque patient a été classé en récidive, décès sans récidive, ou censure.</span>
+<span id="cb22-64"><a href="#cb22-64" aria-label="64"></a>Les patients sans évènement ont été censurés à la date du recueil dans leur centre (date de point), la date de dernières nouvelles individuelle n&#39;ayant pas été recueillie.</span>
+<span id="cb22-65"><a href="#cb22-65" aria-label="65"></a>La censure était donc exclusivement administrative.</span>
+<span id="cb22-66"><a href="#cb22-66" aria-label="66"></a></span>
+<span id="cb22-67"><a href="#cb22-67" aria-label="67"></a><span class="fu">## Population d&#39;étude</span></span>
+<span id="cb22-68"><a href="#cb22-68" aria-label="68"></a></span>
+<span id="cb22-69"><a href="#cb22-69" aria-label="69"></a>Étaient éligibles les patients (H/F) âgés de 18 ans ou plus porteurs d&#39;un diagnostic d&#39;adénocarcinome pancréatique, pour lesquels une indication chirurgicale avait été retenue en RCP, et dont la date opératoire était programmée entre le 1er janvier 2022 et le 31 décembre 2025 inclus, dans l&#39;un des quatre centres sus-cités.</span>
+<span id="cb22-70"><a href="#cb22-70" aria-label="70"></a></span>
+<span id="cb22-71"><a href="#cb22-71" aria-label="71"></a>Les critères d&#39;exclusion étaient les suivants :</span>
+<span id="cb22-72"><a href="#cb22-72" aria-label="72"></a></span>
+<span id="cb22-73"><a href="#cb22-73" aria-label="73"></a><span class="ss">- </span>Autre diagnostic anatomopathologique</span>
+<span id="cb22-74"><a href="#cb22-74" aria-label="74"></a><span class="ss">- </span>Lésion non opérable ou d&#39;emblée métastatique</span>
+<span id="cb22-75"><a href="#cb22-75" aria-label="75"></a><span class="ss">- </span>Autre protocole de chimiothérapie</span>
+<span id="cb22-76"><a href="#cb22-76" aria-label="76"></a><span class="ss">- </span>Décès précoce post-diagnostic ou post-opératoire</span>
+<span id="cb22-77"><a href="#cb22-77" aria-label="77"></a><span class="ss">- </span>Données insuffisantes</span>
+<span id="cb22-78"><a href="#cb22-78" aria-label="78"></a></span>
+<span id="cb22-79"><a href="#cb22-79" aria-label="79"></a><span class="fu">## Plan d&#39;analyse statistique</span></span>
+<span id="cb22-80"><a href="#cb22-80" aria-label="80"></a></span>
+<span id="cb22-81"><a href="#cb22-81" aria-label="81"></a>Les tests statistiques étaient bilatéraux.</span>
+<span id="cb22-82"><a href="#cb22-82" aria-label="82"></a>Le degré de significativité était défini par une p-valeur strictement inférieure au seuil de 5 %.</span>
+<span id="cb22-83"><a href="#cb22-83" aria-label="83"></a>Les p-valeurs étaient rapportées avec deux chiffres significatifs.</span>
+<span id="cb22-84"><a href="#cb22-84" aria-label="84"></a>Pour chaque variable, le degré de significativité rapporté était global.</span>
+<span id="cb22-85"><a href="#cb22-85" aria-label="85"></a>Il a été obtenu par un test du rapport de vraisemblance pour les modèles de comptage et pour les modèles de Cox univariables, et par un test de Wald dans les modèles de Cox multivariables en cas de stratification.</span>
+<span id="cb22-86"><a href="#cb22-86" aria-label="86"></a>L&#39;âge a été introduit dans les modèles après discrétisation en tranches de 5 ans : l&#39;estimation rapportée correspondait à l&#39;effet d&#39;une tranche de 5 ans supplémentaire.</span>
+<span id="cb22-87"><a href="#cb22-87" aria-label="87"></a></span>
+<span id="cb22-88"><a href="#cb22-88" aria-label="88"></a><span class="fu">### Analyses descriptives</span></span>
+<span id="cb22-89"><a href="#cb22-89" aria-label="89"></a></span>
+<span id="cb22-90"><a href="#cb22-90" aria-label="90"></a>Les variables catégorielles ont été présentées sous forme d&#39;effectif et de pourcentage.</span>
+<span id="cb22-91"><a href="#cb22-91" aria-label="91"></a>Les variables continues ont été présentées sous forme de médiane avec leur intervalle interquartile.</span>
 <span id="cb22-92"><a href="#cb22-92" aria-label="92"></a></span>
-<span id="cb22-93"><a href="#cb22-93" aria-label="93"></a>Les variables catégorielles ont été présentées sous forme d&#39;effectif et de pourcentage.</span>
-<span id="cb22-94"><a href="#cb22-94" aria-label="94"></a>Les variables continues ont été présentées sous forme de médiane avec leur intervalle interquartile.</span>
+<span id="cb22-93"><a href="#cb22-93" aria-label="93"></a>Les caractéristiques décrites étaient celles des patients à l&#39;inclusion, les caractéristiques tumorales et la prise en charge chirurgicale, le type de récidive, les doses de chimiothérapie reçues avec leurs adaptations, ainsi que la toxicité chimio-induite de grade III-IV.</span>
+<span id="cb22-94"><a href="#cb22-94" aria-label="94"></a>Elles ont été décrites globalement et selon le protocole de chimiothérapie.</span>
 <span id="cb22-95"><a href="#cb22-95" aria-label="95"></a></span>
-<span id="cb22-96"><a href="#cb22-96" aria-label="96"></a>Les caractéristiques décrites étaient celles des patients à l&#39;inclusion, les caractéristiques tumorales et la prise en charge chirurgicale, le type de récidive, les doses de chimiothérapie reçues avec leurs adaptations, ainsi que la toxicité chimio-induite de grade III-IV.</span>
-<span id="cb22-97"><a href="#cb22-97" aria-label="97"></a>Elles ont été décrites globalement et selon le protocole de chimiothérapie.</span>
+<span id="cb22-96"><a href="#cb22-96" aria-label="96"></a>Les deux protocoles ont été comparés par un test du khi-deux d&#39;indépendance sans correction de continuité pour les variables catégorielles, remplacé par un test exact de Fisher dès qu&#39;un effectif théorique était inférieur à 5, et par un test de Wilcoxon-Mann-Whitney pour les variables continues.</span>
+<span id="cb22-97"><a href="#cb22-97" aria-label="97"></a>Ces comparaisons étaient descriptives.</span>
 <span id="cb22-98"><a href="#cb22-98" aria-label="98"></a></span>
-<span id="cb22-99"><a href="#cb22-99" aria-label="99"></a>Les deux protocoles ont été comparés par un test du khi-deux d&#39;indépendance sans correction de continuité pour les variables catégorielles, remplacé par un test exact de Fisher dès qu&#39;un effectif théorique était inférieur à 5, et par un test de Wilcoxon-Mann-Whitney pour les variables continues.</span>
-<span id="cb22-100"><a href="#cb22-100" aria-label="100"></a>Ces comparaisons étaient descriptives.</span>
-<span id="cb22-101"><a href="#cb22-101" aria-label="101"></a></span>
-<span id="cb22-102"><a href="#cb22-102" aria-label="102"></a>La résécabilité de la tumeur au diagnostic a été classée selon les critères du *National Comprehensive Cancer Network* (NCCN), en tumeur résécable d&#39;emblée, borderline ou localement avancée.</span>
-<span id="cb22-103"><a href="#cb22-103" aria-label="103"></a>Les complications post-opératoires ont été cotées selon la classification de Clavien-Dindo, une complication majeure étant définie par un grade supérieur ou égal à III.</span>
-<span id="cb22-104"><a href="#cb22-104" aria-label="104"></a>Les doses reçues, leurs adaptations et la toxicité chimio-induite ont été décrites sur l&#39;ensemble du traitement, chez les patients ayant reçu au moins une cure, sans distinguer la phase d&#39;induction de la phase adjuvante.</span>
-<span id="cb22-105"><a href="#cb22-105" aria-label="105"></a>La phase d&#39;induction ne concernait que le groupe péri-opératoire.</span>
-<span id="cb22-106"><a href="#cb22-106" aria-label="106"></a>La dose et le pourcentage d&#39;adaptation retenus étaient ceux de la dernière cure.</span>
-<span id="cb22-107"><a href="#cb22-107" aria-label="107"></a>La toxicité chimio-induite rapportée était la toxicité de grade III-IV cotée selon la *Common Terminology Criteria for Adverse Events* (CTCAE) v5.0.</span>
-<span id="cb22-108"><a href="#cb22-108" aria-label="108"></a></span>
-<span id="cb22-109"><a href="#cb22-109" aria-label="109"></a><span class="fu">### Analyse du critère de jugement principal</span></span>
-<span id="cb22-110"><a href="#cb22-110" aria-label="110"></a></span>
-<span id="cb22-111"><a href="#cb22-111" aria-label="111"></a>Le nombre total de cures de chimiothérapie reçues a été analysé sous sa forme brute de comptage, sans dichotomisation.</span>
-<span id="cb22-112"><a href="#cb22-112" aria-label="112"></a>Ce comptage a d&#39;abord été modélisé par une régression de Poisson, dont l&#39;hypothèse d&#39;équidispersion a été vérifiée par un test de dispersion de Pearson.</span>
-<span id="cb22-113"><a href="#cb22-113" aria-label="113"></a>Il était convenu de retenir la famille quasi-Poisson pour l&#39;ensemble des estimations rapportées dès lors que le facteur de dispersion estimé était supérieur à 1, sans conditionner ce choix à la significativité du test.</span>
-<span id="cb22-114"><a href="#cb22-114" aria-label="114"></a>Ce correctif laisse les estimations ponctuelles inchangées et n&#39;agit que sur leur précision, corrigée du facteur de dispersion (modèle conservateur).</span>
+<span id="cb22-99"><a href="#cb22-99" aria-label="99"></a>La résécabilité de la tumeur au diagnostic a été classée selon les critères du *National Comprehensive Cancer Network* (NCCN), en tumeur résécable d&#39;emblée, borderline ou localement avancée.</span>
+<span id="cb22-100"><a href="#cb22-100" aria-label="100"></a>Les complications post-opératoires ont été cotées selon la classification de Clavien-Dindo, une complication majeure étant définie par un grade supérieur ou égal à III.</span>
+<span id="cb22-101"><a href="#cb22-101" aria-label="101"></a>Les doses reçues, leurs adaptations et la toxicité chimio-induite ont été décrites sur l&#39;ensemble du traitement, chez les patients ayant reçu au moins une cure, sans distinguer la phase d&#39;induction de la phase adjuvante.</span>
+<span id="cb22-102"><a href="#cb22-102" aria-label="102"></a>La phase d&#39;induction ne concernait que le groupe péri-opératoire.</span>
+<span id="cb22-103"><a href="#cb22-103" aria-label="103"></a>La dose et le pourcentage d&#39;adaptation retenus étaient ceux de la dernière cure.</span>
+<span id="cb22-104"><a href="#cb22-104" aria-label="104"></a>La toxicité chimio-induite rapportée était la toxicité de grade III-IV cotée selon la *Common Terminology Criteria for Adverse Events* (CTCAE) v5.0.</span>
+<span id="cb22-105"><a href="#cb22-105" aria-label="105"></a></span>
+<span id="cb22-106"><a href="#cb22-106" aria-label="106"></a><span class="fu">### Analyse du critère de jugement principal</span></span>
+<span id="cb22-107"><a href="#cb22-107" aria-label="107"></a></span>
+<span id="cb22-108"><a href="#cb22-108" aria-label="108"></a>Le nombre total de cures de chimiothérapie reçues a été analysé sous sa forme brute de comptage, sans dichotomisation.</span>
+<span id="cb22-109"><a href="#cb22-109" aria-label="109"></a>Ce comptage a d&#39;abord été modélisé par une régression de Poisson, dont l&#39;hypothèse d&#39;équidispersion a été vérifiée par un test de dispersion de Pearson.</span>
+<span id="cb22-110"><a href="#cb22-110" aria-label="110"></a>Il était convenu de retenir la famille quasi-Poisson pour l&#39;ensemble des estimations rapportées dès lors que le facteur de dispersion estimé était supérieur à 1, sans conditionner ce choix à la significativité du test.</span>
+<span id="cb22-111"><a href="#cb22-111" aria-label="111"></a>Ce correctif laisse les estimations ponctuelles inchangées et n&#39;agit que sur leur précision, corrigée du facteur de dispersion (modèle conservateur).</span>
+<span id="cb22-112"><a href="#cb22-112" aria-label="112"></a></span>
+<span id="cb22-113"><a href="#cb22-113" aria-label="113"></a>Chaque variable a été analysée séparément dans un modèle univariable, puis les variables retenues a priori ont été incluses dans un modèle ajusté (analyse multivariable).</span>
+<span id="cb22-114"><a href="#cb22-114" aria-label="114"></a>Les coefficients ont été présentés après passage à l&#39;exponentielle, sous forme de rapports du nombre moyen de cures, accompagnés de leur intervalle de confiance à 95 %.</span>
 <span id="cb22-115"><a href="#cb22-115" aria-label="115"></a></span>
-<span id="cb22-116"><a href="#cb22-116" aria-label="116"></a>Chaque variable a été analysée séparément dans un modèle univariable, puis les variables retenues a priori ont été incluses dans un modèle ajusté (analyse multivariable).</span>
-<span id="cb22-117"><a href="#cb22-117" aria-label="117"></a>Les coefficients ont été présentés après passage à l&#39;exponentielle, sous forme de rapports du nombre moyen de cures, accompagnés de leur intervalle de confiance à 95 %.</span>
+<span id="cb22-116"><a href="#cb22-116" aria-label="116"></a>L&#39;absence de colinéarité entre les variables du modèle ajusté a été vérifiée par le facteur d&#39;inflation de la variance (VIF).</span>
+<span id="cb22-117"><a href="#cb22-117" aria-label="117"></a>La présence d&#39;observations influentes a été recherchée par les distances de Cook, au seuil de <span class="in">`r .pois_check_cook$threshold`</span>.</span>
 <span id="cb22-118"><a href="#cb22-118" aria-label="118"></a></span>
-<span id="cb22-119"><a href="#cb22-119" aria-label="119"></a>L&#39;absence de colinéarité entre les variables du modèle ajusté a été vérifiée par le facteur d&#39;inflation de la variance (VIF).</span>
-<span id="cb22-120"><a href="#cb22-120" aria-label="120"></a>La présence d&#39;observations influentes a été recherchée par les distances de Cook, au seuil de <span class="in">`r .pois_check_cook$threshold`</span>.</span>
-<span id="cb22-121"><a href="#cb22-121" aria-label="121"></a></span>
-<span id="cb22-122"><a href="#cb22-122" aria-label="122"></a><span class="fu">### Analyses de survie</span></span>
-<span id="cb22-123"><a href="#cb22-123" aria-label="123"></a></span>
-<span id="cb22-124"><a href="#cb22-124" aria-label="124"></a>La survie globale et la survie sans récidive ont fait l&#39;objet du même plan d&#39;analyse.</span>
-<span id="cb22-125"><a href="#cb22-125" aria-label="125"></a></span>
-<span id="cb22-126"><a href="#cb22-126" aria-label="126"></a><span class="fu">#### Suivi des patients</span></span>
-<span id="cb22-127"><a href="#cb22-127" aria-label="127"></a></span>
-<span id="cb22-128"><a href="#cb22-128" aria-label="128"></a>Le suivi médian a été estimé sur l&#39;échelle de temps de la survie globale, depuis la date de la chirurgie, par la méthode de Kaplan-Meier inversée (méthode de Schemper, l&#39;évènement étant la fin du suivi et la censure étant le décès).</span>
-<span id="cb22-129"><a href="#cb22-129" aria-label="129"></a>La courbe de suivi a été représentée graphiquement selon le protocole de chimiothérapie.</span>
-<span id="cb22-130"><a href="#cb22-130" aria-label="130"></a>Le recul des patients vivants à la date de point a été décrit, ainsi que les dates de point propres à chaque centre.</span>
-<span id="cb22-131"><a href="#cb22-131" aria-label="131"></a></span>
-<span id="cb22-132"><a href="#cb22-132" aria-label="132"></a><span class="fu">#### Évènements</span></span>
-<span id="cb22-133"><a href="#cb22-133" aria-label="133"></a></span>
-<span id="cb22-134"><a href="#cb22-134" aria-label="134"></a>La distribution du premier évènement observé, classé en récidive, décès sans récidive ou censure, a été décrite globalement et selon le protocole de chimiothérapie.</span>
-<span id="cb22-135"><a href="#cb22-135" aria-label="135"></a></span>
-<span id="cb22-136"><a href="#cb22-136" aria-label="136"></a><span class="fu">#### Courbes de survie</span></span>
-<span id="cb22-137"><a href="#cb22-137" aria-label="137"></a></span>
-<span id="cb22-138"><a href="#cb22-138" aria-label="138"></a>Les courbes de survie ont été estimées par la méthode de Kaplan-Meier, d&#39;abord dans la population totale puis selon le protocole de chimiothérapie.</span>
-<span id="cb22-139"><a href="#cb22-139" aria-label="139"></a>Les probabilités de survie ont été rapportées à plusieurs intervalles de temps, avec leur intervalle de confiance à 95 %.</span>
-<span id="cb22-140"><a href="#cb22-140" aria-label="140"></a>Les médianes de survie ont été rapportées avec leur intervalle de confiance à 95 %, ou déclarées non atteintes le cas échéant.</span>
-<span id="cb22-141"><a href="#cb22-141" aria-label="141"></a>Les effectifs à risque ont été rapportés sous chaque courbe, ainsi que les évènements et les censures rapportés en effectifs cumulés au cours du temps.</span>
-<span id="cb22-142"><a href="#cb22-142" aria-label="142"></a>Les distributions de survie ont été comparées par un test du log-rank, non ajusté.</span>
-<span id="cb22-143"><a href="#cb22-143" aria-label="143"></a></span>
-<span id="cb22-144"><a href="#cb22-144" aria-label="144"></a><span class="fu">#### Modèles de Cox</span></span>
-<span id="cb22-145"><a href="#cb22-145" aria-label="145"></a></span>
-<span id="cb22-146"><a href="#cb22-146" aria-label="146"></a>L&#39;effet du protocole de chimiothérapie sur la survie globale et sans récidive a été estimé par un modèle de Cox univariable.</span>
-<span id="cb22-147"><a href="#cb22-147" aria-label="147"></a></span>
-<span id="cb22-148"><a href="#cb22-148" aria-label="148"></a>L&#39;effet de chaque facteur associé a été estimé par des modèles de Cox univariables, puis par un modèle multivariable.</span>
-<span id="cb22-149"><a href="#cb22-149" aria-label="149"></a>Les variables incluses dans l&#39;analyse multivariable ont été définies a priori sur des considérations cliniques, puis cette liste a été révisée à la lecture des effectifs réellement observés.</span>
-<span id="cb22-150"><a href="#cb22-150" aria-label="150"></a>La même spécification a été retenue pour l&#39;estimation de la survie globale et de la survie sans récidive.</span>
-<span id="cb22-151"><a href="#cb22-151" aria-label="151"></a>Aucune sélection de variables fondée sur la significativité statistique en analyse univariable n&#39;a été réalisée.</span>
-<span id="cb22-152"><a href="#cb22-152" aria-label="152"></a>Le centre a été traité comme variable de stratification et non comme covariable : le modèle admet un risque de base propre à chaque centre sans en estimer le coefficient.</span>
-<span id="cb22-153"><a href="#cb22-153" aria-label="153"></a></span>
-<span id="cb22-154"><a href="#cb22-154" aria-label="154"></a>Les hazard ratios et leurs intervalles de confiance à 95 % représentent, pour chacune des variables, le sur-risque ou le sous-risque d&#39;évènement par rapport à la modalité de référence.</span>
-<span id="cb22-155"><a href="#cb22-155" aria-label="155"></a>Le nombre d&#39;évènements et le nombre d&#39;observations complètes de chaque modèle multivariable ont été rapportés, ainsi que le nombre d&#39;observations écartées pour données manquantes.</span>
-<span id="cb22-156"><a href="#cb22-156" aria-label="156"></a>L&#39;hypothèse de proportionnalité des risques a été vérifiée pour chaque variable ainsi que globalement, par le test basé sur les résidus de Schoenfeld.</span>
-<span id="cb22-157"><a href="#cb22-157" aria-label="157"></a></span>
-<span id="cb22-158"><a href="#cb22-158" aria-label="158"></a>La survie globale a fait l&#39;objet d&#39;une analyse de sensibilité sur l&#39;échelle de temps depuis le diagnostic, les patients entrant dans l&#39;ensemble à risque à la date de leur chirurgie et non à l&#39;origine (troncature à gauche).</span>
-<span id="cb22-159"><a href="#cb22-159" aria-label="159"></a>Cette spécification retire du dénominateur le temps séparant le diagnostic de la chirurgie, pendant lequel un patient de la cohorte ne pouvait pas décéder, tout en conservant l&#39;échelle de temps depuis le diagnostic.</span>
-<span id="cb22-160"><a href="#cb22-160" aria-label="160"></a>Les modèles univariable et multivariable y ont repris la spécification retenue pour l&#39;analyse principale.</span>
-<span id="cb22-161"><a href="#cb22-161" aria-label="161"></a></span>
-<span id="cb22-162"><a href="#cb22-162" aria-label="162"></a><span class="fu">### Données manquantes</span></span>
-<span id="cb22-163"><a href="#cb22-163" aria-label="163"></a></span>
-<span id="cb22-164"><a href="#cb22-164" aria-label="164"></a>Le nombre de données manquantes a été précisé pour chaque variable décrite et pour chaque sous-groupe.</span>
-<span id="cb22-165"><a href="#cb22-165" aria-label="165"></a>Aucune imputation n&#39;a été réalisée pour cette étude.</span>
-<span id="cb22-166"><a href="#cb22-166" aria-label="166"></a>Les modèles multivariables ont été estimés sur les observations complètes pour l&#39;ensemble des variables incluses.</span>
-<span id="cb22-167"><a href="#cb22-167" aria-label="167"></a>Le nombre d&#39;observations écartées pour données manquantes a été rapporté sous chaque table d&#39;estimation.</span>
-<span id="cb22-168"><a href="#cb22-168" aria-label="168"></a></span>
-<span id="cb22-169"><a href="#cb22-169" aria-label="169"></a><span class="fu">### Taille d&#39;échantillon</span></span>
-<span id="cb22-170"><a href="#cb22-170" aria-label="170"></a></span>
-<span id="cb22-171"><a href="#cb22-171" aria-label="171"></a>Aucun calcul du nombre de sujets nécessaires n&#39;a été réalisé pour cette étude.</span>
-<span id="cb22-172"><a href="#cb22-172" aria-label="172"></a>L&#39;effectif analysé était déterminé par le nombre de dossiers disponibles dans les quatre centres au moment du recueil, sur la période étudiée.</span>
-<span id="cb22-173"><a href="#cb22-173" aria-label="173"></a>La puissance statistique n&#39;a pas été planifiée.</span>
-<span id="cb22-174"><a href="#cb22-174" aria-label="174"></a></span>
-<span id="cb22-175"><a href="#cb22-175" aria-label="175"></a><span class="fu">### Environnement logiciel</span></span>
-<span id="cb22-176"><a href="#cb22-176" aria-label="176"></a></span>
-<span id="cb22-177"><a href="#cb22-177" aria-label="177"></a>Les analyses statistiques ont été réalisées avec le langage <span class="in">`r R.version.string`</span>.</span>
-<span id="cb22-178"><a href="#cb22-178" aria-label="178"></a>Les estimations de survie et les modèles de Cox ont été obtenus avec <span class="in">`survival`</span> (version <span class="in">`r packageVersion(&quot;survival&quot;)`</span>).</span>
-<span id="cb22-179"><a href="#cb22-179" aria-label="179"></a>Les modèles de comptage ont été obtenus avec <span class="in">`stats::glm`</span> (familles Poisson et quasi-Poisson), et leurs diagnostics avec <span class="in">`performance`</span> (version <span class="in">`r packageVersion(&quot;performance&quot;)`</span>).</span>
-<span id="cb22-180"><a href="#cb22-180" aria-label="180"></a>Les p-valeurs globales par variable ont été obtenues avec <span class="in">`car`</span> (version <span class="in">`r packageVersion(&quot;car&quot;)`</span>).</span>
-<span id="cb22-181"><a href="#cb22-181" aria-label="181"></a></span>
-<span id="cb22-182"><a href="#cb22-182" aria-label="182"></a><span class="fu"># Résultats</span></span>
-<span id="cb22-183"><a href="#cb22-183" aria-label="183"></a></span>
-<span id="cb22-184"><a href="#cb22-184" aria-label="184"></a><span class="fu">## Flowchart</span></span>
-<span id="cb22-185"><a href="#cb22-185" aria-label="185"></a></span>
-<span id="cb22-186"><a href="#cb22-186" aria-label="186"></a>Dans un premier temps, l&#39;analyse de <span class="in">`r n$screening`</span> dossiers a permis de retenir <span class="in">`r n$eligible`</span> patients sur les critères d&#39;éligibilité.</span>
-<span id="cb22-187"><a href="#cb22-187" aria-label="187"></a>Parmi ces patients, <span class="in">`r n$exclus`</span> (<span class="in">`r n$pct_exclus`</span>) ont été exclus.</span>
-<span id="cb22-188"><a href="#cb22-188" aria-label="188"></a>Au total, ont été inclus <span class="in">`r n$inclus`</span> (<span class="in">`r n$pct_inclus`</span>) patients adultes atteints d&#39;un adénocarcinome pancréatique opéré entre le 1er janvier 2022 et le 31 décembre 2025 inclus, au CHU de Nantes ou dans un autre centre (4 centres au total).</span>
-<span id="cb22-189"><a href="#cb22-189" aria-label="189"></a></span>
-<span id="cb22-190"><a href="#cb22-190" aria-label="190"></a>{{&lt; script scripts/fig_flowchart.R &gt;}}</span>
-<span id="cb22-191"><a href="#cb22-191" aria-label="191"></a></span>
-<span id="cb22-192"><a href="#cb22-192" aria-label="192"></a><span class="in">```{r}</span></span>
-<span id="cb22-193"><a href="#cb22-193" aria-label="193"></a><span class="co">#| label: fig-flowchart</span></span>
-<span id="cb22-194"><a href="#cb22-194" aria-label="194"></a><span class="co">#| fig-cap: Flowchart</span></span>
-<span id="cb22-195"><a href="#cb22-195" aria-label="195"></a><span class="co">#| fig-cap-location: top</span></span>
+<span id="cb22-119"><a href="#cb22-119" aria-label="119"></a><span class="fu">### Analyses de survie</span></span>
+<span id="cb22-120"><a href="#cb22-120" aria-label="120"></a></span>
+<span id="cb22-121"><a href="#cb22-121" aria-label="121"></a>La survie globale et la survie sans récidive ont fait l&#39;objet du même plan d&#39;analyse.</span>
+<span id="cb22-122"><a href="#cb22-122" aria-label="122"></a></span>
+<span id="cb22-123"><a href="#cb22-123" aria-label="123"></a><span class="fu">#### Suivi des patients</span></span>
+<span id="cb22-124"><a href="#cb22-124" aria-label="124"></a></span>
+<span id="cb22-125"><a href="#cb22-125" aria-label="125"></a>Le suivi médian a été estimé sur l&#39;échelle de temps de la survie globale, depuis la date de la chirurgie, par la méthode de Kaplan-Meier inversée (méthode de Schemper, l&#39;évènement étant la fin du suivi et la censure étant le décès).</span>
+<span id="cb22-126"><a href="#cb22-126" aria-label="126"></a>La courbe de suivi a été représentée graphiquement selon le protocole de chimiothérapie.</span>
+<span id="cb22-127"><a href="#cb22-127" aria-label="127"></a>Le recul des patients vivants à la date de point a été décrit, ainsi que les dates de point propres à chaque centre.</span>
+<span id="cb22-128"><a href="#cb22-128" aria-label="128"></a></span>
+<span id="cb22-129"><a href="#cb22-129" aria-label="129"></a><span class="fu">#### Évènements</span></span>
+<span id="cb22-130"><a href="#cb22-130" aria-label="130"></a></span>
+<span id="cb22-131"><a href="#cb22-131" aria-label="131"></a>La distribution du premier évènement observé, classé en récidive, décès sans récidive ou censure, a été décrite globalement et selon le protocole de chimiothérapie.</span>
+<span id="cb22-132"><a href="#cb22-132" aria-label="132"></a></span>
+<span id="cb22-133"><a href="#cb22-133" aria-label="133"></a><span class="fu">#### Courbes de survie</span></span>
+<span id="cb22-134"><a href="#cb22-134" aria-label="134"></a></span>
+<span id="cb22-135"><a href="#cb22-135" aria-label="135"></a>Les courbes de survie ont été estimées par la méthode de Kaplan-Meier, d&#39;abord dans la population totale puis selon le protocole de chimiothérapie.</span>
+<span id="cb22-136"><a href="#cb22-136" aria-label="136"></a>Les probabilités de survie ont été rapportées à plusieurs intervalles de temps, avec leur intervalle de confiance à 95 %.</span>
+<span id="cb22-137"><a href="#cb22-137" aria-label="137"></a>Les médianes de survie ont été rapportées avec leur intervalle de confiance à 95 %, ou déclarées non atteintes le cas échéant.</span>
+<span id="cb22-138"><a href="#cb22-138" aria-label="138"></a>Les effectifs à risque ont été rapportés sous chaque courbe, ainsi que les évènements et les censures rapportés en effectifs cumulés au cours du temps.</span>
+<span id="cb22-139"><a href="#cb22-139" aria-label="139"></a>Les distributions de survie ont été comparées par un test du log-rank, non ajusté.</span>
+<span id="cb22-140"><a href="#cb22-140" aria-label="140"></a></span>
+<span id="cb22-141"><a href="#cb22-141" aria-label="141"></a><span class="fu">#### Modèles de Cox</span></span>
+<span id="cb22-142"><a href="#cb22-142" aria-label="142"></a></span>
+<span id="cb22-143"><a href="#cb22-143" aria-label="143"></a>L&#39;effet du protocole de chimiothérapie sur la survie globale et sans récidive a été estimé par un modèle de Cox univariable.</span>
+<span id="cb22-144"><a href="#cb22-144" aria-label="144"></a></span>
+<span id="cb22-145"><a href="#cb22-145" aria-label="145"></a>L&#39;effet de chaque facteur associé a été estimé par des modèles de Cox univariables, puis par un modèle multivariable.</span>
+<span id="cb22-146"><a href="#cb22-146" aria-label="146"></a>Les variables incluses dans l&#39;analyse multivariable ont été définies a priori sur des considérations cliniques, puis cette liste a été révisée à la lecture des effectifs réellement observés.</span>
+<span id="cb22-147"><a href="#cb22-147" aria-label="147"></a>La même spécification a été retenue pour l&#39;estimation de la survie globale et de la survie sans récidive.</span>
+<span id="cb22-148"><a href="#cb22-148" aria-label="148"></a>Aucune sélection de variables fondée sur la significativité statistique en analyse univariable n&#39;a été réalisée.</span>
+<span id="cb22-149"><a href="#cb22-149" aria-label="149"></a>Le centre a été traité comme variable de stratification et non comme covariable : le modèle admet un risque de base propre à chaque centre sans en estimer le coefficient.</span>
+<span id="cb22-150"><a href="#cb22-150" aria-label="150"></a></span>
+<span id="cb22-151"><a href="#cb22-151" aria-label="151"></a>Les hazard ratios et leurs intervalles de confiance à 95 % représentent, pour chacune des variables, le sur-risque ou le sous-risque d&#39;évènement par rapport à la modalité de référence.</span>
+<span id="cb22-152"><a href="#cb22-152" aria-label="152"></a>Le nombre d&#39;évènements et le nombre d&#39;observations complètes de chaque modèle multivariable ont été rapportés, ainsi que le nombre d&#39;observations écartées pour données manquantes.</span>
+<span id="cb22-153"><a href="#cb22-153" aria-label="153"></a>L&#39;hypothèse de proportionnalité des risques a été vérifiée pour chaque variable ainsi que globalement, par le test basé sur les résidus de Schoenfeld.</span>
+<span id="cb22-154"><a href="#cb22-154" aria-label="154"></a></span>
+<span id="cb22-155"><a href="#cb22-155" aria-label="155"></a>La survie globale a fait l&#39;objet d&#39;une analyse de sensibilité sur l&#39;échelle de temps depuis le diagnostic, les patients entrant dans l&#39;ensemble à risque à la date de leur chirurgie et non à l&#39;origine (troncature à gauche).</span>
+<span id="cb22-156"><a href="#cb22-156" aria-label="156"></a>Cette spécification retire du dénominateur le temps séparant le diagnostic de la chirurgie, pendant lequel un patient de la cohorte ne pouvait pas décéder, tout en conservant l&#39;échelle de temps depuis le diagnostic.</span>
+<span id="cb22-157"><a href="#cb22-157" aria-label="157"></a>Les modèles univariable et multivariable y ont repris la spécification retenue pour l&#39;analyse principale.</span>
+<span id="cb22-158"><a href="#cb22-158" aria-label="158"></a></span>
+<span id="cb22-159"><a href="#cb22-159" aria-label="159"></a><span class="fu">### Données manquantes</span></span>
+<span id="cb22-160"><a href="#cb22-160" aria-label="160"></a></span>
+<span id="cb22-161"><a href="#cb22-161" aria-label="161"></a>Le nombre de données manquantes a été précisé pour chaque variable décrite et pour chaque sous-groupe.</span>
+<span id="cb22-162"><a href="#cb22-162" aria-label="162"></a>Aucune imputation n&#39;a été réalisée pour cette étude.</span>
+<span id="cb22-163"><a href="#cb22-163" aria-label="163"></a>Les modèles multivariables ont été estimés sur les observations complètes pour l&#39;ensemble des variables incluses.</span>
+<span id="cb22-164"><a href="#cb22-164" aria-label="164"></a>Le nombre d&#39;observations écartées pour données manquantes a été rapporté sous chaque table d&#39;estimation.</span>
+<span id="cb22-165"><a href="#cb22-165" aria-label="165"></a></span>
+<span id="cb22-166"><a href="#cb22-166" aria-label="166"></a><span class="fu">### Taille d&#39;échantillon</span></span>
+<span id="cb22-167"><a href="#cb22-167" aria-label="167"></a></span>
+<span id="cb22-168"><a href="#cb22-168" aria-label="168"></a>Aucun calcul du nombre de sujets nécessaires n&#39;a été réalisé pour cette étude.</span>
+<span id="cb22-169"><a href="#cb22-169" aria-label="169"></a>L&#39;effectif analysé était déterminé par le nombre de dossiers disponibles dans les quatre centres au moment du recueil, sur la période étudiée.</span>
+<span id="cb22-170"><a href="#cb22-170" aria-label="170"></a>La puissance statistique n&#39;a pas été planifiée.</span>
+<span id="cb22-171"><a href="#cb22-171" aria-label="171"></a></span>
+<span id="cb22-172"><a href="#cb22-172" aria-label="172"></a><span class="fu">### Environnement logiciel</span></span>
+<span id="cb22-173"><a href="#cb22-173" aria-label="173"></a></span>
+<span id="cb22-174"><a href="#cb22-174" aria-label="174"></a>Les analyses statistiques ont été réalisées avec le langage <span class="in">`r R.version.string`</span>.</span>
+<span id="cb22-175"><a href="#cb22-175" aria-label="175"></a>Les estimations de survie et les modèles de Cox ont été obtenus avec *survival* (version <span class="in">`r packageVersion(&quot;survival&quot;)`</span>).</span>
+<span id="cb22-176"><a href="#cb22-176" aria-label="176"></a>Les modèles de comptage ont été obtenus avec *stats::glm* (familles Poisson et quasi-Poisson), et leurs diagnostics avec *performance* (version <span class="in">`r packageVersion(&quot;performance&quot;)`</span>).</span>
+<span id="cb22-177"><a href="#cb22-177" aria-label="177"></a>Les p-valeurs globales par variable ont été obtenues avec *car* (version <span class="in">`r packageVersion(&quot;car&quot;)`</span>).</span>
+<span id="cb22-178"><a href="#cb22-178" aria-label="178"></a></span>
+<span id="cb22-179"><a href="#cb22-179" aria-label="179"></a><span class="fu"># Résultats</span></span>
+<span id="cb22-180"><a href="#cb22-180" aria-label="180"></a></span>
+<span id="cb22-181"><a href="#cb22-181" aria-label="181"></a><span class="fu">## Flowchart</span></span>
+<span id="cb22-182"><a href="#cb22-182" aria-label="182"></a></span>
+<span id="cb22-183"><a href="#cb22-183" aria-label="183"></a>Dans un premier temps, l&#39;analyse de <span class="in">`r n$screening`</span> dossiers a permis de retenir <span class="in">`r n$eligible`</span> patients sur les critères d&#39;éligibilité.</span>
+<span id="cb22-184"><a href="#cb22-184" aria-label="184"></a>Parmi ces patients, <span class="in">`r n$exclus`</span> (<span class="in">`r n$pct_exclus`</span>) ont été exclus.</span>
+<span id="cb22-185"><a href="#cb22-185" aria-label="185"></a>Au total, ont été inclus <span class="in">`r n$inclus`</span> (<span class="in">`r n$pct_inclus`</span>) patients adultes atteints d&#39;un adénocarcinome pancréatique opéré entre le 1er janvier 2022 et le 31 décembre 2025 inclus, au CHU de Nantes ou dans un autre centre (4 centres au total).</span>
+<span id="cb22-186"><a href="#cb22-186" aria-label="186"></a></span>
+<span id="cb22-187"><a href="#cb22-187" aria-label="187"></a>{{&lt; script scripts/fig_flowchart.R &gt;}}</span>
+<span id="cb22-188"><a href="#cb22-188" aria-label="188"></a></span>
+<span id="cb22-189"><a href="#cb22-189" aria-label="189"></a><span class="in">```{r}</span></span>
+<span id="cb22-190"><a href="#cb22-190" aria-label="190"></a><span class="co">#| label: fig-flowchart</span></span>
+<span id="cb22-191"><a href="#cb22-191" aria-label="191"></a><span class="co">#| fig-cap: Flowchart</span></span>
+<span id="cb22-192"><a href="#cb22-192" aria-label="192"></a><span class="co">#| fig-cap-location: top</span></span>
+<span id="cb22-193"><a href="#cb22-193" aria-label="193"></a></span>
+<span id="cb22-194"><a href="#cb22-194" aria-label="194"></a><span class="fu">out_qmd</span>(fig_flowchart)</span>
+<span id="cb22-195"><a href="#cb22-195" aria-label="195"></a><span class="in">```</span></span>
 <span id="cb22-196"><a href="#cb22-196" aria-label="196"></a></span>
-<span id="cb22-197"><a href="#cb22-197" aria-label="197"></a><span class="fu">out_qmd</span>(fig_flowchart)</span>
-<span id="cb22-198"><a href="#cb22-198" aria-label="198"></a><span class="in">```</span></span>
-<span id="cb22-199"><a href="#cb22-199" aria-label="199"></a></span>
-<span id="cb22-200"><a href="#cb22-200" aria-label="200"></a><span class="fu">## Analyses descriptives</span></span>
-<span id="cb22-201"><a href="#cb22-201" aria-label="201"></a></span>
-<span id="cb22-202"><a href="#cb22-202" aria-label="202"></a><span class="fu">### Caractéristiques des patients à l&#39;inclusion</span></span>
+<span id="cb22-197"><a href="#cb22-197" aria-label="197"></a><span class="fu">## Analyses descriptives</span></span>
+<span id="cb22-198"><a href="#cb22-198" aria-label="198"></a></span>
+<span id="cb22-199"><a href="#cb22-199" aria-label="199"></a><span class="fu">### Caractéristiques des patients à l&#39;inclusion</span></span>
+<span id="cb22-200"><a href="#cb22-200" aria-label="200"></a></span>
+<span id="cb22-201"><a href="#cb22-201" aria-label="201"></a>Parmi les <span class="in">`r n$inclus`</span> patients inclus, <span class="in">`r n$chimio_adj`</span> (<span class="in">`r n$pct_chimio_adj`</span>) étaient assignés dans le protocole de chimiothérapie adjuvante seule, contre <span class="in">`r n$chimio_periop`</span> (<span class="in">`r n$pct_chimio_periop`</span>) dans le protocole de chimiothérapie péri-opératoire.</span>
+<span id="cb22-202"><a href="#cb22-202" aria-label="202"></a>L&#39;âge médian au diagnostic était de <span class="in">`r .baseline$age$med`</span> ans (IQR <span class="in">`r .baseline$age$iqr`</span>), <span class="in">`r .baseline$homme$n`</span> patients (<span class="in">`r .baseline$homme$pct`</span>) étaient des hommes.</span>
 <span id="cb22-203"><a href="#cb22-203" aria-label="203"></a></span>
-<span id="cb22-204"><a href="#cb22-204" aria-label="204"></a>Parmi les <span class="in">`r n$inclus`</span> patients inclus, <span class="in">`r n$chimio_adj`</span> (<span class="in">`r n$pct_chimio_adj`</span>) étaient assignés dans le protocole de chimiothérapie adjuvante seule, contre <span class="in">`r n$chimio_periop`</span> (<span class="in">`r n$pct_chimio_periop`</span>) dans le protocole de chimiothérapie péri-opératoire.</span>
-<span id="cb22-205"><a href="#cb22-205" aria-label="205"></a>L&#39;âge médian au diagnostic était de <span class="in">`r .baseline$age$med`</span> ans (IQR <span class="in">`r .baseline$age$iqr`</span>), <span class="in">`r .baseline$homme$n`</span> patients (<span class="in">`r .baseline$homme$pct`</span>) étaient des hommes.</span>
-<span id="cb22-206"><a href="#cb22-206" aria-label="206"></a></span>
-<span id="cb22-207"><a href="#cb22-207" aria-label="207"></a>{{&lt; script scripts/tbl_baseline.R &gt;}}</span>
-<span id="cb22-208"><a href="#cb22-208" aria-label="208"></a></span>
-<span id="cb22-209"><a href="#cb22-209" aria-label="209"></a><span class="in">```{r}</span></span>
-<span id="cb22-210"><a href="#cb22-210" aria-label="210"></a><span class="co">#| label: tbl-baseline</span></span>
-<span id="cb22-211"><a href="#cb22-211" aria-label="211"></a><span class="co">#| tbl-cap: !expr title_suffix(&quot;Caractéristiques des patients à l&#39;inclusion&quot;)$overall</span></span>
+<span id="cb22-204"><a href="#cb22-204" aria-label="204"></a>{{&lt; script scripts/tbl_baseline.R &gt;}}</span>
+<span id="cb22-205"><a href="#cb22-205" aria-label="205"></a></span>
+<span id="cb22-206"><a href="#cb22-206" aria-label="206"></a><span class="in">```{r}</span></span>
+<span id="cb22-207"><a href="#cb22-207" aria-label="207"></a><span class="co">#| label: tbl-baseline</span></span>
+<span id="cb22-208"><a href="#cb22-208" aria-label="208"></a><span class="co">#| tbl-cap: !expr title_suffix(&quot;Caractéristiques des patients à l&#39;inclusion&quot;)$overall</span></span>
+<span id="cb22-209"><a href="#cb22-209" aria-label="209"></a></span>
+<span id="cb22-210"><a href="#cb22-210" aria-label="210"></a><span class="fu">out_qmd</span>(tbl_baseline)</span>
+<span id="cb22-211"><a href="#cb22-211" aria-label="211"></a><span class="in">```</span></span>
 <span id="cb22-212"><a href="#cb22-212" aria-label="212"></a></span>
-<span id="cb22-213"><a href="#cb22-213" aria-label="213"></a><span class="fu">out_qmd</span>(tbl_baseline)</span>
-<span id="cb22-214"><a href="#cb22-214" aria-label="214"></a><span class="in">```</span></span>
-<span id="cb22-215"><a href="#cb22-215" aria-label="215"></a></span>
-<span id="cb22-216"><a href="#cb22-216" aria-label="216"></a><span class="fu">### Caractéristiques tumorales, prise en charge chirurgicale et récidive</span></span>
+<span id="cb22-213"><a href="#cb22-213" aria-label="213"></a><span class="fu">### Caractéristiques tumorales, prise en charge chirurgicale et récidive</span></span>
+<span id="cb22-214"><a href="#cb22-214" aria-label="214"></a></span>
+<span id="cb22-215"><a href="#cb22-215" aria-label="215"></a>Le délai médian entre le diagnostic et la chirurgie était de <span class="in">`r .tumor$delai$total$med`</span> mois (IQR <span class="in">`r .tumor$delai$total$iqr`</span>), avec un écart marqué entre les deux protocoles : <span class="in">`r .tumor$delai$adj$med`</span> mois (IQR <span class="in">`r .tumor$delai$adj$iqr`</span>) dans le groupe adjuvant seul contre <span class="in">`r .tumor$delai$periop$med`</span> mois (IQR <span class="in">`r .tumor$delai$periop$iqr`</span>) dans le groupe péri-opératoire.</span>
+<span id="cb22-216"><a href="#cb22-216" aria-label="216"></a>Au terme du suivi, <span class="in">`r .tumor$recidive$n`</span> patients sur <span class="in">`r n$inclus`</span> (<span class="in">`r .tumor$recidive$pct`</span>) avaient récidivé : <span class="in">`r .tumor$recidive$locale$n`</span> récidives locales (<span class="in">`r .tumor$recidive$locale$pct`</span>) et <span class="in">`r .tumor$recidive$meta$n`</span> métastatiques (<span class="in">`r .tumor$recidive$meta$pct`</span>), une même récidive pouvant être à la fois locale et métastatique.</span>
 <span id="cb22-217"><a href="#cb22-217" aria-label="217"></a></span>
-<span id="cb22-218"><a href="#cb22-218" aria-label="218"></a>Le délai médian entre le diagnostic et la chirurgie était de <span class="in">`r .tumor$delai$total$med`</span> mois (IQR <span class="in">`r .tumor$delai$total$iqr`</span>), avec un écart marqué entre les deux protocoles : <span class="in">`r .tumor$delai$adj$med`</span> mois (IQR <span class="in">`r .tumor$delai$adj$iqr`</span>) dans le groupe adjuvant seul contre <span class="in">`r .tumor$delai$periop$med`</span> mois (IQR <span class="in">`r .tumor$delai$periop$iqr`</span>) dans le groupe péri-opératoire.</span>
-<span id="cb22-219"><a href="#cb22-219" aria-label="219"></a>Au terme du suivi, <span class="in">`r .tumor$recidive$n`</span> patients sur <span class="in">`r n$inclus`</span> (<span class="in">`r .tumor$recidive$pct`</span>) avaient récidivé : <span class="in">`r .tumor$recidive$locale$n`</span> récidives locales (<span class="in">`r .tumor$recidive$locale$pct`</span>) et <span class="in">`r .tumor$recidive$meta$n`</span> métastatiques (<span class="in">`r .tumor$recidive$meta$pct`</span>), une même récidive pouvant être à la fois locale et métastatique.</span>
-<span id="cb22-220"><a href="#cb22-220" aria-label="220"></a></span>
-<span id="cb22-221"><a href="#cb22-221" aria-label="221"></a>{{&lt; script scripts/tbl_tumor.R &gt;}}</span>
-<span id="cb22-222"><a href="#cb22-222" aria-label="222"></a></span>
-<span id="cb22-223"><a href="#cb22-223" aria-label="223"></a><span class="in">```{r}</span></span>
-<span id="cb22-224"><a href="#cb22-224" aria-label="224"></a><span class="co">#| label: tbl-tumor</span></span>
-<span id="cb22-225"><a href="#cb22-225" aria-label="225"></a><span class="co">#| tbl-cap: !expr title_suffix(&quot;Caractéristiques tumorales, prise en charge chirurgicale et récidive&quot;)$overall</span></span>
+<span id="cb22-218"><a href="#cb22-218" aria-label="218"></a>{{&lt; script scripts/tbl_tumor.R &gt;}}</span>
+<span id="cb22-219"><a href="#cb22-219" aria-label="219"></a></span>
+<span id="cb22-220"><a href="#cb22-220" aria-label="220"></a><span class="in">```{r}</span></span>
+<span id="cb22-221"><a href="#cb22-221" aria-label="221"></a><span class="co">#| label: tbl-tumor</span></span>
+<span id="cb22-222"><a href="#cb22-222" aria-label="222"></a><span class="co">#| tbl-cap: !expr title_suffix(&quot;Caractéristiques tumorales, prise en charge chirurgicale et récidive&quot;)$overall</span></span>
+<span id="cb22-223"><a href="#cb22-223" aria-label="223"></a></span>
+<span id="cb22-224"><a href="#cb22-224" aria-label="224"></a><span class="fu">out_qmd</span>(tbl_tumor)</span>
+<span id="cb22-225"><a href="#cb22-225" aria-label="225"></a><span class="in">```</span></span>
 <span id="cb22-226"><a href="#cb22-226" aria-label="226"></a></span>
-<span id="cb22-227"><a href="#cb22-227" aria-label="227"></a><span class="fu">out_qmd</span>(tbl_tumor)</span>
-<span id="cb22-228"><a href="#cb22-228" aria-label="228"></a><span class="in">```</span></span>
-<span id="cb22-229"><a href="#cb22-229" aria-label="229"></a></span>
-<span id="cb22-230"><a href="#cb22-230" aria-label="230"></a><span class="fu">### Critère de jugement principal</span></span>
-<span id="cb22-231"><a href="#cb22-231" aria-label="231"></a></span>
-<span id="cb22-232"><a href="#cb22-232" aria-label="232"></a>Les <span class="in">`r n$chimio_periop`</span> patients du groupe péri-opératoire ont tous reçu au moins une cure de chimiothérapie d&#39;induction, avec une nombre médian de <span class="in">`r .outcome$induc_nb$med`</span> cures (IQR <span class="in">`r .outcome$induc_nb$iqr`</span>).</span>
-<span id="cb22-233"><a href="#cb22-233" aria-label="233"></a>Une chimiothérapie adjuvante a été délivrée à <span class="in">`r .outcome$adj_chimio$total$n`</span> patients (<span class="in">`r .outcome$adj_chimio$total$pct`</span> des inclus) : <span class="in">`r .outcome$adj_chimio$adj$n`</span> sur <span class="in">`r n$chimio_adj`</span> dans le groupe adjuvant seul et <span class="in">`r .outcome$adj_chimio$periop$n`</span> sur <span class="in">`r n$chimio_periop`</span> dans le groupe péri-opératoire.</span>
-<span id="cb22-234"><a href="#cb22-234" aria-label="234"></a>Le nombre médian de cures de chimiothérapie adjuvante était de <span class="in">`r .outcome$adj_nb$adj$med`</span> (IQR <span class="in">`r .outcome$adj_nb$adj$iqr`</span>) dans le groupe adjuvant seul contre <span class="in">`r .outcome$adj_nb$periop$med`</span> (IQR <span class="in">`r .outcome$adj_nb$periop$iqr`</span>) dans le groupe péri-opératoire (la phase d&#39;induction ayant déjà délivré une partie du traitement).</span>
-<span id="cb22-235"><a href="#cb22-235" aria-label="235"></a>Toutes phases confondues, le nombre total médian de cures était de <span class="in">`r .outcome$n_cures$med`</span> dans les deux groupes.</span>
-<span id="cb22-236"><a href="#cb22-236" aria-label="236"></a></span>
-<span id="cb22-237"><a href="#cb22-237" aria-label="237"></a>{{&lt; script scripts/tbl_outcome.R &gt;}}</span>
-<span id="cb22-238"><a href="#cb22-238" aria-label="238"></a></span>
-<span id="cb22-239"><a href="#cb22-239" aria-label="239"></a><span class="in">```{r}</span></span>
-<span id="cb22-240"><a href="#cb22-240" aria-label="240"></a><span class="co">#| label: tbl-outcome</span></span>
-<span id="cb22-241"><a href="#cb22-241" aria-label="241"></a><span class="co">#| tbl-cap: !expr title_suffix(&quot;Nombre de cures reçues&quot;)$overall</span></span>
+<span id="cb22-227"><a href="#cb22-227" aria-label="227"></a><span class="fu">### Critère de jugement principal</span></span>
+<span id="cb22-228"><a href="#cb22-228" aria-label="228"></a></span>
+<span id="cb22-229"><a href="#cb22-229" aria-label="229"></a>Les <span class="in">`r n$chimio_periop`</span> patients du groupe péri-opératoire ont tous reçu au moins une cure de chimiothérapie d&#39;induction, avec une nombre médian de <span class="in">`r .outcome$induc_nb$med`</span> cures (IQR <span class="in">`r .outcome$induc_nb$iqr`</span>).</span>
+<span id="cb22-230"><a href="#cb22-230" aria-label="230"></a>Une chimiothérapie adjuvante a été délivrée à <span class="in">`r .outcome$adj_chimio$total$n`</span> patients (<span class="in">`r .outcome$adj_chimio$total$pct`</span> des inclus) : <span class="in">`r .outcome$adj_chimio$adj$n`</span> sur <span class="in">`r n$chimio_adj`</span> dans le groupe adjuvant seul et <span class="in">`r .outcome$adj_chimio$periop$n`</span> sur <span class="in">`r n$chimio_periop`</span> dans le groupe péri-opératoire.</span>
+<span id="cb22-231"><a href="#cb22-231" aria-label="231"></a>Le nombre médian de cures de chimiothérapie adjuvante était de <span class="in">`r .outcome$adj_nb$adj$med`</span> (IQR <span class="in">`r .outcome$adj_nb$adj$iqr`</span>) dans le groupe adjuvant seul contre <span class="in">`r .outcome$adj_nb$periop$med`</span> (IQR <span class="in">`r .outcome$adj_nb$periop$iqr`</span>) dans le groupe péri-opératoire (la phase d&#39;induction ayant déjà délivré une partie du traitement).</span>
+<span id="cb22-232"><a href="#cb22-232" aria-label="232"></a>Toutes phases confondues, le nombre total médian de cures était de <span class="in">`r .outcome$n_cures$med`</span> dans les deux groupes.</span>
+<span id="cb22-233"><a href="#cb22-233" aria-label="233"></a></span>
+<span id="cb22-234"><a href="#cb22-234" aria-label="234"></a>{{&lt; script scripts/tbl_outcome.R &gt;}}</span>
+<span id="cb22-235"><a href="#cb22-235" aria-label="235"></a></span>
+<span id="cb22-236"><a href="#cb22-236" aria-label="236"></a><span class="in">```{r}</span></span>
+<span id="cb22-237"><a href="#cb22-237" aria-label="237"></a><span class="co">#| label: tbl-outcome</span></span>
+<span id="cb22-238"><a href="#cb22-238" aria-label="238"></a><span class="co">#| tbl-cap: !expr title_suffix(&quot;Nombre de cures reçues&quot;)$overall</span></span>
+<span id="cb22-239"><a href="#cb22-239" aria-label="239"></a></span>
+<span id="cb22-240"><a href="#cb22-240" aria-label="240"></a><span class="fu">out_qmd</span>(tbl_outcome)</span>
+<span id="cb22-241"><a href="#cb22-241" aria-label="241"></a><span class="in">```</span></span>
 <span id="cb22-242"><a href="#cb22-242" aria-label="242"></a></span>
-<span id="cb22-243"><a href="#cb22-243" aria-label="243"></a><span class="fu">out_qmd</span>(tbl_outcome)</span>
-<span id="cb22-244"><a href="#cb22-244" aria-label="244"></a><span class="in">```</span></span>
-<span id="cb22-245"><a href="#cb22-245" aria-label="245"></a></span>
-<span id="cb22-246"><a href="#cb22-246" aria-label="246"></a>{{&lt; script scripts/fig_outcome.R &gt;}}</span>
-<span id="cb22-247"><a href="#cb22-247" aria-label="247"></a></span>
-<span id="cb22-248"><a href="#cb22-248" aria-label="248"></a><span class="in">```{r}</span></span>
-<span id="cb22-249"><a href="#cb22-249" aria-label="249"></a><span class="co">#| label: fig-outcome</span></span>
-<span id="cb22-250"><a href="#cb22-250" aria-label="250"></a><span class="co">#| fig-cap: Distribution du nombre de cures reçues, par phase et selon le protocole de chimiothérapie.</span></span>
-<span id="cb22-251"><a href="#cb22-251" aria-label="251"></a><span class="co">#| fig-height: 5</span></span>
-<span id="cb22-252"><a href="#cb22-252" aria-label="252"></a><span class="co">#| fig-width: 6</span></span>
-<span id="cb22-253"><a href="#cb22-253" aria-label="253"></a><span class="co">#| out-width: 90%</span></span>
+<span id="cb22-243"><a href="#cb22-243" aria-label="243"></a>{{&lt; script scripts/fig_outcome.R &gt;}}</span>
+<span id="cb22-244"><a href="#cb22-244" aria-label="244"></a></span>
+<span id="cb22-245"><a href="#cb22-245" aria-label="245"></a><span class="in">```{r}</span></span>
+<span id="cb22-246"><a href="#cb22-246" aria-label="246"></a><span class="co">#| label: fig-outcome</span></span>
+<span id="cb22-247"><a href="#cb22-247" aria-label="247"></a><span class="co">#| fig-cap: Distribution du nombre de cures reçues, par phase et selon le protocole de chimiothérapie.</span></span>
+<span id="cb22-248"><a href="#cb22-248" aria-label="248"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb22-249"><a href="#cb22-249" aria-label="249"></a><span class="co">#| fig-width: 6</span></span>
+<span id="cb22-250"><a href="#cb22-250" aria-label="250"></a><span class="co">#| out-width: 90%</span></span>
+<span id="cb22-251"><a href="#cb22-251" aria-label="251"></a></span>
+<span id="cb22-252"><a href="#cb22-252" aria-label="252"></a><span class="fu">out_qmd</span>(fig_outcome)</span>
+<span id="cb22-253"><a href="#cb22-253" aria-label="253"></a><span class="in">```</span></span>
 <span id="cb22-254"><a href="#cb22-254" aria-label="254"></a></span>
-<span id="cb22-255"><a href="#cb22-255" aria-label="255"></a><span class="fu">out_qmd</span>(fig_outcome)</span>
-<span id="cb22-256"><a href="#cb22-256" aria-label="256"></a><span class="in">```</span></span>
-<span id="cb22-257"><a href="#cb22-257" aria-label="257"></a></span>
-<span id="cb22-258"><a href="#cb22-258" aria-label="258"></a><span class="fu">### Caractéristiques du traitement</span></span>
-<span id="cb22-259"><a href="#cb22-259" aria-label="259"></a></span>
-<span id="cb22-260"><a href="#cb22-260" aria-label="260"></a>Parmi les <span class="in">`r .ttt$n`</span> patients ayant reçu au moins une cure, une adaptation de doses a été rapportée chez <span class="in">`r .ttt$adapt$n`</span> d&#39;entre eux (<span class="in">`r .ttt$adapt$pct`</span>), et elle dépassait 20 % dans <span class="in">`r .ttt$adapt_sup$pct`</span> des cas évaluables.</span>
-<span id="cb22-261"><a href="#cb22-261" aria-label="261"></a></span>
-<span id="cb22-262"><a href="#cb22-262" aria-label="262"></a>{{&lt; script scripts/tbl_ttt.R &gt;}}</span>
-<span id="cb22-263"><a href="#cb22-263" aria-label="263"></a></span>
-<span id="cb22-264"><a href="#cb22-264" aria-label="264"></a><span class="in">```{r}</span></span>
-<span id="cb22-265"><a href="#cb22-265" aria-label="265"></a><span class="co">#| label: tbl-ttt</span></span>
-<span id="cb22-266"><a href="#cb22-266" aria-label="266"></a><span class="co">#| tbl-cap: !expr title_suffix(&quot;Doses reçues et adaptations de doses&quot;)$overall</span></span>
+<span id="cb22-255"><a href="#cb22-255" aria-label="255"></a><span class="fu">### Caractéristiques du traitement</span></span>
+<span id="cb22-256"><a href="#cb22-256" aria-label="256"></a></span>
+<span id="cb22-257"><a href="#cb22-257" aria-label="257"></a>Parmi les <span class="in">`r .ttt$n`</span> patients ayant reçu au moins une cure, une adaptation de doses a été rapportée chez <span class="in">`r .ttt$adapt$n`</span> d&#39;entre eux (<span class="in">`r .ttt$adapt$pct`</span>), et elle dépassait 20 % dans <span class="in">`r .ttt$adapt_sup$pct`</span> des cas évaluables.</span>
+<span id="cb22-258"><a href="#cb22-258" aria-label="258"></a></span>
+<span id="cb22-259"><a href="#cb22-259" aria-label="259"></a>{{&lt; script scripts/tbl_ttt.R &gt;}}</span>
+<span id="cb22-260"><a href="#cb22-260" aria-label="260"></a></span>
+<span id="cb22-261"><a href="#cb22-261" aria-label="261"></a><span class="in">```{r}</span></span>
+<span id="cb22-262"><a href="#cb22-262" aria-label="262"></a><span class="co">#| label: tbl-ttt</span></span>
+<span id="cb22-263"><a href="#cb22-263" aria-label="263"></a><span class="co">#| tbl-cap: !expr title_suffix(&quot;Doses reçues et adaptations de doses&quot;)$overall</span></span>
+<span id="cb22-264"><a href="#cb22-264" aria-label="264"></a></span>
+<span id="cb22-265"><a href="#cb22-265" aria-label="265"></a><span class="fu">out_qmd</span>(tbl_ttt)</span>
+<span id="cb22-266"><a href="#cb22-266" aria-label="266"></a><span class="in">```</span></span>
 <span id="cb22-267"><a href="#cb22-267" aria-label="267"></a></span>
-<span id="cb22-268"><a href="#cb22-268" aria-label="268"></a><span class="fu">out_qmd</span>(tbl_ttt)</span>
-<span id="cb22-269"><a href="#cb22-269" aria-label="269"></a><span class="in">```</span></span>
-<span id="cb22-270"><a href="#cb22-270" aria-label="270"></a></span>
-<span id="cb22-271"><a href="#cb22-271" aria-label="271"></a><span class="fu">### Toxicité chimio-induite</span></span>
+<span id="cb22-268"><a href="#cb22-268" aria-label="268"></a><span class="fu">### Toxicité chimio-induite</span></span>
+<span id="cb22-269"><a href="#cb22-269" aria-label="269"></a></span>
+<span id="cb22-270"><a href="#cb22-270" aria-label="270"></a>Au total, parmi les <span class="in">`r .tox$n`</span> patients ayant reçu au moins une cure de chimiothérapie, la toxicité était évaluable chez <span class="in">`r .tox$n_eval`</span> d&#39;entre eux, dont <span class="in">`r .tox$n_ei`</span> (<span class="in">`r .tox$pct`</span>) ont présenté au moins un effet indésirable de grade III-IV.</span>
+<span id="cb22-271"><a href="#cb22-271" aria-label="271"></a>Les nausées et vomissements étaient l&#39;évènement indésirable le plus fréquent, chez <span class="in">`r .tox$ei$vom$n`</span> patients (<span class="in">`r .tox$ei$vom$pct`</span>), devant la neurotoxicité (<span class="in">`r .tox$ei$neuro$pct`</span>) et la diarrhée (<span class="in">`r .tox$ei$dig$pct`</span>), puis l&#39;asthénie (<span class="in">`r .tox$ei$asth$pct`</span>) et la neutropénie (<span class="in">`r .tox$ei$neutrop$pct`</span>).</span>
 <span id="cb22-272"><a href="#cb22-272" aria-label="272"></a></span>
-<span id="cb22-273"><a href="#cb22-273" aria-label="273"></a>Au total, parmi les <span class="in">`r .tox$n`</span> patients ayant reçu au moins une cure de chimiothérapie, la toxicité était évaluable chez <span class="in">`r .tox$n_eval`</span> d&#39;entre eux, dont <span class="in">`r .tox$n_ei`</span> (<span class="in">`r .tox$pct`</span>) ont présenté au moins un effet indésirable de grade III-IV.</span>
-<span id="cb22-274"><a href="#cb22-274" aria-label="274"></a>Les nausées et vomissements étaient l&#39;évènement indésirable le plus fréquent, chez <span class="in">`r .tox$ei$vom$n`</span> patients (<span class="in">`r .tox$ei$vom$pct`</span>), devant la neurotoxicité (<span class="in">`r .tox$ei$neuro$pct`</span>) et la diarrhée (<span class="in">`r .tox$ei$dig$pct`</span>), puis l&#39;asthénie (<span class="in">`r .tox$ei$asth$pct`</span>) et la neutropénie (<span class="in">`r .tox$ei$neutrop$pct`</span>).</span>
-<span id="cb22-275"><a href="#cb22-275" aria-label="275"></a></span>
-<span id="cb22-276"><a href="#cb22-276" aria-label="276"></a>{{&lt; script scripts/tbl_tox.R &gt;}}</span>
-<span id="cb22-277"><a href="#cb22-277" aria-label="277"></a></span>
-<span id="cb22-278"><a href="#cb22-278" aria-label="278"></a><span class="in">```{r}</span></span>
-<span id="cb22-279"><a href="#cb22-279" aria-label="279"></a><span class="co">#| label: tbl-tox</span></span>
-<span id="cb22-280"><a href="#cb22-280" aria-label="280"></a><span class="co">#| tbl-cap: !expr title_suffix(&quot;Toxicité chimio-induite de grade III-IV&quot;)$overall</span></span>
+<span id="cb22-273"><a href="#cb22-273" aria-label="273"></a>{{&lt; script scripts/tbl_tox.R &gt;}}</span>
+<span id="cb22-274"><a href="#cb22-274" aria-label="274"></a></span>
+<span id="cb22-275"><a href="#cb22-275" aria-label="275"></a><span class="in">```{r}</span></span>
+<span id="cb22-276"><a href="#cb22-276" aria-label="276"></a><span class="co">#| label: tbl-tox</span></span>
+<span id="cb22-277"><a href="#cb22-277" aria-label="277"></a><span class="co">#| tbl-cap: !expr title_suffix(&quot;Toxicité chimio-induite de grade III-IV&quot;)$overall</span></span>
+<span id="cb22-278"><a href="#cb22-278" aria-label="278"></a></span>
+<span id="cb22-279"><a href="#cb22-279" aria-label="279"></a><span class="fu">out_qmd</span>(tbl_tox)</span>
+<span id="cb22-280"><a href="#cb22-280" aria-label="280"></a><span class="in">```</span></span>
 <span id="cb22-281"><a href="#cb22-281" aria-label="281"></a></span>
-<span id="cb22-282"><a href="#cb22-282" aria-label="282"></a><span class="fu">out_qmd</span>(tbl_tox)</span>
-<span id="cb22-283"><a href="#cb22-283" aria-label="283"></a><span class="in">```</span></span>
-<span id="cb22-284"><a href="#cb22-284" aria-label="284"></a></span>
-<span id="cb22-285"><a href="#cb22-285" aria-label="285"></a><span class="fu">## Analyse du critère de jugement principal</span></span>
+<span id="cb22-282"><a href="#cb22-282" aria-label="282"></a><span class="fu">## Analyse du critère de jugement principal</span></span>
+<span id="cb22-283"><a href="#cb22-283" aria-label="283"></a></span>
+<span id="cb22-284"><a href="#cb22-284" aria-label="284"></a>Le facteur de dispersion estimé était de <span class="in">`r round(.model$pois$check$overdispersion$dispersion_ratio, 2)`</span> (test de dispersion de Pearson : <span class="in">`r style_pvalue(.model$pois$check$overdispersion$p_value, digits = 2, prepend_p = TRUE)`</span>).</span>
+<span id="cb22-285"><a href="#cb22-285" aria-label="285"></a>Le test ne concluait donc pas à une surdispersion au seuil de 5 %, cependant le facteur de dispersion étant supérieure à 1 avec un degré de significativité limite, la famille quasi-Poisson a été retenue conformément au plan d&#39;analyse.</span>
 <span id="cb22-286"><a href="#cb22-286" aria-label="286"></a></span>
-<span id="cb22-287"><a href="#cb22-287" aria-label="287"></a>Le facteur de dispersion estimé était de <span class="in">`r round(.model$pois$check$overdispersion$dispersion_ratio, 2)`</span> (test de dispersion de Pearson : <span class="in">`r style_pvalue(.model$pois$check$overdispersion$p_value, digits = 2, prepend_p = TRUE)`</span>).</span>
-<span id="cb22-288"><a href="#cb22-288" aria-label="288"></a>Le test ne concluait donc pas à une surdispersion au seuil de 5 %, cependant le facteur de dispersion étant supérieure à 1 avec un degré de significativité limite, la famille quasi-Poisson a été retenue conformément au plan d&#39;analyse.</span>
-<span id="cb22-289"><a href="#cb22-289" aria-label="289"></a></span>
-<span id="cb22-290"><a href="#cb22-290" aria-label="290"></a>{{&lt; script scripts/tbl_pois.R &gt;}}</span>
-<span id="cb22-291"><a href="#cb22-291" aria-label="291"></a></span>
-<span id="cb22-292"><a href="#cb22-292" aria-label="292"></a><span class="in">```{r}</span></span>
-<span id="cb22-293"><a href="#cb22-293" aria-label="293"></a><span class="co">#| label: tbl-pois</span></span>
-<span id="cb22-294"><a href="#cb22-294" aria-label="294"></a><span class="co">#| tbl-cap: &quot;Facteurs associés au nombre total de cures reçues.&quot;</span></span>
+<span id="cb22-287"><a href="#cb22-287" aria-label="287"></a>{{&lt; script scripts/tbl_pois.R &gt;}}</span>
+<span id="cb22-288"><a href="#cb22-288" aria-label="288"></a></span>
+<span id="cb22-289"><a href="#cb22-289" aria-label="289"></a><span class="in">```{r}</span></span>
+<span id="cb22-290"><a href="#cb22-290" aria-label="290"></a><span class="co">#| label: tbl-pois</span></span>
+<span id="cb22-291"><a href="#cb22-291" aria-label="291"></a><span class="co">#| tbl-cap: &quot;Facteurs associés au nombre total de cures reçues.&quot;</span></span>
+<span id="cb22-292"><a href="#cb22-292" aria-label="292"></a></span>
+<span id="cb22-293"><a href="#cb22-293" aria-label="293"></a><span class="fu">out_qmd</span>(tbl_pois)</span>
+<span id="cb22-294"><a href="#cb22-294" aria-label="294"></a><span class="in">```</span></span>
 <span id="cb22-295"><a href="#cb22-295" aria-label="295"></a></span>
-<span id="cb22-296"><a href="#cb22-296" aria-label="296"></a><span class="fu">out_qmd</span>(tbl_pois)</span>
-<span id="cb22-297"><a href="#cb22-297" aria-label="297"></a><span class="in">```</span></span>
-<span id="cb22-298"><a href="#cb22-298" aria-label="298"></a></span>
-<span id="cb22-299"><a href="#cb22-299" aria-label="299"></a>Le nombre moyen de cures reçues était plus élevé dans le groupe péri-opératoire que dans le groupe adjuvant seul, en analyse univariable (RM <span class="in">`r .pois_estim(&quot;uv&quot;, variable = &quot;groupe&quot;, level = &quot;Péri-opératoire&quot;)`</span>) ainsi qu&#39;après ajustement sur le centre, l&#39;âge, les marges de résection et la survenue d&#39;une complication post-opératoire majeure (aRM <span class="in">`r .pois_estim(&quot;mv&quot;, variable = &quot;groupe&quot;, level = &quot;Péri-opératoire&quot;)`</span>, <span class="in">`r .pois_p(&quot;groupe&quot;)`</span>).</span>
-<span id="cb22-300"><a href="#cb22-300" aria-label="300"></a></span>
-<span id="cb22-301"><a href="#cb22-301" aria-label="301"></a>Deux autres facteurs étaient associés au nombre total de cures reçues : l&#39;âge (par tranches de 5 ans supplémentaires) était associé à un nombre de cures plus faible (aRM <span class="in">`r .pois_estim(&quot;mv&quot;, variable = &quot;age_incr&quot;)`</span>, <span class="in">`r .pois_p(&quot;age_incr&quot;)`</span>), de même que la survenue d&#39;une complication post-opératoire majeure (aRM <span class="in">`r .pois_estim(&quot;mv&quot;, variable = &quot;chir_complic_class_maj&quot;)`</span>, <span class="in">`r .pois_p(&quot;chir_complic_class_maj&quot;)`</span>).</span>
-<span id="cb22-302"><a href="#cb22-302" aria-label="302"></a></span>
-<span id="cb22-303"><a href="#cb22-303" aria-label="303"></a><span class="fu">## Analyses de survie</span></span>
-<span id="cb22-304"><a href="#cb22-304" aria-label="304"></a></span>
-<span id="cb22-305"><a href="#cb22-305" aria-label="305"></a><span class="fu">### Suivi des patients</span></span>
-<span id="cb22-306"><a href="#cb22-306" aria-label="306"></a></span>
-<span id="cb22-307"><a href="#cb22-307" aria-label="307"></a>{{&lt; script scripts/fig_follow.R &gt;}}</span>
-<span id="cb22-308"><a href="#cb22-308" aria-label="308"></a></span>
-<span id="cb22-309"><a href="#cb22-309" aria-label="309"></a><span class="in">```{r}</span></span>
-<span id="cb22-310"><a href="#cb22-310" aria-label="310"></a><span class="co">#| label: fig-follow</span></span>
-<span id="cb22-311"><a href="#cb22-311" aria-label="311"></a><span class="co">#| fig-cap: !expr .title_fig_follow</span></span>
-<span id="cb22-312"><a href="#cb22-312" aria-label="312"></a><span class="co">#| fig-height: 3.75</span></span>
-<span id="cb22-313"><a href="#cb22-313" aria-label="313"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb22-314"><a href="#cb22-314" aria-label="314"></a><span class="co">#| out-width: 100%</span></span>
+<span id="cb22-296"><a href="#cb22-296" aria-label="296"></a>Le nombre moyen de cures reçues était plus élevé dans le groupe péri-opératoire que dans le groupe adjuvant seul, en analyse univariable (RM <span class="in">`r .pois_estim(&quot;uv&quot;, variable = &quot;groupe&quot;, level = &quot;Péri-opératoire&quot;)`</span>) ainsi qu&#39;après ajustement sur le centre, l&#39;âge, les marges de résection et la survenue d&#39;une complication post-opératoire majeure (aRM <span class="in">`r .pois_estim(&quot;mv&quot;, variable = &quot;groupe&quot;, level = &quot;Péri-opératoire&quot;)`</span>, <span class="in">`r .pois_p(&quot;groupe&quot;)`</span>).</span>
+<span id="cb22-297"><a href="#cb22-297" aria-label="297"></a></span>
+<span id="cb22-298"><a href="#cb22-298" aria-label="298"></a>Deux autres facteurs étaient associés au nombre total de cures reçues : l&#39;âge (par tranches de 5 ans supplémentaires) était associé à un nombre de cures plus faible (aRM <span class="in">`r .pois_estim(&quot;mv&quot;, variable = &quot;age_incr&quot;)`</span>, <span class="in">`r .pois_p(&quot;age_incr&quot;)`</span>), de même que la survenue d&#39;une complication post-opératoire majeure (aRM <span class="in">`r .pois_estim(&quot;mv&quot;, variable = &quot;chir_complic_class_maj&quot;)`</span>, <span class="in">`r .pois_p(&quot;chir_complic_class_maj&quot;)`</span>).</span>
+<span id="cb22-299"><a href="#cb22-299" aria-label="299"></a></span>
+<span id="cb22-300"><a href="#cb22-300" aria-label="300"></a><span class="fu">## Analyses de survie</span></span>
+<span id="cb22-301"><a href="#cb22-301" aria-label="301"></a></span>
+<span id="cb22-302"><a href="#cb22-302" aria-label="302"></a><span class="fu">### Suivi des patients</span></span>
+<span id="cb22-303"><a href="#cb22-303" aria-label="303"></a></span>
+<span id="cb22-304"><a href="#cb22-304" aria-label="304"></a>{{&lt; script scripts/fig_follow.R &gt;}}</span>
+<span id="cb22-305"><a href="#cb22-305" aria-label="305"></a></span>
+<span id="cb22-306"><a href="#cb22-306" aria-label="306"></a><span class="in">```{r}</span></span>
+<span id="cb22-307"><a href="#cb22-307" aria-label="307"></a><span class="co">#| label: fig-follow</span></span>
+<span id="cb22-308"><a href="#cb22-308" aria-label="308"></a><span class="co">#| fig-cap: !expr .title_fig_follow</span></span>
+<span id="cb22-309"><a href="#cb22-309" aria-label="309"></a><span class="co">#| fig-height: 3.75</span></span>
+<span id="cb22-310"><a href="#cb22-310" aria-label="310"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb22-311"><a href="#cb22-311" aria-label="311"></a><span class="co">#| out-width: 100%</span></span>
+<span id="cb22-312"><a href="#cb22-312" aria-label="312"></a></span>
+<span id="cb22-313"><a href="#cb22-313" aria-label="313"></a><span class="fu">out_qmd</span>(fig_follow)</span>
+<span id="cb22-314"><a href="#cb22-314" aria-label="314"></a><span class="in">```</span></span>
 <span id="cb22-315"><a href="#cb22-315" aria-label="315"></a></span>
-<span id="cb22-316"><a href="#cb22-316" aria-label="316"></a>.title_fig_follow <span class="ot">&lt;-</span> <span class="fu">str_fig</span>(</span>
-<span id="cb22-317"><a href="#cb22-317" aria-label="317"></a>  <span class="at">title =</span> <span class="fu">title_suffix</span>(<span class="st">&quot;Recul de suivi&quot;</span>)<span class="sc">$</span>strata,</span>
-<span id="cb22-318"><a href="#cb22-318" aria-label="318"></a>  <span class="at">note =</span> <span class="fu">str_glue</span>(</span>
-<span id="cb22-319"><a href="#cb22-319" aria-label="319"></a>    <span class="st">&quot;Recul de suivi estimé par la méthode de Kaplan-Meier inversée : l&#39;évènement est la fin du suivi, la censure est le décès.&quot;</span></span>
-<span id="cb22-320"><a href="#cb22-320" aria-label="320"></a>  )</span>
-<span id="cb22-321"><a href="#cb22-321" aria-label="321"></a>)</span>
-<span id="cb22-322"><a href="#cb22-322" aria-label="322"></a></span>
-<span id="cb22-323"><a href="#cb22-323" aria-label="323"></a><span class="fu">out_qmd</span>(fig_follow)</span>
-<span id="cb22-324"><a href="#cb22-324" aria-label="324"></a><span class="in">```</span></span>
-<span id="cb22-325"><a href="#cb22-325" aria-label="325"></a></span>
-<span id="cb22-326"><a href="#cb22-326" aria-label="326"></a>Les dates de point étaient fixées pour chaque centre à la date du recueil :</span>
-<span id="cb22-327"><a href="#cb22-327" aria-label="327"></a></span>
-<span id="cb22-328"><a href="#cb22-328" aria-label="328"></a><span class="in">```{r}</span></span>
-<span id="cb22-329"><a href="#cb22-329" aria-label="329"></a><span class="co">#| label: date-point</span></span>
-<span id="cb22-330"><a href="#cb22-330" aria-label="330"></a></span>
-<span id="cb22-331"><a href="#cb22-331" aria-label="331"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb22-332"><a href="#cb22-332" aria-label="332"></a>  <span class="fu">distinct</span>(centre, date_point) <span class="sc">|&gt;</span></span>
-<span id="cb22-333"><a href="#cb22-333" aria-label="333"></a>  <span class="fu">arrange</span>(centre) <span class="sc">|&gt;</span></span>
-<span id="cb22-334"><a href="#cb22-334" aria-label="334"></a>  <span class="fu">mutate</span>(<span class="at">date_point =</span> <span class="fu">format</span>(date_point, <span class="st">&quot;%d/%m/%Y&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb22-335"><a href="#cb22-335" aria-label="335"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb22-336"><a href="#cb22-336" aria-label="336"></a>  gt<span class="sc">::</span><span class="fu">cols_label</span>(</span>
-<span id="cb22-337"><a href="#cb22-337" aria-label="337"></a>    <span class="at">centre =</span> <span class="st">&quot;Centre&quot;</span>,</span>
-<span id="cb22-338"><a href="#cb22-338" aria-label="338"></a>    <span class="at">date_point =</span> <span class="st">&quot;Date de point&quot;</span></span>
-<span id="cb22-339"><a href="#cb22-339" aria-label="339"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb22-340"><a href="#cb22-340" aria-label="340"></a>  gt<span class="sc">::</span><span class="fu">cols_align</span>(<span class="at">align =</span> <span class="st">&quot;left&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb22-341"><a href="#cb22-341" aria-label="341"></a>  <span class="fu">theme_gt</span>(<span class="at">width =</span> <span class="dv">300</span>)</span>
-<span id="cb22-342"><a href="#cb22-342" aria-label="342"></a><span class="in">```</span></span>
-<span id="cb22-343"><a href="#cb22-343" aria-label="343"></a></span>
-<span id="cb22-344"><a href="#cb22-344" aria-label="344"></a>Au moment de l&#39;analyse, <span class="in">`r .followup_alive$n`</span> patients étaient vivants, avec un recul de <span class="in">`r .followup_alive$min`</span> à <span class="in">`r .followup_alive$max`</span> mois.</span>
-<span id="cb22-345"><a href="#cb22-345" aria-label="345"></a>Le suivi médian estimé par la méthode de Kaplan-Meier inversée était de <span class="in">`r .followup_median$total`</span> dans la population totale, et de <span class="in">`r .followup_median$strata`</span>.</span>
-<span id="cb22-346"><a href="#cb22-346" aria-label="346"></a>Les intervalles de confiance des deux groupes se recouvraient largement.</span>
-<span id="cb22-347"><a href="#cb22-347" aria-label="347"></a></span>
-<span id="cb22-348"><a href="#cb22-348" aria-label="348"></a><span class="fu">### Évènements</span></span>
-<span id="cb22-349"><a href="#cb22-349" aria-label="349"></a></span>
-<span id="cb22-350"><a href="#cb22-350" aria-label="350"></a>Les analyses de survie globale portaient sur <span class="in">`r sum(df$os_event)`</span> décès toutes causes.</span>
-<span id="cb22-351"><a href="#cb22-351" aria-label="351"></a>Les analyses de survie sans récidive portaient sur <span class="in">`r sum(df$pfs_event)`</span> évènements, récidive ou décès toutes causes.</span>
-<span id="cb22-352"><a href="#cb22-352" aria-label="352"></a></span>
-<span id="cb22-353"><a href="#cb22-353" aria-label="353"></a>{{&lt; script scripts/tbl_event.R &gt;}}</span>
-<span id="cb22-354"><a href="#cb22-354" aria-label="354"></a></span>
-<span id="cb22-355"><a href="#cb22-355" aria-label="355"></a><span class="in">```{r}</span></span>
-<span id="cb22-356"><a href="#cb22-356" aria-label="356"></a><span class="co">#| label: tbl-event</span></span>
-<span id="cb22-357"><a href="#cb22-357" aria-label="357"></a><span class="co">#| tbl-cap: Évènements.</span></span>
-<span id="cb22-358"><a href="#cb22-358" aria-label="358"></a></span>
-<span id="cb22-359"><a href="#cb22-359" aria-label="359"></a><span class="fu">out_qmd</span>(tbl_event)</span>
-<span id="cb22-360"><a href="#cb22-360" aria-label="360"></a><span class="in">```</span></span>
-<span id="cb22-361"><a href="#cb22-361" aria-label="361"></a></span>
-<span id="cb22-362"><a href="#cb22-362" aria-label="362"></a><span class="fu">### Survie globale</span></span>
-<span id="cb22-363"><a href="#cb22-363" aria-label="363"></a></span>
-<span id="cb22-364"><a href="#cb22-364" aria-label="364"></a><span class="in">```{r}</span></span>
-<span id="cb22-365"><a href="#cb22-365" aria-label="365"></a><span class="co">#| label: fig-surv-title</span></span>
+<span id="cb22-316"><a href="#cb22-316" aria-label="316"></a>Les dates de point étaient fixées pour chaque centre à la date du recueil :</span>
+<span id="cb22-317"><a href="#cb22-317" aria-label="317"></a></span>
+<span id="cb22-318"><a href="#cb22-318" aria-label="318"></a><span class="in">```{r}</span></span>
+<span id="cb22-319"><a href="#cb22-319" aria-label="319"></a><span class="co">#| label: date-point</span></span>
+<span id="cb22-320"><a href="#cb22-320" aria-label="320"></a></span>
+<span id="cb22-321"><a href="#cb22-321" aria-label="321"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb22-322"><a href="#cb22-322" aria-label="322"></a>  <span class="fu">distinct</span>(centre, date_point) <span class="sc">|&gt;</span></span>
+<span id="cb22-323"><a href="#cb22-323" aria-label="323"></a>  <span class="fu">arrange</span>(centre) <span class="sc">|&gt;</span></span>
+<span id="cb22-324"><a href="#cb22-324" aria-label="324"></a>  <span class="fu">mutate</span>(<span class="at">date_point =</span> <span class="fu">format</span>(date_point, <span class="st">&quot;%d/%m/%Y&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb22-325"><a href="#cb22-325" aria-label="325"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb22-326"><a href="#cb22-326" aria-label="326"></a>  gt<span class="sc">::</span><span class="fu">cols_label</span>(</span>
+<span id="cb22-327"><a href="#cb22-327" aria-label="327"></a>    <span class="at">centre =</span> <span class="st">&quot;Centre&quot;</span>,</span>
+<span id="cb22-328"><a href="#cb22-328" aria-label="328"></a>    <span class="at">date_point =</span> <span class="st">&quot;Date de point&quot;</span></span>
+<span id="cb22-329"><a href="#cb22-329" aria-label="329"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb22-330"><a href="#cb22-330" aria-label="330"></a>  gt<span class="sc">::</span><span class="fu">cols_align</span>(<span class="at">align =</span> <span class="st">&quot;left&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-331"><a href="#cb22-331" aria-label="331"></a>  <span class="fu">theme_gt</span>(<span class="at">width =</span> <span class="dv">300</span>)</span>
+<span id="cb22-332"><a href="#cb22-332" aria-label="332"></a><span class="in">```</span></span>
+<span id="cb22-333"><a href="#cb22-333" aria-label="333"></a></span>
+<span id="cb22-334"><a href="#cb22-334" aria-label="334"></a>Au moment de l&#39;analyse, <span class="in">`r .followup_alive$n`</span> patients étaient vivants, avec un recul de <span class="in">`r .followup_alive$min`</span> à <span class="in">`r .followup_alive$max`</span> mois.</span>
+<span id="cb22-335"><a href="#cb22-335" aria-label="335"></a>Le suivi médian estimé par la méthode de Kaplan-Meier inversée était de <span class="in">`r .followup_median$total`</span> dans la population totale, et de <span class="in">`r .followup_median$strata`</span>.</span>
+<span id="cb22-336"><a href="#cb22-336" aria-label="336"></a>Les intervalles de confiance des deux groupes se recouvraient largement.</span>
+<span id="cb22-337"><a href="#cb22-337" aria-label="337"></a></span>
+<span id="cb22-338"><a href="#cb22-338" aria-label="338"></a><span class="fu">### Évènements</span></span>
+<span id="cb22-339"><a href="#cb22-339" aria-label="339"></a></span>
+<span id="cb22-340"><a href="#cb22-340" aria-label="340"></a>Les analyses de survie globale portaient sur <span class="in">`r sum(df$os_event)`</span> décès toutes causes.</span>
+<span id="cb22-341"><a href="#cb22-341" aria-label="341"></a>Les analyses de survie sans récidive portaient sur <span class="in">`r sum(df$pfs_event)`</span> évènements, récidive ou décès toutes causes.</span>
+<span id="cb22-342"><a href="#cb22-342" aria-label="342"></a></span>
+<span id="cb22-343"><a href="#cb22-343" aria-label="343"></a>{{&lt; script scripts/tbl_event.R &gt;}}</span>
+<span id="cb22-344"><a href="#cb22-344" aria-label="344"></a></span>
+<span id="cb22-345"><a href="#cb22-345" aria-label="345"></a><span class="in">```{r}</span></span>
+<span id="cb22-346"><a href="#cb22-346" aria-label="346"></a><span class="co">#| label: tbl-event</span></span>
+<span id="cb22-347"><a href="#cb22-347" aria-label="347"></a><span class="co">#| tbl-cap: Évènements.</span></span>
+<span id="cb22-348"><a href="#cb22-348" aria-label="348"></a></span>
+<span id="cb22-349"><a href="#cb22-349" aria-label="349"></a><span class="fu">out_qmd</span>(tbl_event)</span>
+<span id="cb22-350"><a href="#cb22-350" aria-label="350"></a><span class="in">```</span></span>
+<span id="cb22-351"><a href="#cb22-351" aria-label="351"></a></span>
+<span id="cb22-352"><a href="#cb22-352" aria-label="352"></a><span class="fu">### Survie globale</span></span>
+<span id="cb22-353"><a href="#cb22-353" aria-label="353"></a></span>
+<span id="cb22-354"><a href="#cb22-354" aria-label="354"></a>{{&lt; script scripts/tbl_surv.R &gt;}}</span>
+<span id="cb22-355"><a href="#cb22-355" aria-label="355"></a></span>
+<span id="cb22-356"><a href="#cb22-356" aria-label="356"></a><span class="in">```{r}</span></span>
+<span id="cb22-357"><a href="#cb22-357" aria-label="357"></a><span class="co">#| label: tbl-surv-os</span></span>
+<span id="cb22-358"><a href="#cb22-358" aria-label="358"></a><span class="co">#| tbl-cap: !expr title_suffix(&quot;Estimations de la survie globale&quot;)$overall</span></span>
+<span id="cb22-359"><a href="#cb22-359" aria-label="359"></a></span>
+<span id="cb22-360"><a href="#cb22-360" aria-label="360"></a><span class="fu">out_qmd</span>(tbl_surv<span class="sc">$</span>os)</span>
+<span id="cb22-361"><a href="#cb22-361" aria-label="361"></a><span class="in">```</span></span>
+<span id="cb22-362"><a href="#cb22-362" aria-label="362"></a></span>
+<span id="cb22-363"><a href="#cb22-363" aria-label="363"></a>La médiane de survie globale était de <span class="in">`r .surv_median$os$total`</span> dans la population totale, et de <span class="in">`r .surv_median$os$strata`</span> (test du log-rank, <span class="in">`r .surv_logrank$os$p.value`</span>).</span>
+<span id="cb22-364"><a href="#cb22-364" aria-label="364"></a></span>
+<span id="cb22-365"><a href="#cb22-365" aria-label="365"></a>Le hazard ratio de décès toutes causes associé à la chimiothérapie péri-opératoire, par rapport à la chimiothérapie adjuvante seule, était de <span class="in">`r .surv_cox$os$estimate_ci`</span>.</span>
 <span id="cb22-366"><a href="#cb22-366" aria-label="366"></a></span>
-<span id="cb22-367"><a href="#cb22-367" aria-label="367"></a>.title_surv <span class="ot">&lt;-</span> \(title) {</span>
-<span id="cb22-368"><a href="#cb22-368" aria-label="368"></a>  <span class="fu">str_fig</span>(</span>
-<span id="cb22-369"><a href="#cb22-369" aria-label="369"></a>    <span class="at">title =</span> title,</span>
-<span id="cb22-370"><a href="#cb22-370" aria-label="370"></a>    <span class="at">note =</span> <span class="fu">str_glue</span>(</span>
-<span id="cb22-371"><a href="#cb22-371" aria-label="371"></a>      <span class="st">&quot;Les évènements et censures sont présentés en effectifs cumulés au cours du temps.&quot;</span></span>
-<span id="cb22-372"><a href="#cb22-372" aria-label="372"></a>    )</span>
-<span id="cb22-373"><a href="#cb22-373" aria-label="373"></a>  )</span>
-<span id="cb22-374"><a href="#cb22-374" aria-label="374"></a>}</span>
-<span id="cb22-375"><a href="#cb22-375" aria-label="375"></a><span class="in">```</span></span>
-<span id="cb22-376"><a href="#cb22-376" aria-label="376"></a></span>
-<span id="cb22-377"><a href="#cb22-377" aria-label="377"></a>{{&lt; script scripts/tbl_surv.R &gt;}}</span>
-<span id="cb22-378"><a href="#cb22-378" aria-label="378"></a></span>
-<span id="cb22-379"><a href="#cb22-379" aria-label="379"></a><span class="in">```{r}</span></span>
-<span id="cb22-380"><a href="#cb22-380" aria-label="380"></a><span class="co">#| label: tbl-surv-os</span></span>
-<span id="cb22-381"><a href="#cb22-381" aria-label="381"></a><span class="co">#| tbl-cap: !expr title_suffix(&quot;Estimations de la survie globale&quot;)$overall</span></span>
+<span id="cb22-367"><a href="#cb22-367" aria-label="367"></a><span class="fu">#### Population totale</span></span>
+<span id="cb22-368"><a href="#cb22-368" aria-label="368"></a></span>
+<span id="cb22-369"><a href="#cb22-369" aria-label="369"></a>{{&lt; script scripts/fig_surv_total.R &gt;}}</span>
+<span id="cb22-370"><a href="#cb22-370" aria-label="370"></a></span>
+<span id="cb22-371"><a href="#cb22-371" aria-label="371"></a><span class="in">```{r}</span></span>
+<span id="cb22-372"><a href="#cb22-372" aria-label="372"></a><span class="co">#| label: fig-surv-total-os</span></span>
+<span id="cb22-373"><a href="#cb22-373" aria-label="373"></a><span class="co">#| fig-cap: !expr .title_fig_surv_total$os</span></span>
+<span id="cb22-374"><a href="#cb22-374" aria-label="374"></a><span class="co">#| fig-height: 3.75</span></span>
+<span id="cb22-375"><a href="#cb22-375" aria-label="375"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb22-376"><a href="#cb22-376" aria-label="376"></a><span class="co">#| out-width: 100%</span></span>
+<span id="cb22-377"><a href="#cb22-377" aria-label="377"></a></span>
+<span id="cb22-378"><a href="#cb22-378" aria-label="378"></a><span class="fu">out_qmd</span>(fig_surv_total<span class="sc">$</span>os)</span>
+<span id="cb22-379"><a href="#cb22-379" aria-label="379"></a><span class="in">```</span></span>
+<span id="cb22-380"><a href="#cb22-380" aria-label="380"></a></span>
+<span id="cb22-381"><a href="#cb22-381" aria-label="381"></a><span class="fu">#### Selon le protocole de chimiothérapie</span></span>
 <span id="cb22-382"><a href="#cb22-382" aria-label="382"></a></span>
-<span id="cb22-383"><a href="#cb22-383" aria-label="383"></a><span class="fu">out_qmd</span>(tbl_surv<span class="sc">$</span>os)</span>
-<span id="cb22-384"><a href="#cb22-384" aria-label="384"></a><span class="in">```</span></span>
-<span id="cb22-385"><a href="#cb22-385" aria-label="385"></a></span>
-<span id="cb22-386"><a href="#cb22-386" aria-label="386"></a>La médiane de survie globale était de <span class="in">`r .surv_median$os$total`</span> dans la population totale, et de <span class="in">`r .surv_median$os$strata`</span> (test du log-rank, <span class="in">`r .surv_logrank$os$p.value`</span>).</span>
-<span id="cb22-387"><a href="#cb22-387" aria-label="387"></a></span>
-<span id="cb22-388"><a href="#cb22-388" aria-label="388"></a>Le hazard ratio de décès toutes causes associé à la chimiothérapie péri-opératoire, par rapport à la chimiothérapie adjuvante seule, était de <span class="in">`r .surv_cox$os$estimate_ci`</span>.</span>
-<span id="cb22-389"><a href="#cb22-389" aria-label="389"></a></span>
-<span id="cb22-390"><a href="#cb22-390" aria-label="390"></a><span class="fu">#### Population totale</span></span>
+<span id="cb22-383"><a href="#cb22-383" aria-label="383"></a>{{&lt; script scripts/fig_surv_strata.R &gt;}}</span>
+<span id="cb22-384"><a href="#cb22-384" aria-label="384"></a></span>
+<span id="cb22-385"><a href="#cb22-385" aria-label="385"></a><span class="in">```{r}</span></span>
+<span id="cb22-386"><a href="#cb22-386" aria-label="386"></a><span class="co">#| label: fig-surv-strata-os</span></span>
+<span id="cb22-387"><a href="#cb22-387" aria-label="387"></a><span class="co">#| fig-cap: !expr .title_fig_surv_strata$os</span></span>
+<span id="cb22-388"><a href="#cb22-388" aria-label="388"></a><span class="co">#| fig-height: 3.75</span></span>
+<span id="cb22-389"><a href="#cb22-389" aria-label="389"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb22-390"><a href="#cb22-390" aria-label="390"></a><span class="co">#| out-width: 100%</span></span>
 <span id="cb22-391"><a href="#cb22-391" aria-label="391"></a></span>
-<span id="cb22-392"><a href="#cb22-392" aria-label="392"></a>{{&lt; script scripts/fig_surv_total.R &gt;}}</span>
-<span id="cb22-393"><a href="#cb22-393" aria-label="393"></a></span>
-<span id="cb22-394"><a href="#cb22-394" aria-label="394"></a><span class="in">```{r}</span></span>
-<span id="cb22-395"><a href="#cb22-395" aria-label="395"></a><span class="co">#| label: fig-surv-total-os</span></span>
-<span id="cb22-396"><a href="#cb22-396" aria-label="396"></a><span class="co">#| fig-cap: !expr .title_fig_surv_total_os</span></span>
-<span id="cb22-397"><a href="#cb22-397" aria-label="397"></a><span class="co">#| fig-height: 3.75</span></span>
-<span id="cb22-398"><a href="#cb22-398" aria-label="398"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb22-399"><a href="#cb22-399" aria-label="399"></a><span class="co">#| out-width: 100%</span></span>
-<span id="cb22-400"><a href="#cb22-400" aria-label="400"></a></span>
-<span id="cb22-401"><a href="#cb22-401" aria-label="401"></a>.title_fig_surv_total_os <span class="ot">&lt;-</span> <span class="fu">.title_surv</span>(</span>
-<span id="cb22-402"><a href="#cb22-402" aria-label="402"></a>  <span class="at">title =</span> <span class="st">&quot;Survie globale dans la population totale.&quot;</span></span>
-<span id="cb22-403"><a href="#cb22-403" aria-label="403"></a>)</span>
-<span id="cb22-404"><a href="#cb22-404" aria-label="404"></a></span>
-<span id="cb22-405"><a href="#cb22-405" aria-label="405"></a><span class="fu">out_qmd</span>(fig_surv_total<span class="sc">$</span>os)</span>
-<span id="cb22-406"><a href="#cb22-406" aria-label="406"></a><span class="in">```</span></span>
-<span id="cb22-407"><a href="#cb22-407" aria-label="407"></a></span>
-<span id="cb22-408"><a href="#cb22-408" aria-label="408"></a><span class="fu">#### Selon le protocole de chimiothérapie</span></span>
+<span id="cb22-392"><a href="#cb22-392" aria-label="392"></a><span class="fu">out_qmd</span>(fig_surv_strata<span class="sc">$</span>os)</span>
+<span id="cb22-393"><a href="#cb22-393" aria-label="393"></a><span class="in">```</span></span>
+<span id="cb22-394"><a href="#cb22-394" aria-label="394"></a></span>
+<span id="cb22-395"><a href="#cb22-395" aria-label="395"></a><span class="fu">#### Modèles de Cox</span></span>
+<span id="cb22-396"><a href="#cb22-396" aria-label="396"></a></span>
+<span id="cb22-397"><a href="#cb22-397" aria-label="397"></a>{{&lt; script scripts/tbl_coxph.R &gt;}}</span>
+<span id="cb22-398"><a href="#cb22-398" aria-label="398"></a></span>
+<span id="cb22-399"><a href="#cb22-399" aria-label="399"></a><span class="in">```{r}</span></span>
+<span id="cb22-400"><a href="#cb22-400" aria-label="400"></a><span class="co">#| label: tbl-coxph-os</span></span>
+<span id="cb22-401"><a href="#cb22-401" aria-label="401"></a><span class="co">#| tbl-cap: &quot;Facteurs associés à la survie globale.&quot;</span></span>
+<span id="cb22-402"><a href="#cb22-402" aria-label="402"></a></span>
+<span id="cb22-403"><a href="#cb22-403" aria-label="403"></a><span class="fu">out_qmd</span>(tbl_coxph<span class="sc">$</span>os)</span>
+<span id="cb22-404"><a href="#cb22-404" aria-label="404"></a><span class="in">```</span></span>
+<span id="cb22-405"><a href="#cb22-405" aria-label="405"></a></span>
+<span id="cb22-406"><a href="#cb22-406" aria-label="406"></a>Aucune des variables du modèle ajusté n&#39;était associée à la survie globale.</span>
+<span id="cb22-407"><a href="#cb22-407" aria-label="407"></a>Dans l&#39;analyse univariable, la survenue d&#39;une complication post-opératoire majeure était en revanche associée à un risque augmenté de décès (HR <span class="in">`r .coxph_uv(&quot;os&quot;, &quot;chir_complic_class_maj&quot;)$estim`</span>, <span class="in">`r .coxph_uv(&quot;os&quot;, &quot;chir_complic_class_maj&quot;)$p`</span>).</span>
+<span id="cb22-408"><a href="#cb22-408" aria-label="408"></a>La suvenue d&#39;une complication post-opératoire majeure n&#39;a pas été retenue dans le modèle ajusté, au regard du nombre insuffisant d&#39;évènements observés.</span>
 <span id="cb22-409"><a href="#cb22-409" aria-label="409"></a></span>
-<span id="cb22-410"><a href="#cb22-410" aria-label="410"></a>{{&lt; script scripts/fig_surv_strata.R &gt;}}</span>
-<span id="cb22-411"><a href="#cb22-411" aria-label="411"></a></span>
-<span id="cb22-412"><a href="#cb22-412" aria-label="412"></a><span class="in">```{r}</span></span>
-<span id="cb22-413"><a href="#cb22-413" aria-label="413"></a><span class="co">#| label: fig-surv-strata-os</span></span>
-<span id="cb22-414"><a href="#cb22-414" aria-label="414"></a><span class="co">#| fig-cap: !expr .title_fig_surv_strata_os</span></span>
-<span id="cb22-415"><a href="#cb22-415" aria-label="415"></a><span class="co">#| fig-height: 3.75</span></span>
-<span id="cb22-416"><a href="#cb22-416" aria-label="416"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb22-417"><a href="#cb22-417" aria-label="417"></a><span class="co">#| out-width: 100%</span></span>
-<span id="cb22-418"><a href="#cb22-418" aria-label="418"></a></span>
-<span id="cb22-419"><a href="#cb22-419" aria-label="419"></a>.title_fig_surv_strata_os <span class="ot">&lt;-</span> <span class="fu">.title_surv</span>(</span>
-<span id="cb22-420"><a href="#cb22-420" aria-label="420"></a>  <span class="at">title =</span> <span class="fu">title_suffix</span>(<span class="st">&quot;Survie globale&quot;</span>)<span class="sc">$</span>strata</span>
-<span id="cb22-421"><a href="#cb22-421" aria-label="421"></a>)</span>
-<span id="cb22-422"><a href="#cb22-422" aria-label="422"></a></span>
-<span id="cb22-423"><a href="#cb22-423" aria-label="423"></a><span class="fu">out_qmd</span>(fig_surv_strata<span class="sc">$</span>os)</span>
-<span id="cb22-424"><a href="#cb22-424" aria-label="424"></a><span class="in">```</span></span>
+<span id="cb22-410"><a href="#cb22-410" aria-label="410"></a>En analyse de sensibilité sur l&#39;échelle de temps depuis le diagnostic, le hazard ratio de décès toutes causes associé à la chimiothérapie péri-opératoire était de <span class="in">`r .coxph_sensi$uv`</span> en analyse univariable et de <span class="in">`r .coxph_sensi$mv`</span> après ajustement.</span>
+<span id="cb22-411"><a href="#cb22-411" aria-label="411"></a>La conclusion ne diffère pas de l&#39;analyse principale.</span>
+<span id="cb22-412"><a href="#cb22-412" aria-label="412"></a></span>
+<span id="cb22-413"><a href="#cb22-413" aria-label="413"></a><span class="fu">### Survie sans récidive</span></span>
+<span id="cb22-414"><a href="#cb22-414" aria-label="414"></a></span>
+<span id="cb22-415"><a href="#cb22-415" aria-label="415"></a>{{&lt; script scripts/tbl_surv.R &gt;}}</span>
+<span id="cb22-416"><a href="#cb22-416" aria-label="416"></a></span>
+<span id="cb22-417"><a href="#cb22-417" aria-label="417"></a><span class="in">```{r}</span></span>
+<span id="cb22-418"><a href="#cb22-418" aria-label="418"></a><span class="co">#| label: tbl-surv-pfs</span></span>
+<span id="cb22-419"><a href="#cb22-419" aria-label="419"></a><span class="co">#| tbl-cap: !expr title_suffix(&quot;Estimations de la survie sans récidive&quot;)$overall</span></span>
+<span id="cb22-420"><a href="#cb22-420" aria-label="420"></a></span>
+<span id="cb22-421"><a href="#cb22-421" aria-label="421"></a><span class="fu">out_qmd</span>(tbl_surv<span class="sc">$</span>pfs)</span>
+<span id="cb22-422"><a href="#cb22-422" aria-label="422"></a><span class="in">```</span></span>
+<span id="cb22-423"><a href="#cb22-423" aria-label="423"></a></span>
+<span id="cb22-424"><a href="#cb22-424" aria-label="424"></a>La médiane de survie sans récidive était de <span class="in">`r .surv_median$pfs$total`</span> dans la population totale, et de <span class="in">`r .surv_median$pfs$strata`</span> (test du log-rank, <span class="in">`r .surv_logrank$pfs$p.value`</span>).</span>
 <span id="cb22-425"><a href="#cb22-425" aria-label="425"></a></span>
-<span id="cb22-426"><a href="#cb22-426" aria-label="426"></a><span class="fu">#### Modèles de Cox</span></span>
+<span id="cb22-426"><a href="#cb22-426" aria-label="426"></a>Le hazard ratio de récidive ou de décès toutes causes associé à la chimiothérapie péri-opératoire, par rapport à la chimiothérapie adjuvante seule, était de <span class="in">`r .surv_cox$pfs$estimate_ci`</span>.</span>
 <span id="cb22-427"><a href="#cb22-427" aria-label="427"></a></span>
-<span id="cb22-428"><a href="#cb22-428" aria-label="428"></a>{{&lt; script scripts/tbl_coxph.R &gt;}}</span>
+<span id="cb22-428"><a href="#cb22-428" aria-label="428"></a><span class="fu">#### Population totale</span></span>
 <span id="cb22-429"><a href="#cb22-429" aria-label="429"></a></span>
-<span id="cb22-430"><a href="#cb22-430" aria-label="430"></a><span class="in">```{r}</span></span>
-<span id="cb22-431"><a href="#cb22-431" aria-label="431"></a><span class="co">#| label: tbl-coxph-os</span></span>
-<span id="cb22-432"><a href="#cb22-432" aria-label="432"></a><span class="co">#| tbl-cap: &quot;Facteurs associés à la survie globale.&quot;</span></span>
-<span id="cb22-433"><a href="#cb22-433" aria-label="433"></a></span>
-<span id="cb22-434"><a href="#cb22-434" aria-label="434"></a><span class="fu">out_qmd</span>(tbl_coxph<span class="sc">$</span>os)</span>
-<span id="cb22-435"><a href="#cb22-435" aria-label="435"></a><span class="in">```</span></span>
-<span id="cb22-436"><a href="#cb22-436" aria-label="436"></a></span>
-<span id="cb22-437"><a href="#cb22-437" aria-label="437"></a>Aucune des variables du modèle ajusté n&#39;était associée à la survie globale.</span>
-<span id="cb22-438"><a href="#cb22-438" aria-label="438"></a>Dans l&#39;analyse univariable, la survenue d&#39;une complication post-opératoire majeure était en revanche associée à un risque augmenté de décès (HR <span class="in">`r .coxph_uv(&quot;os&quot;, &quot;chir_complic_class_maj&quot;)$estim`</span>, <span class="in">`r .coxph_uv(&quot;os&quot;, &quot;chir_complic_class_maj&quot;)$p`</span>).</span>
-<span id="cb22-439"><a href="#cb22-439" aria-label="439"></a>La suvenue d&#39;une complication post-opératoire majeure n&#39;a pas été retenue dans le modèle ajusté, au regard du nombre insuffisant d&#39;évènements observés.</span>
-<span id="cb22-440"><a href="#cb22-440" aria-label="440"></a></span>
-<span id="cb22-441"><a href="#cb22-441" aria-label="441"></a>En analyse de sensibilité sur l&#39;échelle de temps depuis le diagnostic, le hazard ratio de décès toutes causes associé à la chimiothérapie péri-opératoire était de <span class="in">`r .coxph_sensi$uv`</span> en analyse univariable et de <span class="in">`r .coxph_sensi$mv`</span> après ajustement.</span>
-<span id="cb22-442"><a href="#cb22-442" aria-label="442"></a>La conclusion ne diffère pas de l&#39;analyse principale.</span>
+<span id="cb22-430"><a href="#cb22-430" aria-label="430"></a>{{&lt; script scripts/fig_surv_total.R &gt;}}</span>
+<span id="cb22-431"><a href="#cb22-431" aria-label="431"></a></span>
+<span id="cb22-432"><a href="#cb22-432" aria-label="432"></a><span class="in">```{r}</span></span>
+<span id="cb22-433"><a href="#cb22-433" aria-label="433"></a><span class="co">#| label: fig-surv-total-pfs</span></span>
+<span id="cb22-434"><a href="#cb22-434" aria-label="434"></a><span class="co">#| fig-cap: !expr .title_fig_surv_total$pfs</span></span>
+<span id="cb22-435"><a href="#cb22-435" aria-label="435"></a><span class="co">#| fig-height: 3.75</span></span>
+<span id="cb22-436"><a href="#cb22-436" aria-label="436"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb22-437"><a href="#cb22-437" aria-label="437"></a><span class="co">#| out-width: 100%</span></span>
+<span id="cb22-438"><a href="#cb22-438" aria-label="438"></a></span>
+<span id="cb22-439"><a href="#cb22-439" aria-label="439"></a><span class="fu">out_qmd</span>(fig_surv_total<span class="sc">$</span>pfs)</span>
+<span id="cb22-440"><a href="#cb22-440" aria-label="440"></a><span class="in">```</span></span>
+<span id="cb22-441"><a href="#cb22-441" aria-label="441"></a></span>
+<span id="cb22-442"><a href="#cb22-442" aria-label="442"></a><span class="fu">#### Selon le protocole de chimiothérapie</span></span>
 <span id="cb22-443"><a href="#cb22-443" aria-label="443"></a></span>
-<span id="cb22-444"><a href="#cb22-444" aria-label="444"></a><span class="fu">### Survie sans récidive</span></span>
+<span id="cb22-444"><a href="#cb22-444" aria-label="444"></a>{{&lt; script scripts/fig_surv_strata.R &gt;}}</span>
 <span id="cb22-445"><a href="#cb22-445" aria-label="445"></a></span>
-<span id="cb22-446"><a href="#cb22-446" aria-label="446"></a>{{&lt; script scripts/tbl_surv.R &gt;}}</span>
-<span id="cb22-447"><a href="#cb22-447" aria-label="447"></a></span>
-<span id="cb22-448"><a href="#cb22-448" aria-label="448"></a><span class="in">```{r}</span></span>
-<span id="cb22-449"><a href="#cb22-449" aria-label="449"></a><span class="co">#| label: tbl-surv-pfs</span></span>
-<span id="cb22-450"><a href="#cb22-450" aria-label="450"></a><span class="co">#| tbl-cap: !expr title_suffix(&quot;Estimations de la survie sans récidive&quot;)$overall</span></span>
-<span id="cb22-451"><a href="#cb22-451" aria-label="451"></a></span>
-<span id="cb22-452"><a href="#cb22-452" aria-label="452"></a><span class="fu">out_qmd</span>(tbl_surv<span class="sc">$</span>pfs)</span>
-<span id="cb22-453"><a href="#cb22-453" aria-label="453"></a><span class="in">```</span></span>
-<span id="cb22-454"><a href="#cb22-454" aria-label="454"></a></span>
-<span id="cb22-455"><a href="#cb22-455" aria-label="455"></a>La médiane de survie sans récidive était de <span class="in">`r .surv_median$pfs$total`</span> dans la population totale, et de <span class="in">`r .surv_median$pfs$strata`</span> (test du log-rank, <span class="in">`r .surv_logrank$pfs$p.value`</span>).</span>
-<span id="cb22-456"><a href="#cb22-456" aria-label="456"></a></span>
-<span id="cb22-457"><a href="#cb22-457" aria-label="457"></a>Le hazard ratio de récidive ou de décès toutes causes associé à la chimiothérapie péri-opératoire, par rapport à la chimiothérapie adjuvante seule, était de <span class="in">`r .surv_cox$pfs$estimate_ci`</span>.</span>
-<span id="cb22-458"><a href="#cb22-458" aria-label="458"></a></span>
-<span id="cb22-459"><a href="#cb22-459" aria-label="459"></a><span class="fu">#### Population totale</span></span>
-<span id="cb22-460"><a href="#cb22-460" aria-label="460"></a></span>
-<span id="cb22-461"><a href="#cb22-461" aria-label="461"></a>{{&lt; script scripts/fig_surv_total.R &gt;}}</span>
-<span id="cb22-462"><a href="#cb22-462" aria-label="462"></a></span>
-<span id="cb22-463"><a href="#cb22-463" aria-label="463"></a><span class="in">```{r}</span></span>
-<span id="cb22-464"><a href="#cb22-464" aria-label="464"></a><span class="co">#| label: fig-surv-total-pfs</span></span>
-<span id="cb22-465"><a href="#cb22-465" aria-label="465"></a><span class="co">#| fig-cap: !expr .title_fig_surv_total_pfs</span></span>
-<span id="cb22-466"><a href="#cb22-466" aria-label="466"></a><span class="co">#| fig-height: 3.75</span></span>
-<span id="cb22-467"><a href="#cb22-467" aria-label="467"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb22-468"><a href="#cb22-468" aria-label="468"></a><span class="co">#| out-width: 100%</span></span>
+<span id="cb22-446"><a href="#cb22-446" aria-label="446"></a><span class="in">```{r}</span></span>
+<span id="cb22-447"><a href="#cb22-447" aria-label="447"></a><span class="co">#| label: fig-surv-strata-pfs</span></span>
+<span id="cb22-448"><a href="#cb22-448" aria-label="448"></a><span class="co">#| fig-cap: !expr .title_fig_surv_strata$pfs</span></span>
+<span id="cb22-449"><a href="#cb22-449" aria-label="449"></a><span class="co">#| fig-height: 3.75</span></span>
+<span id="cb22-450"><a href="#cb22-450" aria-label="450"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb22-451"><a href="#cb22-451" aria-label="451"></a><span class="co">#| out-width: 100%</span></span>
+<span id="cb22-452"><a href="#cb22-452" aria-label="452"></a></span>
+<span id="cb22-453"><a href="#cb22-453" aria-label="453"></a><span class="fu">out_qmd</span>(fig_surv_strata<span class="sc">$</span>pfs)</span>
+<span id="cb22-454"><a href="#cb22-454" aria-label="454"></a><span class="in">```</span></span>
+<span id="cb22-455"><a href="#cb22-455" aria-label="455"></a></span>
+<span id="cb22-456"><a href="#cb22-456" aria-label="456"></a><span class="fu">#### Modèles de Cox</span></span>
+<span id="cb22-457"><a href="#cb22-457" aria-label="457"></a></span>
+<span id="cb22-458"><a href="#cb22-458" aria-label="458"></a>{{&lt; script scripts/tbl_coxph.R &gt;}}</span>
+<span id="cb22-459"><a href="#cb22-459" aria-label="459"></a></span>
+<span id="cb22-460"><a href="#cb22-460" aria-label="460"></a><span class="in">```{r}</span></span>
+<span id="cb22-461"><a href="#cb22-461" aria-label="461"></a><span class="co">#| label: tbl-coxph-pfs</span></span>
+<span id="cb22-462"><a href="#cb22-462" aria-label="462"></a><span class="co">#| tbl-cap: &quot;Facteurs associés à la survie sans récidive.&quot;</span></span>
+<span id="cb22-463"><a href="#cb22-463" aria-label="463"></a></span>
+<span id="cb22-464"><a href="#cb22-464" aria-label="464"></a><span class="fu">out_qmd</span>(tbl_coxph<span class="sc">$</span>pfs)</span>
+<span id="cb22-465"><a href="#cb22-465" aria-label="465"></a><span class="in">```</span></span>
+<span id="cb22-466"><a href="#cb22-466" aria-label="466"></a></span>
+<span id="cb22-467"><a href="#cb22-467" aria-label="467"></a>Aucune des variables du modèle ajusté n&#39;était associée à la survie sans récidive.</span>
+<span id="cb22-468"><a href="#cb22-468" aria-label="468"></a>Comme pour la survie globale, la complication post-opératoire majeure était associée à un risque augmenté de récidive ou de décès dans l&#39;analyse univariable (HR <span class="in">`r .coxph_uv(&quot;pfs&quot;, &quot;chir_complic_class_maj&quot;)$estim`</span>, <span class="in">`r .coxph_uv(&quot;pfs&quot;, &quot;chir_complic_class_maj&quot;)$p`</span>), sans figurer dans le modèle ajusté.</span>
 <span id="cb22-469"><a href="#cb22-469" aria-label="469"></a></span>
-<span id="cb22-470"><a href="#cb22-470" aria-label="470"></a>.title_fig_surv_total_pfs <span class="ot">&lt;-</span> <span class="fu">.title_surv</span>(</span>
-<span id="cb22-471"><a href="#cb22-471" aria-label="471"></a>  <span class="at">title =</span> <span class="st">&quot;Survie sans récidive dans la population totale.&quot;</span></span>
-<span id="cb22-472"><a href="#cb22-472" aria-label="472"></a>)</span>
+<span id="cb22-470"><a href="#cb22-470" aria-label="470"></a><span class="fu"># Discussion</span></span>
+<span id="cb22-471"><a href="#cb22-471" aria-label="471"></a></span>
+<span id="cb22-472"><a href="#cb22-472" aria-label="472"></a><span class="fu">## Principaux résultats</span></span>
 <span id="cb22-473"><a href="#cb22-473" aria-label="473"></a></span>
-<span id="cb22-474"><a href="#cb22-474" aria-label="474"></a><span class="fu">out_qmd</span>(fig_surv_total<span class="sc">$</span>pfs)</span>
-<span id="cb22-475"><a href="#cb22-475" aria-label="475"></a><span class="in">```</span></span>
+<span id="cb22-474"><a href="#cb22-474" aria-label="474"></a>Parmi les <span class="in">`r n$inclus`</span> patients inclus, <span class="in">`r n$chimio_adj`</span> (<span class="in">`r n$pct_chimio_adj`</span>) étaient assignés dans le protocole de chimiothérapie adjuvante seule, contre <span class="in">`r n$chimio_periop`</span> (<span class="in">`r n$pct_chimio_periop`</span>) dans le protocole de chimiothérapie péri-opératoire.</span>
+<span id="cb22-475"><a href="#cb22-475" aria-label="475"></a>L&#39;âge médian au diagnostic était de <span class="in">`r .baseline$age$med`</span> ans (IQR <span class="in">`r .baseline$age$iqr`</span>), <span class="in">`r .baseline$homme$n`</span> patients (<span class="in">`r .baseline$homme$pct`</span>) étaient des hommes.</span>
 <span id="cb22-476"><a href="#cb22-476" aria-label="476"></a></span>
-<span id="cb22-477"><a href="#cb22-477" aria-label="477"></a><span class="fu">#### Selon le protocole de chimiothérapie</span></span>
-<span id="cb22-478"><a href="#cb22-478" aria-label="478"></a></span>
-<span id="cb22-479"><a href="#cb22-479" aria-label="479"></a>{{&lt; script scripts/fig_surv_strata.R &gt;}}</span>
-<span id="cb22-480"><a href="#cb22-480" aria-label="480"></a></span>
-<span id="cb22-481"><a href="#cb22-481" aria-label="481"></a><span class="in">```{r}</span></span>
-<span id="cb22-482"><a href="#cb22-482" aria-label="482"></a><span class="co">#| label: fig-surv-strata-pfs</span></span>
-<span id="cb22-483"><a href="#cb22-483" aria-label="483"></a><span class="co">#| fig-cap: !expr .title_fig_surv_strata_pfs</span></span>
-<span id="cb22-484"><a href="#cb22-484" aria-label="484"></a><span class="co">#| fig-height: 3.75</span></span>
-<span id="cb22-485"><a href="#cb22-485" aria-label="485"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb22-486"><a href="#cb22-486" aria-label="486"></a><span class="co">#| out-width: 100%</span></span>
-<span id="cb22-487"><a href="#cb22-487" aria-label="487"></a></span>
-<span id="cb22-488"><a href="#cb22-488" aria-label="488"></a>.title_fig_surv_strata_pfs <span class="ot">&lt;-</span> <span class="fu">.title_surv</span>(</span>
-<span id="cb22-489"><a href="#cb22-489" aria-label="489"></a>  <span class="at">title =</span> <span class="fu">title_suffix</span>(<span class="st">&quot;Survie sans récidive&quot;</span>)<span class="sc">$</span>strata</span>
-<span id="cb22-490"><a href="#cb22-490" aria-label="490"></a>)</span>
-<span id="cb22-491"><a href="#cb22-491" aria-label="491"></a></span>
-<span id="cb22-492"><a href="#cb22-492" aria-label="492"></a><span class="fu">out_qmd</span>(fig_surv_strata<span class="sc">$</span>pfs)</span>
-<span id="cb22-493"><a href="#cb22-493" aria-label="493"></a><span class="in">```</span></span>
+<span id="cb22-477"><a href="#cb22-477" aria-label="477"></a>Le nombre total de cures reçues était plus élevé dans le groupe péri-opératoire que dans le groupe adjuvant seul, après ajustement sur le centre, l&#39;âge, les marges de résection et la survenue d&#39;une complication post-opératoire majeure (aRM <span class="in">`r .pois_estim(&quot;mv&quot;, variable = &quot;groupe&quot;, level = &quot;Péri-opératoire&quot;)`</span>, <span class="in">`r .pois_p(&quot;groupe&quot;)`</span>).</span>
+<span id="cb22-478"><a href="#cb22-478" aria-label="478"></a>Deux autres facteurs y étaient associés, dans le sens d&#39;un nombre de cures plus faible : l&#39;âge (aRM <span class="in">`r .pois_estim(&quot;mv&quot;, variable = &quot;age_incr&quot;)`</span>, <span class="in">`r .pois_p(&quot;age_incr&quot;)`</span>) et la survenue d&#39;une complication post-opératoire majeure (aRM <span class="in">`r .pois_estim(&quot;mv&quot;, variable = &quot;chir_complic_class_maj&quot;)`</span>, <span class="in">`r .pois_p(&quot;chir_complic_class_maj&quot;)`</span>).</span>
+<span id="cb22-479"><a href="#cb22-479" aria-label="479"></a></span>
+<span id="cb22-480"><a href="#cb22-480" aria-label="480"></a>Sur un suivi médian de <span class="in">`r .followup_median$total`</span>, <span class="in">`r sum(df$os_event)`</span> décès et <span class="in">`r sum(df$pfs_event)`</span> évènements de survie sans récidive ont été observés.</span>
+<span id="cb22-481"><a href="#cb22-481" aria-label="481"></a>La médiane de survie globale était de <span class="in">`r .surv_median$os$total`</span> ; la médiane de survie sans récidive était de <span class="in">`r .surv_median$pfs$total`</span>.</span>
+<span id="cb22-482"><a href="#cb22-482" aria-label="482"></a>Aucune différence n&#39;était mise en évidence entre les deux protocoles, ni sur la survie globale (test du log-rank, <span class="in">`r .surv_logrank$os$p.value`</span>) ni sur la survie sans récidive (test du log-rank, <span class="in">`r .surv_logrank$pfs$p.value`</span>).</span>
+<span id="cb22-483"><a href="#cb22-483" aria-label="483"></a>Cette absence de différence persistait après ajustement (aHR <span class="in">`r .coxph_estim(&quot;os&quot;)`</span> sur la survie globale, <span class="in">`r .coxph_estim(&quot;pfs&quot;)`</span> sur la survie sans récidive).</span>
+<span id="cb22-484"><a href="#cb22-484" aria-label="484"></a></span>
+<span id="cb22-485"><a href="#cb22-485" aria-label="485"></a><span class="fu"># Annexes</span></span>
+<span id="cb22-486"><a href="#cb22-486" aria-label="486"></a></span>
+<span id="cb22-487"><a href="#cb22-487" aria-label="487"></a><span class="fu">## Variables</span></span>
+<span id="cb22-488"><a href="#cb22-488" aria-label="488"></a></span>
+<span id="cb22-489"><a href="#cb22-489" aria-label="489"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Dictionnaire des variables</span><span class="co">](../output/var-dict/var-dict.html)</span>{target=&quot;_blank&quot;}</span>
+<span id="cb22-490"><a href="#cb22-490" aria-label="490"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Distribution des variables avant recodage</span><span class="co">](../output/var-distrib/var-distrib-initial.html)</span>{target=&quot;_blank&quot;}</span>
+<span id="cb22-491"><a href="#cb22-491" aria-label="491"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Distribution des variables après recodage</span><span class="co">](../output/var-distrib/var-distrib-final.html)</span>{target=&quot;_blank&quot;}</span>
+<span id="cb22-492"><a href="#cb22-492" aria-label="492"></a></span>
+<span id="cb22-493"><a href="#cb22-493" aria-label="493"></a><span class="fu">## Vérification des hypothèses</span></span>
 <span id="cb22-494"><a href="#cb22-494" aria-label="494"></a></span>
-<span id="cb22-495"><a href="#cb22-495" aria-label="495"></a><span class="fu">#### Modèles de Cox</span></span>
+<span id="cb22-495"><a href="#cb22-495" aria-label="495"></a><span class="fu">### Modèle de comptage</span></span>
 <span id="cb22-496"><a href="#cb22-496" aria-label="496"></a></span>
-<span id="cb22-497"><a href="#cb22-497" aria-label="497"></a>{{&lt; script scripts/tbl_coxph.R &gt;}}</span>
+<span id="cb22-497"><a href="#cb22-497" aria-label="497"></a>VIF : mesure de combien la variance du coefficient est augmentée par la corrélation de la variable avec les autres variables du modèle.</span>
 <span id="cb22-498"><a href="#cb22-498" aria-label="498"></a></span>
 <span id="cb22-499"><a href="#cb22-499" aria-label="499"></a><span class="in">```{r}</span></span>
-<span id="cb22-500"><a href="#cb22-500" aria-label="500"></a><span class="co">#| label: tbl-coxph-pfs</span></span>
-<span id="cb22-501"><a href="#cb22-501" aria-label="501"></a><span class="co">#| tbl-cap: &quot;Facteurs associés à la survie sans récidive.&quot;</span></span>
+<span id="cb22-500"><a href="#cb22-500" aria-label="500"></a><span class="co">#| label: tbl-anx-pois-vif</span></span>
+<span id="cb22-501"><a href="#cb22-501" aria-label="501"></a><span class="co">#| tbl-cap: &quot;Facteurs d&#39;inflation de la variance (@tbl-pois)&quot;</span></span>
 <span id="cb22-502"><a href="#cb22-502" aria-label="502"></a></span>
-<span id="cb22-503"><a href="#cb22-503" aria-label="503"></a><span class="fu">out_qmd</span>(tbl_coxph<span class="sc">$</span>pfs)</span>
+<span id="cb22-503"><a href="#cb22-503" aria-label="503"></a>.pois_check_vif <span class="sc">|&gt;</span> gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span> <span class="fu">theme_gt</span>()</span>
 <span id="cb22-504"><a href="#cb22-504" aria-label="504"></a><span class="in">```</span></span>
 <span id="cb22-505"><a href="#cb22-505" aria-label="505"></a></span>
-<span id="cb22-506"><a href="#cb22-506" aria-label="506"></a>Aucune des variables du modèle ajusté n&#39;était associée à la survie sans récidive.</span>
-<span id="cb22-507"><a href="#cb22-507" aria-label="507"></a>Comme pour la survie globale, la complication post-opératoire majeure était associée à un risque augmenté de récidive ou de décès dans l&#39;analyse univariable (HR <span class="in">`r .coxph_uv(&quot;pfs&quot;, &quot;chir_complic_class_maj&quot;)$estim`</span>, <span class="in">`r .coxph_uv(&quot;pfs&quot;, &quot;chir_complic_class_maj&quot;)$p`</span>), sans figurer dans le modèle ajusté.</span>
-<span id="cb22-508"><a href="#cb22-508" aria-label="508"></a></span>
-<span id="cb22-509"><a href="#cb22-509" aria-label="509"></a><span class="fu"># Discussion</span></span>
-<span id="cb22-510"><a href="#cb22-510" aria-label="510"></a></span>
-<span id="cb22-511"><a href="#cb22-511" aria-label="511"></a><span class="fu">## Principaux résultats</span></span>
-<span id="cb22-512"><a href="#cb22-512" aria-label="512"></a></span>
-<span id="cb22-513"><a href="#cb22-513" aria-label="513"></a>Parmi les <span class="in">`r n$inclus`</span> patients inclus, <span class="in">`r n$chimio_adj`</span> (<span class="in">`r n$pct_chimio_adj`</span>) étaient assignés dans le protocole de chimiothérapie adjuvante seule, contre <span class="in">`r n$chimio_periop`</span> (<span class="in">`r n$pct_chimio_periop`</span>) dans le protocole de chimiothérapie péri-opératoire.</span>
-<span id="cb22-514"><a href="#cb22-514" aria-label="514"></a>L&#39;âge médian au diagnostic était de <span class="in">`r .baseline$age$med`</span> ans (IQR <span class="in">`r .baseline$age$iqr`</span>), <span class="in">`r .baseline$homme$n`</span> patients (<span class="in">`r .baseline$homme$pct`</span>) étaient des hommes.</span>
-<span id="cb22-515"><a href="#cb22-515" aria-label="515"></a></span>
-<span id="cb22-516"><a href="#cb22-516" aria-label="516"></a>Le nombre total de cures reçues était plus élevé dans le groupe péri-opératoire que dans le groupe adjuvant seul, après ajustement sur le centre, l&#39;âge, les marges de résection et la survenue d&#39;une complication post-opératoire majeure (aRM <span class="in">`r .pois_estim(&quot;mv&quot;, variable = &quot;groupe&quot;, level = &quot;Péri-opératoire&quot;)`</span>, <span class="in">`r .pois_p(&quot;groupe&quot;)`</span>).</span>
-<span id="cb22-517"><a href="#cb22-517" aria-label="517"></a>Deux autres facteurs y étaient associés, dans le sens d&#39;un nombre de cures plus faible : l&#39;âge (aRM <span class="in">`r .pois_estim(&quot;mv&quot;, variable = &quot;age_incr&quot;)`</span>, <span class="in">`r .pois_p(&quot;age_incr&quot;)`</span>) et la survenue d&#39;une complication post-opératoire majeure (aRM <span class="in">`r .pois_estim(&quot;mv&quot;, variable = &quot;chir_complic_class_maj&quot;)`</span>, <span class="in">`r .pois_p(&quot;chir_complic_class_maj&quot;)`</span>).</span>
+<span id="cb22-506"><a href="#cb22-506" aria-label="506"></a>1 = absence de corrélation ; &lt; 5 = pas de collinéarité</span>
+<span id="cb22-507"><a href="#cb22-507" aria-label="507"></a></span>
+<span id="cb22-508"><a href="#cb22-508" aria-label="508"></a>vif_adj : VIF corrigé du nombre de degrés de liberté de la variable, ce qui le rend comparable d&#39;une variable à l&#39;autre et lui donne l&#39;interprétation directe d&#39;un facteur multiplicatif appliqué à l&#39;erreur standard.</span>
+<span id="cb22-509"><a href="#cb22-509" aria-label="509"></a></span>
+<span id="cb22-510"><a href="#cb22-510" aria-label="510"></a>tolérance : inverse du VIF</span>
+<span id="cb22-511"><a href="#cb22-511" aria-label="511"></a></span>
+<span id="cb22-512"><a href="#cb22-512" aria-label="512"></a>Aucune colinéarité n&#39;était mise en évidence entre les variables du modèle ajusté (VIF ne dépassant pas <span class="in">`r max(.pois_check_vif$vif)`</span>).</span>
+<span id="cb22-513"><a href="#cb22-513" aria-label="513"></a></span>
+<span id="cb22-514"><a href="#cb22-514" aria-label="514"></a>Influence des observations détectée par la distance de Cook, qui mesure le déplacement de l&#39;ensemble des coefficients du modèle lorsqu&#39;une observation est retirée.</span>
+<span id="cb22-515"><a href="#cb22-515" aria-label="515"></a>La valeur maximale observée était de <span class="in">`r .pois_check_cook$max`</span> pour un seuil de <span class="in">`r .pois_check_cook$threshold`</span> : aucune observation considérée influente.</span>
+<span id="cb22-516"><a href="#cb22-516" aria-label="516"></a></span>
+<span id="cb22-517"><a href="#cb22-517" aria-label="517"></a><span class="fu">### Modèles de Cox</span></span>
 <span id="cb22-518"><a href="#cb22-518" aria-label="518"></a></span>
-<span id="cb22-519"><a href="#cb22-519" aria-label="519"></a>Sur un suivi médian de <span class="in">`r .followup_median$total`</span>, <span class="in">`r sum(df$os_event)`</span> décès et <span class="in">`r sum(df$pfs_event)`</span> évènements de survie sans récidive ont été observés.</span>
-<span id="cb22-520"><a href="#cb22-520" aria-label="520"></a>La médiane de survie globale était de <span class="in">`r .surv_median$os$total`</span> ; la médiane de survie sans récidive était de <span class="in">`r .surv_median$pfs$total`</span>.</span>
-<span id="cb22-521"><a href="#cb22-521" aria-label="521"></a>Aucune différence n&#39;était mise en évidence entre les deux protocoles, ni sur la survie globale (test du log-rank, <span class="in">`r .surv_logrank$os$p.value`</span>) ni sur la survie sans récidive (test du log-rank, <span class="in">`r .surv_logrank$pfs$p.value`</span>).</span>
-<span id="cb22-522"><a href="#cb22-522" aria-label="522"></a>Cette absence de différence persistait après ajustement (aHR <span class="in">`r .coxph_estim(&quot;os&quot;)`</span> sur la survie globale, <span class="in">`r .coxph_estim(&quot;pfs&quot;)`</span> sur la survie sans récidive).</span>
-<span id="cb22-523"><a href="#cb22-523" aria-label="523"></a></span>
-<span id="cb22-524"><a href="#cb22-524" aria-label="524"></a><span class="fu"># Annexes</span></span>
-<span id="cb22-525"><a href="#cb22-525" aria-label="525"></a></span>
-<span id="cb22-526"><a href="#cb22-526" aria-label="526"></a><span class="fu">## Variables</span></span>
+<span id="cb22-519"><a href="#cb22-519" aria-label="519"></a>Pour chaque variable du modèle multivariable et pour l&#39;ensemble du modèle, test de proportionnalité des risques basé sur les résidus de Schoenfeld :</span>
+<span id="cb22-520"><a href="#cb22-520" aria-label="520"></a></span>
+<span id="cb22-521"><a href="#cb22-521" aria-label="521"></a><span class="in">```{r}</span></span>
+<span id="cb22-522"><a href="#cb22-522" aria-label="522"></a><span class="co">#| label: tbl-anx-coxzph-os</span></span>
+<span id="cb22-523"><a href="#cb22-523" aria-label="523"></a><span class="co">#| tbl-cap: &quot;Test des risques proportionnels de la survie globale (@tbl-coxph-os)&quot;</span></span>
+<span id="cb22-524"><a href="#cb22-524" aria-label="524"></a></span>
+<span id="cb22-525"><a href="#cb22-525" aria-label="525"></a>.coxph_check_tbl<span class="sc">$</span>os <span class="sc">|&gt;</span> gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span> <span class="fu">theme_gt</span>()</span>
+<span id="cb22-526"><a href="#cb22-526" aria-label="526"></a><span class="in">```</span></span>
 <span id="cb22-527"><a href="#cb22-527" aria-label="527"></a></span>
-<span id="cb22-528"><a href="#cb22-528" aria-label="528"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Dictionnaire des variables</span><span class="co">](../output/var-dict/var-dict.html)</span>{target=&quot;_blank&quot;}</span>
-<span id="cb22-529"><a href="#cb22-529" aria-label="529"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Distribution des variables avant recodage</span><span class="co">](../output/var-distrib/var-distrib-initial.html)</span>{target=&quot;_blank&quot;}</span>
-<span id="cb22-530"><a href="#cb22-530" aria-label="530"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Distribution des variables après recodage</span><span class="co">](../output/var-distrib/var-distrib-final.html)</span>{target=&quot;_blank&quot;}</span>
-<span id="cb22-531"><a href="#cb22-531" aria-label="531"></a></span>
-<span id="cb22-532"><a href="#cb22-532" aria-label="532"></a><span class="fu">## Vérification des hypothèses</span></span>
+<span id="cb22-528"><a href="#cb22-528" aria-label="528"></a>L&#39;hypothèse des risques proportionnels n&#39;était mise en défaut ni pour l&#39;ensemble du modèle (<span class="in">`r style_pvalue(.model$coxph$os$check$table[&quot;GLOBAL&quot;, &quot;p&quot;], digits = 2, prepend_p = TRUE)`</span>), ni pour aucune des variables prises séparément.</span>
+<span id="cb22-529"><a href="#cb22-529" aria-label="529"></a></span>
+<span id="cb22-530"><a href="#cb22-530" aria-label="530"></a><span class="in">```{r}</span></span>
+<span id="cb22-531"><a href="#cb22-531" aria-label="531"></a><span class="co">#| label: tbl-anx-coxzph-pfs</span></span>
+<span id="cb22-532"><a href="#cb22-532" aria-label="532"></a><span class="co">#| tbl-cap: &quot;Test des risques proportionnels de la survie sans récidive (@tbl-coxph-pfs)&quot;</span></span>
 <span id="cb22-533"><a href="#cb22-533" aria-label="533"></a></span>
-<span id="cb22-534"><a href="#cb22-534" aria-label="534"></a><span class="fu">### Modèle de comptage</span></span>
-<span id="cb22-535"><a href="#cb22-535" aria-label="535"></a></span>
-<span id="cb22-536"><a href="#cb22-536" aria-label="536"></a>VIF : mesure de combien la variance du coefficient est augmentée par la corrélation de la variable avec les autres variables du modèle.</span>
-<span id="cb22-537"><a href="#cb22-537" aria-label="537"></a></span>
-<span id="cb22-538"><a href="#cb22-538" aria-label="538"></a><span class="in">```{r}</span></span>
-<span id="cb22-539"><a href="#cb22-539" aria-label="539"></a><span class="co">#| label: tbl-anx-pois-vif</span></span>
-<span id="cb22-540"><a href="#cb22-540" aria-label="540"></a><span class="co">#| tbl-cap: &quot;Facteurs d&#39;inflation de la variance (@tbl-pois)&quot;</span></span>
+<span id="cb22-534"><a href="#cb22-534" aria-label="534"></a>.coxph_check_tbl<span class="sc">$</span>pfs <span class="sc">|&gt;</span> gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span> <span class="fu">theme_gt</span>()</span>
+<span id="cb22-535"><a href="#cb22-535" aria-label="535"></a><span class="in">```</span></span>
+<span id="cb22-536"><a href="#cb22-536" aria-label="536"></a></span>
+<span id="cb22-537"><a href="#cb22-537" aria-label="537"></a>L&#39;hypothèse des risques proportionnels n&#39;était invalidée ni pour l&#39;ensemble du modèle (<span class="in">`r style_pvalue(.model$coxph$pfs$check$table[&quot;GLOBAL&quot;, &quot;p&quot;], digits = 2, prepend_p = TRUE)`</span>), ni pour aucune des variables prises séparément.</span>
+<span id="cb22-538"><a href="#cb22-538" aria-label="538"></a></span>
+<span id="cb22-539"><a href="#cb22-539" aria-label="539"></a>Un degré de significativité faible &lt; 0,05 signalerait un effet variable au cours du temps (risque non-proportionnel).</span>
+<span id="cb22-540"><a href="#cb22-540" aria-label="540"></a>L&#39;hypothèse de proportionnalité n&#39;était pas invalidée ici.</span>
 <span id="cb22-541"><a href="#cb22-541" aria-label="541"></a></span>
-<span id="cb22-542"><a href="#cb22-542" aria-label="542"></a>.pois_check_vif <span class="sc">|&gt;</span> gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span> <span class="fu">theme_gt</span>()</span>
-<span id="cb22-543"><a href="#cb22-543" aria-label="543"></a><span class="in">```</span></span>
+<span id="cb22-542"><a href="#cb22-542" aria-label="542"></a>::: {.content-hidden when-format=&quot;docx&quot;}</span>
+<span id="cb22-543"><a href="#cb22-543" aria-label="543"></a><span class="fu">## Session {#sec-session}</span></span>
 <span id="cb22-544"><a href="#cb22-544" aria-label="544"></a></span>
-<span id="cb22-545"><a href="#cb22-545" aria-label="545"></a>1 = absence de corrélation ; &lt; 5 = pas de collinéarité</span>
+<span id="cb22-545"><a href="#cb22-545" aria-label="545"></a>{{&lt; script .Rprofile &gt;}}</span>
 <span id="cb22-546"><a href="#cb22-546" aria-label="546"></a></span>
-<span id="cb22-547"><a href="#cb22-547" aria-label="547"></a>vif_adj : VIF corrigé du nombre de degrés de liberté de la variable, ce qui le rend comparable d&#39;une variable à l&#39;autre et lui donne l&#39;interprétation directe d&#39;un facteur multiplicatif appliqué à l&#39;erreur standard.</span>
+<span id="cb22-547"><a href="#cb22-547" aria-label="547"></a>{{&lt; script setup.R &gt;}}</span>
 <span id="cb22-548"><a href="#cb22-548" aria-label="548"></a></span>
-<span id="cb22-549"><a href="#cb22-549" aria-label="549"></a>tolérance : inverse du VIF</span>
+<span id="cb22-549"><a href="#cb22-549" aria-label="549"></a>{{&lt; script scripts/_common.R &gt;}}</span>
 <span id="cb22-550"><a href="#cb22-550" aria-label="550"></a></span>
-<span id="cb22-551"><a href="#cb22-551" aria-label="551"></a>Aucune colinéarité n&#39;était mise en évidence entre les variables du modèle ajusté (VIF ne dépassant pas <span class="in">`r max(.pois_check_vif$vif)`</span>).</span>
+<span id="cb22-551"><a href="#cb22-551" aria-label="551"></a>{{&lt; script index.qmd &gt;}}</span>
 <span id="cb22-552"><a href="#cb22-552" aria-label="552"></a></span>
-<span id="cb22-553"><a href="#cb22-553" aria-label="553"></a>Influence des observations détectée par la distance de Cook, qui mesure le déplacement de l&#39;ensemble des coefficients du modèle lorsqu&#39;une observation est retirée.</span>
-<span id="cb22-554"><a href="#cb22-554" aria-label="554"></a>La valeur maximale observée était de <span class="in">`r .pois_check_cook$max`</span> pour un seuil de <span class="in">`r .pois_check_cook$threshold`</span> : aucune observation considérée influente.</span>
-<span id="cb22-555"><a href="#cb22-555" aria-label="555"></a></span>
-<span id="cb22-556"><a href="#cb22-556" aria-label="556"></a><span class="fu">### Modèles de Cox</span></span>
+<span id="cb22-553"><a href="#cb22-553" aria-label="553"></a><span class="in">```{r}</span></span>
+<span id="cb22-554"><a href="#cb22-554" aria-label="554"></a><span class="co">#| label: session</span></span>
+<span id="cb22-555"><a href="#cb22-555" aria-label="555"></a><span class="co">#| echo: true</span></span>
+<span id="cb22-556"><a href="#cb22-556" aria-label="556"></a><span class="co">#| code-summary: &quot;environnement&quot;</span></span>
 <span id="cb22-557"><a href="#cb22-557" aria-label="557"></a></span>
-<span id="cb22-558"><a href="#cb22-558" aria-label="558"></a>Pour chaque variable du modèle multivariable et pour l&#39;ensemble du modèle, test de proportionnalité des risques basé sur les résidus de Schoenfeld :</span>
-<span id="cb22-559"><a href="#cb22-559" aria-label="559"></a></span>
-<span id="cb22-560"><a href="#cb22-560" aria-label="560"></a><span class="in">```{r}</span></span>
-<span id="cb22-561"><a href="#cb22-561" aria-label="561"></a><span class="co">#| label: tbl-anx-coxzph-os</span></span>
-<span id="cb22-562"><a href="#cb22-562" aria-label="562"></a><span class="co">#| tbl-cap: &quot;Test des risques proportionnels de la survie globale (@tbl-coxph-os)&quot;</span></span>
-<span id="cb22-563"><a href="#cb22-563" aria-label="563"></a></span>
-<span id="cb22-564"><a href="#cb22-564" aria-label="564"></a>.coxph_check_tbl<span class="sc">$</span>os <span class="sc">|&gt;</span> gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span> <span class="fu">theme_gt</span>()</span>
-<span id="cb22-565"><a href="#cb22-565" aria-label="565"></a><span class="in">```</span></span>
-<span id="cb22-566"><a href="#cb22-566" aria-label="566"></a></span>
-<span id="cb22-567"><a href="#cb22-567" aria-label="567"></a>L&#39;hypothèse des risques proportionnels n&#39;était mise en défaut ni pour l&#39;ensemble du modèle (<span class="in">`r style_pvalue(.model$coxph$os$check$table[&quot;GLOBAL&quot;, &quot;p&quot;], digits = 2, prepend_p = TRUE)`</span>), ni pour aucune des variables prises séparément.</span>
-<span id="cb22-568"><a href="#cb22-568" aria-label="568"></a></span>
-<span id="cb22-569"><a href="#cb22-569" aria-label="569"></a><span class="in">```{r}</span></span>
-<span id="cb22-570"><a href="#cb22-570" aria-label="570"></a><span class="co">#| label: tbl-anx-coxzph-pfs</span></span>
-<span id="cb22-571"><a href="#cb22-571" aria-label="571"></a><span class="co">#| tbl-cap: &quot;Test des risques proportionnels de la survie sans récidive (@tbl-coxph-pfs)&quot;</span></span>
-<span id="cb22-572"><a href="#cb22-572" aria-label="572"></a></span>
-<span id="cb22-573"><a href="#cb22-573" aria-label="573"></a>.coxph_check_tbl<span class="sc">$</span>pfs <span class="sc">|&gt;</span> gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span> <span class="fu">theme_gt</span>()</span>
-<span id="cb22-574"><a href="#cb22-574" aria-label="574"></a><span class="in">```</span></span>
-<span id="cb22-575"><a href="#cb22-575" aria-label="575"></a></span>
-<span id="cb22-576"><a href="#cb22-576" aria-label="576"></a>L&#39;hypothèse des risques proportionnels n&#39;était invalidée ni pour l&#39;ensemble du modèle (<span class="in">`r style_pvalue(.model$coxph$pfs$check$table[&quot;GLOBAL&quot;, &quot;p&quot;], digits = 2, prepend_p = TRUE)`</span>), ni pour aucune des variables prises séparément.</span>
-<span id="cb22-577"><a href="#cb22-577" aria-label="577"></a></span>
-<span id="cb22-578"><a href="#cb22-578" aria-label="578"></a>Un degré de significativité faible &lt; 0,05 signalerait un effet variable au cours du temps (risque non-proportionnel).</span>
-<span id="cb22-579"><a href="#cb22-579" aria-label="579"></a>L&#39;hypothèse de proportionnalité n&#39;était pas invalidée ici.</span>
-<span id="cb22-580"><a href="#cb22-580" aria-label="580"></a></span>
-<span id="cb22-581"><a href="#cb22-581" aria-label="581"></a>::: {.content-hidden when-format=&quot;docx&quot;}</span>
-<span id="cb22-582"><a href="#cb22-582" aria-label="582"></a><span class="fu">## Session {#sec-session}</span></span>
-<span id="cb22-583"><a href="#cb22-583" aria-label="583"></a></span>
-<span id="cb22-584"><a href="#cb22-584" aria-label="584"></a>{{&lt; script .Rprofile &gt;}}</span>
-<span id="cb22-585"><a href="#cb22-585" aria-label="585"></a></span>
-<span id="cb22-586"><a href="#cb22-586" aria-label="586"></a>{{&lt; script setup.R &gt;}}</span>
-<span id="cb22-587"><a href="#cb22-587" aria-label="587"></a></span>
-<span id="cb22-588"><a href="#cb22-588" aria-label="588"></a>{{&lt; script scripts/_common.R &gt;}}</span>
-<span id="cb22-589"><a href="#cb22-589" aria-label="589"></a></span>
-<span id="cb22-590"><a href="#cb22-590" aria-label="590"></a>{{&lt; script index.qmd &gt;}}</span>
-<span id="cb22-591"><a href="#cb22-591" aria-label="591"></a></span>
-<span id="cb22-592"><a href="#cb22-592" aria-label="592"></a><span class="in">```{r}</span></span>
-<span id="cb22-593"><a href="#cb22-593" aria-label="593"></a><span class="co">#| label: session</span></span>
-<span id="cb22-594"><a href="#cb22-594" aria-label="594"></a><span class="co">#| echo: true</span></span>
-<span id="cb22-595"><a href="#cb22-595" aria-label="595"></a><span class="co">#| code-summary: &quot;environnement&quot;</span></span>
-<span id="cb22-596"><a href="#cb22-596" aria-label="596"></a></span>
-<span id="cb22-597"><a href="#cb22-597" aria-label="597"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>()</span>
-<span id="cb22-598"><a href="#cb22-598" aria-label="598"></a><span class="in">```</span></span>
-<span id="cb22-599"><a href="#cb22-599" aria-label="599"></a>:::</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb22-558"><a href="#cb22-558" aria-label="558"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>()</span>
+<span id="cb22-559"><a href="#cb22-559" aria-label="559"></a><span class="in">```</span></span>
+<span id="cb22-560"><a href="#cb22-560" aria-label="560"></a>:::</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
@@ -13163,7 +13154,7 @@ height: 0px !important;
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  collate  en_US.UTF-8</span></span>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ctype    en_US.UTF-8</span></span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  tz       Europe/Paris</span></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  date     2026-09-15</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  date     2026-09-16</span></span>
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  pandoc   3.11 @ /usr/bin/ (via rmarkdown)</span></span>
 <span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  quarto   1.10.18 @ /usr/local/bin/quarto</span></span>
 <span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>

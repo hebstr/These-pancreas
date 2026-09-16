@@ -2,9 +2,6 @@
 title: "Thèse Nesrine"
 subtitle: "Rapport d'analyse statistique"
 date: 2026-09-06
-author:
-  name: "Julien ELICES-DIEZ"
-  email: "ju.diez@protonmail.com"
 format:
   hebstr-doc-html: {}
   hebstr-doc-docx: {}
@@ -175,9 +172,9 @@ La puissance statistique n'a pas été planifiée.
 ### Environnement logiciel
 
 Les analyses statistiques ont été réalisées avec le langage `r R.version.string`.
-Les estimations de survie et les modèles de Cox ont été obtenus avec `survival` (version `r packageVersion("survival")`).
-Les modèles de comptage ont été obtenus avec `stats::glm` (familles Poisson et quasi-Poisson), et leurs diagnostics avec `performance` (version `r packageVersion("performance")`).
-Les p-valeurs globales par variable ont été obtenues avec `car` (version `r packageVersion("car")`).
+Les estimations de survie et les modèles de Cox ont été obtenus avec *survival* (version `r packageVersion("survival")`).
+Les modèles de comptage ont été obtenus avec *stats::glm* (familles Poisson et quasi-Poisson), et leurs diagnostics avec *performance* (version `r packageVersion("performance")`).
+Les p-valeurs globales par variable ont été obtenues avec *car* (version `r packageVersion("car")`).
 
 # Résultats
 
@@ -313,13 +310,6 @@ Deux autres facteurs étaient associés au nombre total de cures reçues : l'âg
 #| fig-width: 7
 #| out-width: 100%
 
-.title_fig_follow <- str_fig(
-  title = title_suffix("Recul de suivi")$strata,
-  note = str_glue(
-    "Recul de suivi estimé par la méthode de Kaplan-Meier inversée : l'évènement est la fin du suivi, la censure est le décès."
-  )
-)
-
 out_qmd(fig_follow)
 ```
 
@@ -361,19 +351,6 @@ out_qmd(tbl_event)
 
 ### Survie globale
 
-```{r}
-#| label: fig-surv-title
-
-.title_surv <- \(title) {
-  str_fig(
-    title = title,
-    note = str_glue(
-      "Les évènements et censures sont présentés en effectifs cumulés au cours du temps."
-    )
-  )
-}
-```
-
 {{< script scripts/tbl_surv.R >}}
 
 ```{r}
@@ -393,14 +370,10 @@ Le hazard ratio de décès toutes causes associé à la chimiothérapie péri-op
 
 ```{r}
 #| label: fig-surv-total-os
-#| fig-cap: !expr .title_fig_surv_total_os
+#| fig-cap: !expr .title_fig_surv_total$os
 #| fig-height: 3.75
 #| fig-width: 7
 #| out-width: 100%
-
-.title_fig_surv_total_os <- .title_surv(
-  title = "Survie globale dans la population totale."
-)
 
 out_qmd(fig_surv_total$os)
 ```
@@ -411,14 +384,10 @@ out_qmd(fig_surv_total$os)
 
 ```{r}
 #| label: fig-surv-strata-os
-#| fig-cap: !expr .title_fig_surv_strata_os
+#| fig-cap: !expr .title_fig_surv_strata$os
 #| fig-height: 3.75
 #| fig-width: 7
 #| out-width: 100%
-
-.title_fig_surv_strata_os <- .title_surv(
-  title = title_suffix("Survie globale")$strata
-)
 
 out_qmd(fig_surv_strata$os)
 ```
@@ -462,14 +431,10 @@ Le hazard ratio de récidive ou de décès toutes causes associé à la chimioth
 
 ```{r}
 #| label: fig-surv-total-pfs
-#| fig-cap: !expr .title_fig_surv_total_pfs
+#| fig-cap: !expr .title_fig_surv_total$pfs
 #| fig-height: 3.75
 #| fig-width: 7
 #| out-width: 100%
-
-.title_fig_surv_total_pfs <- .title_surv(
-  title = "Survie sans récidive dans la population totale."
-)
 
 out_qmd(fig_surv_total$pfs)
 ```
@@ -480,14 +445,10 @@ out_qmd(fig_surv_total$pfs)
 
 ```{r}
 #| label: fig-surv-strata-pfs
-#| fig-cap: !expr .title_fig_surv_strata_pfs
+#| fig-cap: !expr .title_fig_surv_strata$pfs
 #| fig-height: 3.75
 #| fig-width: 7
 #| out-width: 100%
-
-.title_fig_surv_strata_pfs <- .title_surv(
-  title = title_suffix("Survie sans récidive")$strata
-)
 
 out_qmd(fig_surv_strata$pfs)
 ```

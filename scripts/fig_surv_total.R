@@ -58,3 +58,10 @@ get_fig_surv <- \(data, outcome) {
 fig_surv_total <- imap(.surv$total, get_fig_surv)
 
 easy_out(fig_surv_total, height = 3.75, width = 7)
+
+### QMD ------------------------------------------------------------------------
+
+.title_fig_surv_total <- list(
+  os = title_surv("Survie globale dans la population totale."),
+  pfs = title_surv("Survie sans récidive dans la population totale.")
+)
