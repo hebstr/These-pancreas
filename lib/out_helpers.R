@@ -1,34 +1,19 @@
 export_tables <- \(
-  qmd = here::here("index.qmd"),
+  qmd = .report_qmd(),
   dir = .output_dir(quarto, qmd),
   stem = "tables",
   crossref = .crossref(quarto),
   quarto = .inspect(qmd)
 ) {
-  if (!fs::file_exists(qmd)) {
-    cli::cli_abort("{.file {qmd}}: no such file to read the tables from.")
-  }
-
-  lines <- readLines(qmd)
-
-  tables <- lines |>
-    .chunk_lines(qmd) |>
-    map(.chunk_float, qmd = qmd, type = "tbl") |>
-    compact()
-
-  if (!length(tables)) {
-    cli::cli_abort("{.file {qmd}}: no {.field tbl-} chunk to export.")
-  }
-
-  date <- .front_date(lines, qmd)
+  report <- .read_floats(qmd, "tbl")
+  tables <- report$floats
 
   force(crossref)
 
-  fs::dir_create(dir)
-
-  path <- fs::path(dir, str_glue("{date}_{stem}"), ext = "docx")
+  path <- .export_path(dir, report$date, stem)
 
   inline <- mget(ls(globalenv(), all.names = TRUE, pattern = "^\\."), globalenv())
+  withr::defer(list2env(inline, globalenv()))
 
   withr::with_options(
     list(hebstr.docx = TRUE, easy_out.export = TRUE, easy_out.quiet = TRUE),
@@ -47,7 +32,7 @@ export_tables <- \(
 
     flextable::set_caption(
       obj,
-      caption = str_glue("{crossref$prefix}\u00a0{i}{crossref$delim} {x$cap}") |>
+      caption = str_glue("{.float_label(crossref, i)} {x$cap}") |>
         flextable::as_chunk(props = .caption_text()) |>
         flextable::as_paragraph(),
       fp_p = officer::fp_par(
@@ -65,48 +50,34 @@ export_tables <- \(
     map(\(x) \(doc) flextable::body_add_flextable(doc, x, align = NULL)) |>
     .save_docx(path)
 
-  list2env(inline, globalenv())
-
   cli::cli_alert_success("{length(ft)} table{?s} written to {.file {path}}.")
 
   invisible(path)
 }
 
 export_figures <- \(
-  qmd = here::here("index.qmd"),
+  qmd = .report_qmd(),
   dir = .output_dir(quarto, qmd),
   stem = "figures",
   crossref = .crossref(quarto, type = "fig"),
   quarto = .inspect(qmd),
   section = .docx_section()
 ) {
-  if (!fs::file_exists(qmd)) {
-    cli::cli_abort("{.file {qmd}}: no such file to read the figures from.")
-  }
-
-  lines <- readLines(qmd)
-
-  figures <- lines |>
-    .chunk_lines(qmd) |>
-    map(.chunk_float, qmd = qmd, type = "fig") |>
-    compact()
-
-  if (!length(figures)) {
-    cli::cli_abort("{.file {qmd}}: no {.field fig-} chunk to export.")
-  }
-
-  date <- .front_date(lines, qmd)
+  report <- .read_floats(qmd, "fig")
+  figures <- report$floats
 
   force(crossref)
+
+  path <- .export_path(dir, report$date, stem)
 
   pages <- imap(figures, \(x, i) {
     cap <- .split_caption(x$cap, x$label, qmd)
     top <- identical(x$location %||% crossref$location, "top")
 
     caption <- .figure_caption(
-      str_glue("{crossref$prefix} {i}{crossref$delim} {cap$title}"),
+      str_glue("{.float_label(crossref, i)} {cap$title}"),
       cap$note,
-      keep = top,
+      top = top,
       spacing = if (top) 12 else 6
     )
 
@@ -117,10 +88,6 @@ export_figures <- \(
     \(doc) reduce(blocks, \(d, b) officer::body_add_fpar(d, b), .init = doc)
   })
 
-  fs::dir_create(dir)
-
-  path <- fs::path(dir, str_glue("{date}_{stem}"), ext = "docx")
-
   .save_docx(unname(pages), path, section)
 
   cli::cli_alert_success(
@@ -128,6 +95,38 @@ export_figures <- \(
   )
 
   invisible(path)
+}
+
+.read_floats <- \(qmd, type = c("tbl", "fig")) {
+  type <- arg_match(type)
+  noun <- c(tbl = "tables", fig = "figures")[[type]]
+
+  if (!fs::file_exists(qmd)) {
+    cli::cli_abort("{.file {qmd}}: no such file to read the {noun} from.")
+  }
+
+  lines <- readLines(qmd)
+
+  floats <- lines |>
+    .chunk_lines(qmd) |>
+    map(.chunk_float, qmd = qmd, type = type) |>
+    compact()
+
+  if (!length(floats)) {
+    cli::cli_abort("{.file {qmd}}: no {.field {type}-} chunk to export.")
+  }
+
+  list(floats = floats, date = .front_date(lines, qmd))
+}
+
+.float_label <- \(crossref, i) {
+  str_glue("{crossref$prefix}\u00a0{i}{crossref$delim}")
+}
+
+.export_path <- \(dir, date, stem) {
+  fs::dir_create(dir)
+
+  fs::path(dir, str_glue("{date}_{stem}"), ext = "docx")
 }
 
 .figure_path <- \(x, qmd) {
@@ -177,15 +176,15 @@ export_figures <- \(
   )
 }
 
-# Mirrors the report: a caption above its figure takes the centred Table Caption style, one below the left-aligned Image Caption styles.
-.figure_caption <- \(title, note, keep, spacing = 6) {
-  par <- \(text, props, keep_next, top, bottom) {
+# Keeps one Image Caption style and reproduces by direct formatting what the report gets from Table Caption above a figure: centred, kept with the image.
+.figure_caption <- \(title, note, top, spacing = 6) {
+  par <- \(text, props, keep_next, before, after) {
     officer::ftext(text, props) |>
       officer::fpar(
         fp_p = officer::fp_par(
-          text.align = if (keep) "center" else "left",
-          padding.top = top,
-          padding.bottom = bottom,
+          text.align = if (top) "center" else "left",
+          padding.top = before,
+          padding.bottom = after,
           padding.left = 0,
           padding.right = 0,
           keep_with_next = keep_next,
@@ -195,7 +194,7 @@ export_figures <- \(
   }
 
   if (is.null(note)) {
-    return(list(par(title, .caption_text(), keep, spacing, spacing)))
+    return(list(par(title, .caption_text(), top, spacing, spacing)))
   }
 
   list(
@@ -203,7 +202,7 @@ export_figures <- \(
     par(
       note,
       .caption_text(size = 9, bold = FALSE, color = "#555555"),
-      keep,
+      top,
       0,
       spacing
     )
@@ -339,7 +338,11 @@ export_figures <- \(
     yaml12::parse_yaml(lines[2:(fence[2] - 1)])$date
   }
 
-  if (!is_string(date) || !str_detect(date, "^\\d{4}-\\d{2}-\\d{2}$")) {
+  if (
+    !is_string(date) ||
+      !str_detect(date, "^\\d{4}-\\d{2}-\\d{2}$") ||
+      is.na(as.Date(date, format = "%Y-%m-%d"))
+  ) {
     cli::cli_abort(c(
       "{.file {qmd}}: {.field date} must hold an ISO date, {.val YYYY-MM-DD}.",
       i = "It names this output, as it names the rendered report."
@@ -398,9 +401,23 @@ export_figures <- \(
     map(\(x) str_replace_all(as.character(x), "\\\\(.)", "\\1"))
 }
 
+.report_qmd <- \(config = here::here("_quarto.yml")) {
+  render <- yaml12::read_yaml(config)$project$render
+
+  if (!is_string(render)) {
+    cli::cli_abort(c(
+      "{.file {config}}: {.field project.render} must list exactly one document.",
+      i = "It names the report the Word exports read."
+    ))
+  }
+
+  here::here(render)
+}
+
 auto_build <- \(
   docx = knitr::pandoc_to("docx"),
-  quiet = isTRUE(getOption("knitr.in.progress"))
+  quiet = isTRUE(getOption("knitr.in.progress")),
+  qmd = .report_qmd()
 ) {
   withr::with_options(
     list(easy_out.quiet = quiet),
@@ -408,8 +425,8 @@ auto_build <- \(
   )
 
   if (docx) {
-    quarto <- .inspect(here::here("index.qmd"))
-    export_tables(quarto = quarto)
-    export_figures(quarto = quarto)
+    quarto <- .inspect(qmd)
+    export_tables(qmd = qmd, quarto = quarto)
+    export_figures(qmd = qmd, quarto = quarto)
   }
 }
