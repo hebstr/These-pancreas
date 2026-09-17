@@ -1,4 +1,5 @@
-qmd <- yaml12::read_yaml(here::here("_quarto.yml"))$project$render
+project <- yaml12::read_yaml(here::here("_quarto.yml"))$project
+qmd <- project$render
 stem <- "rapport-stat"
 
 lines <- readLines(qmd)
@@ -25,7 +26,29 @@ if (
   ))
 }
 
+report <- paste0(doc_date, "_", stem)
+
 yaml12::write_yaml(
-  value = list(`output-file` = paste0(doc_date, "_", stem)),
+  value = list(`output-file` = report),
   path = here::here("_metadata.yml")
+)
+
+target <- paste(c(project$`output-dir`, paste0(report, ".html")), collapse = "/")
+
+writeLines(
+  c(
+    "<!doctype html>",
+    "<html lang=\"fr\">",
+    "<head>",
+    "<meta charset=\"utf-8\">",
+    sprintf("<meta http-equiv=\"refresh\" content=\"0; url=%s\">", target),
+    sprintf("<link rel=\"canonical\" href=\"%s\">", target),
+    "<title>Rapport d'analyse statistique</title>",
+    "</head>",
+    "<body>",
+    sprintf("<p><a href=\"%s\">Rapport d'analyse statistique</a></p>", target),
+    "</body>",
+    "</html>"
+  ),
+  here::here("index.html")
 )
