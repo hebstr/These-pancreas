@@ -12,8 +12,8 @@ Library: rv/library/4.6/x86_64/noble
 Installed: 211/211
 
 Package Sources: 
-  CRAN: 195/195 binary packages, 2/2 source packages
   builtin: 13/13 binary packages
+  CRAN: 195/195 binary packages, 2/2 source packages
   https://github.com/hebstr/hebstr: 1/1 source packages
 
 == System Dependencies == 

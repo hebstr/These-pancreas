@@ -546,12 +546,12 @@ L'hypothèse de proportionnalité n'était pas invalidée ici.
 #| label: log-session
 #| include: false
 
-sessioninfo::session_info(to_file = here::here(.log_dir, "session.log"))
+sessioninfo::session_info(to_file = here::here(.log_dir, "session.txt"))
 ```
 
-{{< script logs/session.log >}}
+{{< script logs/session.txt >}}
 
-{{< script logs/rv.log >}}
+{{< script logs/rv.txt >}}
 
 {{< script .Rprofile >}}
 

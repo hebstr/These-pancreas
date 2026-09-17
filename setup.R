@@ -27,7 +27,7 @@ lang_fr()
 
 .log_dir <- fs::dir_create(here::here("logs"))
 
-# system2("rv", "summary", stdout = here::here(.log_dir, "rv.log"))
+# system2("rv", "summary", stdout = here::here(.log_dir, "rv.txt"))
 
 source("_extensions/hebstr/hebstr-doc/fonts/register.R")
 
