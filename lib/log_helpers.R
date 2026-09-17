@@ -50,7 +50,6 @@ log_render <- \(
   warnings,
   seconds,
   sheets = get("sheets", envir = globalenv()),
-  font = get("opts", envir = globalenv())$font$alpha,
   file = here::here("logs", "render.jsonl")
 ) {
   entry <- list(
@@ -59,7 +58,6 @@ log_render <- \(
     report = rmarkdown::metadata$date %||% NA_character_,
     git = .git_state(),
     data = .sheets_state(sheets),
-    font = systemfonts::match_fonts(font)$path,
     svg = .svg_hashes(),
     warnings = I(warnings),
     seconds = round(seconds, 1)
