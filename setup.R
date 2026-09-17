@@ -25,6 +25,10 @@ auto_exec("lib", quiet = TRUE)
 
 lang_fr()
 
+.log_dir <- fs::dir_create(here::here("logs"))
+
+system2("rv", "summary", stdout = here::here(.log_dir, "rv.log"))
+
 source("_extensions/hebstr/hebstr-doc/fonts/register.R")
 
 set_opts(

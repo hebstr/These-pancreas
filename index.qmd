@@ -1,7 +1,7 @@
 ---
 title: "Thèse Nesrine"
 subtitle: "Rapport d'analyse statistique"
-date: 2026-09-06
+date: 2026-09-17
 format:
   hebstr-doc-html: {}
   hebstr-doc-docx: {}
@@ -542,6 +542,17 @@ L'hypothèse de proportionnalité n'était pas invalidée ici.
 ::: {.content-hidden when-format="docx"}
 ## Session {#sec-session}
 
+```{r}
+#| label: log-session
+#| include: false
+
+sessioninfo::session_info(to_file = here::here(.log_dir, "session.log"))
+```
+
+{{< script logs/session.log >}}
+
+{{< script logs/rv.log >}}
+
 {{< script .Rprofile >}}
 
 {{< script setup.R >}}
@@ -549,12 +560,4 @@ L'hypothèse de proportionnalité n'était pas invalidée ici.
 {{< script scripts/_common.R >}}
 
 {{< script index.qmd >}}
-
-```{r}
-#| label: session
-#| echo: true
-#| code-summary: "environnement"
-
-sessioninfo::session_info()
-```
 :::

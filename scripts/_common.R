@@ -1,13 +1,6 @@
 ### GS IMPORT ------------------------------------------------------------------
 
-sheets <- map(
-  set_names(1:3, "variables", "inclusions", "exclusions"),
-  ~ read_sheet(
-    ss = Sys.getenv("GS_URL"),
-    sheet = .x,
-    col_types = "c"
-  )
-)
+sheets <- get_sheets("local")
 
 dict <- extract_from_dict(
   data = sheets$variables,

@@ -1,0 +1,27 @@
+== System Information == 
+OS: linux ubuntu 24.4.0 (x86_64)
+R Version: 4.6
+
+Num Workers for Sync: 12 (12 cpus available)
+Cache Location: /home/julien/.cache/rv
+Network Filesystem: false
+Link Mode: hardlink
+
+== Dependencies == 
+Library: rv/library/4.6/x86_64/noble
+Installed: 211/211
+
+Package Sources: 
+  CRAN: 195/195 binary packages, 2/2 source packages
+  builtin: 13/13 binary packages
+  https://github.com/hebstr/hebstr: 1/1 source packages
+
+== System Dependencies == 
+Present: 24/25
+Absent:
+  libnode-dev
+
+== Remote == 
+linux binary distribution name: noble
+CRAN (https://packagemanager.posit.co/cran/__linux__/noble/latest): 25061 binary packages, 25061 source packages
+

@@ -9,8 +9,7 @@ tbl_baseline <- df |>
     dl_diag,
     ca_diag,
     ca_diag_bin,
-    tm_loc,
-    matches("tm_stade_(t|n)")
+    tm_loc
   ) |>
   use_vars() |>
   tbl_summary(

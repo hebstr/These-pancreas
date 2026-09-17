@@ -1,18 +1,48 @@
 get_backup <- \(data) {
   stem <- "backup"
-
   backup_dir <- paste0(".", stem)
-  backup_subdir <- paste(stem, Sys.time()) |> stringr::str_to_kebab()
-  backup_subdir <- fs::path(backup_dir, backup_subdir)
+  backup_subdir <- paste(stem, Sys.time()) |> str_to_kebab()
 
-  fs::dir_create(backup_subdir)
+  easy_out(
+    get_xlsx(data),
+    filename = backup_subdir,
+    dir = backup_dir,
+    subdir = FALSE
+  )
+}
 
-  purrr::iwalk(
-    data,
-    ~ openxlsx2::write_xlsx(
-      .x,
-      fs::path(backup_subdir, stringr::str_glue("{.y}.xlsx"))
+get_sheets <- \(from = c("gs", "local")) {
+  from <- arg_match(from)
+  tabs <- c("variables", "inclusions", "exclusions")
+
+  if (from == "gs") {
+    .sheets_from_gs <- map(
+      set_names(seq_along(tabs), tabs),
+      ~ read_sheet(
+        ss = Sys.getenv("GS_URL"),
+        sheet = .x,
+        col_types = "c"
+      )
     )
+
+    return(.sheets_from_gs)
+  }
+
+  file <- here::here(".backup") |>
+    fs::dir_ls(glob = "*.xlsx") |>
+    sort() |>
+    tail(1)
+
+  map(
+    set_names(tabs),
+    ~ openxlsx2::read_xlsx(
+      file = file,
+      sheet = .x,
+      detect_dates = FALSE,
+      na = ""
+    ) |>
+      as_tibble() |>
+      mutate(across(everything(), as.character))
   )
 }
 

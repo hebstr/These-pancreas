@@ -7,7 +7,8 @@ tbl_tumor <- df |>
     chir_marges,
     recidive_none,
     recidive_loc,
-    recidive_meta
+    recidive_meta,
+    matches("tm_stade_(t|n)")
   ) |>
   mutate(chir_marges = fct_drop(chir_marges)) |>
   strip_label(str_glue("^{.grp_lab$recidive} : ")) |>
