@@ -86,14 +86,24 @@ get_fig_surv <- \(data, outcome) {
       axis.ticks.y = element_blank()
     )
 
-  list(.surv_plot, .surv_risktable) |>
-    ggsurvfit_align_plots() |>
-    wrap_plots(ncol = 1, heights = c(1, 0.1))
+  with_fig_device(
+    width = .surv_size$width,
+    height = .surv_size$height,
+    code = list(.surv_plot, .surv_risktable) |>
+      ggsurvfit_align_plots() |>
+      wrap_plots(ncol = 1, heights = c(1, 0.1))
+  )
 }
+
+.surv_size <- list(width = 7, height = 3.75)
 
 fig_surv_strata <- imap(.surv$strata, get_fig_surv)
 
-easy_out(fig_surv_strata, height = 3.75, width = 7)
+easy_out(
+  fig_surv_strata,
+  height = .surv_size$height,
+  width = .surv_size$width
+)
 
 ### QMD ------------------------------------------------------------------------
 

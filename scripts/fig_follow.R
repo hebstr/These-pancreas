@@ -89,11 +89,21 @@
     axis.ticks.y = element_blank()
   )
 
-fig_follow <- list(.followup_plot, .followup_risktable) |>
-  ggsurvfit_align_plots() |>
-  wrap_plots(ncol = 1, heights = c(1, 0.1))
+.followup_size <- list(width = 7, height = 3.75)
 
-easy_out(fig_follow, height = 3.75, width = 7)
+fig_follow <- with_fig_device(
+  width = .followup_size$width,
+  height = .followup_size$height,
+  code = list(.followup_plot, .followup_risktable) |>
+    ggsurvfit_align_plots() |>
+    wrap_plots(ncol = 1, heights = c(1, 0.1))
+)
+
+easy_out(
+  fig_follow,
+  height = .followup_size$height,
+  width = .followup_size$width
+)
 
 ### QMD ------------------------------------------------------------------------
 
