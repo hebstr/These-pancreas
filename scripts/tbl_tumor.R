@@ -2,13 +2,13 @@ tbl_tumor <- df |>
   select(
     groupe,
     chir_resec,
+    matches("tm_stade_(t|n)"),
     chir_hosp,
     chir_complic_class,
     chir_marges,
     recidive_none,
     recidive_loc,
-    recidive_meta,
-    matches("tm_stade_(t|n)")
+    recidive_meta
   ) |>
   mutate(chir_marges = fct_drop(chir_marges)) |>
   strip_label(str_glue("^{.grp_lab$recidive} : ")) |>
