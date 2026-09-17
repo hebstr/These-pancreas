@@ -25,7 +25,12 @@ get_sheets <- \(from = c("gs", "local")) {
       )
     )
 
-    return(.sheets_from_gs)
+    return(
+      structure(
+        .sheets_from_gs,
+        provenance = list(from = from, file = NA_character_)
+      )
+    )
   }
 
   file <- here::here(".backup") |>
@@ -43,7 +48,8 @@ get_sheets <- \(from = c("gs", "local")) {
     ) |>
       as_tibble() |>
       mutate(across(everything(), as.character))
-  )
+  ) |>
+    structure(provenance = list(from = from, file = fs::path_file(file)))
 }
 
 extract_from_dict <- \(data, var_name, var_label, type, level) {

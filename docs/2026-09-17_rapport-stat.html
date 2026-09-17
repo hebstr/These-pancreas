@@ -12365,13 +12365,14 @@ height: 0px !important;
 <span id="cb19-149"><a href="#cb19-149" aria-label="149"></a> XML                 3.99-0.24  2026-08-21 [1] RSPM (R 4.6.0)</span>
 <span id="cb19-150"><a href="#cb19-150" aria-label="150"></a> xml2                1.6.0      2026-06-22 [1] RSPM (R 4.6.0)</span>
 <span id="cb19-151"><a href="#cb19-151" aria-label="151"></a> yaml                2.3.12     2025-12-10 [1] RSPM (R 4.6.0)</span>
-<span id="cb19-152"><a href="#cb19-152" aria-label="152"></a> zip                 3.0.2      2026-08-04 [1] RSPM (R 4.6.0)</span>
-<span id="cb19-153"><a href="#cb19-153" aria-label="153"></a></span>
-<span id="cb19-154"><a href="#cb19-154" aria-label="154"></a> [1] /home/julien/Documents/services/md-nesrine/rv/library/4.6/x86_64/noble</span>
-<span id="cb19-155"><a href="#cb19-155" aria-label="155"></a> [2] /opt/R/4.6.1/lib/R/library</span>
-<span id="cb19-156"><a href="#cb19-156" aria-label="156"></a> * ── Packages attached to the search path.</span>
-<span id="cb19-157"><a href="#cb19-157" aria-label="157"></a></span>
-<span id="cb19-158"><a href="#cb19-158" aria-label="158"></a>──────────────────────────────────────────────────────────────────────────────</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb19-152"><a href="#cb19-152" aria-label="152"></a> yaml12              0.2.0      2026-08-25 [1] RSPM (R 4.6.0)</span>
+<span id="cb19-153"><a href="#cb19-153" aria-label="153"></a> zip                 3.0.2      2026-08-04 [1] RSPM (R 4.6.0)</span>
+<span id="cb19-154"><a href="#cb19-154" aria-label="154"></a></span>
+<span id="cb19-155"><a href="#cb19-155" aria-label="155"></a> [1] /home/julien/Documents/services/md-nesrine/rv/library/4.6/x86_64/noble</span>
+<span id="cb19-156"><a href="#cb19-156" aria-label="156"></a> [2] /opt/R/4.6.1/lib/R/library</span>
+<span id="cb19-157"><a href="#cb19-157" aria-label="157"></a> * ── Packages attached to the search path.</span>
+<span id="cb19-158"><a href="#cb19-158" aria-label="158"></a></span>
+<span id="cb19-159"><a href="#cb19-159" aria-label="159"></a>──────────────────────────────────────────────────────────────────────────────</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div data-code-filename="logs/rv.txt">
@@ -13315,22 +13316,23 @@ height: 0px !important;
 <span id="cb24-545"><a href="#cb24-545" aria-label="545"></a><span class="in">```{r}</span></span>
 <span id="cb24-546"><a href="#cb24-546" aria-label="546"></a><span class="co">#| label: log-session</span></span>
 <span id="cb24-547"><a href="#cb24-547" aria-label="547"></a><span class="co">#| include: false</span></span>
-<span id="cb24-548"><a href="#cb24-548" aria-label="548"></a></span>
-<span id="cb24-549"><a href="#cb24-549" aria-label="549"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">to_file =</span> here<span class="sc">::</span><span class="fu">here</span>(.log_dir, <span class="st">&quot;session.txt&quot;</span>))</span>
-<span id="cb24-550"><a href="#cb24-550" aria-label="550"></a><span class="in">```</span></span>
-<span id="cb24-551"><a href="#cb24-551" aria-label="551"></a></span>
-<span id="cb24-552"><a href="#cb24-552" aria-label="552"></a>{{&lt; script logs/session.txt &gt;}}</span>
-<span id="cb24-553"><a href="#cb24-553" aria-label="553"></a></span>
-<span id="cb24-554"><a href="#cb24-554" aria-label="554"></a>{{&lt; script logs/rv.txt &gt;}}</span>
-<span id="cb24-555"><a href="#cb24-555" aria-label="555"></a></span>
-<span id="cb24-556"><a href="#cb24-556" aria-label="556"></a>{{&lt; script .Rprofile &gt;}}</span>
-<span id="cb24-557"><a href="#cb24-557" aria-label="557"></a></span>
-<span id="cb24-558"><a href="#cb24-558" aria-label="558"></a>{{&lt; script setup.R &gt;}}</span>
-<span id="cb24-559"><a href="#cb24-559" aria-label="559"></a></span>
-<span id="cb24-560"><a href="#cb24-560" aria-label="560"></a>{{&lt; script scripts/_common.R &gt;}}</span>
-<span id="cb24-561"><a href="#cb24-561" aria-label="561"></a></span>
-<span id="cb24-562"><a href="#cb24-562" aria-label="562"></a>{{&lt; script index.qmd &gt;}}</span>
-<span id="cb24-563"><a href="#cb24-563" aria-label="563"></a>:::</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb24-548"><a href="#cb24-548" aria-label="548"></a><span class="co">#| eval: !expr knitr::is_html_output()</span></span>
+<span id="cb24-549"><a href="#cb24-549" aria-label="549"></a></span>
+<span id="cb24-550"><a href="#cb24-550" aria-label="550"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">to_file =</span> here<span class="sc">::</span><span class="fu">here</span>(.log_dir, <span class="st">&quot;session.txt&quot;</span>))</span>
+<span id="cb24-551"><a href="#cb24-551" aria-label="551"></a><span class="in">```</span></span>
+<span id="cb24-552"><a href="#cb24-552" aria-label="552"></a></span>
+<span id="cb24-553"><a href="#cb24-553" aria-label="553"></a>{{&lt; script logs/session.txt &gt;}}</span>
+<span id="cb24-554"><a href="#cb24-554" aria-label="554"></a></span>
+<span id="cb24-555"><a href="#cb24-555" aria-label="555"></a>{{&lt; script logs/rv.txt &gt;}}</span>
+<span id="cb24-556"><a href="#cb24-556" aria-label="556"></a></span>
+<span id="cb24-557"><a href="#cb24-557" aria-label="557"></a>{{&lt; script .Rprofile &gt;}}</span>
+<span id="cb24-558"><a href="#cb24-558" aria-label="558"></a></span>
+<span id="cb24-559"><a href="#cb24-559" aria-label="559"></a>{{&lt; script setup.R &gt;}}</span>
+<span id="cb24-560"><a href="#cb24-560" aria-label="560"></a></span>
+<span id="cb24-561"><a href="#cb24-561" aria-label="561"></a>{{&lt; script scripts/_common.R &gt;}}</span>
+<span id="cb24-562"><a href="#cb24-562" aria-label="562"></a></span>
+<span id="cb24-563"><a href="#cb24-563" aria-label="563"></a>{{&lt; script index.qmd &gt;}}</span>
+<span id="cb24-564"><a href="#cb24-564" aria-label="564"></a>:::</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>

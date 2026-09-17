@@ -470,16 +470,35 @@ export_figures <- \(
 auto_build <- \(
   docx = knitr::pandoc_to("docx"),
   quiet = isTRUE(getOption("knitr.in.progress")),
+  log = isTRUE(getOption("knitr.in.progress")),
   qmd = .report_qmd()
 ) {
-  withr::with_options(
-    list(easy_out.quiet = quiet),
-    auto_exec()
+  start <- Sys.time()
+  caught <- character()
+
+  withCallingHandlers(
+    {
+      withr::with_options(
+        list(easy_out.quiet = quiet),
+        auto_exec()
+      )
+
+      if (docx) {
+        quarto <- .inspect(qmd)
+        export_tables(qmd = qmd, quarto = quarto)
+        export_figures(qmd = qmd, quarto = quarto)
+      }
+    },
+    warning = \(w) {
+      caught <<- c(caught, conditionMessage(w))
+    }
   )
 
-  if (docx) {
-    quarto <- .inspect(qmd)
-    export_tables(qmd = qmd, quarto = quarto)
-    export_figures(qmd = qmd, quarto = quarto)
+  if (log) {
+    log_render(
+      pass = knitr::pandoc_to(),
+      warnings = caught,
+      seconds = as.numeric(difftime(Sys.time(), start, units = "secs"))
+    )
   }
 }

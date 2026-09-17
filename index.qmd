@@ -545,6 +545,7 @@ L'hypothèse de proportionnalité n'était pas invalidée ici.
 ```{r}
 #| label: log-session
 #| include: false
+#| eval: !expr knitr::is_html_output()
 
 sessioninfo::session_info(to_file = here::here(.log_dir, "session.txt"))
 ```
