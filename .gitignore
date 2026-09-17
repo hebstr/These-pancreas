@@ -5,6 +5,9 @@ Rplots.pdf
 filetree.yml
 /_metadata.yml
 /docs/output/
+/*.rmarkdown
+/*_files/
+/*_rapport-stat.*
 /.claude/
 /.quarto/
 **/*.quarto_ipynb
