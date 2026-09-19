@@ -1,7 +1,7 @@
 .tox <- lst(
-  data = df |> filter(n_cures > 0),
+  data = .chimio$data,
   level = binary_value(data)$total_ei,
-  n = nrow(data),
+  n = .chimio$n,
   n_eval = sum(!is.na(data$total_ei)),
   n_ei = sum(data$total_ei == level, na.rm = TRUE),
   pct = style_pct(n_ei / n_eval)
@@ -34,12 +34,7 @@ tbl_tox <- .tox$data |>
     vars = "total_ei",
     note = "Selon la Common Terminology Criteria for Adverse Events (CTCAE) v5.0."
   ) |>
-  tbl_format(
-    note_global = str_glue(
-      "Patients ayant reçu au moins une cure de chimiothérapie d'induction \\
-      ou adjuvante ({sum(df$n_cures > 0)} sur {nrow(df)} patients inclus)."
-    )
-  )
+  tbl_format(note_global = .chimio$note)
 
 easy_out(tbl_tox)
 

@@ -1,6 +1,6 @@
 # Rapport d'analyse statistique
 
-Dernière révision : **2026-09-17**
+Dernière révision : **2026-09-19**
 
 ## Emplacement des fichiers
 

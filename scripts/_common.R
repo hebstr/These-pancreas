@@ -283,6 +283,15 @@ df <- df_recode |>
     mutate(groupe = fct_drop(groupe))
 )
 
+.chimio <- lst(
+  data = df |> filter(n_cures > 0),
+  n = nrow(data),
+  note = str_glue(
+    "Patients ayant reçu au moins une cure de chimiothérapie d'induction \\
+    ou adjuvante ({n} sur {nrow(df)} patients inclus)."
+  )
+)
+
 .tox_vars <- names(df) |>
   str_subset("total_ei_") |>
   set_names() |>

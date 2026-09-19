@@ -12,5 +12,6 @@ filetree.yml
 /.quarto/
 **/*.quarto_ipynb
 /.luarc.json
+/manuscrit
 NOTES.md
 TODO.md

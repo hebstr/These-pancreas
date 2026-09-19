@@ -2620,7 +2620,7 @@ src: url(data:font/woff2;base64,d09GMk9UVE8AAbpsAAkAAAAEzT4AAbokA4ADAAAAAAAAAAAA
   <li><a href="#sec-session" id="toc-sec-session" class="nav-link" data-scroll-target="#sec-session"><span class="header-section-number">4.3</span> Session</a></li>
   </ul></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Autres formats</h2><ul><li><a href="2026-09-17_rapport-stat.docx"><i class="bi bi-file-word"></i>MS Word (hebstr-doc)</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Autres formats</h2><ul><li><a href="2026-09-19_rapport-stat.docx"><i class="bi bi-file-word"></i>MS Word (hebstr-doc)</a></li></ul></div></nav>
 </div>
 <main class="content column-page-left" id="quarto-document-content">
 
@@ -2639,7 +2639,7 @@ src: url(data:font/woff2;base64,d09GMk9UVE8AAbpsAAkAAAAEzT4AAbokA4ADAAAAAAAAAAAA
     <div>
     <div class="quarto-title-meta-heading">Date de publication</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">17 septembre 2026</p>
+      <p class="date">19 septembre 2026</p>
     </div>
   </div>
   
@@ -4936,112 +4936,51 @@ Figure 2. Distribution du nombre de cures reçues, par phase et selon le protoc
 <div data-code-filename="scripts/tbl_ttt.R">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" data-filename="r"><pre class="sourceCode numberSource rhebstr r number-lines cw-auto code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>.ttt <span class="ot">&lt;-</span> <span class="fu">lst</span><span class="re">(</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a>  <span class="at">data</span> <span class="ot">=</span> df <span class="sc">|&gt;</span> <span class="fu">filter</span><span class="re">(</span>n_cures <span class="sc">&gt;</span> <span class="dv">0</span><span class="re">)</span><span class="sc">,</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a>  <span class="at">n</span> <span class="ot">=</span> <span class="fu">nrow</span><span class="re">(</span>data<span class="re">)</span><span class="sc">,</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a>  <span class="at">vars</span> <span class="ot">=</span> <span class="fu">str_subset</span><span class="re">(</span><span class="fu">names</span><span class="re">(</span>df<span class="re">)</span><span class="sc">,</span> <span class="st">&quot;^total_adapt_c&quot;</span><span class="re">)</span> <span class="sc">|&gt;</span> <span class="fu">set_names</span><span class="re">()</span><span class="sc">,</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-label="5"></a>  <span class="at">reached</span> <span class="ot">=</span> <span class="fu">map</span><span class="re">(</span>vars<span class="sc">,</span> \<span class="re">(</span>v<span class="re">)</span> <span class="re">{</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-label="6"></a>    cure <span class="ot">&lt;-</span> <span class="fu">as.numeric</span><span class="re">(</span><span class="fu">str_extract</span><span class="re">(</span>v<span class="sc">,</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d+$&quot;</span><span class="re">))</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-label="7"></a>    data<span class="sc">$</span>induc_nb <span class="sc">&gt;=</span> cure <span class="sc">|</span> data<span class="sc">$</span>adj_nb <span class="sc">&gt;=</span> cure</span>
-<span id="cb6-8"><a href="#cb6-8" aria-label="8"></a>  <span class="re">})</span><span class="sc">,</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-label="9"></a>  <span class="at">n_reached</span> <span class="ot">=</span> <span class="fu">map_int</span><span class="re">(</span>reached<span class="sc">,</span> sum<span class="re">)</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-label="10"></a><span class="re">)</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-label="11"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-label="12"></a>.ttt_dm <span class="ot">&lt;-</span> <span class="fu">imap</span><span class="re">(</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-label="13"></a>  .ttt<span class="sc">$</span>reached<span class="sc">,</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-label="14"></a>  \<span class="re">(</span>reached<span class="sc">,</span> v<span class="re">)</span> <span class="re">{</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-label="15"></a>    missed <span class="ot">&lt;-</span> reached <span class="sc">&amp;</span> <span class="fu">is.na</span><span class="re">(</span>.ttt<span class="sc">$</span>data<span class="re">[[</span>v<span class="re">]])</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-label="16"></a>    strata <span class="ot">&lt;-</span> <span class="fu">split</span><span class="re">(</span>missed<span class="sc">,</span> .ttt<span class="sc">$</span>data<span class="sc">$</span>groupe<span class="re">)</span> <span class="sc">|&gt;</span> <span class="fu">map_int</span><span class="re">(</span>sum<span class="re">)</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-label="17"></a>    <span class="fu">tibble</span><span class="re">(</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-label="18"></a>      <span class="at">variable</span> <span class="ot">=</span> v<span class="sc">,</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-label="19"></a>      <span class="at">stat_0</span> <span class="ot">=</span> <span class="fu">as.character</span><span class="re">(</span><span class="fu">sum</span><span class="re">(</span>missed<span class="re">))</span><span class="sc">,</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-label="20"></a>      <span class="at">stat_1</span> <span class="ot">=</span> <span class="fu">as.character</span><span class="re">(</span>strata<span class="re">[[</span><span class="dv">1</span><span class="re">]])</span><span class="sc">,</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-label="21"></a>      <span class="at">stat_2</span> <span class="ot">=</span> <span class="fu">as.character</span><span class="re">(</span>strata<span class="re">[[</span><span class="dv">2</span><span class="re">]])</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-label="22"></a>    <span class="re">)</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-label="23"></a>  <span class="re">}</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-label="24"></a><span class="re">)</span> <span class="sc">|&gt;</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-label="25"></a>  <span class="fu">list_rbind</span><span class="re">()</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-label="26"></a></span>
-<span id="cb6-27"><a href="#cb6-27" aria-label="27"></a>tbl_ttt <span class="ot">&lt;-</span> .ttt<span class="sc">$</span>data <span class="sc">|&gt;</span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-label="28"></a>  <span class="fu">select</span><span class="re">(</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-label="29"></a>    groupe<span class="sc">,</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-label="30"></a>    <span class="fu">matches</span><span class="re">(</span><span class="st">&quot;total_dose&quot;</span><span class="re">)</span><span class="sc">,</span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-label="31"></a>    total_adapt<span class="sc">,</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-label="32"></a>    total_adapt_pct<span class="sc">,</span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-label="33"></a>    <span class="fu">all_of</span><span class="re">(</span>.ttt<span class="sc">$</span>vars<span class="re">)</span></span>
-<span id="cb6-34"><a href="#cb6-34" aria-label="34"></a>  <span class="re">)</span> <span class="sc">|&gt;</span></span>
-<span id="cb6-35"><a href="#cb6-35" aria-label="35"></a>  <span class="fu">strip_label</span><span class="re">(</span><span class="fu">str_glue</span><span class="re">(</span><span class="st">&quot;^{.grp_lab$dose} : &quot;</span><span class="re">))</span> <span class="sc">|&gt;</span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-label="36"></a>  <span class="fu">use_vars</span><span class="re">()</span> <span class="sc">|&gt;</span></span>
-<span id="cb6-37"><a href="#cb6-37" aria-label="37"></a>  <span class="fu">tbl_summary</span><span class="re">(</span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-label="38"></a>    <span class="at">by</span> <span class="ot">=</span> groupe<span class="sc">,</span></span>
-<span id="cb6-39"><a href="#cb6-39" aria-label="39"></a>    <span class="at">statistic</span> <span class="ot">=</span> opts<span class="sc">$</span>vars<span class="sc">$</span>stat<span class="sc">,</span></span>
-<span id="cb6-40"><a href="#cb6-40" aria-label="40"></a>    <span class="at">type</span> <span class="ot">=</span> <span class="fu">matches</span><span class="re">(</span><span class="st">&quot;total_dose&quot;</span><span class="re">)</span> <span class="sc">~</span> <span class="st">&quot;continuous&quot;</span><span class="sc">,</span></span>
-<span id="cb6-41"><a href="#cb6-41" aria-label="41"></a>    <span class="at">value</span> <span class="ot">=</span> <span class="fu">binary_value</span><span class="re">(</span>df<span class="re">)</span><span class="sc">,</span></span>
-<span id="cb6-42"><a href="#cb6-42" aria-label="42"></a>    <span class="at">digits</span> <span class="ot">=</span> opts<span class="sc">$</span>digits<span class="sc">,</span></span>
-<span id="cb6-43"><a href="#cb6-43" aria-label="43"></a>    <span class="at">missing</span> <span class="ot">=</span> <span class="st">&quot;ifany&quot;</span><span class="sc">,</span></span>
-<span id="cb6-44"><a href="#cb6-44" aria-label="44"></a>    <span class="at">missing_text</span> <span class="ot">=</span> opts<span class="sc">$</span>labs<span class="sc">$</span>row_missing</span>
-<span id="cb6-45"><a href="#cb6-45" aria-label="45"></a>  <span class="re">)</span> <span class="sc">|&gt;</span></span>
-<span id="cb6-46"><a href="#cb6-46" aria-label="46"></a>  <span class="fu">add_stat_label</span><span class="re">(</span><span class="at">label</span> <span class="ot">=</span> opts<span class="sc">$</span>vars<span class="sc">$</span>label<span class="re">)</span> <span class="sc">|&gt;</span></span>
-<span id="cb6-47"><a href="#cb6-47" aria-label="47"></a>  <span class="fu">add_p</span><span class="re">(</span></span>
-<span id="cb6-48"><a href="#cb6-48" aria-label="48"></a>    <span class="at">pvalue_fun</span> <span class="ot">=</span> opts<span class="sc">$</span>pvalue<span class="sc">$</span>format<span class="sc">,</span></span>
-<span id="cb6-49"><a href="#cb6-49" aria-label="49"></a>    <span class="at">test.args</span> <span class="ot">=</span> .test_args</span>
-<span id="cb6-50"><a href="#cb6-50" aria-label="50"></a>  <span class="re">)</span> <span class="sc">|&gt;</span></span>
-<span id="cb6-51"><a href="#cb6-51" aria-label="51"></a>  <span class="fu">gtsum_format</span><span class="re">()</span> <span class="sc">|&gt;</span></span>
-<span id="cb6-52"><a href="#cb6-52" aria-label="52"></a>  <span class="fu">modify_table_body</span><span class="re">(</span>\<span class="re">(</span>body<span class="re">)</span> <span class="re">{</span></span>
-<span id="cb6-53"><a href="#cb6-53" aria-label="53"></a>    body <span class="sc">|&gt;</span></span>
-<span id="cb6-54"><a href="#cb6-54" aria-label="54"></a>      <span class="fu">mutate</span><span class="re">(</span></span>
-<span id="cb6-55"><a href="#cb6-55" aria-label="55"></a>        <span class="fu">across</span><span class="re">(</span></span>
-<span id="cb6-56"><a href="#cb6-56" aria-label="56"></a>          <span class="fu">c</span><span class="re">(</span>stat_0<span class="sc">,</span> stat_1<span class="sc">,</span> stat_2<span class="re">)</span><span class="sc">,</span></span>
-<span id="cb6-57"><a href="#cb6-57" aria-label="57"></a>          \<span class="re">(</span>x<span class="re">)</span> <span class="re">{</span></span>
-<span id="cb6-58"><a href="#cb6-58" aria-label="58"></a>            fix <span class="ot">&lt;-</span> .ttt_dm<span class="re">[[</span><span class="fu">cur_column</span><span class="re">()]][</span><span class="fu">match</span><span class="re">(</span>variable<span class="sc">,</span> .ttt_dm<span class="sc">$</span>variable<span class="re">)]</span></span>
-<span id="cb6-59"><a href="#cb6-59" aria-label="59"></a>            <span class="fu">if_else</span><span class="re">(</span>row_type <span class="sc">%in%</span> <span class="st">&quot;missing&quot;</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span><span class="re">(</span>fix<span class="re">)</span><span class="sc">,</span> fix<span class="sc">,</span> x<span class="re">)</span></span>
-<span id="cb6-60"><a href="#cb6-60" aria-label="60"></a>          <span class="re">}</span></span>
-<span id="cb6-61"><a href="#cb6-61" aria-label="61"></a>        <span class="re">)</span></span>
-<span id="cb6-62"><a href="#cb6-62" aria-label="62"></a>      <span class="re">)</span> <span class="sc">|&gt;</span></span>
-<span id="cb6-63"><a href="#cb6-63" aria-label="63"></a>      <span class="fu">filter</span><span class="re">(</span></span>
-<span id="cb6-64"><a href="#cb6-64" aria-label="64"></a>        <span class="sc">!</span><span class="re">(</span>row_type <span class="sc">%in%</span></span>
-<span id="cb6-65"><a href="#cb6-65" aria-label="65"></a>          <span class="st">&quot;missing&quot;</span> <span class="sc">&amp;</span></span>
-<span id="cb6-66"><a href="#cb6-66" aria-label="66"></a>          variable <span class="sc">%in%</span> .ttt_dm<span class="sc">$</span>variable<span class="re">[</span>.ttt_dm<span class="sc">$</span>stat_0 <span class="sc">==</span> <span class="st">&quot;0&quot;</span><span class="re">])</span></span>
-<span id="cb6-67"><a href="#cb6-67" aria-label="67"></a>      <span class="re">)</span></span>
-<span id="cb6-68"><a href="#cb6-68" aria-label="68"></a>  <span class="re">})</span> <span class="sc">|&gt;</span></span>
-<span id="cb6-69"><a href="#cb6-69" aria-label="69"></a>  <span class="fu">add_variable_group_header</span><span class="re">(</span></span>
-<span id="cb6-70"><a href="#cb6-70" aria-label="70"></a>    <span class="at">header</span> <span class="ot">=</span> .grp_lab<span class="sc">$</span>dose<span class="sc">,</span></span>
-<span id="cb6-71"><a href="#cb6-71" aria-label="71"></a>    <span class="at">variables</span> <span class="ot">=</span> <span class="fu">matches</span><span class="re">(</span><span class="st">&quot;total_dose&quot;</span><span class="re">)</span></span>
-<span id="cb6-72"><a href="#cb6-72" aria-label="72"></a>  <span class="re">)</span> <span class="sc">|&gt;</span></span>
-<span id="cb6-73"><a href="#cb6-73" aria-label="73"></a>  <span class="fu">add_note</span><span class="re">(</span></span>
-<span id="cb6-74"><a href="#cb6-74" aria-label="74"></a>    <span class="at">vars</span> <span class="ot">=</span> <span class="st">&quot;total_adapt_pct&quot;</span><span class="sc">,</span></span>
-<span id="cb6-75"><a href="#cb6-75" aria-label="75"></a>    <span class="at">note</span> <span class="ot">=</span> <span class="st">&quot;Adaptation maximale parmi les trois molécules, à la dernière cure.&quot;</span></span>
-<span id="cb6-76"><a href="#cb6-76" aria-label="76"></a>  <span class="re">)</span> <span class="sc">|&gt;</span></span>
-<span id="cb6-77"><a href="#cb6-77" aria-label="77"></a>  <span class="fu">reduce</span><span class="re">(</span></span>
-<span id="cb6-78"><a href="#cb6-78" aria-label="78"></a>    .ttt<span class="sc">$</span>vars<span class="sc">,</span></span>
-<span id="cb6-79"><a href="#cb6-79" aria-label="79"></a>    \<span class="re">(</span>tbl<span class="sc">,</span> v<span class="re">)</span> <span class="re">{</span></span>
-<span id="cb6-80"><a href="#cb6-80" aria-label="80"></a>      <span class="fu">add_note</span><span class="re">(</span></span>
-<span id="cb6-81"><a href="#cb6-81" aria-label="81"></a>        tbl<span class="sc">,</span></span>
-<span id="cb6-82"><a href="#cb6-82" aria-label="82"></a>        <span class="at">vars</span> <span class="ot">=</span> v<span class="sc">,</span></span>
-<span id="cb6-83"><a href="#cb6-83" aria-label="83"></a>        <span class="at">note</span> <span class="ot">=</span> <span class="fu">str_glue</span><span class="re">(</span><span class="st">&quot;Cure atteinte par {.ttt$n_reached[[v]]} patients.&quot;</span><span class="re">)</span></span>
-<span id="cb6-84"><a href="#cb6-84" aria-label="84"></a>      <span class="re">)</span></span>
-<span id="cb6-85"><a href="#cb6-85" aria-label="85"></a>    <span class="re">}</span><span class="sc">,</span></span>
-<span id="cb6-86"><a href="#cb6-86" aria-label="86"></a>    <span class="at">.init</span> <span class="ot">=</span> _</span>
-<span id="cb6-87"><a href="#cb6-87" aria-label="87"></a>  <span class="re">)</span> <span class="sc">|&gt;</span></span>
-<span id="cb6-88"><a href="#cb6-88" aria-label="88"></a>  <span class="fu">tbl_format</span><span class="re">(</span></span>
-<span id="cb6-89"><a href="#cb6-89" aria-label="89"></a>    <span class="at">note_global</span> <span class="ot">=</span> <span class="fu">str_glue</span><span class="re">(</span></span>
-<span id="cb6-90"><a href="#cb6-90" aria-label="90"></a>      <span class="st">&quot;Patients ayant reçu au moins une cure de chimiothérapie d&#39;induction </span><span class="sc">\\</span></span>
-<span id="cb6-91"><a href="#cb6-91" aria-label="91"></a><span class="st">      ou adjuvante ({sum(df$n_cures &gt; 0)} sur {nrow(df)} patients inclus).&quot;</span></span>
-<span id="cb6-92"><a href="#cb6-92" aria-label="92"></a>    <span class="re">)</span><span class="sc">,</span></span>
-<span id="cb6-93"><a href="#cb6-93" aria-label="93"></a>    <span class="at">width</span> <span class="ot">=</span> <span class="dv">800</span></span>
-<span id="cb6-94"><a href="#cb6-94" aria-label="94"></a>  <span class="re">)</span></span>
-<span id="cb6-95"><a href="#cb6-95" aria-label="95"></a></span>
-<span id="cb6-96"><a href="#cb6-96" aria-label="96"></a><span class="fu">easy_out</span><span class="re">(</span>tbl_ttt<span class="re">)</span></span>
-<span id="cb6-97"><a href="#cb6-97" aria-label="97"></a></span>
-<span id="cb6-98"><a href="#cb6-98" aria-label="98"></a><span class="do">### QMD ------------------------------------------------------------------------</span></span>
-<span id="cb6-99"><a href="#cb6-99" aria-label="99"></a></span>
-<span id="cb6-100"><a href="#cb6-100" aria-label="100"></a>.ttt <span class="ot">&lt;-</span> <span class="fu">c</span><span class="re">(</span></span>
-<span id="cb6-101"><a href="#cb6-101" aria-label="101"></a>  .ttt<span class="sc">,</span></span>
-<span id="cb6-102"><a href="#cb6-102" aria-label="102"></a>  <span class="fu">qmd_only</span><span class="re">(</span><span class="fu">lst</span><span class="re">(</span></span>
-<span id="cb6-103"><a href="#cb6-103" aria-label="103"></a>    <span class="at">adapt</span> <span class="ot">=</span> <span class="fu">tbl_n_pct</span><span class="re">(</span>tbl_ttt<span class="sc">,</span> <span class="st">&quot;total_adapt&quot;</span><span class="re">)</span><span class="sc">,</span></span>
-<span id="cb6-104"><a href="#cb6-104" aria-label="104"></a>    <span class="at">adapt_sup</span> <span class="ot">=</span> <span class="fu">tbl_n_pct</span><span class="re">(</span>tbl_ttt<span class="sc">,</span> <span class="st">&quot;total_adapt_pct&quot;</span><span class="sc">,</span> <span class="at">level</span> <span class="ot">=</span> <span class="st">&quot;&gt;20%&quot;</span><span class="re">)</span></span>
-<span id="cb6-105"><a href="#cb6-105" aria-label="105"></a>  <span class="re">))</span></span>
-<span id="cb6-106"><a href="#cb6-106" aria-label="106"></a><span class="re">)</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" data-filename="r"><pre class="sourceCode numberSource rhebstr r number-lines cw-auto code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>tbl_ttt <span class="ot">&lt;-</span> .chimio<span class="sc">$</span>data <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a>  <span class="fu">select</span><span class="re">(</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a>    groupe<span class="sc">,</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a>    <span class="fu">matches</span><span class="re">(</span><span class="st">&quot;total_dose&quot;</span><span class="re">)</span><span class="sc">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-label="5"></a>    total_adapt<span class="sc">,</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-label="6"></a>    total_adapt_pct</span>
+<span id="cb6-7"><a href="#cb6-7" aria-label="7"></a>  <span class="re">)</span> <span class="sc">|&gt;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-label="8"></a>  <span class="fu">strip_label</span><span class="re">(</span><span class="fu">str_glue</span><span class="re">(</span><span class="st">&quot;^{.grp_lab$dose} : &quot;</span><span class="re">))</span> <span class="sc">|&gt;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-label="9"></a>  <span class="fu">use_vars</span><span class="re">()</span> <span class="sc">|&gt;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-label="10"></a>  <span class="fu">tbl_summary</span><span class="re">(</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-label="11"></a>    <span class="at">by</span> <span class="ot">=</span> groupe<span class="sc">,</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-label="12"></a>    <span class="at">statistic</span> <span class="ot">=</span> opts<span class="sc">$</span>vars<span class="sc">$</span>stat<span class="sc">,</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-label="13"></a>    <span class="at">type</span> <span class="ot">=</span> <span class="fu">matches</span><span class="re">(</span><span class="st">&quot;total_dose&quot;</span><span class="re">)</span> <span class="sc">~</span> <span class="st">&quot;continuous&quot;</span><span class="sc">,</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-label="14"></a>    <span class="at">value</span> <span class="ot">=</span> <span class="fu">binary_value</span><span class="re">(</span>df<span class="re">)</span><span class="sc">,</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-label="15"></a>    <span class="at">digits</span> <span class="ot">=</span> opts<span class="sc">$</span>digits<span class="sc">,</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-label="16"></a>    <span class="at">missing</span> <span class="ot">=</span> <span class="st">&quot;ifany&quot;</span><span class="sc">,</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-label="17"></a>    <span class="at">missing_text</span> <span class="ot">=</span> opts<span class="sc">$</span>labs<span class="sc">$</span>row_missing</span>
+<span id="cb6-18"><a href="#cb6-18" aria-label="18"></a>  <span class="re">)</span> <span class="sc">|&gt;</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-label="19"></a>  <span class="fu">add_stat_label</span><span class="re">(</span><span class="at">label</span> <span class="ot">=</span> opts<span class="sc">$</span>vars<span class="sc">$</span>label<span class="re">)</span> <span class="sc">|&gt;</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-label="20"></a>  <span class="fu">add_p</span><span class="re">(</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-label="21"></a>    <span class="at">pvalue_fun</span> <span class="ot">=</span> opts<span class="sc">$</span>pvalue<span class="sc">$</span>format<span class="sc">,</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-label="22"></a>    <span class="at">test.args</span> <span class="ot">=</span> .test_args</span>
+<span id="cb6-23"><a href="#cb6-23" aria-label="23"></a>  <span class="re">)</span> <span class="sc">|&gt;</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-label="24"></a>  <span class="fu">gtsum_format</span><span class="re">()</span> <span class="sc">|&gt;</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-label="25"></a>  <span class="fu">add_variable_group_header</span><span class="re">(</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-label="26"></a>    <span class="at">header</span> <span class="ot">=</span> .grp_lab<span class="sc">$</span>dose<span class="sc">,</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-label="27"></a>    <span class="at">variables</span> <span class="ot">=</span> <span class="fu">matches</span><span class="re">(</span><span class="st">&quot;total_dose&quot;</span><span class="re">)</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-label="28"></a>  <span class="re">)</span> <span class="sc">|&gt;</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-label="29"></a>  <span class="fu">add_note</span><span class="re">(</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-label="30"></a>    <span class="at">vars</span> <span class="ot">=</span> <span class="st">&quot;total_adapt_pct&quot;</span><span class="sc">,</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-label="31"></a>    <span class="at">note</span> <span class="ot">=</span> <span class="st">&quot;Adaptation maximale parmi les trois molécules, à la dernière cure.&quot;</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-label="32"></a>  <span class="re">)</span> <span class="sc">|&gt;</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-label="33"></a>  <span class="fu">tbl_format</span><span class="re">(</span><span class="at">note_global</span> <span class="ot">=</span> .chimio<span class="sc">$</span>note<span class="sc">,</span> <span class="at">width</span> <span class="ot">=</span> <span class="dv">800</span><span class="re">)</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-label="34"></a></span>
+<span id="cb6-35"><a href="#cb6-35" aria-label="35"></a><span class="fu">easy_out</span><span class="re">(</span>tbl_ttt<span class="re">)</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-label="36"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-label="37"></a><span class="do">### QMD ------------------------------------------------------------------------</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-label="38"></a></span>
+<span id="cb6-39"><a href="#cb6-39" aria-label="39"></a>.ttt <span class="ot">&lt;-</span> <span class="fu">c</span><span class="re">(</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-label="40"></a>  <span class="fu">lst</span><span class="re">(</span><span class="at">n</span> <span class="ot">=</span> .chimio<span class="sc">$</span>n<span class="re">)</span><span class="sc">,</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-label="41"></a>  <span class="fu">qmd_only</span><span class="re">(</span><span class="fu">lst</span><span class="re">(</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-label="42"></a>    <span class="at">adapt</span> <span class="ot">=</span> <span class="fu">tbl_n_pct</span><span class="re">(</span>tbl_ttt<span class="sc">,</span> <span class="st">&quot;total_adapt&quot;</span><span class="re">)</span><span class="sc">,</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-label="43"></a>    <span class="at">adapt_sup</span> <span class="ot">=</span> <span class="fu">tbl_n_pct</span><span class="re">(</span>tbl_ttt<span class="sc">,</span> <span class="st">&quot;total_adapt_pct&quot;</span><span class="sc">,</span> <span class="at">level</span> <span class="ot">=</span> <span class="st">&quot;&gt;20%&quot;</span><span class="re">)</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-label="44"></a>  <span class="re">))</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-label="45"></a><span class="re">)</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
@@ -5519,78 +5458,6 @@ height: 0px !important;
 <td headers="stat_1" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">41 (82,0)</td>
 <td headers="stat_2" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">45 (93,8)</td>
 <td headers="p.value" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 11px;"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left gt_striped">Adaptation de dose à C4, n (%)<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>†</sup></span></td>
-<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">0/2</td>
-<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;"><br></td>
-<td headers="stat_1" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;"><br></td>
-<td headers="stat_2" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;"><br></td>
-<td headers="p.value" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 11px;">0,005</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    Non</td>
-<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br></td>
-<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">6 (6,4)</td>
-<td headers="stat_1" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">4 (8,5)</td>
-<td headers="stat_2" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">2 (4,3)</td>
-<td headers="p.value" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 11px;"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left gt_striped">    &lt;=20%</td>
-<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br></td>
-<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">31 (33,0)</td>
-<td headers="stat_1" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">22 (46,8)</td>
-<td headers="stat_2" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">9 (19,1)</td>
-<td headers="p.value" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 11px;"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    &gt;20%</td>
-<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br></td>
-<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">57 (60,6)</td>
-<td headers="stat_1" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">21 (44,7)</td>
-<td headers="stat_2" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">36 (76,6)</td>
-<td headers="p.value" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 11px;"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left gt_striped">Adaptation de dose à C8, n (%)<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>‡</sup></span></td>
-<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;">0/2</td>
-<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;"><br></td>
-<td headers="stat_1" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;"><br></td>
-<td headers="stat_2" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;"><br></td>
-<td headers="p.value" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 11px;">0,084</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    Non</td>
-<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br></td>
-<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">3 (4,8)</td>
-<td headers="stat_1" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">2 (4,9)</td>
-<td headers="stat_2" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">1 (4,5)</td>
-<td headers="p.value" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 11px;"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left gt_striped">    &lt;=20%</td>
-<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br></td>
-<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">13 (20,6)</td>
-<td headers="stat_1" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">5 (12,2)</td>
-<td headers="stat_2" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">8 (36,4)</td>
-<td headers="p.value" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 11px;"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    &gt;20%</td>
-<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br></td>
-<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">47 (74,6)</td>
-<td headers="stat_1" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">34 (82,9)</td>
-<td headers="stat_2" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">13 (59,1)</td>
-<td headers="p.value" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 11px;"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left gt_striped">Adaptation de dose à C12, n (%)<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>§</sup></span></td>
-<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br></td>
-<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;"><br></td>
-<td headers="stat_1" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;"><br></td>
-<td headers="stat_2" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;"><br></td>
-<td headers="p.value" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 11px;">0,32</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    Non</td>
-<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br></td>
-<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">1 (2,9)</td>
-<td headers="stat_1" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">1 (3,2)</td>
-<td headers="stat_2" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">0</td>
-<td headers="p.value" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 11px;"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left gt_striped">    &lt;=20%</td>
-<td headers="dm" class="gt_row gt_center gt_striped" style="font-size: 11px;"><br></td>
-<td headers="stat_0" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">8 (22,9)</td>
-<td headers="stat_1" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">6 (19,4)</td>
-<td headers="stat_2" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">2 (50,0)</td>
-<td headers="p.value" class="gt_row gt_center gt_striped" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 11px;"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    &gt;20%</td>
-<td headers="dm" class="gt_row gt_center" style="font-size: 11px;"><br></td>
-<td headers="stat_0" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">26 (74,3)</td>
-<td headers="stat_1" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">24 (77,4)</td>
-<td headers="stat_2" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 12px;">2 (50,0)</td>
-<td headers="p.value" class="gt_row gt_center" style="font-family: Luciole, Aptos, Calibri, sans-serif; font-size: 11px;"><br></td></tr>
   </tbody>
   <tfoot>
     <tr class="gt_footnotes">
@@ -5598,15 +5465,6 @@ height: 0px !important;
     </tr>
     <tr class="gt_footnotes">
       <td class="gt_footnote" style="text-align: justify;" colspan="6"><span class="gt_footnote_marks gt_asterisk" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>*</sup></span> <span data-qmd-base64="QWRhcHRhdGlvbiBtYXhpbWFsZSBwYXJtaSBsZXMgdHJvaXMgbW9sw6ljdWxlcywgw6AgbGEgZGVybmnDqHJlIGN1cmUu"><span class="gt_from_md">Adaptation maximale parmi les trois molécules, à la dernière cure.</span></span></td>
-    </tr>
-    <tr class="gt_footnotes">
-      <td class="gt_footnote" style="text-align: justify;" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>†</sup></span> <span data-qmd-base64="Q3VyZSBhdHRlaW50ZSBwYXIgOTYgcGF0aWVudHMu"><span class="gt_from_md">Cure atteinte par 96 patients.</span></span></td>
-    </tr>
-    <tr class="gt_footnotes">
-      <td class="gt_footnote" style="text-align: justify;" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>‡</sup></span> <span data-qmd-base64="Q3VyZSBhdHRlaW50ZSBwYXIgNjUgcGF0aWVudHMu"><span class="gt_from_md">Cure atteinte par 65 patients.</span></span></td>
-    </tr>
-    <tr class="gt_footnotes">
-      <td class="gt_footnote" style="text-align: justify;" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>§</sup></span> <span data-qmd-base64="Q3VyZSBhdHRlaW50ZSBwYXIgMzUgcGF0aWVudHMu"><span class="gt_from_md">Cure atteinte par 35 patients.</span></span></td>
     </tr>
   </tfoot>
 </table>
@@ -5624,9 +5482,9 @@ height: 0px !important;
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" data-filename="r"><pre class="sourceCode numberSource rhebstr r number-lines cw-auto code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a>.tox <span class="ot">&lt;-</span> <span class="fu">lst</span><span class="re">(</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a>  <span class="at">data</span> <span class="ot">=</span> df <span class="sc">|&gt;</span> <span class="fu">filter</span><span class="re">(</span>n_cures <span class="sc">&gt;</span> <span class="dv">0</span><span class="re">)</span><span class="sc">,</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a>  <span class="at">data</span> <span class="ot">=</span> .chimio<span class="sc">$</span>data<span class="sc">,</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-label="3"></a>  <span class="at">level</span> <span class="ot">=</span> <span class="fu">binary_value</span><span class="re">(</span>data<span class="re">)</span><span class="sc">$</span>total_ei<span class="sc">,</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-label="4"></a>  <span class="at">n</span> <span class="ot">=</span> <span class="fu">nrow</span><span class="re">(</span>data<span class="re">)</span><span class="sc">,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-label="4"></a>  <span class="at">n</span> <span class="ot">=</span> .chimio<span class="sc">$</span>n<span class="sc">,</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-label="5"></a>  <span class="at">n_eval</span> <span class="ot">=</span> <span class="fu">sum</span><span class="re">(</span><span class="sc">!</span><span class="fu">is.na</span><span class="re">(</span>data<span class="sc">$</span>total_ei<span class="re">))</span><span class="sc">,</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-label="6"></a>  <span class="at">n_ei</span> <span class="ot">=</span> <span class="fu">sum</span><span class="re">(</span>data<span class="sc">$</span>total_ei <span class="sc">==</span> level<span class="sc">,</span> <span class="at">na.rm</span> <span class="ot">=</span> <span class="cn">TRUE</span><span class="re">)</span><span class="sc">,</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-label="7"></a>  <span class="at">pct</span> <span class="ot">=</span> <span class="fu">style_pct</span><span class="re">(</span>n_ei <span class="sc">/</span> n_eval<span class="re">)</span></span>
@@ -5659,32 +5517,27 @@ height: 0px !important;
 <span id="cb7-34"><a href="#cb7-34" aria-label="34"></a>    <span class="at">vars</span> <span class="ot">=</span> <span class="st">&quot;total_ei&quot;</span><span class="sc">,</span></span>
 <span id="cb7-35"><a href="#cb7-35" aria-label="35"></a>    <span class="at">note</span> <span class="ot">=</span> <span class="st">&quot;Selon la Common Terminology Criteria for Adverse Events (CTCAE) v5.0.&quot;</span></span>
 <span id="cb7-36"><a href="#cb7-36" aria-label="36"></a>  <span class="re">)</span> <span class="sc">|&gt;</span></span>
-<span id="cb7-37"><a href="#cb7-37" aria-label="37"></a>  <span class="fu">tbl_format</span><span class="re">(</span></span>
-<span id="cb7-38"><a href="#cb7-38" aria-label="38"></a>    <span class="at">note_global</span> <span class="ot">=</span> <span class="fu">str_glue</span><span class="re">(</span></span>
-<span id="cb7-39"><a href="#cb7-39" aria-label="39"></a>      <span class="st">&quot;Patients ayant reçu au moins une cure de chimiothérapie d&#39;induction </span><span class="sc">\\</span></span>
-<span id="cb7-40"><a href="#cb7-40" aria-label="40"></a><span class="st">      ou adjuvante ({sum(df$n_cures &gt; 0)} sur {nrow(df)} patients inclus).&quot;</span></span>
-<span id="cb7-41"><a href="#cb7-41" aria-label="41"></a>    <span class="re">)</span></span>
-<span id="cb7-42"><a href="#cb7-42" aria-label="42"></a>  <span class="re">)</span></span>
-<span id="cb7-43"><a href="#cb7-43" aria-label="43"></a></span>
-<span id="cb7-44"><a href="#cb7-44" aria-label="44"></a><span class="fu">easy_out</span><span class="re">(</span>tbl_tox<span class="re">)</span></span>
-<span id="cb7-45"><a href="#cb7-45" aria-label="45"></a></span>
-<span id="cb7-46"><a href="#cb7-46" aria-label="46"></a><span class="do">### QMD ------------------------------------------------------------------------</span></span>
-<span id="cb7-47"><a href="#cb7-47" aria-label="47"></a></span>
-<span id="cb7-48"><a href="#cb7-48" aria-label="48"></a>.tox <span class="ot">&lt;-</span> <span class="fu">c</span><span class="re">(</span></span>
-<span id="cb7-49"><a href="#cb7-49" aria-label="49"></a>  .tox<span class="sc">,</span></span>
-<span id="cb7-50"><a href="#cb7-50" aria-label="50"></a>  <span class="fu">qmd_only</span><span class="re">(</span><span class="fu">lst</span><span class="re">(</span></span>
-<span id="cb7-51"><a href="#cb7-51" aria-label="51"></a>    <span class="at">ei</span> <span class="ot">=</span> <span class="fu">map</span><span class="re">(</span></span>
-<span id="cb7-52"><a href="#cb7-52" aria-label="52"></a>      <span class="fu">lst</span><span class="re">(</span></span>
-<span id="cb7-53"><a href="#cb7-53" aria-label="53"></a>        <span class="at">vom</span> <span class="ot">=</span> <span class="st">&quot;total_ei_vom&quot;</span><span class="sc">,</span></span>
-<span id="cb7-54"><a href="#cb7-54" aria-label="54"></a>        <span class="at">neuro</span> <span class="ot">=</span> <span class="st">&quot;total_ei_neuro&quot;</span><span class="sc">,</span></span>
-<span id="cb7-55"><a href="#cb7-55" aria-label="55"></a>        <span class="at">dig</span> <span class="ot">=</span> <span class="st">&quot;total_ei_dig&quot;</span><span class="sc">,</span></span>
-<span id="cb7-56"><a href="#cb7-56" aria-label="56"></a>        <span class="at">asth</span> <span class="ot">=</span> <span class="st">&quot;total_ei_asthenie&quot;</span><span class="sc">,</span></span>
-<span id="cb7-57"><a href="#cb7-57" aria-label="57"></a>        <span class="at">neutrop</span> <span class="ot">=</span> <span class="st">&quot;total_ei_neutrop&quot;</span></span>
-<span id="cb7-58"><a href="#cb7-58" aria-label="58"></a>      <span class="re">)</span><span class="sc">,</span></span>
-<span id="cb7-59"><a href="#cb7-59" aria-label="59"></a>      <span class="sc">~</span> <span class="fu">tbl_n_pct</span><span class="re">(</span>tbl_tox<span class="sc">,</span> .x<span class="re">)</span></span>
-<span id="cb7-60"><a href="#cb7-60" aria-label="60"></a>    <span class="re">)</span></span>
-<span id="cb7-61"><a href="#cb7-61" aria-label="61"></a>  <span class="re">))</span></span>
-<span id="cb7-62"><a href="#cb7-62" aria-label="62"></a><span class="re">)</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-37"><a href="#cb7-37" aria-label="37"></a>  <span class="fu">tbl_format</span><span class="re">(</span><span class="at">note_global</span> <span class="ot">=</span> .chimio<span class="sc">$</span>note<span class="re">)</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-label="38"></a></span>
+<span id="cb7-39"><a href="#cb7-39" aria-label="39"></a><span class="fu">easy_out</span><span class="re">(</span>tbl_tox<span class="re">)</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-label="40"></a></span>
+<span id="cb7-41"><a href="#cb7-41" aria-label="41"></a><span class="do">### QMD ------------------------------------------------------------------------</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-label="42"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-label="43"></a>.tox <span class="ot">&lt;-</span> <span class="fu">c</span><span class="re">(</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-label="44"></a>  .tox<span class="sc">,</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-label="45"></a>  <span class="fu">qmd_only</span><span class="re">(</span><span class="fu">lst</span><span class="re">(</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-label="46"></a>    <span class="at">ei</span> <span class="ot">=</span> <span class="fu">map</span><span class="re">(</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-label="47"></a>      <span class="fu">lst</span><span class="re">(</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-label="48"></a>        <span class="at">vom</span> <span class="ot">=</span> <span class="st">&quot;total_ei_vom&quot;</span><span class="sc">,</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-label="49"></a>        <span class="at">neuro</span> <span class="ot">=</span> <span class="st">&quot;total_ei_neuro&quot;</span><span class="sc">,</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-label="50"></a>        <span class="at">dig</span> <span class="ot">=</span> <span class="st">&quot;total_ei_dig&quot;</span><span class="sc">,</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-label="51"></a>        <span class="at">asth</span> <span class="ot">=</span> <span class="st">&quot;total_ei_asthenie&quot;</span><span class="sc">,</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-label="52"></a>        <span class="at">neutrop</span> <span class="ot">=</span> <span class="st">&quot;total_ei_neutrop&quot;</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-label="53"></a>      <span class="re">)</span><span class="sc">,</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-label="54"></a>      <span class="sc">~</span> <span class="fu">tbl_n_pct</span><span class="re">(</span>tbl_tox<span class="sc">,</span> .x<span class="re">)</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-label="55"></a>    <span class="re">)</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-label="56"></a>  <span class="re">))</span></span>
+<span id="cb7-57"><a href="#cb7-57" aria-label="57"></a><span class="re">)</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
@@ -12254,7 +12107,7 @@ height: 0px !important;
 <span id="cb19-8"><a href="#cb19-8" aria-label="8"></a> collate  en_US.UTF-8</span>
 <span id="cb19-9"><a href="#cb19-9" aria-label="9"></a> ctype    en_US.UTF-8</span>
 <span id="cb19-10"><a href="#cb19-10" aria-label="10"></a> tz       Europe/Paris</span>
-<span id="cb19-11"><a href="#cb19-11" aria-label="11"></a> date     2026-09-17</span>
+<span id="cb19-11"><a href="#cb19-11" aria-label="11"></a> date     2026-09-19</span>
 <span id="cb19-12"><a href="#cb19-12" aria-label="12"></a> pandoc   3.11 @ /usr/bin/ (via rmarkdown)</span>
 <span id="cb19-13"><a href="#cb19-13" aria-label="13"></a> quarto   1.10.18 @ /usr/local/bin/quarto</span>
 <span id="cb19-14"><a href="#cb19-14" aria-label="14"></a></span>
@@ -12788,12 +12641,21 @@ height: 0px !important;
 <span id="cb23-283"><a href="#cb23-283" aria-label="283"></a>    <span class="fu">mutate</span><span class="re">(</span><span class="at">groupe</span> <span class="ot">=</span> <span class="fu">fct_drop</span><span class="re">(</span>groupe<span class="re">))</span></span>
 <span id="cb23-284"><a href="#cb23-284" aria-label="284"></a><span class="re">)</span></span>
 <span id="cb23-285"><a href="#cb23-285" aria-label="285"></a></span>
-<span id="cb23-286"><a href="#cb23-286" aria-label="286"></a>.tox_vars <span class="ot">&lt;-</span> <span class="fu">names</span><span class="re">(</span>df<span class="re">)</span> <span class="sc">|&gt;</span></span>
-<span id="cb23-287"><a href="#cb23-287" aria-label="287"></a>  <span class="fu">str_subset</span><span class="re">(</span><span class="st">&quot;total_ei_&quot;</span><span class="re">)</span> <span class="sc">|&gt;</span></span>
-<span id="cb23-288"><a href="#cb23-288" aria-label="288"></a>  <span class="fu">set_names</span><span class="re">()</span> <span class="sc">|&gt;</span></span>
-<span id="cb23-289"><a href="#cb23-289" aria-label="289"></a>  <span class="fu">imap_dbl</span><span class="re">(</span><span class="sc">~</span> <span class="fu">sum</span><span class="re">(</span><span class="fu">as.numeric</span><span class="re">(</span>df<span class="re">[[</span>.<span class="re">]])</span><span class="sc">,</span> <span class="at">na.rm</span> <span class="ot">=</span> <span class="cn">TRUE</span><span class="re">))</span> <span class="sc">|&gt;</span></span>
-<span id="cb23-290"><a href="#cb23-290" aria-label="290"></a>  <span class="fu">sort</span><span class="re">(</span><span class="at">decreasing</span> <span class="ot">=</span> <span class="cn">TRUE</span><span class="re">)</span> <span class="sc">|&gt;</span></span>
-<span id="cb23-291"><a href="#cb23-291" aria-label="291"></a>  <span class="fu">names</span><span class="re">()</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb23-286"><a href="#cb23-286" aria-label="286"></a>.chimio <span class="ot">&lt;-</span> <span class="fu">lst</span><span class="re">(</span></span>
+<span id="cb23-287"><a href="#cb23-287" aria-label="287"></a>  <span class="at">data</span> <span class="ot">=</span> df <span class="sc">|&gt;</span> <span class="fu">filter</span><span class="re">(</span>n_cures <span class="sc">&gt;</span> <span class="dv">0</span><span class="re">)</span><span class="sc">,</span></span>
+<span id="cb23-288"><a href="#cb23-288" aria-label="288"></a>  <span class="at">n</span> <span class="ot">=</span> <span class="fu">nrow</span><span class="re">(</span>data<span class="re">)</span><span class="sc">,</span></span>
+<span id="cb23-289"><a href="#cb23-289" aria-label="289"></a>  <span class="at">note</span> <span class="ot">=</span> <span class="fu">str_glue</span><span class="re">(</span></span>
+<span id="cb23-290"><a href="#cb23-290" aria-label="290"></a>    <span class="st">&quot;Patients ayant reçu au moins une cure de chimiothérapie d&#39;induction </span><span class="sc">\\</span></span>
+<span id="cb23-291"><a href="#cb23-291" aria-label="291"></a><span class="st">    ou adjuvante ({n} sur {nrow(df)} patients inclus).&quot;</span></span>
+<span id="cb23-292"><a href="#cb23-292" aria-label="292"></a>  <span class="re">)</span></span>
+<span id="cb23-293"><a href="#cb23-293" aria-label="293"></a><span class="re">)</span></span>
+<span id="cb23-294"><a href="#cb23-294" aria-label="294"></a></span>
+<span id="cb23-295"><a href="#cb23-295" aria-label="295"></a>.tox_vars <span class="ot">&lt;-</span> <span class="fu">names</span><span class="re">(</span>df<span class="re">)</span> <span class="sc">|&gt;</span></span>
+<span id="cb23-296"><a href="#cb23-296" aria-label="296"></a>  <span class="fu">str_subset</span><span class="re">(</span><span class="st">&quot;total_ei_&quot;</span><span class="re">)</span> <span class="sc">|&gt;</span></span>
+<span id="cb23-297"><a href="#cb23-297" aria-label="297"></a>  <span class="fu">set_names</span><span class="re">()</span> <span class="sc">|&gt;</span></span>
+<span id="cb23-298"><a href="#cb23-298" aria-label="298"></a>  <span class="fu">imap_dbl</span><span class="re">(</span><span class="sc">~</span> <span class="fu">sum</span><span class="re">(</span><span class="fu">as.numeric</span><span class="re">(</span>df<span class="re">[[</span>.<span class="re">]])</span><span class="sc">,</span> <span class="at">na.rm</span> <span class="ot">=</span> <span class="cn">TRUE</span><span class="re">))</span> <span class="sc">|&gt;</span></span>
+<span id="cb23-299"><a href="#cb23-299" aria-label="299"></a>  <span class="fu">sort</span><span class="re">(</span><span class="at">decreasing</span> <span class="ot">=</span> <span class="cn">TRUE</span><span class="re">)</span> <span class="sc">|&gt;</span></span>
+<span id="cb23-300"><a href="#cb23-300" aria-label="300"></a>  <span class="fu">names</span><span class="re">()</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div data-code-filename="index.qmd">
@@ -12802,7 +12664,7 @@ height: 0px !important;
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24" data-filename="markdown"><pre class="sourceCode numberSource markdown number-lines cw-auto code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-label="1"></a><span class="co">---</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-label="2"></a><span class="an">title:</span><span class="co"> &quot;Thèse Nesrine&quot;</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-label="3"></a><span class="an">subtitle:</span><span class="co"> &quot;Rapport d&#39;analyse statistique&quot;</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-label="4"></a><span class="an">date:</span><span class="co"> 2026-09-17</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-label="4"></a><span class="an">date:</span><span class="co"> 2026-09-19</span></span>
 <span id="cb24-5"><a href="#cb24-5" aria-label="5"></a><span class="an">format:</span></span>
 <span id="cb24-6"><a href="#cb24-6" aria-label="6"></a><span class="co">  hebstr-doc-html: {}</span></span>
 <span id="cb24-7"><a href="#cb24-7" aria-label="7"></a><span class="co">  hebstr-doc-docx: {}</span></span>

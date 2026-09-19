@@ -1,7 +1,7 @@
 ---
 title: "Thèse Nesrine"
 subtitle: "Rapport d'analyse statistique"
-date: 2026-09-17
+date: 2026-09-19
 format:
   hebstr-doc-html: {}
   hebstr-doc-docx: {}
